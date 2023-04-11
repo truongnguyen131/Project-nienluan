@@ -1,0 +1,619 @@
+.admin-manager {
+    display: flex;
+    font-size: 13px;
+}
+
+.menu {
+    display: flex;
+    font-family: Poppins, sans-serif;
+}
+
+.tab-menu {
+    background-color: black;
+    width: 20%;
+    height: auto;
+    box-shadow: 0 4px 15px 0 rgba(21, 21, 21, 0.75);
+}
+
+.menu-title {
+    padding: 15px;
+    width: 100%;
+    height: 100px;
+    box-shadow: 0 4px 15px 0 rgba(21, 21, 21, 0.75);
+}
+
+.menu-item {
+    padding: 15px;
+    margin: 10px;
+    margin-bottom: 10px;
+    color: white;
+    border-bottom: 1px solid rgb(205, 138, 37);
+}
+
+.menu-item:hover {
+    background-color: rgb(172, 172, 172, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.dropdow-selected {
+    padding: 15px;
+    margin: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 13 px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(205, 138, 37);
+}
+
+ion-icon {
+    color: red;
+    width: 20px;
+    height: 20px;
+}
+
+.menu-dropdow {}
+
+.dropdow-selected {
+    cursor: pointer;
+}
+
+.dropdow-list {
+    overflow: hidden;
+    display: none;
+    padding-left: 20px;
+}
+
+.menu-dropdow:hover .dropdow-list {
+    display: block;
+}
+
+.dropdow-item {
+    padding: 15px;
+    margin: 5px;
+    margin-bottom: 20px;
+    color: white;
+    font-size: 13px;
+    transition: background-color 0.3s linear;
+}
+
+.dropdow-item:hover {
+    background-color: rgb(172, 172, 172, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+
+/* TABBBBBBB */
+
+.tabs {
+    width: 100%;
+    line-height: 1.5;
+    word-break: break-word;
+    padding: 10px;
+}
+
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+}
+
+
+/* Style the buttons inside the tab */
+
+.tab button {
+    background-color: rgb(249, 249, 249);
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.4s;
+    font-size: 17px;
+}
+
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+    /* background-color: rgb(225, 225, 225); */
+}
+
+
+/* Create an active/current tablink class */
+
+.tab button.active {
+    background-color: rgba(190, 189, 189, 0.4);
+    box-shadow: 0 4px 15px 0 rgba(21, 21, 21, 0.75);
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    width: 100%;
+    background-color: rgba(190, 189, 189, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px 0 rgba(21, 21, 21, 0.75);
+    display: none;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+
+/* Fade in tabs */
+
+@-webkit-keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.tab-comment-content {}
+
+.tab-cmt-bottom {
+    border-top: 2px solid goldenrod;
+}
+
+.product-bottom-inputbtn {
+    display: flex;
+}
+
+.tab-cmt-display {
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 200px;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.tab-user-cmt {
+    padding-bottom: 10px;
+}
+
+.cmt-user-name span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cmt-date span {
+    font-size: 12px;
+    color: gray;
+}
+
+.cmt-content span {
+    font-size: 15px;
+}
+
+.tab-cmt-input {
+    margin: 20px;
+    width: 80%;
+}
+
+.tab-cmt-input textarea {
+    resize: none;
+    width: 100%;
+    height: 100px;
+}
+
+.tab-cmt-btn {
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+
+.tab-cmt-btn button {
+    height: 50px;
+    width: 100%;
+    color: white;
+    background-color: black;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.tab-cmt-btn button:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+@media only screen and (max-width: 1023px) {
+    .product-bottom-inputbtn {
+        display: block;
+    }
+    .tab-cmt-input {
+        width: calc(100% - 40px);
+    }
+    .tab-cmt-btn {
+        height: calc(100% - 32px);
+        width: 100%;
+    }
+    .tab-cmt-btn button {
+        height: calc(100% - 32px);
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .pay-main {
+        flex-direction: column;
+    }
+    .tab-cmt-btn button {
+        height: calc(100% - 32px);
+        width: 100%;
+    }
+}
+
+
+/* thêm khách hàng */
+
+.add-client-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.client-item {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.client-item span {
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 30px;
+    width: 30%;
+}
+
+.client-item input {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-top: auto;
+    border-radius: 13px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.client-item select {
+    width: 70%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-top: auto;
+    border-radius: 13px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.client-item button {
+    margin-left: 20px;
+    height: 40px;
+    width: 30%;
+    padding: 5px 15px;
+    border-radius: 13px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    transition: .25s;
+}
+
+.client-item button:hover {
+    color: black;
+    background-color: aquamarine;
+}
+
+th {
+    white-space: nowrap;
+}
+
+td {
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+td button {
+    background-color: transparent;
+}
+
+.table-thongke {
+    margin: 10px;
+}
+
+.table-mota {
+    /* gioi han so dong hien thi */
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.btn-menu {
+    text-align: left;
+    background-color: transparent;
+    width: 100%;
+}
+
+.scrollbar {
+    max-height: 430px;
+    width: 100%;
+    overflow: auto;
+}
+
+.scrollbar1 {
+    max-height: 500px;
+    width: 100%;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+.menu-tab {
+    width: 100%;
+    display: none;
+}
+
+.tabcontent-addproduct {
+    font-family: Poppins, sans-serif;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.add-input input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 13px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.add-input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    margin-top: auto;
+    border-radius: 13px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.add-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 30px;
+}
+
+.add-upload {
+    display: flex;
+}
+
+.add-btn button {
+    margin-left: 20px;
+    height: 40px;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 13px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    transition: .25s;
+}
+
+.add-btn button:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+.type-table {
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 13px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.table-control {
+    display: flex;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.search {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 13px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.search button {
+    width: 20%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    transition: .25s;
+}
+
+.search button:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+
+/* sale */
+
+.sale-main {
+    height: 100%;
+    padding: 10px;
+    background-color: rgba(190, 189, 189, 0.4);
+}
+
+.slidecontainer,
+.date-star-end,
+.sale-screen {
+    width: calc(100% / 3);
+}
+
+.slider {
+    width: 70%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+}
+
+.slider:hover {
+    opacity: 1;
+    /* Hiển thị đầy đủ khi di chuột qua */
+}
+
+
+/* Tay cầm trượt (sử dụng -webkit- (Chrome, Opera, Safari, Edge) và -moz- (Firefox) 
+  để ghi đè giao diện mặc định) */
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Ghi đè giao diện mặc định */
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.control-middel,
+.sale-screen {
+    display: flex;
+    white-space: nowrap;
+}
+
+.sale-screen {
+    align-items: center;
+    width: calc(100% / 3);
+    border-radius: 13px;
+}
+
+.id,
+.name,
+.percent {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.control-middel {
+    justify-content: center;
+    align-items: center;
+}
+
+.date-star {
+    margin-bottom: 10px;
+}
+
+.date-end {
+    margin-bottom: 10px;
+}
+
+.addpercent {
+    border-radius: 5px;
+    padding: 3px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.addpercent:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+.sale-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.sale-update button {
+    width: 20%;
+    height: 50px;
+    background-color: black;
+    border-radius: 13px;
+    color: white;
+    text-align: center;
+    transition: .25s;
+}
+
+.sale-update button:hover {
+    background-color: aquamarine;
+    color: black;
+}
+
+
+/* account */
+
+.type-acc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.type-acc span {
+    font-size: 13px;
+    font-weight: normal;
+    width: fit-content;
+    padding: 10px;
+}
+
+.type-acc input {
+    width: fit-content;
+    height: 25px;
+}
+
+.type-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}

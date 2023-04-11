@@ -1,0 +1,445 @@
+body {
+    color: #666;
+    font-size: 14px;
+    font-family: Poppins, sans-serif;
+    line-height: 1.80857;
+    font-weight: 400
+}
+
+.header {
+    width: 100%;
+    padding: 10px 30px;
+    background: linear-gradient(to right, #25aae1, #bf6df3, #d031de, #8e27bb);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px 0 rgba(244, 98, 198, .75);
+    position: absolute;
+    z-index: 999
+}
+
+.product-main {
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    margin: 120px 30px 30px 30px
+}
+
+.product-main-top {
+    height: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 350px 100px 350px;
+    grid-gap: 80px 20px
+}
+
+.product-morong {
+    background-color: rgba(190, 189, 189, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px 0 rgba(21, 21, 21, 0.75);
+    height: 100px;
+    grid-column: 1/4;
+    grid-row: 2/3;
+    padding: 15px
+}
+
+.morong-name {
+    font-size: 20px;
+    color: #000;
+    font-weight: 700
+}
+
+.morong-describe {
+    font-size: 15px;
+    color: #a09f9f
+}
+
+.morong-control {
+    width: fit-content;
+    height: fit-content;
+    border: 3px solid #000;
+    background-color: #000;
+    display: flex;
+    margin-left: 60%;
+    transform: translateY(-100%)
+}
+
+.morong-sale {
+    background-color: green;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    padding: 5px
+}
+
+.morong-price {
+    background-color: #344654;
+    height: 50px;
+    text-align: center;
+    padding: 3px
+}
+
+.morong-price-old span {
+    color: #7994a5;
+    font-size: 12px;
+    text-decoration: line-through
+}
+
+.morong-price-new h2 {
+    color: #bae913;
+    font-size: 15px
+}
+
+.morong-btn button {
+    height: 50px;
+    width: 100%;
+    border-radius: 3px;
+    border: 3px solid #000;
+    color: #fff;
+    overflow: hidden;
+    background-color: #85cb24;
+    padding: 10px
+}
+
+.morong-btn button:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-color: #acf447
+}
+
+.product-slide {
+    width: 100%;
+    grid-column: 1/4;
+    grid-row: 1/2
+}
+
+.product-info {
+    width: 100%;
+    grid-column: 4/5;
+    grid-row: 1/3
+}
+
+.product-info-top {
+    width: 100%;
+    height: auto;
+    align-items: center
+}
+
+.product-img {
+    text-align: center;
+    margin: 0 auto
+}
+
+.product-ten {
+    font-size: 26px;
+    line-height: 32px;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word
+}
+
+.product-nsx {
+    padding-top: 10px;
+    font-size: 16px;
+    line-height: 22px;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word
+}
+
+.product-theloai h1 {
+    font-size: 15px
+}
+
+.danhgiasao {
+    display: flex;
+    margin: 5px 0
+}
+
+.danhgia-sao {
+    padding-left: 5px
+}
+
+.product-gia {
+    display: flex;
+    align-items: center
+}
+
+.card-price-sale {
+    background-color: green;
+    border-radius: 5px;
+    margin-left: 10px;
+    height: 30px;
+    width: calc(calc(100% / 3) - 10px)
+}
+
+.card-price-sale h2 {
+    color: #fff;
+    font-weight: 300px;
+    font-size: 20px;
+    text-align: center
+}
+
+.card-price-old {
+    margin-left: 10px;
+    width: calc(calc(100% / 3) - 10px)
+}
+
+.card-price-old h2 {
+    text-decoration-line: line-through;
+    font-weight: 300px;
+    font-size: 15px;
+    color: gray;
+    line-height: 1;
+    text-align: center;
+    flex: 1
+}
+
+.card-price-new {
+    margin-left: 10px;
+    width: calc(calc(100% / 3) - 10px)
+}
+
+.card-price-new h2 {
+    line-height: 1;
+    font-weight: 500px;
+    font-size: 20px;
+    text-align: center;
+    color: red
+}
+
+.product-info-bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px
+}
+
+.product-buy {
+    width: calc(100% / 2)
+}
+
+.product-buy button {
+    height: 50px;
+    width: 100%;
+    color: #fff;
+    background-color: #000;
+    border-radius: 15px
+}
+
+.product-cart {
+    width: calc(100% / 2)
+}
+
+.product-cart button {
+    height: 50px;
+    width: 100%;
+    color: #fff;
+    background-color: #000;
+    border-radius: 15px
+}
+
+.product-buy button:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, .75)
+}
+
+.product-cart button:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, .75)
+}
+
+.product-mota {
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word
+}
+
+.product-motafull {
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: justify
+}
+
+.product-soluong {
+    display: flex;
+    margin-bottom: 10px
+}
+
+.product-soluong-title {
+    font-size: 15px;
+    margin-right: 5px
+}
+
+.product-value {
+    background-color: transparent;
+    border-top: 2px solid #c2c1c1;
+    border-bottom: 2px solid #c2c1c1;
+    width: 50px;
+    height: 30px
+}
+
+.product-value input {
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    border: none
+}
+
+.product-btn-tang {
+    background-color: transparent;
+    border: 2px solid #c2c1c1;
+    width: 30px;
+    height: 30px
+}
+
+.product-btn-tang button {
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    height: 30px
+}
+
+.product-btn-giam {
+    background-color: transparent;
+    border: 2px solid #c2c1c1;
+    width: 30px;
+    height: 30px
+}
+
+.product-btn-giam button {
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    height: 30px
+}
+
+@media only screen and (max-width:1024px) {
+    .morong-btn button {
+        font-size: 13px;
+        white-space: nowrap
+    }
+    .morong-control {
+        margin-left: 55%
+    }
+}
+
+@media only screen and (max-width:1023px) {
+    .product-main-top {
+        display: contents
+    }
+    .morong-control {
+        margin-left: 55%
+    }
+    .product-img {
+        margin: 30px auto
+    }
+    .product-morong {
+        margin-top: 50px
+    }
+    .product-slide {
+        width: 100%;
+        margin-top: 10px
+    }
+    .morong-btn button {
+        font-size: 13px;
+        white-space: nowrap
+    }
+    .product-ten h2 {
+        font-size: 20px;
+        line-height: 32px;
+        text-align: left;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word
+    }
+    .product-nsx h3 {
+        font-size: 16px;
+        line-height: 22px;
+        text-align: left;
+        word-break: break-all;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word
+    }
+    .product-theloai h1 {
+        font-size: 18px;
+        line-height: 22px;
+        text-align: left
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .product-img {
+        margin: 30px auto;
+    }
+    .product-slide {
+        width: 100%;
+        margin-right: 20px;
+    }
+    .product-info {
+        width: 100%;
+        height: auto;
+    }
+    .product-slide {
+        margin-top: 100px;
+        width: 100%;
+    }
+    .morong-name {
+        font-size: 15px;
+    }
+    .morong-control {
+        transform: translateY(20%);
+    }
+}
+
+@media only screen and (max-width:523px) {
+    .morong-control {
+        margin-left: 4%;
+    }
+}
+
+@media only screen and (max-width:425px) {
+    .morong-control {
+        margin-left: 4%;
+    }
+}
+
+@media only screen and (max-width:376px) {
+    .morong-control {
+        margin-left: -4%;
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .morong-control {
+        margin-left: -17%;
+    }
+}
