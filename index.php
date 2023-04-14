@@ -173,9 +173,9 @@
                                 </div>
                             </div>
                             <div class="front">
-                                <div class="img">
-                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
-                                </div>
+                                    <div class="img">
+                                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                                    </div>
                                 <div class="front-content">
                                     <!-- phần trăm sale -->
                                     <small class="badge">20%</small>
@@ -199,14 +199,19 @@
 
                                         <div class="card-btn">
                                             <!-- button download -->
-                                            <div class="card-button">
-                                                <a href="">
+                                            <div class="card-button" >
+                                                <a href="" title="Chi tiết sản phẩm">
+                                                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                                </a>
+                                            </div>
+                                            <div class="card-button" >
+                                                <a href="" title="Mua sản phẩm">
                                                     <ion-icon name="download-outline"></ion-icon>
                                                 </a>
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
-                                            <div class="card-button">
-                                                <a href="">
+                                            <div class="card-button" >
+                                                <a href="" title="Thêm và giỏ hàng">
                                                     <ion-icon name="cart-outline"></ion-icon>
                                                 </a>
                                             </div>
@@ -342,7 +347,7 @@
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>SOLDES EDITEUR</strong>
+                                                <strong>soldes editeur</strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
