@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
         }
     } 
 }
-?>
+
         // if (mysqli_num_rows($Querry) == 0) {
         //     if ($loaitaikhoan == "khach hang") {
         //         mysqli_query($cn, "INSERT INTO taikhoan (tk_taikhoan,tk_matkhau,tk_loaitaikhoan) VALUE('$taikhoan','$matkhau','$loaitaikhoan')");
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
         // } else {
         //             echo '<script language="javascript">alert("Tên tài khoản đã tồn tại!")</script>';
         //         }
-    
+        ?>
 <body>
     <form action="" method="post">
         <div class="register-form">
