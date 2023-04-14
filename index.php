@@ -32,7 +32,8 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <link rel="stylesheet" href="css/card.css">
+    <!-- <link rel="stylesheet" href="css/card.css"> -->
+    <link rel="stylesheet" href="css/card2.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
@@ -164,229 +165,213 @@
             <div>
                 <div class="cards">
                     <div class="card">
-                        <!-- img zoom -->
-                        <div class="card-img-zoom">
-                            <a href="">
-                                <img src="../header.jpg" alt="" class="card-img">
-                            </a>
-                        </div>
-                        <!-- ----------- -->
-                        <div class="card-content">
-                            <div class="card-top">
-                                <!-- Tên card -->
-                                <h3 class="card-title">
-                                    SONICSONICSONICSONICSONICSONICSONICcccccccccccccccccccccccccccc
-                                </h3>
-                                <!-- Thông tin card -->
-                                <div class="card-info">
-                                <div class="card-price-sale">
-                                            <h2>
-                                                Giảm 20%
-                                            </h2>
-                                        </div>
-                                    <div class="card-info-top">
-                                        <div class="card-price-new">
-                                            <h2>
-                                                120.000.000đ
-                                            </h2>
-                                        </div>
-                                        <div class="card-price-old">
-                                            <h2>
-                                            120.000.000đ
-                                            </h2>
-                                        </div>
-                                    </div>
-                                    <div class="card-info-bottom">
-                                        <h2 class="card-nsx">
-                                            VNG
-                                        </h2>
-                                    </div>
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
                                 </div>
                             </div>
-                            <!-- Button -->
-                            <div class="card-bottom">
-                                <div class="card-buy">
-                                    <a href="" class="btn-buy">
-                                    <ion-icon name="download"></ion-icon>
-                                    </a>
-                                    
+                            <div class="front">
+                                <div class="img">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
                                 </div>
-                                <div class="card-cart">
-                                    <a href="" class="btn-cart">
-                                    <ion-icon name="cart"></ion-icon>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- img zoom -->
-                        <div class="card-img-zoom">
-                            <a href="">
-                                <img src="../header.jpg" alt="" class="card-img">
-                            </a>
-                        </div>
-                        <!-- ----------- -->
-                        <div class="card-content">
-                            <div class="card-top">
-                                <!-- Tên card -->
-                                <h3 class="card-title">
-                                    SONICSONICSONICSONICSONICSONICSONICcccccccccccccccccccccccccccc
-                                </h3>
-                                <!-- Thông tin card -->
-                                <div class="card-info">
-                                <div class="card-price-sale">
-                                            <h2>
-                                                Giảm 20%
-                                            </h2>
+                                <div class="front-content">
+                                    <!-- phần trăm sale -->
+                                    <small class="badge">20%</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title">
+                                                <!-- tên sản phẩm -->
+                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                            </p>
                                         </div>
-                                    <div class="card-info-top">
-                                        <div class="card-price-new">
-                                            <h2>
-                                                120.000.000đ
-                                            </h2>
+                                        <div class="card-footer">
+                                            <!-- giá trước khi sale -->
+                                            <div class="footer-label">
+                                                <label for="" class="price-old">120.000.000đ</label>
+                                            </div>
+                                            <!-- giá sai khi sale -->
+                                            <div class="footer-label">
+                                                <label for="">120.000.000đ</label>
+                                            </div>
                                         </div>
-                                        <div class="card-price-old">
-                                            <h2>
-                                            120.000.000đ
-                                            </h2>
-                                        </div>
-                                    </div>
-                                    <div class="card-info-bottom">
-                                        <h2 class="card-nsx">
-                                            VNG
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Button -->
-                            <div class="card-bottom">
-                                <div class="card-buy">
-                                    <a href="" class="btn-buy">
-                                    <ion-icon name="download"></ion-icon>
-                                    </a>
-                                    
-                                </div>
-                                <div class="card-cart">
-                                    <a href="" class="btn-cart">
-                                    <ion-icon name="cart"></ion-icon>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- img zoom -->
-                        <div class="card-img-zoom">
-                            <a href="">
-                                <img src="../header.jpg" alt="" class="card-img">
-                            </a>
-                        </div>
-                        <!-- ----------- -->
-                        <div class="card-content">
-                            <div class="card-top">
-                                <!-- Tên card -->
-                                <h3 class="card-title">
-                                    SONICSONICSONICSONICSONICSONICSONICcccccccccccccccccccccccccccc
-                                </h3>
-                                <!-- Thông tin card -->
-                                <div class="card-info">
-                                <div class="card-price-sale">
-                                            <h2>
-                                                Giảm 20%
-                                            </h2>
-                                        </div>
-                                    <div class="card-info-top">
-                                        <div class="card-price-new">
-                                            <h2>
-                                                120.000.000đ
-                                            </h2>
-                                        </div>
-                                        <div class="card-price-old">
-                                            <h2>
-                                            120.000.000đ
-                                            </h2>
-                                        </div>
-                                    </div>
-                                    <div class="card-info-bottom">
-                                        <h2 class="card-nsx">
-                                            VNG
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Button -->
-                            <div class="card-bottom">
-                                <div class="card-buy">
-                                    <a href="" class="btn-buy">
-                                    <ion-icon name="download"></ion-icon>
-                                    </a>
-                                    
-                                </div>
-                                <div class="card-cart">
-                                    <a href="" class="btn-cart">
-                                    <ion-icon name="cart"></ion-icon>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <!-- img zoom -->
-                        <div class="card-img-zoom">
-                            <a href="">
-                                <img src="../header.jpg" alt="" class="card-img">
-                            </a>
-                        </div>
-                        <!-- ----------- -->
-                        <div class="card-content">
-                            <div class="card-top">
-                                <!-- Tên card -->
-                                <h3 class="card-title">
-                                    SONICSONICSONICSONICSONICSONICSONICcccccccccccccccccccccccccccc
-                                </h3>
-                                <!-- Thông tin card -->
-                                <div class="card-info">
-                                <div class="card-price-sale">
-                                            <h2>
-                                                Giảm 20%
-                                            </h2>
-                                        </div>
-                                    <div class="card-info-top">
-                                        <div class="card-price-new">
-                                            <h2>
-                                                120.000.000đ
-                                            </h2>
-                                        </div>
-                                        <div class="card-price-old">
-                                            <h2>
-                                            120.000.000đ
-                                            </h2>
-                                        </div>
-                                    </div>
-                                    <div class="card-info-bottom">
-                                        <h2 class="card-nsx">
-                                            VNG
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Button -->
-                            <div class="card-bottom">
-                                <div class="card-buy">
-                                    <a href="" class="btn-buy">
-                                    <ion-icon name="download"></ion-icon>
-                                    </a>
-                                </div>
-                                <div class="card-cart">
-                                    <a href="" class="btn-cart">
-                                    <ion-icon name="cart"></ion-icon>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
+                                        <div class="card-btn">
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="download-outline"></ion-icon>
+                                                </a>
+                                            </div>
+                                            <!-- button thêm vào giỏ hàng -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                                </div>
+                                <div class="front-content">
+                                    <!-- phần trăm sale -->
+                                    <small class="badge">20%</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title">
+                                                <!-- tên sản phẩm -->
+                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <!-- giá trước khi sale -->
+                                            <div class="footer-label">
+                                                <label for="" class="price-old">120.000.000đ</label>
+                                            </div>
+                                            <!-- giá sai khi sale -->
+                                            <div class="footer-label">
+                                                <label for="">120.000.000đ</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-btn">
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="download-outline"></ion-icon>
+                                                </a>
+                                            </div>
+                                            <!-- button thêm vào giỏ hàng -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                                </div>
+                                <div class="front-content">
+                                    <!-- phần trăm sale -->
+                                    <small class="badge">20%</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title">
+                                                <!-- tên sản phẩm -->
+                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <!-- giá trước khi sale -->
+                                            <div class="footer-label">
+                                                <label for="" class="price-old">120.000.000đ</label>
+                                            </div>
+                                            <!-- giá sai khi sale -->
+                                            <div class="footer-label">
+                                                <label for="">120.000.000đ</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-btn">
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="download-outline"></ion-icon>
+                                                </a>
+                                            </div>
+                                            <!-- button thêm vào giỏ hàng -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                                </div>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                                </div>
+                                <div class="front-content">
+                                    <!-- phần trăm sale -->
+                                    <small class="badge">20%</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title">
+                                                <!-- tên sản phẩm -->
+                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <!-- giá trước khi sale -->
+                                            <div class="footer-label">
+                                                <label for="" class="price-old">120.000.000đ</label>
+                                            </div>
+                                            <!-- giá sai khi sale -->
+                                            <div class="footer-label">
+                                                <label for="">120.000.000đ</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-btn">
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="download-outline"></ion-icon>
+                                                </a>
+                                            </div>
+                                            <!-- button thêm vào giỏ hàng -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -575,7 +560,7 @@
     </div>
     <!-- end contact -->
     <!--  footer -->
-    <footer  id="aaa">
+    <footer id="aaa">
         <div class="footer">
             <div class="container">
                 <div class="row">
