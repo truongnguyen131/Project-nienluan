@@ -164,6 +164,7 @@
 
             <div>
                 <div class="cards">
+
                     <div class="card">
                         <div class="content">
                             <div class="back">
@@ -182,7 +183,7 @@
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                                <strong>ALLTER THE FALL </strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
@@ -216,6 +217,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <div class="content">
                             <div class="back">
@@ -234,7 +236,7 @@
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                                <strong>CYBER PUNK </strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
@@ -268,6 +270,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <div class="content">
                             <div class="back">
@@ -286,7 +289,7 @@
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                                <strong>CALL OF DUTY </strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
@@ -320,6 +323,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <div class="content">
                             <div class="back">
@@ -338,7 +342,7 @@
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>OFFRE DU WEEKEND OFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKENDOFFRE DU WEEKEND </strong>
+                                                <strong>SOLDES EDITEUR</strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
@@ -372,6 +376,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
