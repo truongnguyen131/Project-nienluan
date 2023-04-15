@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,6 +49,7 @@
                     while ($row = mysqli_fetch_array($Result, MYSQLI_ASSOC)) {
                         $_SESSION["idtaikhoan"] = $row['tk_id'];
                         $_SESSION["loaitaikhoan"] = $row['tk_loaitaikhoan'];
+                        $_SESSION["nametaikhoan"] = $row['tk_taikhoan'];
                     }
                     header("location:../index.php");
                 } else {
