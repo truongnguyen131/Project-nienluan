@@ -29,25 +29,31 @@
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <!-- <link rel="stylesheet" href="css/card.css"> -->
+
     <link rel="stylesheet" href="css/card2.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
+<?php
+include_once('page/process_cart.php');
+$tentk = isset($_SESSION["nametaikhoan"]) ? $_SESSION["nametaikhoan"] : "";
+$idtaikhoan = isset($_SESSION["idtaikhoan"]) ? $_SESSION["idtaikhoan"] : "";
+$typetk = isset($_SESSION["loaitaikhoan"]) ? $_SESSION["loaitaikhoan"] : "";
 
+
+?>
 
 <!-- body -->
 
 <body class="main-layout">
+
     <!-- loader  -->
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
     </div>
+
     <!-- end loader -->
     <!-- header -->
     <header>
@@ -77,36 +83,59 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="#aaa">About</a>
                                     </li>
-                                    <div class="dropdown show nav-item">
-                                        <a class="nav-link dropdown-toggle nav-item" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Dropdown link
-                                        </a>
-                                        <div class="dropdown-menu nav-item-drop" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item nav-link" href="#">Action</a>
-                                            <a class="dropdown-item nav-link" href="#">Another action</a>
-                                            <a class="dropdown-item nav-link" href="#">Something else here</a>
-                                        </div>
-                                    </div>
                                     <li class="nav-item">
                                         <a class="nav-link" href="contact.html">Contact Us</a>
                                     </li>
+                                    <?php
+                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'ad') { ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="page/quanly-admin.html">Quản lý Admin</a>
+                                        </li>
+                                    <?php } else {
+                                    }
+                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nsx') { ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="page/quanly-nsx.php">Quản lý Nhà sản xuất</a>
+                                        </li>
+                                    <?php }
+                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'kh') { ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Game</a>
+                                        </li>
+                                    <?php
+                                    } ?>
+
+                                    <!-- cart -->
                                     <li class="nav-item">
-                                        <div class="search-box nav-link">
-                                            <button class="btn-search"><ion-icon name="search-circle-outline"></ion-icon>
-                                            </button>
-                                            <input type="text" class="input-search" placeholder="Type to Search...">
-                                        </div>
+                                        <a class="nav-link" href="#"><ion-icon name="cart-outline"></ion-icon></a>
                                     </li>
-                                    <li class="nav-item d_none">
-                                        <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="nav-item d_none">
-                                        <a class="nav-link" href="page/dangnhap.php">Login</a>
-                                    </li>
+                                    <?php
+                                    if (isset($_SESSION["idtaikhoan"]) && $_SESSION["idtaikhoan"] != "") {
+                                    ?>
+                                        <li>
+                                            <div class="dropdown show nav-item">
+                                                <a class="nav-link dropdown-toggle nav-item" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <?php echo $tentk; ?>
+                                                </a>
+                                                <div class="dropdown-menu nav-item-drop" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item nav-link" href="page/dangxuat.php"> Đăng xuất</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="page/dangnhap.php">Đăng nhập</a>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </nav>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -116,6 +145,9 @@
     <!-- banner -->
     <section class="banner_main bubbles center-outer center-inner d_none">
     </section>
+    <div class="cart-index">
+            <a class="" href="page/giohang.php"><ion-icon name="cart-outline"></ion-icon></a>
+    </div>
     <!-- end banner -->
     <!-- three_box -->
     <div class="titlepage">
@@ -125,33 +157,29 @@
     <div class="image-slider">
         <div class="image-item">
             <div class="image">
-                <img class="img-slider" src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                <img class="img-slider" src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="" />
             </div>
-            <h3 class="image-title">This is demo title</h3>
+
         </div>
         <div class="image-item">
             <div class="image">
-                <img class="img-slider" src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=710&q=80" alt="" />
+                <img class="img-slider" src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="" />
             </div>
-            <h3 class="image-title">This is demo title</h3>
         </div>
         <div class="image-item">
             <div class="image">
-                <img class="img-slider" src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="" />
+                <img class="img-slider" src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="" />
             </div>
-            <h3 class="image-title">This is demo title</h3>
         </div>
         <div class="image-item">
             <div class="image">
-                <img class="img-slider" src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                <img class="img-slider" src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="" />
             </div>
-            <h3 class="image-title">This is demo title</h3>
         </div>
         <div class="image-item">
             <div class="image">
                 <img class="img-slider" src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=928&q=80" alt="" />
             </div>
-            <h3 class="image-title">This is demo title</h3>
         </div>
     </div>
     <!-- three_box -->
@@ -161,7 +189,14 @@
             <div class="titlepage">
                 <h2>GAME</h2>
             </div>
-
+            <!-- search -->
+            <div class="search">
+                <div class="contain-search">
+                    <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                    <input type="search" id="search" placeholder="Search..." />
+                </div>
+            </div>
+            <!-- search -->
             <div>
                 <div class="cards">
 
@@ -173,9 +208,9 @@
                                 </div>
                             </div>
                             <div class="front">
-                                    <div class="img">
-                                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
-                                    </div>
+                                <div class="img">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                                </div>
                                 <div class="front-content">
                                     <!-- phần trăm sale -->
                                     <small class="badge">20%</small>
@@ -199,18 +234,18 @@
 
                                         <div class="card-btn">
                                             <!-- button download -->
-                                            <div class="card-button" >
+                                            <div class="card-button">
                                                 <a href="" title="Chi tiết sản phẩm">
-                                                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                                    <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
                                                 </a>
                                             </div>
-                                            <div class="card-button" >
+                                            <div class="card-button">
                                                 <a href="" title="Mua sản phẩm">
                                                     <ion-icon name="download-outline"></ion-icon>
                                                 </a>
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
-                                            <div class="card-button" >
+                                            <div class="card-button">
                                                 <a href="" title="Thêm và giỏ hàng">
                                                     <ion-icon name="cart-outline"></ion-icon>
                                                 </a>
