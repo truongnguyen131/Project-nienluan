@@ -125,7 +125,7 @@
 
 .front-content .badge {
     background-color: #09e714f1;
-    padding: 2px 10px;
+    padding: 5px 10px;
     border-radius: 10px;
     backdrop-filter: blur(2px);
     width: fit-content;
@@ -145,6 +145,8 @@
     max-width: 100%;
     text-align: center;
     border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+    ;
 }
 
 .title p {
