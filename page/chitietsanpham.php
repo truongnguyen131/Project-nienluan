@@ -71,13 +71,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="contact.html">Contact Us</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <div class="search-box nav-link">
-                                            <button class="btn-search"><ion-icon name="search-circle-outline"></ion-icon>
-                                            </button>
-                                            <input type="text" class="input-search" placeholder="Type to Search...">
-                                        </div>
-                                    </li>
                                     <li class="nav-item d_none">
                                         <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                     </li>
@@ -165,20 +158,23 @@
                         <div class="product-value"><input id="val" type="text" value="1"></div>
                         <div class="product-btn-tang"><button id="tang" onclick="quantity()">+</button></div>
                     </div>
-                    <div class="product-gia">
+                    <div class="product-sale">
                         <div class="card-price-sale">
                             <h2>
                                 20%
                             </h2>
                         </div>
+                    </div>
+                    <div class="product-gia">
+
                         <div class="card-price-new">
                             <h2>
-                                120.000
+                                120.000.000 đ
                             </h2>
                         </div>
                         <div class="card-price-old">
                             <h2>
-                                120.000
+                                120.000.000 đ
                             </h2>
                         </div>
                     </div>
@@ -197,7 +193,9 @@
                     <div class="morong-sale">20%</div>
                     <div class="morong-price">
                         <div class="morong-price-old"><span>120.000.000đ</span></div>
-                        <div class="morong-price-new"><h2>120.000.000đ</h2></div>
+                        <div class="morong-price-new">
+                            <h2>120.000.000đ</h2>
+                        </div>
                     </div>
                     <div class="morong-btn">
                         <button>Thêm vào giỏ hàng</button>
@@ -205,21 +203,24 @@
                 </div>
 
             </div>
-           
+
         </div>
 
 
     </div>
-    <!-- <div class="titlepage">
-        <h2>Mô tả</h2>
-    </div> -->
+
+    <div class="product-trailer ">
+        <video src="https://cdn.akamai.steamstatic.com/steam/apps/256936299/movie480_vp9.webm?t=1679053376" controls>
+        </video>
+    </div>
+
     <div class="tabs">
         <!-- tabs -->
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'cmt')" id="defaultOpen">Bình luận</button>
             <button class="tablinks" onclick="openCity(event, 'des')">Mô tả</button>
         </div>
-        
+
 
         <div id="cmt" class="tabcontent">
             <div class="tab-comment-content">
