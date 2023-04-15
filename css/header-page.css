@@ -172,12 +172,16 @@ body {
     align-items: center
 }
 
+.product-sale {
+    margin-bottom: 10px;
+}
+
 .card-price-sale {
     background-color: green;
     border-radius: 5px;
     margin-left: 10px;
     height: 30px;
-    width: calc(calc(100% / 3) - 10px)
+    width: calc(100% - 10px)
 }
 
 .card-price-sale h2 {
@@ -189,7 +193,7 @@ body {
 
 .card-price-old {
     margin-left: 10px;
-    width: calc(calc(100% / 3) - 10px)
+    width: calc(calc(100% / 2) - 10px)
 }
 
 .card-price-old h2 {
@@ -204,13 +208,13 @@ body {
 
 .card-price-new {
     margin-left: 10px;
-    width: calc(calc(100% / 3) - 10px)
+    width: calc(calc(100% / 2) - 10px)
 }
 
 .card-price-new h2 {
     line-height: 1;
     font-weight: 500px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: red
 }
@@ -219,7 +223,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 10px;
     gap: 20px
 }
 
@@ -332,6 +336,19 @@ body {
     border: none;
     width: 30px;
     height: 30px
+}
+
+.product-trailer {
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-trailer video {
+    width: 70%;
+    padding: 20px;
 }
 
 @media only screen and (max-width:1024px) {
