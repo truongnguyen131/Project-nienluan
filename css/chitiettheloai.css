@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.filter-form {
+    margin: 10rem 2rem;
+    color: #eee;
+}
+
+.filter-title {
+    background-color: rgb(184, 183, 183);
+    height: 50px;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+}
+
+.filter-title ion-icon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    color: white;
+    left: 0;
+    margin-left: 5px;
+}
+
+.filter-title h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.filter-itemss {
+    background-color: rgb(105, 105, 105);
+    padding: 20px;
+}
+
+.filter-control {
+    width: 50%;
+    height: 100%;
+    background-color: rgb(184, 183, 183);
+    border-radius: 5px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.filter-item {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.item-title {
+    display: grid;
+}
+
+.item-title span {
+    color: goldenrod;
+}
+
+.items {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 2px solid #eee;
+    cursor: pointer;
+    align-items: center;
+}
+
+.filter-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-item button {
+    width: calc(30% - 10px);
+    padding: 10px;
+    font-size: 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
