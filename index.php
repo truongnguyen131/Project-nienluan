@@ -187,7 +187,7 @@ $typetk = isset($_SESSION["loaitaikhoan"]) ? $_SESSION["loaitaikhoan"] : "";
     <div class="products">
         <div class="container">
             <div class="titlepage">
-                <h2>GAME 23</h2>
+                <h2>GAME</h2>
             </div>
             <!-- search -->
             <div class="search">
