@@ -19,7 +19,6 @@
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
     <title>Chi tiết thể loại</title>
@@ -90,130 +89,772 @@
     </header>
 
     <div class="filter-form">
-        <!-- search -->
-        <div class="search">
-            <div class="contain-search">
-                <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                <input type="search" id="search" placeholder="Search..." />
+        <div class="form-top">
+            <!-- search -->
+            <div class="search">
+                <div class="contain-search">
+                    <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                    <input type="search" id="search" placeholder="Search..." />
+                </div>
             </div>
-        </div>
-        <!-- search -->
-
-        <!-- Bộ lọc -->
-        <div class="filter-control" id="control">
-            <div class="filter-title">
-                <a href="" id="close>
-                    <ion-icon name=" close-circle-outline "></ion-icon>
-                </a>
-
-                <h1>Bộ lọc</h1>
-            </div>
-            <div class="filter-itemss ">
-                <div class="filter-item ">
-                    <label for=" ">Kéo để chọn giá</label>
-                    <div class="slidecontainer ">
-                        <input type="range " min="100000 " max="100000000 " value="50 " class="slider " id="myRange ">
-                        <p><b>Giá từ 0đ đến <span id="demo "></span> đ</b></p>
+            <!-- search -->
+            <!-- filter control -->
+            <a href="#" onclick="openmodal()">
+                <div class="control" id="boloc">
+                    <div class="tools">
+                        <ion-icon name="filter-circle"></ion-icon>
+                        <span>Lọc</span>
                     </div>
                 </div>
-                <a href=" " id="theloai ">
-                    <div class="filter-item items ">
+            </a>
+            <!-- filter control -->
+        </div>
+
+        <!-- Bộ lọc -->
+        <div class="filter-control  hidden" id="control">
+            <div class="filter-title-coltrol">
+                <a href="#" onclick="closemodal()">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                </a>
+                <h1>Bộ lọc</h1>
+            </div>
+            <div class="filter-itemss">
+                <div class="filter-item ">
+                    <label for=" ">Kéo để chọn giá</label>
+                    <div class="group">
+                        <div class="progress"></div>
+                        <div class="range-input">
+                            <input class="range-min" max="1000000" type="range" value="0">
+                            <input class="range-max" max="1000000" type="range" value="1000000">
+                        </div>
+                        <div class="range-text">
+                            <div class="text-min">0</div>
+                            <div class="text-max">1.000.000</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" id="theloai" onclick="opentheloai()">
+                    <div class=" filter-item items ">
                         <div class="item-title ">
                             <label for=" ">Thể loại</label>
                             <span>hành động, đua xe</span>
                         </div>
-                        <ion-icon name="chevron-forward-outline "></ion-icon>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
                     </div>
                 </a>
-                <a href=" " id="nsx ">
+                <a href="#" id="nhasanxuat" onclick="opennsx()">
                     <div class="filter-item items ">
                         <div class="item-title ">
                             <label for=" ">Nhà sản xuất</label>
                             <span>VNG</span>
                         </div>
-                        <ion-icon name="chevron-forward-outline "></ion-icon>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
                     </div>
                 </a>
 
                 <div class="filter-item filter-btn ">
-                    <button type="submit ">Lọc</button>
-                    <button type="reset ">Hủy</button>
+                    <button class="btn" type="submit">Lọc</button>
+                    <button class="btn" type="reset">Hủy</button>
                 </div>
             </div>
         </div>
+
         <!-- Thể loại -->
-        <div class="filter-control categorys " id="category ">
-            <div class="filter-title ">
-                <ion-icon name="arrow-back-outline "></ion-icon>
+        <div class="filter-control  hidden" id="category">
+            <div class="filter-title-item">
+                <a href="#" onclick="returnmodal()">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                </a>
                 <h1>Thể loại</h1>
-                <button>Chọn</button>
+                <button class="btn">Chọn</button>
             </div>
-            <div class="filter-itemss ">
-
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
-                <div class="filter-item items ">
-                    <label for=" ">Đua xe</label>
-                    <input type="checkbox " name=" " id=" ">
-                </div>
+            <div class="filter-itemss">
+                <!-- 1 thể loại -->
+                <label for="tl_id" class="lable-item">
+                        <div class="filter-item items">
+                            <label for="tl_id">Đua xe</label>
+                <input type="checkbox" name="" id="tl_id">
             </div>
-
-        </div>
-        <!-- Hiển thị sản phẩm,thể loại,nsx -->
-        <div class="filter-display ">
+            </label>
+            <!-- 1 thể loại -->
         </div>
     </div>
+    <!-- nsx -->
+    <div class="filter-control  hidden" id="nsxx">
+        <div class="filter-title-item">
+            <a href="#" onclick="returnmodal()">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </a>
+            <h1>Nhà sản xuất</h1>
+            <button class="btn">Chọn</button>
+        </div>
+        <div class="filter-itemss">
+            <!-- 1 nhà sản xuất -->
+            <label for="nsx_id" class="lable-item">
+                        <div class="filter-item items">
+                            <label for="nsx_id">VNG</label>
+            <input type="checkbox" name="" id="nsx_id">
+        </div>
+        </label>
+        <!-- 1 nhà sản xuất -->
+    </div>
+    </div>
+
+    <div class="form-bottom">
+        <!-- Hiển thị sản phẩm,thể loại,nsx -->
+        <div class="filter-display ">
+            <div class="cards">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>ALLTER THE FALL </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="" title="Chi tiết sản phẩm">
+                                                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="" title="Mua sản phẩm">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="" title="Thêm và giỏ hàng">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>CYBER PUNK </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>CALL OF DUTY </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>soldes editeur</strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>ALLTER THE FALL </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="" title="Chi tiết sản phẩm">
+                                                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="" title="Mua sản phẩm">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="" title="Thêm và giỏ hàng">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>CYBER PUNK </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>CALL OF DUTY </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>soldes editeur</strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>ALLTER THE FALL </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="" title="Chi tiết sản phẩm">
+                                                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="" title="Mua sản phẩm">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="" title="Thêm và giỏ hàng">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/90a59c99e66f1649efd98fb7/spotlight_image_english.jpg?t=1681246075" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>CYBER PUNK </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/390e51599c0470d07eee9316/spotlight_image_french.jpg?t=1681335169" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>CALL OF DUTY </strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="back">
+                            <div class="back-content">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                            </div>
+                        </div>
+                        <div class="front">
+                            <div class="img">
+                                <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243" alt="">
+                            </div>
+                            <div class="front-content">
+                                <!-- phần trăm sale -->
+                                <small class="badge">20%</small>
+                                <div class="description">
+                                    <div class="title">
+                                        <p class="title">
+                                            <!-- tên sản phẩm -->
+                                            <strong>soldes editeur</strong>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <!-- giá trước khi sale -->
+                                        <div class="footer-label">
+                                            <label for="" class="price-old">120.000.000đ</label>
+                                        </div>
+                                        <!-- giá sai khi sale -->
+                                        <div class="footer-label">
+                                            <label for="">120.000.000đ</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-btn">
+                                        <!-- button download -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="download-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                        <!-- button thêm vào giỏ hàng -->
+                                        <div class="card-button">
+                                            <a href="">
+                                                <ion-icon name="cart-outline"></ion-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 
 
@@ -221,43 +862,73 @@
 
 <!-- range slider -->
 <script>
-    var slider = document.getElementById("myRange ");
-    var output = document.getElementById("demo ");
-    // Hiển thị giá trị thanh trượt mặc định
-    output.innerHTML = slider.value;
-    //Cập nhật giá trị thanh trượt hiện tại (mỗi khi bạn kéo tay cầm thanh trượt)
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-    }
+    let rangeInput = document.querySelectorAll('.range-input input');
+    let rangeText = document.querySelectorAll('.range-text div');
+    let progress = document.querySelector('.progress');
+    let priceMax = rangeInput[0].max;
+    let priceGap = 1000;
+
+    rangeInput.forEach(input => {
+        input.addEventListener('input', (event) => {
+            let minVal = parseInt(rangeInput[0].value);
+            let maxVal = parseInt(rangeInput[1].value);
+
+            if (maxVal - minVal < priceGap) {
+                if (event.target.className === 'range-min') {
+                    minVal = rangeInput[0].value = maxVal - priceGap;
+                } else {
+                    maxVal = rangeInput[1].value = minVal + priceGap;
+                }
+            }
+
+            let positionMin = (minVal / priceMax) * 100;
+            let positionMax = 100 - ((maxVal / priceMax) * 100);
+            progress.style.left = positionMin + '%';
+            progress.style.right = positionMax + '%';
+            rangeText[0].style.left = positionMin + '%';
+            rangeText[1].style.right = positionMax + '%';
+            rangeText[0].innerText = minVal.toLocaleString();
+            rangeText[1].innerText = maxVal.toLocaleString();
+        })
+    })
 </script>
-
-
+<!-- dialog -->
 <script>
     // Get the modal
-    var modal = document.getElementById("control ");
-    var theloai = document.getElementById("category ");
-
-    // Get the button that opens the modal
-    var btn_theloai = document.getElementById("theloai ");
-
+    var modal = document.getElementById("control");
+    var theloai = document.getElementById("category");
+    var nsx = document.getElementById("nsxx");
     // Get the <span> element that closes the modal
-    var span = document.getElementsById("close ")[0];
+    var span = document.getElementsById("close")[0];
 
     // When the user clicks the button, open the modal 
-    btn_theloai.onclick = function() {
-        theloai.style.display = "block ";
-        theloai.style.display = "modal ";
+    function opentheloai() {
+        theloai.style.display = "block";
+        modal.style.display = "none";
     }
 
+    function opennsx() {
+        nsx.style.display = "block";
+        modal.style.display = "none";
+    }
+
+    function returnmodal() {
+        modal.style.display = "block";
+        nsx.style.display = "none";
+        theloai.style.display = "none";
+    }
+
+    function openmodal() {
+        modal.style.display = "block";
+    }
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none ";
+    function closemodal() {
+        modal.style.display = "none";
     }
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = "none ";
+            modal.style.display = "none";
         }
     }
 </script>
