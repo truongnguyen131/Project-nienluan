@@ -39,7 +39,7 @@
     width: calc(calc(100% / var(--columns)) - var(--spacing));
     margin-left: var(--spacing);
     margin-bottom: var(--spacing);
-    height: 340px;
+    height: 300px;
 }
 
 .content {

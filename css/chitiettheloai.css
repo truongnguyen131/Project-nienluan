@@ -20,7 +20,7 @@
 }
 
 .form-bottom {
-    margin-top: 20%;
+    margin: 18% 5%;
 }
 
 
@@ -138,7 +138,7 @@
 }
 
 .filter-itemss {
-    max-height: 465px;
+    max-height: 440px;
     overflow: auto;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
