@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* search */
+
+.box {
+    margin: 1rem 1.5rem;
+    height: 50px;
+    display: none;
+}
+
+
+/* Search 2 - expand input width */
+
+.container-2 {
+    width: 280px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+.container-2 input#search {
+    width: 45px;
+    height: 45px;
+    background: #2b303b;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #262626;
+    padding-left: 35px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+    -webkit-transition: width .55s ease;
+    -moz-transition: width .55s ease;
+    -ms-transition: width .55s ease;
+    -o-transition: width .55s ease;
+    transition: width .55s ease;
+}
+
+.container-2 input#search::-webkit-input-placeholder {
+    color: #65737e;
+}
+
+.container-2 input#search:-moz-placeholder {
+    /* Firefox 18- */
+    color: #65737e;
+}
+
+.container-2 input#search::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #65737e;
+}
+
+.container-2 input#search:-ms-input-placeholder {
+    color: #65737e;
+}
+
+.container-2 .icon {
+    position: absolute;
+    top: 50%;
+    margin-left: 15px;
+    margin-top: 15px;
+    z-index: 1;
+    color: #4f5b66;
+}
+
+
+/* ANIMATION EFFECTS */
+
+.container-2 input#search:focus,
+.container-2 input#search:active {
+    outline: none;
+}
+
+.container-2:hover input#search {
+    outline: none;
+    width: 300px;
+}
+
+.container-2:hover .icon {
+    color: #93a2ad;
+}
+
+
+/* search */
+
+body {
+    background: #0F2027;
+    /* fallback for old browsers */
+    background-image: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background-image: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.header {
+    background-color: rgb(42, 42, 42);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    position: relative;
+}
+
+.header-inner {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo img {
+    max-width: 2rem;
+}
+
+li {
+    list-style: none;
+}
+
+.menu {
+    float: right;
+    position: relative;
+}
+
+.menu-item:hover .menu-child {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-item {
+    display: inline-block;
+}
+
+.menu-child input {
+    width: 100%;
+    height: 3rem;
+    outline: none;
+    border-radius: 5px;
+    padding: 0 1rem;
+}
+
+.menu-child {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgb(42, 42, 42);
+    opacity: 0;
+    visibility: hidden;
+    transition: .25s linear;
+}
+
+.menu-child-list li {
+    padding: 2rem;
+    border-top: 1px solid rgb(102, 86, 47);
+    color: white;
+}
+
+.menu-link {
+    font-weight: bold;
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    padding: 2rem;
+}
+
+.checkbtn {
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media screen and (max-width: 1439px) {
+    .menu-link {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .menu-link {
+        padding: 2rem 1rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .checkbtn {
+        display: block;
+        margin-top: 1rem;
+    }
+    .menu {
+        background-color: rgb(53, 53, 53);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 4.7rem;
+        left: -100%;
+        transition: all .5s;
+    }
+    .menu-item {
+        display: block;
+        text-align: center;
+    }
+    .menu-item-search {
+        display: none;
+    }
+    .search-control {
+        display: block;
+    }
+    .menu-link {
+        padding: 1.5rem;
+    }
+    #check:checked~.menu {
+        left: 0;
+    }
+    .box {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .container-2:hover input#search {
+        outline: none;
+        width: calc(100% - 35px);
+    }
+}
