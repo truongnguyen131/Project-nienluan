@@ -1,3 +1,4 @@
+@import url(font-awesome.min.css);
 * {
     margin: 0;
     padding: 0;
@@ -91,22 +92,20 @@
 /* search */
 
 body {
-    background: #0F2027;
     /* fallback for old browsers */
-    background-image: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    background-image: -webkit-linear-gradient(to right, #556f7b, #3b788c, #0b2631);
     /* Chrome 10-25, Safari 5.1-6 */
     background-image: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Poppins', sans-serif;
 }
 
 .header {
-    background-color: rgb(42, 42, 42);
-    position: fixed;
+    background-color: black;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
     z-index: 999;
-    position: relative;
 }
 
 .header-inner {
@@ -124,6 +123,11 @@ body {
 
 li {
     list-style: none;
+}
+
+.menu-item a:hover {
+    border-bottom: 2px solid goldenrod;
+    color: goldenrod;
 }
 
 .menu {
@@ -186,19 +190,144 @@ li {
     display: none;
 }
 
+.banner {
+    width: 100%;
+    position: relative;
+}
+
+.content-banner {
+    text-align: left;
+    top: 3rem;
+    left: -100%;
+    color: white;
+    padding: 2rem;
+    position: absolute;
+    animation: showLeft 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.content-banner h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 6rem;
+    white-space: nowrap;
+}
+
+.content-banner h2 {
+    font-size: 3rem;
+}
+
+.content-banner span {
+    line-height: 2rem;
+}
+
+.content-banner-btn {
+    margin-top: 2rem;
+}
+
+.content-banner-btn a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    border: 2px solid white;
+    border-radius: 3rem;
+    padding: 1rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.content-banner-btn a::before {
+    position: absolute;
+    content: "";
+    background-color: goldenrod;
+    border-radius: 3rem;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: .25s linear;
+    z-index: -1;
+}
+
+.content-banner a:hover::before {
+    width: 100%;
+}
+
+.img-banner {
+    position: absolute;
+    top: 3rem;
+    right: -100%;
+    text-align: right;
+    animation: showRight 1s ease forwards;
+    animation-delay: 0.4s;
+}
+
+.img-banner img {
+    height: 100%;
+}
+
+@keyframes showLeft {
+    100% {
+        left: 5rem;
+    }
+}
+
+@keyframes showRight {
+    100% {
+        right: 5rem;
+    }
+}
+
 @media screen and (max-width: 1439px) {
     .menu-link {
         padding: 2rem 1.5rem;
     }
-}
-
-@media screen and (max-width: 1023px) {
-    .menu-link {
-        padding: 2rem 1rem;
+    .img-banner img {
+        width: 35rem;
+        height: 25rem;
     }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1024px) {
+    .menu-link {
+        padding: 2rem 1rem;
+    }
+    .content-banner {
+        top: 2rem;
+    }
+    .content-banner h1 {
+        font-size: 4rem;
+        white-space: nowrap;
+    }
+    .content-banner h2 {
+        font-size: 3rem;
+    }
+    .content-banner span {
+        line-height: 3rem;
+    }
+    .img-banner {
+        top: 2rem;
+    }
+    .img-banner img {
+        width: 25rem;
+        height: 15rem;
+    }
+    @keyframes showLeft {
+        100% {
+            left: 3rem;
+        }
+    }
+    @keyframes showRight {
+        100% {
+            right: 3rem;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        background-color: #071317;
+    }
     .checkbtn {
         display: block;
         margin-top: 1rem;
@@ -231,11 +360,37 @@ li {
     .box {
         display: block;
     }
+    .content-banner {
+        margin: 0;
+    }
+    .content-banner-btn a {
+        background-color: goldenrod;
+    }
+    @keyframes showLeft {
+        100% {
+            left: 0;
+        }
+    }
+    @keyframes showRight {
+        100% {
+            right: 0;
+        }
+    }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 426px) {
     .container-2:hover input#search {
         outline: none;
         width: calc(100% - 35px);
+    }
+    .content-banner {
+        padding: 1rem;
+        transform: translateY(-45px);
+    }
+    .content-banner-btn a {
+        background-color: goldenrod;
+    }
+    .img-banner {
+        display: none;
     }
 }
