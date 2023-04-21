@@ -39,7 +39,7 @@
     width: calc(calc(100% / var(--columns)) - var(--spacing));
     margin-left: var(--spacing);
     margin-bottom: var(--spacing);
-    height: 300px;
+    height: 250px;
 }
 
 .content {
@@ -123,6 +123,32 @@
     justify-content: space-between;
 }
 
+small {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    padding: 4px 10px;
+    width: 60px;
+    border-radius: 0.5rem;
+    background: hsl(0, 0%, 100%, 0.4);
+}
+
+.rating .bx {
+    color: #faf102;
+    font-size: 0.9rem;
+}
+
+.rating span {
+    color: #faf102;
+    font-size: 0.9rem;
+}
+
 .front-content .badge {
     background-color: #09e714f1;
     padding: 5px 10px;
@@ -192,7 +218,7 @@
 }
 
 .card-button a:hover {
-    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    background: #fa5353;
     box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
     transform: translateY(-3px);
 }

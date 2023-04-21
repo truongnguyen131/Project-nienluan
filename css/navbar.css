@@ -100,7 +100,7 @@ body {
 }
 
 .header {
-    background-color: black;
+    background-color: rgb(42, 42, 42);
     position: relative;
     top: 0;
     left: 0;
