@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Index2.css">
     <link rel="stylesheet" href="../css/chitietsp.css">
+    <link rel="stylesheet" href="../css/stars.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -82,8 +84,56 @@
         </div>
 
     </header>
+    <!-- content -->
+    <div class="content-product container">
+        <div class="content-tabs">
+            <div class="container-tab">
+                <img id="expandedImg" style="width:100%">
+                <div id="imgtext"></div>
+            </div>
+            <!-- The grid: four columns -->
+            <div class="row">
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_c5cb2cbfaaa835cc774326daf5aad14f82335068.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_4fd1fc218b1691357e1716f8098582393331f75d.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_5e79fcf9d3213bf7b2b30f59a94ab80ab8f9d47e.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_ecf748c1cfeeb89b304cb7665f4d0bd7bef7f828.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
+                </div>
+            </div>
+        </div>
+        <div class="content-info">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/header.jpg?t=1678105868" alt="">
+            <h1>Townsmen VR</h1>
+            <p>Thể loại: <a href="">Hành động</a> <a href="">Trí tuệ</a></p>
+            <span>Nhà sản xuất: VNG</span>
+            <div class="sale-and-star">
+                <!-- số sao trung bình được đánh giá -->
+                <span class="medium-star">4.7 <i class='bx bxs-star bx-tada'></i></span>
+                <!-- % giảm giá (nếu có)-->
+                <span class="sale">20%</span>
+            </div>
+            <div class="info-price">
+                <!-- giá mới -->
+                <h2>120.000.000đ</h2>
+                <!-- giá cũ sau khi sale (nếu có)-->
+                <span>120.000.000đ</span>
+            </div>
+            <div class="infor-btn">
+                <a href="#">Mua</a>
+                <a href="#">Thêm vào giỏ hàng</a>
+            </div>
+        </div>
+    </div>
+
     <!-- trailer -->
     <div class="video-container container">
+        <h2>Trailer Game</h2>
         <video src="https://cdn.cloudflare.steamstatic.com/steam/apps/256899452/movie480_vp9.webm?t=1671620694" muted autoplay></video>
     </div>
     <!-- mô tả -->
@@ -93,12 +143,154 @@
             des voitures surpuissantes pour être le premier à mettre votre balle dans le trou.Bienvenue dans l'avenir des sports mécaniques. Vivez les sensations de courses au rythme effréné de style arcade en vous lançant avec vos amis dans une nouvelle
             aventure exaltante. Sautez, retournez-vous, propulsez-vous pour planer et foncez avec des voitures surpuissantes pour être le premier à mettre votre balle dans le trou.</p>
     </div>
+    <!-- bản mở rộng (nếu có) -->
+    <div class="extend container">
+        <h2>Bản mở rộng</h2>
+        <div class="extend-content">
+            <label>Townsmen VR</label>
+            <p>Bản mở rộng này có thêm được 5 màn chơi mới</p>
+            <div class="extend-price">
+                <div class="ext-sale">
+                    <span class="sale">20%</span>
+                </div>
+                <div class="ext-price-new">
+                    <h3>120.000.000đ</h3>
+                </div>
+                <div class="ext-price-old">
+                    <span>120.000.000đ</span>
+                </div>
+            </div>
+            <div class="infor-btn">
+                <a href="#">Mua</a>
+                <a href="#">Thêm vào giỏ hàng</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- đánh giá và bình luận -->
+    <div class="rate-and-cmt container">
+        <h2>Đánh giá và bình luận</h2>
+        <div class="tab-comment-content">
+            <div class="tab-cmt-display">
+                <!-- cmt và đánh giá của 1 người dùng -->
+                <div class="tab-user-cmt">
+                    <!-- tên khách hàng -->
+                    <div class="cmt-user-name">
+                        <span>Nguyen Ngoc Truong</span>
+                    </div>
+                    <!-- ngày hiện tại -->
+                    <div class="cmt-date">
+                        <span>3/4/2023</span>
+                    </div>
+                    <!-- đánh giá sao -->
+                    <div class="cmt-sao">
+                        <i class='bx bxs-star'></i>
+                    </div>
+                    <!-- nội dung cmt -->
+                    <div class="cmt-content">
+                        <span>ngon, sạch, đẹp</span>
+                    </div>
+                </div>
+                <!-- cmt và đánh giá của 1người dùng -->
+
+                <div class="tab-user-cmt">
+                    <!-- tên khách hàng -->
+                    <div class="cmt-user-name">
+                        <span>Nguyen Ngoc Truong</span>
+                    </div>
+                    <!-- ngày hiện tại -->
+                    <div class="cmt-date">
+                        <span>3/4/2023</span>
+                    </div>
+                    <!-- đánh giá sao -->
+                    <div class="cmt-sao">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </div>
+                    <!-- nội dung cmt -->
+                    <div class="cmt-content">
+                        <span>ngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹpngon, sạch, đẹp</span>
+                    </div>
+                </div>
+                <div class="tab-user-cmt">
+                    <!-- tên khách hàng -->
+                    <div class="cmt-user-name">
+                        <span>Nguyen Ngoc Truong</span>
+                    </div>
+                    <!-- ngày hiện tại -->
+                    <div class="cmt-date">
+                        <span>3/4/2023</span>
+                    </div>
+                    <!-- đánh giá sao -->
+                    <div class="cmt-sao">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </div>
+                    <!-- nội dung cmt -->
+                    <div class="cmt-content">
+                        <span>ngon, sạch, đẹp</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-cmt-bottom">
+                <span>Hãy đánh giá nhé:</span>
+                <div class="product-danhgiasao">
+                    <div class="stars">
+                        <form action="">
+                            <input class="star star-5" id="star-5" type="radio" name="star" />
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" name="star" />
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" name="star" />
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" name="star" />
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" name="star" />
+                            <label class="star star-1" for="star-1"></label>
+                        </form>
+                    </div>
+                </div>
+                <span>Bình luận</span>
+                <div class="product-bottom-inputbtn">
+                    <div class="tab-cmt-input">
+                        <textarea name="" id=""></textarea>
+                    </div>
+                    <div class="tab-cmt-btn">
+                        <a href="#">Bình luận</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
     <!-- coppyright -->
     <div class="coppyright container">
         <a href="" class="logo">S-Game</a>
         <p>&#169; CarpoolVenom All Right Reserved</p>
     </div>
 
+
+    <!-- tabs -->
+    <script>
+        window.onload = function() {
+            document.getElementById("expandedImg").src = "https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_c5cb2cbfaaa835cc774326daf5aad14f82335068.116x65.jpg?t=1678105868";
+            document.getElementById("expandedImg").parentElement.style.display = "block";
+        }
+
+        function myFunction(imgs) {
+            var expandImg = document.getElementById("expandedImg");
+            var imgText = document.getElementById("imgtext");
+            expandImg.src = imgs.src;
+            imgText.innerHTML = imgs.alt;
+            expandImg.parentElement.style.display = "block";
+        }
+    </script>
+    <!-- tabs -->
     <script src="../js/index.js"></script>
     <script src="../js/chitietsp.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>

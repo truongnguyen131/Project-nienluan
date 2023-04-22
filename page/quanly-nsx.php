@@ -108,7 +108,7 @@ if (isset($_POST["submit"])) {
 ?>
 
     <body>
-        <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+        
             <div class="menu">
                 <div class="return-home">
                     <button><ion-icon name="home-outline"></ion-icon> Trang chủ</button>

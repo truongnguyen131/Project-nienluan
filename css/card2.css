@@ -207,7 +207,7 @@ small {
 
 .card-button a {
     outline: none;
-    border: 1px solid #eeebeb;
+    border: 2px solid #eee;
     display: flex;
     padding: .5em;
     cursor: pointer;

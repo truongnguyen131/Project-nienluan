@@ -19,3 +19,15 @@ let search = document.querySelector(".search");
 document.querySelector("#search-icon").onclick = () => {
     search.classList.toggle("active");
 }
+
+
+// custom scroll bar
+
+window.onscroll = function() { mufuntion() };
+
+function mufuntion() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100;
+    document.getElementById('scroll-bar').style.width = scrolled + "%";
+}

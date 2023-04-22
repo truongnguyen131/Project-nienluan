@@ -17,16 +17,16 @@
 </head>
 
 <body>
+    <!-- custom scroll bar -->
+    <div class="progress">
+        <div class="progress-bar" id="scroll-bar"></div>
+    </div>
     <!-- Header -->
     <header>
         <!-- nav -->
         <div class="nav container">
             <!-- logo -->
-            <div class="logo">
-                <a href="">
-                    <img src="https://evondev.com/wp-content/uploads/2021/12/logo-new.png" alt="">
-                </a>
-            </div>
+            <a href="#" class="logo">S-<span>Game</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
@@ -84,6 +84,15 @@
 
     </header>
 
+    <!-- home section -->
+    <section class="home container" id="home">
+        <img src="https://dotesports.com/wp-content/uploads/2020/10/27031436/VALORANT_YR1_KeyArt_4k_3_.0-2.jpg" alt="">
+        <div class="home-text">
+            <h1>CITY OF THE <br> FUTURE</h1>
+            <a href="#" class="btn">Mua ngay</a>
+        </div>
+    </section>
+    <!-- Game được tải nhiều nhất, slider -->
     <section class="container product-content">
         <div class="heading">
             <i class='bx bxs-flame'></i>
@@ -94,32 +103,49 @@
             <div class="image-item">
                 <div class="image">
                     <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                    <div class="box-text">
+                        <h2>Tên game</h2>
+                        <h3>Thể loại</h3>
+                        <div class="rating-download">
+                            <div class="rating">
+                                <i class='bx bxs-heart'></i>
+                                <span>5</span>
+                            </div>
+                            <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
             <div class="image-item">
                 <div class="image">
                     <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=710&q=80" alt="" />
+                    <div class="box-text">
+                        <h2>Tên game</h2>
+                        <h3>Thể loại</h3>
+                        <div class="rating-download">
+                            <div class="rating">
+                                <i class='bx bxs-heart'></i>
+                                <span>5</span>
+                            </div>
+                            <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
+                        </div>
+                    </div>
                 </div>
-
             </div>
             <div class="image-item">
                 <div class="image">
                     <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="" />
                 </div>
-
             </div>
             <div class="image-item">
                 <div class="image">
                     <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
                 </div>
-
             </div>
             <div class="image-item">
                 <div class="image">
                     <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=928&q=80" alt="" />
                 </div>
-
             </div>
         </div>
         <!-- Game được yêu thích -->
@@ -172,18 +198,18 @@
                                         <!-- button download -->
                                         <div class="card-button">
                                             <a href="" title="Chi tiết sản phẩm">
-                                                <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                                <i class='bx bx-dots-horizontal-rounded'></i>
                                             </a>
                                         </div>
                                         <div class="card-button">
                                             <a href="" title="Mua sản phẩm">
-                                                <ion-icon name="download-outline"></ion-icon>
+                                                <i class='bx bx-download'></i>
                                             </a>
                                         </div>
                                         <!-- button thêm vào giỏ hàng -->
                                         <div class="card-button">
                                             <a href="" title="Thêm và giỏ hàng">
-                                                <ion-icon name="cart-outline"></ion-icon>
+                                                <i class='bx bxs-cart'></i>
                                             </a>
                                         </div>
 
@@ -360,15 +386,63 @@
     </section>
     <!-- Game đang được giảm giá -->
 
+    <!-- Thể loại -->
+    <section class="container product-content">
+        <div class="heading">
+            <i class='bx bxs-flame'></i>
+            <h2>Thể loại</h2>
+        </div>
+        <!-- Game được yêu thích -->
+        <div class="image-slider">
+            <div class="image-item">
+                <div class="image">
+                    <a href="">
+                        <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                    </a>
+                    <div class="box-text">
+                        <h2>Tên game</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=710&q=80" alt="" />
+                    <div class="box-text">
+                        <h2>Tên game</h2>
+                        <h3>Thể loại</h3>
+                        <div class="rating-download">
+                            <div class="rating">
+                                <i class='bx bxs-heart'></i>
+                                <span>5</span>
+                            </div>
+                            <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80" alt="" />
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=928&q=80" alt="" />
+                </div>
+            </div>
+        </div>
+        <!-- Game được yêu thích -->
+    </section>
     <!-- coppyright -->
     <div class="coppyright container">
-        <a href="" class="logo">S-Game</a>
-        <p>&#169; CarpoolVenom All Right Reserved</p>
+        <a href="" class="logo">S-<span>Game</span></a>
+        <p>&#169; Carpool Venom All Right Reserved</p>
     </div>
-
-
-
-
 
     <script src="../js/index.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>

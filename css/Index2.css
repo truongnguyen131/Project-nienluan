@@ -21,10 +21,6 @@ section {
     padding: 4rem 0 3rem;
 }
 
-img {
-    width: 100%;
-}
-
 body {
     color: var(--text-color);
     background: var(--dark-color);
@@ -45,7 +41,7 @@ header {
     left: 0;
     width: 100%;
     background: var(--dark-color);
-    z-index: 999;
+    z-index: 100;
 }
 
 
@@ -59,7 +55,15 @@ header {
 }
 
 .logo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-transform: uppercase;
     margin: 0 auto 0 0;
+}
+
+.logo span {
+    color: var(--main-color);
 }
 
 .logo img {
@@ -223,6 +227,57 @@ header {
 }
 
 
+/* home */
+
+.home {
+    position: relative;
+    min-height: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 5rem;
+}
+
+.home img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.4rem;
+    z-index: -1;
+}
+
+.home-text {
+    padding-right: 4rem;
+    text-align: right;
+}
+
+.home-text h1 {
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.btn {
+    background: var(--main-color);
+    padding: 15px 20px;
+    color: var(--text-color);
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 10% 100%, 0% 68%);
+}
+
+.btn:hover {
+    background: var(--light-color);
+    color: var(--main-color);
+    transition: .3s all linear;
+}
+
+
 /* tìm kiếm */
 
 .search {
@@ -256,6 +311,7 @@ header {
     border: 1px solid #eee;
     background-color: transparent;
     transition: 0.25s ease;
+    color: white;
 }
 
 .search-input:focus {
@@ -311,6 +367,72 @@ header {
     font-weight: bold;
 }
 
+.image {
+    position: relative;
+}
+
+.image .box-text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    background: hsl(277, 14%, 20%, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 0.5rem;
+}
+
+.image .box-text h2 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.image .box-text h3 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+}
+
+.rating-download {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    background: hsl(0, 0%, 100%, 0.4);
+    padding: 4px 10px;
+    border-radius: 0.5rem;
+}
+
+.rating .bx {
+    color: #faf102;
+    font-size: 0.9rem;
+}
+
+.rating span {
+    color: #faf102;
+    font-size: 0.9rem;
+}
+
+.box-btn .bx {
+    padding: 8px;
+    background: transparent;
+    border: 2px solid #eee;
+    border-radius: 50%;
+    color: var(--text-color);
+    font-weight: 400;
+    font-size: 20px;
+    transition: .5s ease;
+}
+
+.box-btn .bx:hover {
+    background: var(--main-color);
+    transform: translateY(-2px);
+}
+
 .products {
     display: flex;
     justify-content: center;
@@ -342,4 +464,111 @@ header {
 .coppyright p {
     font-size: 0.9rem;
     color: var(--text-color);
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* custom scroll-bar */
+
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    z-index: 300;
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--main-color);
+    width: 100%;
+}
+
+
+/* responsive */
+
+@media screen and (max-width: 1024px) {
+    .container {
+        margin: 0 auto;
+        width: 90%;
+    }
+    .nav {
+        padding: 10px 0;
+    }
+    .nofication {
+        right: 3rem;
+    }
+    .search {
+        right: 3rem;
+    }
+    .menu img {
+        width: 500px;
+    }
+    .section {
+        padding: 3rem 0 2rem;
+    }
+    .home {
+        margin-top: 4rem;
+        min-height: 440px;
+    }
+    .home img {
+        border-radius: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 0 auto;
+        width: 70%;
+    }
+    .nofication {
+        right: 1rem;
+    }
+    .search {
+        right: 1rem;
+    }
+    .menu img {
+        width: 400px;
+    }
+    .home {
+        margin-top: 4rem;
+        min-height: 300px;
+    }
+    .home-text h1 {
+        font-size: 2rem;
+    }
+    .btn {
+        padding: 12px 17px;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .container {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .menu img {
+        display: none;
+    }
+    .menu {
+        justify-content: flex-end;
+    }
+    .nav {
+        padding: 8px 0;
+    }
+    .nav-icons .bx,
+    .menu-icons {
+        height: 40px;
+        width: 40px;
+    }
+    .home {
+        min-height: 240px;
+    }
 }
