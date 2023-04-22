@@ -87,18 +87,18 @@ $typetk = isset($_SESSION["loaitaikhoan"]) ? $_SESSION["loaitaikhoan"] : "";
                                         <a class="nav-link" href="contact.html">Contact Us</a>
                                     </li>
                                     <?php
-                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'ad') { ?>
+                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="page/quanly-admin.html">Quản lý Admin</a>
+                                            <a class="nav-link" href="page/quanly-admin.php">Quản lý Admin</a>
                                         </li>
                                     <?php } else {
                                     }
-                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nsx') { ?>
+                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
                                         <li class="nav-item">
                                             <a class="nav-link" href="page/quanly-nsx.php">Quản lý Nhà sản xuất</a>
                                         </li>
                                     <?php }
-                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'kh') { ?>
+                                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'khach hang') { ?>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Game</a>
                                         </li>

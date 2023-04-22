@@ -43,8 +43,6 @@ if ($typetk == "nha san xuat") {
 } else {
     $idnsx = "";
 }
-
-echo $idnsx;
 $target_dir = "../uploads/";
 $erro = "";
 
