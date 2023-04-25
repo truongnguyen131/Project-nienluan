@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+include_once('database_connection.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,90 +12,110 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        .is-invalid {
+            border: 1px solid red;
+            vertical-align: center;
+        }
 
+        .loi {
+            color: red;
+        }
+    </style>
     <title>Document</title>
 </head>
 
 <body>
-    <form action="" method="post">
-        <?php
-            include_once('database_connection.php');
-
-            $taikhoan = isset($_POST['taikhoan']) ? $_POST['taikhoan'] : "";
-            $taikhoan = trim(preg_replace('/\s+/', ' ', $taikhoan));
-            $matkhau = isset($_POST['matkhau']) ? $_POST['matkhau'] : "";
-            $matkhau = trim(preg_replace('/\s+/', ' ', $matkhau));
-            $erro = "";
-            $Nhodangnhap = "";
-            if (isset($_POST['submit'])) {
-
-                if ($taikhoan == "") {
-                    $erro .= "<li>Tai khoan khong dc rong</li>";
-                }
-                if ($matkhau == "" && !preg_match('/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.[A-Za-z]{2,6}$/', $email)) {
-                    $erro .= "<li>Mat khau</li>";
-                }
-                if ($erro != "") {
-                    echo "<ul>" . $erro . "</ul>";
-                }
-                $taikhoan = mysqli_real_escape_string($cn, $taikhoan);
-                if (isset($_POST['nhotk'])) {
-                    setcookie("taikhoan", $taikhoan, time() + 60);
-                    setcookie("matkhau", $matkhau, time() + 60);
-                }
-
-                $Result = mysqli_query($cn, "SELECT * FROM taikhoan WHERE tk_taikhoan='$taikhoan' AND tk_matkhau='$matkhau'");
-                if (mysqli_num_rows($Result) == 1) {
-                    $_SESSION["tentaikhoan"] = $taikhoan;
-                    while ($row = mysqli_fetch_array($Result, MYSQLI_ASSOC)) {
-                        $_SESSION["idtaikhoan"] = $row['tk_id'];
-                        $_SESSION["loaitaikhoan"] = $row['tk_loaitaikhoan'];
-                        $_SESSION["nametaikhoan"] = $row['tk_taikhoan'];
-                    }
-                    header("location:../index.php");
-                } else {
-                    echo "Đăng nhập không thành công";
-                }
-            }
-
-            if (isset($_COOKIE['taikhoan']) && isset($_COOKIE['matkhau'])) {
-                $taikhoan = $_COOKIE['taikhoan'];
-                $matkhau = $_COOKIE['matkhau'];
-                $Nhodangnhap = true;
-            }
-
+    <?php
+    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == false) {
+        echo "<script>alert('Đăng nhập không thành công!!')</script>";
+        unset($_SESSION['dangkythanhcong']);
+    }
     ?>
-
-            <div class="login-form">
-                <div class="login-title">
-                    ĐĂNG NHẬP
+    <form action="" method="post">
+        <div class="login-form">
+            <div class="login-title">
+                ĐĂNG NHẬP
+            </div>
+            <div class="login-item">
+                <input type="text" class="login-input" placeholder=" " name="taikhoan" id="tk">
+                <span class="login-lable">Tài khoản</span>
+                <div class="loi" id="loitk"></div>
+            </div>
+            <div class="login-item">
+                <input type="password" class="login-input input-pass" placeholder=" " name="matkhau" id="mk">
+                <span class="login-lable">Mật khẩu</span>
+                <div class="loi" id="loimk"></div>
+                <ion-icon name="eye-off-outline" class="eye eye-close"></ion-icon>
+                <ion-icon name="eye-outline" class="eye eye-open hidden"></ion-icon>
+            </div>
+            <div class="login-item login-remember">
+                <div class="item-remember">
+                    <span>Nhớ tài khoản</span>
+                    <input type="checkbox" id="ntk" name="nhotk">
                 </div>
-                <div class="login-item">
-                    <input type="text" class="login-input" placeholder=" " name="taikhoan" value="<?php echo $taikhoan; ?>">
-                    <span class="login-lable">Tài khoản</span>
-                </div>
-                <div class="login-item">
-                    <input type="password" class="login-input input-pass" placeholder=" " name="matkhau" value="<?php echo $matkhau; ?>">
-                    <span class="login-lable">Mật khẩu</span>
-                    <ion-icon name="eye-off-outline" class="eye eye-close"></ion-icon>
-                    <ion-icon name="eye-outline" class="eye eye-open hidden"></ion-icon>
-                </div>
-                <div class="login-item login-remember">
-                    <div class="item-remember">
-                        <span>Nhớ tài khoản</span>
-                        <input type="checkbox" <?php echo $Nhodangnhap ? "checked" : ""; ?> name="nhotk">
-                    </div>
-                    <div class="item-dangky">
-                        <a href="dangky.php">Đăng ký tài khoản</a>
-                    </div>
-                </div>
-                <div class="login-item login-btn">
-                    <button type="submit" name="submit" value="Dang nhap" id="dangnhap">Đăng nhập</button>
-                    <button type="reset">Hủy</button>
+                <div class="item-dangky">
+                    <a href="dangky.php">Đăng ký tài khoản</a>
                 </div>
             </div>
+            <div class="login-item login-btn">
+                <button onclick="kiemtraloi()" type="button">Đăng nhập</button>
+                <button type="reset">Hủy</button>
+            </div>
+        </div>
     </form>
 </body>
+<!-- Javascript files-->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/jquery-3.0.0.min.js"></script>
+<script>
+
+    function kiemtraloi() {
+        var check = 0
+        var tk = $('#tk').val()
+        var mk = $('#mk').val()
+        var ntk = "unchecked"
+        if (mk.length == 0) {
+            check -= 1
+            $('#mk').addClass('is-invalid');
+            $('#loimk').html("Mật khẩu không được rỗng")
+        } else {
+            $('#mk').removeClass('is-invalid')
+            $('#loimk').html("")
+            check += 1
+        }
+
+        if (tk.length == 0) {
+            check -= 1
+            $('#tk').addClass('is-invalid');
+            $('#loitk').html("Tài khoản không được rỗng")
+        } else {
+            $('#tk').removeClass('is-invalid')
+            $('#loitk').html("")
+            check += 1
+        }
+
+        if (document.getElementById('ntk').checked) {
+            ntk = "checked";
+        }
+
+
+
+        if (check == 2) {
+            $.post('xulydangnhap.php', {
+                ntk1: ntk,
+                taikhoan1: tk,
+                matkhau1: mk
+            }, function (data) {
+                $('body').html(data);
+            })
+
+        }
+
+    }
+</script>
 
 
 <script>
@@ -102,12 +123,12 @@
     const openeye = document.querySelector(".eye-open");
     const closeeye = document.querySelector(".eye-close");
 
-    closeeye.addEventListener("click", function() {
+    closeeye.addEventListener("click", function () {
         closeeye.classList.add("hidden");
         openeye.classList.remove("hidden");
         input.setAttribute("type", "text");
     });
-    openeye.addEventListener("click", function() {
+    openeye.addEventListener("click", function () {
         openeye.classList.add("hidden");
         closeeye.classList.remove("hidden");
         input.setAttribute("type", "password");
