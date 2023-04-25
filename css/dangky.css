@@ -48,6 +48,15 @@ body {
     border-color: blueviolet;
 }
 
+.is-invalid {
+    border: 1px solid red;
+    vertical-align: center;
+}
+
+.loi {
+    color: red;
+}
+
 .register-lable {
     position: absolute;
     color: #eee;
@@ -66,18 +75,6 @@ body {
     display: inline-block;
     background-color: transparent;
 }
-
-.register-remember {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item-remember span {
-    color: white;
-}
-
-.remember-checkbox {}
 
 .item-dangky a {
     color: white;
