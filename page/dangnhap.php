@@ -27,11 +27,25 @@ include_once('database_connection.php'); ?>
 
 <body>
     <?php
-    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == false) {
-        echo "<script>alert('Đăng nhập không thành công!!')</script>";
+    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "khongthanhcong") {
         unset($_SESSION['dangkythanhcong']);
+        echo "<script>alert('Đăng nhập không thành công!!')</script>";
+    }
+    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhcong") {
+        unset($_SESSION['dangkythanhcong']);
+        echo ' <script>window.location="http://localhost/Project-nienluan/index.php"</script>';
+    }
+    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhtoan") {
+        unset($_SESSION['dangkythanhcong']);
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan.php"</script>';
+    }
+    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "chitietsp") {
+        unset($_SESSION['dangkythanhcong']);
+        $idsp = $_SESSION["idsanpham"];
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/chitietsanpham.php?idsp='.$idsp.'"</script>';
     }
     ?>
+   
     <form action="" method="post">
         <div class="login-form">
             <div class="login-title">

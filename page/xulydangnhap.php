@@ -23,14 +23,17 @@ if (mysqli_num_rows($Result) == 1) {
         $_SESSION["loaitaikhoan"] = $row['tk_loaitaikhoan'];
     }
     if (isset($_SESSION["idsanpham"]) && $_SESSION["idsanpham"] != "") {
-        $idsp = $_SESSION["idsanpham"];
-        header("location:chitietsanpham.php?idsp=$idsp");
+        $_SESSION['dangnhapthanhcong'] = "chitietsp";
+        header("location:dangnhap.php");
+    }else if (isset($_SESSION["chuadangnhapthanhtoan"]) && $_SESSION["idsanpham"] != true) {
+        $_SESSION['dangnhapthanhcong'] = "thanhtoan";
+        header("location:dangnhap.php");
     } else {
-        // header("location:thanhtoan.php");
-        header("location:../index.php");
+        $_SESSION['dangnhapthanhcong'] = "thanhcong";
+        header("location:dangnhap.php");
     }
 } else {
-    $_SESSION['dangnhapthanhcong'] = false;
+    $_SESSION['dangnhapthanhcong'] = "khongthanhcong";
     header("location:dangnhap.php");
 }
 
