@@ -12,10 +12,8 @@
     <!-- style css -->
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
-    <link rel="stylesheet" href="../css/header-page.css" />
     <link rel="stylesheet" href="../css/quanly-admin.css" />
-    <link rel="stylesheet" href="../css/stars.css" />
-    <link rel="stylesheet" href="../css/click_slider.css" />
+
     <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -80,7 +78,6 @@
                         </span>
                     </div>
                 </button>
-
             <!-- Thống kê -->
             <div class="menu-dropdow">
                 <div class="dropdow-selected">
