@@ -42,10 +42,10 @@ include_once('database_connection.php'); ?>
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "chitietsp") {
         unset($_SESSION['dangkythanhcong']);
         $idsp = $_SESSION["idsanpham"];
-        echo ' <script>window.location="http://localhost/Project-nienluan/page/chitietsanpham.php?idsp='.$idsp.'"</script>';
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/chitietsanpham.php?idsp=' . $idsp . '"</script>';
     }
     ?>
-   
+
     <form action="" method="post">
         <div class="login-form">
             <div class="login-title">
@@ -74,7 +74,7 @@ include_once('database_connection.php'); ?>
             </div>
             <div class="login-item login-btn">
                 <button onclick="kiemtraloi()" type="button">Đăng nhập</button>
-                <button type="reset">Hủy</button>
+                <button type="button" onclick="Huy()">Hủy</button>
             </div>
         </div>
     </form>
@@ -85,6 +85,11 @@ include_once('database_connection.php'); ?>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/jquery-3.0.0.min.js"></script>
 <script>
+
+    function Huy() {
+        document.getElementById('tk').value = "";
+        document.getElementById('mk').value = "";
+    }
 
     function kiemtraloi() {
         var check = 0

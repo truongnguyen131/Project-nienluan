@@ -49,7 +49,7 @@ include_once('database_connection.php'); ?>
             <div class="register-item">
                 <input type="text" class="register-input" id="hoten" placeholder=" " name="hoten">
                 <span class="register-lable">Họ tên</span>
-                <p class="loi" id="loihoten"></p>
+                <div class="loi" id="loihoten"></div>
             </div>
             <div class="register-item">
                 <input type="text" class="register-input" id="sdt" name="sdt" placeholder=" ">
@@ -83,7 +83,7 @@ include_once('database_connection.php'); ?>
             </div>
             <div class="register-item register-btn">
                 <button onclick="kiemtraloi()" type="button">Đăng ký</button>
-                <button type="reset">Hủy</button>
+                <button type="button" onclick="Huy()">Hủy</button>
             </div>
         </div>
     </form>
@@ -95,6 +95,15 @@ include_once('database_connection.php'); ?>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/jquery-3.0.0.min.js"></script>
 <script>
+    function Huy() {
+        document.getElementById('hoten').value = "";
+        document.getElementById('sdt').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('tk').value = "";
+        document.getElementById('mk').value = "";
+        document.getElementById('nlmk').value = "";
+    }
+
     function kiemtraloi() {
         var check = 0
         var hoten = $('#hoten').val()
@@ -188,7 +197,8 @@ include_once('database_connection.php'); ?>
                 sdt1: sdt,
                 email1: email,
                 taikhoan1: tk,
-                matkhau1: mk
+                matkhau1: mk,
+                page: "dangky"
             }, function (data) {
                 $('body').html(data);
             })

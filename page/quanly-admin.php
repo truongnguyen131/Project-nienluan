@@ -1,3 +1,6 @@
+<?php session_start();
+include_once('database_connection.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,18 +15,27 @@
     <!-- style css -->
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/responsive.css" />
-    <link rel="stylesheet" href="../css/header-page.css" />
     <link rel="stylesheet" href="../css/quanly-admin.css" />
-    <link rel="stylesheet" href="../css/stars.css" />
-    <link rel="stylesheet" href="../css/click_slider.css" />
     <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Javascript files-->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery-3.0.0.min.js"></script>
+    <style>
+    .is-invalid {
+        border: 1px solid red;
+        vertical-align: center;
+    }
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    .loi {
+        color: red;
+    }
+    </style>
 </head>
-
 <body>
     <div class="menu-title">
         <h1>Quản lý dành cho Admin</h1>
@@ -34,52 +46,44 @@
             <a href="">
                 <div class="menu-item">
                     <ion-icon name="home-outline"></ion-icon><span>
-                            TRANG CHỦ
-                        </span>
+                        TRANG CHỦ
+                    </span>
                 </div>
             </a>
 
-            <button class="btn-menu" onclick="menu(event, 'clients')" id="defaultOpen">
-                    <div class="menu-item">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <span>THÊM KHÁCH HÀNG</span>
-                    </div>
-                </button>
-            <button class="btn-menu" onclick="menu(event, 'account')" id="defaultOpen">
-                    <div class="menu-item">
-                        <ion-icon name="person-add-outline"></ion-icon>
-                        <span>THÊM TÀI KHOẢN</span>
-                    </div>
-                </button>
+            <button class="btn-menu" onclick="menu(event, 'clients')" id="Themkhachhang">
+                <div class="menu-item">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span>THÊM KHÁCH HÀNG</span>
+                </div>
+            </button>
+            <button class="btn-menu" onclick="menu(event, 'account')" id="Themtaikhoan">
+                <div class="menu-item">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    <span>THÊM TÀI KHOẢN</span>
+                </div>
+            </button>
 
-            <button class="btn-menu" onclick="menu(event, 'product')">
-                    <div class="menu-item">
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <span>THÊM SẢN PHẨM</span>
-                    </div>
-                </button>
+            <button class="btn-menu" onclick="menu(event, 'product')" id="Themsanpham">
+                <div class="menu-item">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <span>THÊM SẢN PHẨM</span>
+                </div>
+            </button>
 
-            <button class="btn-menu" onclick="menu(event, 'category')">
-                    <div class="menu-item">
-                        <ion-icon name="game-controller-outline"></ion-icon>
-                        <span>THÊM THỂ LOẠI</span>
-                    </div>
-                </button>
+            <button class="btn-menu" onclick="menu(event, 'category')" id="Themtheloai">
+                <div class="menu-item">
+                    <ion-icon name="game-controller-outline"></ion-icon>
+                    <span>THÊM THỂ LOẠI</span>
+                </div>
+            </button>
 
-            <button class="btn-menu" onclick="menu(event, 'sale-product')">
-                    <div class="menu-item">
-                        <ion-icon name="gift-outline"></ion-icon>
-                        <span>THÊM GIẢM GIÁ</span>
-                    </div>
-                </button>
-
-            <button class="btn-menu" onclick="menu(event, 'nsx')">
-                    <div class="menu-item">
-                        <ion-icon name="bookmarks-outline"></ion-icon><span>
-                            THÊM NHÀ SẢN XUẤT
-                        </span>
-                    </div>
-                </button>
+            <button class="btn-menu" onclick="menu(event, 'sale-product')" id="Themgiamgia">
+                <div class="menu-item">
+                    <ion-icon name="gift-outline"></ion-icon>
+                    <span>THÊM GIẢM GIÁ</span>
+                </div>
+            </button>
 
             <!-- Thống kê -->
             <div class="menu-dropdow">
@@ -116,46 +120,198 @@
             <div class="tabs">
                 <!-- tabs -->
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'add-client')" id="defaultOpen">
-                            Thêm khách hàng
-                        </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-client')">
-                            Danh sách khách hàng
-                        </button>
+                    <?php
+                    if (isset($_POST['xoaKH'])) {
+                        $idtk = $_POST['xoaKH'];
+                        // mysqli_query($cn, "DELETE FROM `taikhoan` WHERE tk_id = $idtk");
+                        echo "<script>  window.onload = function(){
+                        document.getElementById('Themkhachhang').click();
+                        document.getElementById('tabDSKH').click();
+                        alert('Xóa thành công!!')}
+                       </script>";
+                    }
+                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == true) {
+                        echo "<script> document.getElementById('Themkhachhang').click();
+                        document.getElementById('tabThemKH').click();
+                        alert('Đăng ký thành công!!') </script>";
+                        unset($_SESSION['dangkythanhcong']);
+                    }
+                    ?>
+                    <button class="tablinks" onclick="openCity(event, 'add-client')" id="tabThemKH">
+                        Thêm khách hàng
+                    </button>
+                    <button class="tablinks" onclick="openCity(event, 'list-client')" id="tabDSKH">
+                        Danh sách khách hàng
+                    </button>
                 </div>
                 <!-- Thêm khách hàng -->
+                <script>
+                let listTK = [];
+                </script>
+                <?php
+                $query = mysqli_query($cn, "SELECT * FROM taikhoan");
+                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
+                <script>
+                listTK.push("<?php echo $row['tk_taikhoan']; ?>")
+                </script>
+                <?php }
+                ?>
                 <div id="add-client" class="tabcontent">
                     <div class="add-client-main">
                         <div class="client-item">
                             <span>Họ và tên</span>
-                            <input type="text" name="" id="" placeholder="Họ tên">
+                            <input type="text" name="hotenKH" id="hotenKH" placeholder="Họ tên"><br>
+                            <p class="loi" id="loihoten"></p>
                         </div>
                         <div class="client-item">
-                            <span>Địa chỉ</span>
-                            <input type="text" name="" id="" placeholder="Địa chỉ">
+                            <span>Email</span>
+                            <input type="email" name="emailKH" id="emailKH" placeholder="Email">
+                            <div class="loi" id="loiemail"></div>
                         </div>
                         <div class="client-item">
                             <span>Số điện thoại</span>
-                            <input type="text" name="" id="" placeholder="Số điện thoại">
+                            <input type="text" name="sdtKH" id="sdtKH" placeholder="Số điện thoại">
+                            <div class="loi" id="loisdt"></div>
                         </div>
                         <div class="client-item">
                             <span>Tài khoản</span>
-                            <input type="text" name="" id="" placeholder="Tài khoản">
+                            <input type="text" name="tkKH" id="tkKH" placeholder="Tài khoản">
+                            <div class="loi" id="loitk"></div>
                         </div>
                         <div class="client-item">
                             <span>Mật khẩu</span>
-                            <input type="password" name="" id="" placeholder="Mật khẩu">
+                            <input type="password" name="mkKH" id="mkKH" placeholder="Mật khẩu">
+                            <div class="loi" id="loimk"></div>
                         </div>
                         <div class="client-item">
                             <span>Nhập lại mật khẩu</span>
-                            <input type="text" name="" id="" placeholder="Nhập lại mật khẩu">
+                            <input type="password" name="nlmk" id="nlmk" placeholder="Nhập lại mật khẩu">
+                            <div class="loi" id="loinlmk"></div>
                         </div>
                         <div class="client-item">
-                            <button type="submit">Thêm</button>
-                            <button type="reset">Hủy</button>
+                            <button type="button" onclick="themKH()">Thêm</button>
+                            <button type="button" onclick="Huy()">Hủy</button>
                         </div>
                     </div>
                 </div>
+
+                <script>
+                function Huy() {
+                    document.getElementById('hotenKH').value = "";
+                    document.getElementById('sdtKH').value = "";
+                    document.getElementById('emailKH').value = "";
+                    document.getElementById('tkKH').value = "";
+                    document.getElementById('mkKH').value = "";
+                    document.getElementById('nlmk').value = "";
+                }
+
+                function themKH() {
+                    var check = 0
+                    var hoten = $('#hotenKH').val()
+                    const testHoTen = new RegExp(
+                        '^[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+ [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(?: [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]*)*'
+                    )
+                    var sdt = $('#sdtKH').val()
+                    const testSdt = new RegExp(
+                        "^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$"
+                    )
+                    var email = $('#emailKH').val()
+                    const testEmail = new RegExp("^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$")
+                    var tk = $('#tkKH').val()
+                    var mk = $('#mkKH').val()
+                    var nlmk = $('#nlmk').val()
+
+
+                    if (testHoTen.test(hoten) != true) {
+                        check -= 1
+                        $('#hoten').addClass('is-invalid');
+                        $('#loihoten').html("Họ tên phải là chữ có ít nhất 4 đến 20 kí tự")
+                    } else {
+                        $('#hoten').removeClass('is-invalid')
+                        $('#loihoten').html("")
+                        check += 1
+                    }
+
+                    if (testSdt.test(sdt) != true) {
+                        check -= 1
+                        $('#sdt').addClass('is-invalid');
+                        $('#loisdt').html("Số điện thoại không hợp lệ")
+                    } else {
+                        $('#sdt').removeClass('is-invalid')
+                        $('#loisdt').html("")
+                        check += 1
+                    }
+
+                    if (testEmail.test(email) != true) {
+                        check -= 1
+                        $('#email').addClass('is-invalid');
+                        $('#loiemail').html("Email không hợp lệ")
+                    } else {
+                        $('#email').removeClass('is-invalid')
+                        $('#loiemail').html("")
+                        check += 1
+                    }
+
+                    if (mk.length < 5 || mk.length > 15) {
+                        check -= 1
+                        $('#mk').addClass('is-invalid');
+                        $('#loimk').html("Mật khẩu không đủ mạnh")
+                    } else {
+                        $('#mk').removeClass('is-invalid')
+                        $('#loimk').html("")
+                        check += 1
+                    }
+
+                    if (nlmk != mk || nlmk.length == 0) {
+                        check -= 1
+                        $('#nlmk').addClass('is-invalid');
+                        $('#loinlmk').html("Hãy nhập lại mật khẩu")
+                    } else {
+                        $('#nlmk').removeClass('is-invalid')
+                        $('#loinlmk').html("")
+                        check += 1
+                    }
+
+                    let checkTK = true
+                    for (let i = 0; i < listTK.length; i++) {
+                        if (tk == listTK[i]) {
+                            checkTK = false
+                            break
+                        }
+                    }
+
+                    if (tk.length < 5 || tk.length > 15 || tk.indexOf("admin") != -1) {
+                        check -= 1
+                        $('#tk').addClass('is-invalid');
+                        $('#loitk').html("Tài khoản không hợp lệ")
+                    } else {
+                        if (checkTK == false) {
+                            check -= 1
+                            $('#tk').addClass('is-invalid');
+                            $('#loitk').html("Tài khoản bị trùng")
+                        } else {
+                            $('#tk').removeClass('is-invalid')
+                            $('#loitk').html("")
+                            check += 1
+                        }
+                    }
+
+                    if (check == 6) {
+                        $.post('xulydangky.php', {
+                            hoten1: hoten,
+                            sdt1: sdt,
+                            email1: email,
+                            taikhoan1: tk,
+                            matkhau1: mk,
+                            page: "themKH"
+                        }, function(data) {
+                            $('body').html(data);
+                        })
+
+                    }
+                }
+                </script>
+
                 <!-- Danh sách khách hàng -->
                 <div id="list-client" class="tabcontent">
                     <!-- Thông tin khách hàng-->
@@ -163,8 +319,31 @@
                         <tr>
                             <div class="table-control">
                                 <div class="search">
-                                    <input class="search" type="text" placeholder="Tìm kiếm" />
-                                    <button class="search">Tìm kiếm</button>
+                                    <input class="search" type="text" id="timkiem_kh"
+                                        placeholder="Tìm kiếm bằng tên tài khoản khách hàng" />
+                                    <button class="search" onclick="timkiemKH()">Tìm kiếm</button>
+
+                                    <script>
+                                    window.onload = function() {
+                                        var search = $('#timkiem_kh').val()
+                                        $.post('timkiemKH.php', {
+                                            data: search
+                                        }, function(data) {
+                                            $('.danhsachtimkiemKH').html(data);
+                                        })
+                                    }
+
+                                    function timkiemKH() {
+                                        var search = $('#timkiem_kh').val()
+                                        $.post('timkiemKH.php', {
+                                            data: search
+                                        }, function(data) {
+                                            $('.danhsachtimkiemKH').html(data);
+                                        })
+                                    }
+                                    </script>
+
+
                                 </div>
                             </div>
                         </tr>
@@ -176,7 +355,6 @@
                                             <th scope="col">STT</th>
                                             <th scope="col">ID</th>
                                             <th scope="col">Họ tên</th>
-                                            <th scope="col">Địa chỉ</th>
                                             <th scope="col">Số điện thoại</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Điểm tích lũy</th>
@@ -185,74 +363,11 @@
                                             <th scope="col">Cập nhật</th>
                                             <th scope="col">Xóa</th>
                                         </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>Nguyen Ngoc Truonggggggggggg</td>
-                                            <td>sdadasdasdadsdasdadadadasd</td>
-                                            <td>0947492641</td>
-                                            <td>abc@gamil.comdấdasdsdads/td>
-                                                <td>120</td>
-                                                <td>truongnguyen</td>
-                                                <td>1234567tr</td>
-                                                <td>
-                                                    <button class="tablinks" onclick="openCity(event, 'add-client')" id="defaultOpen">
-                                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                        </button>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                                    </a>
-                                                </td>
-                                        </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>Nguyen Ngoc Truonggggggggggg</td>
-                                            <td>sdadasdasdadsdasdadadadasd</td>
-                                            <td>0947492641</td>
-                                            <td>abc@gamil.comdấdasdsdads/td>
-                                                <td>120</td>
-                                                <td>truongnguyen</td>
-                                                <td>1234567tr</td>
-                                                <td>
-                                                    <button class="tablinks" onclick="openCity(event,
-                                                                'add-client')" id="defaultOpen">
-                                                                <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                            </button>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                                    </a>
-                                                </td>
-                                        </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>Nguyen Ngoc Truonggggggggggg</td>
-                                            <td>sdadasdasdadsdasdadadadasd</td>
-                                            <td>0947492641</td>
-                                            <td>abc@gamil.comdấdasdsdads/td>
-                                                <td>120</td>
-                                                <td>truongnguyen</td>
-                                                <td>1234567tr</td>
-                                                <td>
-                                                    <button class="tablinks" onclick="openCity(event,
-                                                                    'add-client')" id="defaultOpen">
-                                                                    <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                                </button>
-                                                </td>
-                                                <td>
-                                                    <a href="">
-                                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                                    </a>
-                                                </td>
-                                        </tr>
+                                        <tbody class="danhsachtimkiemKH">
+                                        </tbody>
                                     </table>
                                 </div>
-                                </td>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -267,26 +382,26 @@
                 <!-- tabs -->
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-account')" id="defaultOpen">
-                                        Thêm tài khoản
-                                    </button>
+                        Thêm tài khoản
+                    </button>
                     <button class="tablinks" onclick="openCity(event, 'list-account')">
-                                        Danh sách tài khoản
-                                    </button>
+                        Danh sách tài khoản
+                    </button>
                 </div>
                 <!-- Thêm tài khoản -->
                 <div id="add-account" class="tabcontent">
                     <div class="add-client-main">
                         <div class="client-item">
                             <span>Tài khoản</span>
-                            <input type="text" name="" id="" placeholder="Tài khoản">
+                            <input type="text" name="" placeholder="Tài khoản">
                         </div>
                         <div class="client-item">
                             <span>Mật khẩu</span>
-                            <input type="password" name="" id="" placeholder="Mật khẩu">
+                            <input type="password" name="" placeholder="Mật khẩu">
                         </div>
                         <div class="client-item">
                             <span>Nhập lại mật khẩu</span>
-                            <input type="password" name="" id="" placeholder="Nhập lại mật khẩu">
+                            <input type="password" name="" placeholder="Nhập lại mật khẩu">
                         </div>
                         <div class="client-item">
                             <span>Loại tài khoản</span>
@@ -318,16 +433,6 @@
                     <!-- Thông tin tài khoản-->
                     <table>
                         <div class="table-control">
-                            <div class="type-table">
-                                <select class="type-table" name="" id="" onchange="changetableaccount(this)">
-                                                    <option value="" selected="selected">
-                                                        ---Chọn loại bảng muốn hiển thị---
-                                                    </option>
-                                                    <option value="infor-account">Thông tin tài khoản</option>
-                                                    <option value="type-account">Thể loại tài khoản</option>
-                                                </select>
-                            </div>
-
                             <div class="search">
                                 <input class="search" type="text" placeholder="Tìm kiếm" />
                                 <button class="search">Tìm kiếm</button>
@@ -336,7 +441,6 @@
                         <tr>
                             <td colspan="11">
                                 <div class="scrollbar">
-                                    <!-- Thông tin tài khoản(select) -->
                                     <table border="1" id="infor-acc" style="display: table" class="table
                                                         table-inforgame">
                                         <tr class="table-primary">
@@ -355,37 +459,10 @@
                                             <td>ádasd6987d8a2ek</td>
                                             <td>KH</td>
                                             <td>
-                                                <button class="tablinks" onclick="openCity(event,'add-account')" id="defaultOpen">
-                                                                    <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                                </button>
-                                            </td>
-                                            <td>
-                                                <a href="">
-                                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <!-- Loại tài khoản(select) -->
-                                    <table border="1" id="type-acc" style="display: none" class="table
-                                                        table-inforgame">
-                                        <tr class="table-primary">
-                                            <th scope="col">STT</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Thể loại</th>
-                                            <th scope="col">Tổng số tài khoản</th>
-                                            <th scope="col">Cập nhật</th>
-                                            <th scope="col">Xóa</th>
-                                        </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>KH</td>
-                                            <td>10</td>
-                                            <td>
-                                                <button class="tablinks" onclick="openCity(event,'add-account')" id="defaultOpen">
-                                                                    <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                                </button>
+                                                <button class="tablinks" onclick="openCity(event,'add-account')"
+                                                    id="defaultOpen">
+                                                    <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                                </button>
                                             </td>
                                             <td>
                                                 <a href="">
@@ -410,11 +487,11 @@
                 <!-- tabs -->
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-product')" id="defaultOpen">
-                                        Thêm sản phẩm
-                                    </button>
+                        Thêm sản phẩm
+                    </button>
                     <button class="tablinks" onclick="openCity(event, 'list-product')">
-                                        Danh sách sản phẩm
-                                    </button>
+                        Danh sách sản phẩm
+                    </button>
                 </div>
                 <!-- Thêm sản phẩm -->
                 <div id="add-product" class="tabcontent">
@@ -436,7 +513,7 @@
                             <span>Thể loại</span>
                             <select name="theloai">
 
-                                            </select>
+                            </select>
                         </div>
                         <div class="client-item">
                             <span>Nhà sản xuất</span>
@@ -490,17 +567,17 @@
                     <div class="table-control">
                         <div class="type-table">
                             <select class="type-table" name="" id="" onchange="changetable(this)">
-                                                <option value="" selected="selected">
-                                                    ---Chọn loại bảng muốn hiển thị---
-                                                </option>
-                                                <option value="infor">Thông tin Game</option>
-                                                <option value="category">Thông tin Game và thể loại</option>
-                                                <option value="nsx">Thông tin Game và nhà sản xuất</option>
-                                                <option value="img-trailer">
-                                                    Thông tin Game và ảnh, trailer
-                                                </option>
-                                                <option value="filegame">Thông tin Game và Source game</option>
-                                            </select>
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="infor">Thông tin Game</option>
+                                <option value="category">Thông tin Game và thể loại</option>
+                                <option value="nsx">Thông tin Game và nhà sản xuất</option>
+                                <option value="img-trailer">
+                                    Thông tin Game và ảnh, trailer
+                                </option>
+                                <option value="filegame">Thông tin Game và Source game</option>
+                            </select>
                         </div>
 
                         <div class="search">
@@ -529,15 +606,18 @@
                                 <td>23/4/2023</td>
                                 <td>
                                     <div class="table-mota">
-                                        Một cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột Một cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột Một cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột
+                                        Một cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên
+                                        hàMột Một cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột cuộc phiêu lưu
+                                        thiên hàMột Một cuộc phiêu lưu thiên hàMột cuộc phiêu lưu thiên hàMột cuộc phiêu
+                                        lưu thiên hàMột
                                     </div>
                                 </td>
                                 <td>120.000.000đ</td>
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -564,8 +644,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -592,8 +672,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -624,8 +704,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -654,8 +734,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -678,11 +758,11 @@
                 <!-- tabs -->
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-category')" id="defaultOpen">
-                                        Thêm thể loại
-                                    </button>
+                        Thêm thể loại
+                    </button>
                     <button class="tablinks" onclick="openCity(event, 'list-category')">
-                                        Danh sách thể loại
-                                    </button>
+                        Danh sách thể loại
+                    </button>
                 </div>
                 <!-- Thêm thể loại -->
                 <div id="add-category" class="tabcontent">
@@ -725,8 +805,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-category')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -753,8 +833,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -781,8 +861,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -813,8 +893,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -843,8 +923,8 @@
                                 <td>
                                     <button class="tablinks" onclick="openCity(event,
                                                         'add-product')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
+                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                    </button>
                                 </td>
                                 <td>
                                     <a href="">
@@ -866,13 +946,13 @@
                 <div class="table-control">
                     <div class="type-table">
                         <select class="type-table" name="" id="" onchange="changetable(this)">
-                                            <option value="" selected="selected">
-                                                ---Chọn loại bảng muốn hiển thị---
-                                            </option>
-                                            <option value="games">Game</option>
-                                            <option value="categorys">Thể loại</option>
-                                            <option value="nsxs">Nhà sản xuất</option>
-                                        </select>
+                            <option value="" selected="selected">
+                                ---Chọn loại bảng muốn hiển thị---
+                            </option>
+                            <option value="games">Game</option>
+                            <option value="categorys">Thể loại</option>
+                            <option value="nsxs">Nhà sản xuất</option>
+                        </select>
                     </div>
 
                     <div class="search">
@@ -1029,78 +1109,6 @@
             </div>
         </div>
 
-        <!-- Thêm nhà sản xuất -->
-        <div class="client menu-tab" id="nsx">
-            <!-- tabs -->
-            <div class="tabs">
-                <!-- tabs -->
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'add-nsx')" id="defaultOpen">
-                                        Thêm nhà sản xuất
-                                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-nsx')">
-                                        Danh sách nhà sản xuất
-                                    </button>
-                </div>
-                <!-- Thêm nhà sản xuất -->
-                <div id="add-nsx" class="tabcontent">
-                    <div class="tabcontent-addproduct">
-                        <div class="client-item">
-                            <span>Tên nhà sản xuất</span>
-                            <input type="text" placeholder="Tên nhà sản xuất " />
-                        </div>
-                    </div>
-                    <div class="client-item">
-                        <button type="submit">Thêm</button>
-                        <button type="reset">Hủy</button>
-                    </div>
-                </div>
-                <!-- Danh sách nhà sản xuất -->
-                <div id="list-nsx" class="tabcontent">
-                    <div class="table-control">
-                        <div class="search">
-                            <input class="search" type="text" placeholder="Tìm kiếm" />
-                            <button class="search">Tìm kiếm</button>
-                        </div>
-                    </div>
-                    <div class="table-thongke table-responsive-sm">
-                        <!-- Thông tin về game -->
-                        <table border="1" id="inforgame" class="table
-                                            table-inforgame">
-                            <tr class="table-primary">
-                                <th scope="col">STT</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Tên nhà sản xuất</th>
-                                <th scope="col">Tổng số game</th>
-                                <th scope="col">Cập nhật</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1</td>
-                                <td>27</td>
-                                <td>VNG</td>
-                                <td>50</td>
-                                <td>
-                                    <button class="tablinks" onclick="openCity(event,
-                                                        'add-nsx')" id="defaultOpen">
-                                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                    </button>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                </div>
-                <!-- tabs -->
-            </div>
-        </div>
-        <!-- ==========================================ADD============================================ -->
-
         <!-- ========================================THỐNG KÊ=============================================== -->
         <!-- Doanh thu -->
         <div class="client menu-tab" id="revenue">
@@ -1108,12 +1116,12 @@
                 <div class="table-control">
                     <div class="type-table">
                         <select class="type-table" name="" id="" onchange="statistical(this)">
-                        <option value="" selected="selected">
-                            ---Chọn loại bảng muốn hiển thị---
-                        </option>
-                        <option value="revenue_date">Doanh thu hằng ngày</option>
-                        <option value="revenue_month">Doanh thu hằng tháng</option>
-                    </select>
+                            <option value="" selected="selected">
+                                ---Chọn loại bảng muốn hiển thị---
+                            </option>
+                            <option value="revenue_date">Doanh thu hằng ngày</option>
+                            <option value="revenue_month">Doanh thu hằng tháng</option>
+                        </select>
                     </div>
 
                     <div class="search">
@@ -1128,34 +1136,34 @@
                             <td colspan="7">
                                 <!-- Hiển thị ngày -->
                                 <select name="ngay" id="">
-                                <?php
-                                for ($date = 1; $date <= 31; $date++) {
-                                ?>
+                                    <?php
+                                    for ($date = 1; $date <= 31; $date++) {
+                                        ?>
                                     <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="thang" id="">
-                                <?php
-                                for ($month = 1; $month <= 12; $month++) {
-                                ?>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="nam" id="">
-                                <?php
-                                for ($year = 2022; $year <= 2030; $year++) {
-                                ?>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1197,24 +1205,24 @@
                             <td colspan="7">
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                                <?php
-                                for ($month = 1; $month <= 12; $month++) {
-                                ?>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                                <?php
-                                for ($year = 2022; $year <= 2030; $year++) {
-                                ?>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1250,24 +1258,24 @@
                 <!-- tabs -->
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'download_date')" id="defaultOpen">
-                Số lượt tải mỗi ngày
-            </button>
+                        Số lượt tải mỗi ngày
+                    </button>
                     <button class="tablinks" onclick="openCity(event, 'download_month')">
-                Số lượt tải mỗi tháng
-            </button>
+                        Số lượt tải mỗi tháng
+                    </button>
                 </div>
                 <!-- Lượt tải mỗi ngày -->
                 <div id="download_date" class="tabcontent">
                     <div class="table-control">
                         <div class="type-table">
                             <select class="type-table" name="" id="" onchange="downloads_date(this)">
-                                                <option value="" selected="selected">
-                                                    ---Chọn loại bảng muốn hiển thị---
-                                                </option>
-                                                <option value="downloads-games-date">Số lượt tải theo game (ngày)</option>
-                                                <option value="downloads-category-date">Số lượt tải theo thể loại (ngày)</option>
-                                                <option value="downloads-nsx-date">Số lượt tải theo nhà sản xuất (ngày)</option>
-                                            </select>
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="downloads-games-date">Số lượt tải theo game (ngày)</option>
+                                <option value="downloads-category-date">Số lượt tải theo thể loại (ngày)</option>
+                                <option value="downloads-nsx-date">Số lượt tải theo nhà sản xuất (ngày)</option>
+                            </select>
                         </div>
 
                         <div class="search">
@@ -1284,32 +1292,32 @@
                                 <select name="" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
                                     <?php
                                     }
                                     ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                <?php
-                for ($month = 1; $month <= 12; $month++) {
-                ?>
-                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                <?php
-                for ($year = 2022; $year <= 2030; $year++) {
-                ?>
-                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1342,32 +1350,32 @@
                                 <select name="" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
                                     <?php
                                     }
                                     ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                <?php
-                for ($month = 1; $month <= 12; $month++) {
-                ?>
-                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                <?php
-                for ($year = 2022; $year <= 2030; $year++) {
-                ?>
-                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1400,32 +1408,32 @@
                                 <select name="" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
                                     <?php
                                     }
                                     ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                <?php
-                for ($month = 1; $month <= 12; $month++) {
-                ?>
-                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                <?php
-                for ($year = 2022; $year <= 2030; $year++) {
-                ?>
-                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1457,13 +1465,13 @@
                     <div class="table-control">
                         <div class="type-table">
                             <select class="type-table" name="" id="" onchange="downloads_month(this)">
-                                                <option value="" selected="selected">
-                                                    ---Chọn loại bảng muốn hiển thị---
-                                                </option>
-                                                <option value="downloads-games-month">Số lượt tải theo game (tháng)</option>
-                                                <option value="downloads-category-month">Số lượt tải theo thể loại (tháng)</option>
-                                                <option value="downloads-nsx-month">Số lượt tải theo nhà sản xuất (tháng)</option>
-                                            </select>
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="downloads-games-month">Số lượt tải theo game (tháng)</option>
+                                <option value="downloads-category-month">Số lượt tải theo thể loại (tháng)</option>
+                                <option value="downloads-nsx-month">Số lượt tải theo nhà sản xuất (tháng)</option>
+                            </select>
                         </div>
 
                         <div class="search">
@@ -1478,24 +1486,24 @@
                             <td colspan="8">
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                <?php
-                for ($month = 1; $month <= 12; $month++) {
-                ?>
-                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                <?php
-                for ($year = 2022; $year <= 2030; $year++) {
-                ?>
-                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1526,24 +1534,24 @@
                             <td colspan="8">
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                <?php
-                for ($month = 1; $month <= 12; $month++) {
-                ?>
-                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                <?php
-                for ($year = 2022; $year <= 2030; $year++) {
-                ?>
-                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1574,24 +1582,24 @@
                             <td colspan="8">
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
-                <?php
-                for ($month = 1; $month <= 12; $month++) {
-                ?>
-                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
-                <?php
-                for ($year = 2022; $year <= 2030; $year++) {
-                ?>
-                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                <?php
-                }
-                ?>
-            </select>
+                                    <?php
+                                    for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </td>
                         </tr>
                         <tr class="table-primary">
@@ -1628,13 +1636,13 @@
                 <div class="table-control">
                     <div class="type-table">
                         <select class="type-table" name="" id="" onchange="saletable(this)">
-                                            <option value="" selected="selected">
-                                                ---Chọn loại bảng muốn hiển thị---
-                                            </option>
-                                            <option value="sale-games">Giảm giá theo game</option>
-                                            <option value="sale-categorys">Giảm giá theo thể loại</option>
-                                            <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
-                                        </select>
+                            <option value="" selected="selected">
+                                ---Chọn loại bảng muốn hiển thị---
+                            </option>
+                            <option value="sale-games">Giảm giá theo game</option>
+                            <option value="sale-categorys">Giảm giá theo thể loại</option>
+                            <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
+                        </select>
                     </div>
 
                     <div class="search">
@@ -1757,253 +1765,248 @@
         <!-- ========================================THỐNG KÊ=============================================== -->
     </div>
 </body>
+
 <!-- select chọn table sản phẩm -->
 <script>
-    var infor = document.getElementById("inforgame");
-    var category = document.getElementById("inforgame-and-category");
-    var nsx = document.getElementById("inforgame-and-nsx");
-    var imgtrailer = document.getElementById("inforgame-and-img");
-    var source = document.getElementById("inforgame-and-source");
+var infor = document.getElementById("inforgame");
+var category = document.getElementById("inforgame-and-category");
+var nsx = document.getElementById("inforgame-and-nsx");
+var imgtrailer = document.getElementById("inforgame-and-img");
+var source = document.getElementById("inforgame-and-source");
 
-    function changetable(obj) {
-        var value = obj.value;
+function changetable(obj) {
+    var value = obj.value;
 
-        if (value === "category") {
-            infor.style.display = "none";
-            category.style.display = "table";
-            nsx.style.display = "none";
-            imgtrailer.style.display = "none";
-            source.style.display = "none";
-        }
-        if (value === "nsx") {
-            infor.style.display = "none";
-            category.style.display = "none";
-            nsx.style.display = "table";
-            imgtrailer.style.display = "none";
-            source.style.display = "none";
-        }
-        if (value === "img-trailer") {
-            infor.style.display = "none";
-            category.style.display = "none";
-            nsx.style.display = "none";
-            imgtrailer.style.display = "table";
-            source.style.display = "none";
-        }
-        if (value === "filegame") {
-            infor.style.display = "none";
-            category.style.display = "none";
-            nsx.style.display = "none";
-            imgtrailer.style.display = "none";
-            source.style.display = "table";
-        }
-        if (value === "infor") {
-            infor.style.display = "table";
-            category.style.display = "none";
-            nsx.style.display = "none";
-            imgtrailer.style.display = "none";
-            source.style.display = "none";
-        }
+    if (value === "category") {
+        infor.style.display = "none";
+        category.style.display = "table";
+        nsx.style.display = "none";
+        imgtrailer.style.display = "none";
+        source.style.display = "none";
     }
+    if (value === "nsx") {
+        infor.style.display = "none";
+        category.style.display = "none";
+        nsx.style.display = "table";
+        imgtrailer.style.display = "none";
+        source.style.display = "none";
+    }
+    if (value === "img-trailer") {
+        infor.style.display = "none";
+        category.style.display = "none";
+        nsx.style.display = "none";
+        imgtrailer.style.display = "table";
+        source.style.display = "none";
+    }
+    if (value === "filegame") {
+        infor.style.display = "none";
+        category.style.display = "none";
+        nsx.style.display = "none";
+        imgtrailer.style.display = "none";
+        source.style.display = "table";
+    }
+    if (value === "infor") {
+        infor.style.display = "table";
+        category.style.display = "none";
+        nsx.style.display = "none";
+        imgtrailer.style.display = "none";
+        source.style.display = "none";
+    }
+}
 </script>
 <!-- select chọn table giảm giá -->
 <script>
-    var all_game = document.getElementById("all-games");
-    var all_category = document.getElementById("all-category");
-    var all_nsx = document.getElementById("all-nsx");
+var all_game = document.getElementById("all-games");
+var all_category = document.getElementById("all-category");
+var all_nsx = document.getElementById("all-nsx");
 
-    function changetable(obj) {
-        var value = obj.value;
+function changetable(obj) {
+    var value = obj.value;
 
-        if (value === "categorys") {
-            all_game.style.display = "none";
-            all_category.style.display = "table";
-            all_nsx.style.display = "none";
-        }
-        if (value === "nsxs") {
-            all_game.style.display = "none";
-            all_category.style.display = "none";
-            all_nsx.style.display = "table";
-        }
-        if (value === "games") {
-            all_game.style.display = "table";
-            all_category.style.display = "none";
-            all_nsx.style.display = "none";
-        }
-
+    if (value === "categorys") {
+        all_game.style.display = "none";
+        all_category.style.display = "table";
+        all_nsx.style.display = "none";
     }
+    if (value === "nsxs") {
+        all_game.style.display = "none";
+        all_category.style.display = "none";
+        all_nsx.style.display = "table";
+    }
+    if (value === "games") {
+        all_game.style.display = "table";
+        all_category.style.display = "none";
+        all_nsx.style.display = "none";
+    }
+
+}
 </script>
 <!-- select chọn table tài khoản -->
 <script>
-    var info_account = document.getElementById("infor-acc");
-    var type_account = document.getElementById("type-acc");
+var info_account = document.getElementById("infor-acc");
+var type_account = document.getElementById("type-acc");
 
-    function changetableaccount(obj) {
-        var value = obj.value;
+function changetableaccount(obj) {
+    var value = obj.value;
 
-        if (value === "type-account") {
-            info_account.style.display = "none";
-            type_account.style.display = "table";
-        }
-        if (value === "infor-account") {
-            info_account.style.display = "table";
-            type_account.style.display = "none";
-        }
-
+    if (value === "type-account") {
+        info_account.style.display = "none";
+        type_account.style.display = "table";
     }
+    if (value === "infor-account") {
+        info_account.style.display = "table";
+        type_account.style.display = "none";
+    }
+
+}
 </script>
 <!-- select chọn table thống kê lượt tải theo ngày-->
 <script>
-    var downloads_games_date = document.getElementById("downloadsgametheongay");
-    var downloads_category_date = document.getElementById("downloadscategorytheongay");
-    var downloads_nsx_date = document.getElementById("downloadsnsxtheongay");
+var downloads_games_date = document.getElementById("downloadsgametheongay");
+var downloads_category_date = document.getElementById("downloadscategorytheongay");
+var downloads_nsx_date = document.getElementById("downloadsnsxtheongay");
 
-    function downloads_date(obj) {
-        var value = obj.value;
+function downloads_date(obj) {
+    var value = obj.value;
 
-        if (value === "downloads-games-date") {
-            downloads_games_date.style.display = "table";
-            downloads_category_date.style.display = "none";
-            downloads_nsx_date.style.display = "none";
+    if (value === "downloads-games-date") {
+        downloads_games_date.style.display = "table";
+        downloads_category_date.style.display = "none";
+        downloads_nsx_date.style.display = "none";
 
-        }
-        if (value === "downloads-category-date") {
-            downloads_games_date.style.display = "none";
-            downloads_category_date.style.display = "table";
-            downloads_nsx_date.style.display = "none";
-
-        }
-        if (value === "downloads-nsx-date") {
-            downloads_games_date.style.display = "none";
-            downloads_category_date.style.display = "none";
-            downloads_nsx_date.style.display = "table";
-
-        }
     }
+    if (value === "downloads-category-date") {
+        downloads_games_date.style.display = "none";
+        downloads_category_date.style.display = "table";
+        downloads_nsx_date.style.display = "none";
+
+    }
+    if (value === "downloads-nsx-date") {
+        downloads_games_date.style.display = "none";
+        downloads_category_date.style.display = "none";
+        downloads_nsx_date.style.display = "table";
+
+    }
+}
 </script>
 <!-- select chọn table thống kê lượt tải theo tháng-->
 <script>
-    var downloads_games_month = document.getElementById("downloadsgametheothang");
-    var downloads_category_month = document.getElementById("downloadscategorytheothang");
-    var downloads_nsx_month = document.getElementById("downloadsnsxtheothang");
+var downloads_games_month = document.getElementById("downloadsgametheothang");
+var downloads_category_month = document.getElementById("downloadscategorytheothang");
+var downloads_nsx_month = document.getElementById("downloadsnsxtheothang");
 
-    function downloads_month(obj) {
-        var value = obj.value;
+function downloads_month(obj) {
+    var value = obj.value;
 
-        if (value === "downloads-games-month") {
-            downloads_games_month.style.display = "table";
-            downloads_category_month.style.display = "none";
-            downloads_nsx_month.style.display = "none";
+    if (value === "downloads-games-month") {
+        downloads_games_month.style.display = "table";
+        downloads_category_month.style.display = "none";
+        downloads_nsx_month.style.display = "none";
 
-        }
-        if (value === "downloads-category-month") {
-            downloads_games_month.style.display = "none";
-            downloads_category_month.style.display = "table";
-            downloads_nsx_month.style.display = "none";
-
-        }
-        if (value === "downloads-nsx-month") {
-            downloads_games_month.style.display = "none";
-            downloads_category_month.style.display = "none";
-            downloads_nsx_month.style.display = "table";
-
-        }
     }
+    if (value === "downloads-category-month") {
+        downloads_games_month.style.display = "none";
+        downloads_category_month.style.display = "table";
+        downloads_nsx_month.style.display = "none";
+
+    }
+    if (value === "downloads-nsx-month") {
+        downloads_games_month.style.display = "none";
+        downloads_category_month.style.display = "none";
+        downloads_nsx_month.style.display = "table";
+
+    }
+}
 </script>
 <!-- select chọn table thống kê giảm giá -->
 <script>
-    var all_games = document.getElementById("sale-all-games");
-    var all_categorys = document.getElementById("sale-all-category");
-    var all_nsxs = document.getElementById("sale-all-nsx");
+var all_games = document.getElementById("sale-all-games");
+var all_categorys = document.getElementById("sale-all-category");
+var all_nsxs = document.getElementById("sale-all-nsx");
 
-    function saletable(obj) {
-        var value = obj.value;
+function saletable(obj) {
+    var value = obj.value;
 
-        if (value === "sale-categorys") {
-            all_games.style.display = "none";
-            all_categorys.style.display = "table";
-            all_nsxs.style.display = "none";
-        }
-        if (value === "sale-nsxs") {
-            all_games.style.display = "none";
-            all_categorys.style.display = "none";
-            all_nsxs.style.display = "table";
-        }
-        if (value === "sale-games") {
-            all_games.style.display = "table";
-            all_categorys.style.display = "none";
-            all_nsxs.style.display = "none";
-        }
-
+    if (value === "sale-categorys") {
+        all_games.style.display = "none";
+        all_categorys.style.display = "table";
+        all_nsxs.style.display = "none";
     }
+    if (value === "sale-nsxs") {
+        all_games.style.display = "none";
+        all_categorys.style.display = "none";
+        all_nsxs.style.display = "table";
+    }
+    if (value === "sale-games") {
+        all_games.style.display = "table";
+        all_categorys.style.display = "none";
+        all_nsxs.style.display = "none";
+    }
+
+}
 </script>
 <!-- select chọn table thống kê-->
 <script>
-    var revenue_date = document.getElementById("revenue-date");
-    var revenue_month = document.getElementById("revenue-month");
+var revenue_date = document.getElementById("revenue-date");
+var revenue_month = document.getElementById("revenue-month");
 
-    function statistical(obj) {
-        var value = obj.value;
+function statistical(obj) {
+    var value = obj.value;
 
-        if (value === "revenue_date") {
-            revenue_date.style.display = "table";
-            revenue_month.style.display = "none";
+    if (value === "revenue_date") {
+        revenue_date.style.display = "table";
+        revenue_month.style.display = "none";
 
-        }
-        if (value === "revenue_month") {
-            revenue_date.style.display = "none";
-            revenue_month.style.display = "table";
-
-        }
     }
+    if (value === "revenue_month") {
+        revenue_date.style.display = "none";
+        revenue_month.style.display = "table";
+
+    }
+}
 </script>
 <!-- tabss -->
 <script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent ");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none ";
-        }
-        tablinks = document.getElementsByClassName("tablinks ");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active ", " ");
-        }
-        document.getElementById(cityName).style.display = "block ";
-        evt.currentTarget.className += " active ";
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent ");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none ";
     }
-
-    // Get the element with id="defaultOpen " and click on it
-    document.getElementById("defaultOpen ").click();
+    tablinks = document.getElementsByClassName("tablinks ");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active ", " ");
+    }
+    document.getElementById(cityName).style.display = "block ";
+    evt.currentTarget.className += " active ";
+}
 </script>
 <!-- tabss -->
 <script>
-    function menu(evt, NameMenu) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("menu-tab");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none ";
-        }
-        tablinks = document.getElementsByClassName("btn-menu");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active ", " ");
-        }
-        document.getElementById(NameMenu).style.display = "block ";
-        evt.currentTarget.className += " active ";
+function menu(evt, NameMenu) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("menu-tab");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none ";
     }
-
-    // Get the element with id="defaultOpen " and click on it
-    document.getElementById("defaultOpen ").click();
+    tablinks = document.getElementsByClassName("btn-menu");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active ", " ");
+    }
+    document.getElementById(NameMenu).style.display = "block ";
+    evt.currentTarget.className += " active ";
+}
 </script>
 <!-- range slider -->
 <script>
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    // Hiển thị giá trị thanh trượt mặc định
-    output.innerHTML = slider.value;
-    //Cập nhật giá trị thanh trượt hiện tại (mỗi khi bạn kéo tay cầm thanh trượt)
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-    }
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+// Hiển thị giá trị thanh trượt mặc định
+output.innerHTML = slider.value;
+//Cập nhật giá trị thanh trượt hiện tại (mỗi khi bạn kéo tay cầm thanh trượt)
+slider.oninput = function() {
+    output.innerHTML = this.value;
+}
 </script>
 
 </html>
