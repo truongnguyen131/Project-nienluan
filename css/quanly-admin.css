@@ -356,6 +356,7 @@ td button {
     text-align: left;
     background-color: transparent;
     width: 100%;
+    border: none;
 }
 
 .scrollbar {
