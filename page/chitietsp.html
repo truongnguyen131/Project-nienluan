@@ -22,6 +22,10 @@
 </head>
 
 <body>
+    <!-- custom scroll bar -->
+    <div class="progress">
+        <div class="progress-bar" id="scroll-bar"></div>
+    </div>
     <!-- Header -->
     <header>
         <!-- nav -->
@@ -106,6 +110,11 @@
                 <h2>120.000.000đ</h2>
                 <!-- giá cũ sau khi sale (nếu có)-->
                 <span>120.000.000đ</span>
+            </div>
+            <div class="info-quantity">
+                <div class="product-btn-giam"><button id="giam" onclick="quantity()">-</button></div>
+                <div class="product-value"><input id="val" type="text" value="1"></div>
+                <div class="product-btn-tang"><button id="tang" onclick="quantity()">+</button></div>
             </div>
             <div class="infor-btn">
                 <a href="#">Mua</a>
@@ -306,8 +315,6 @@
 
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@9.2.4/swiper-bundle.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="../js/chitietsp.js"></script>
 
 

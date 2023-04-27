@@ -17,6 +17,28 @@
     --text-color: hsl(0, 0%, 91%);
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* custom scroll-bar */
+
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    z-index: 300;
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--main-color);
+    width: 100%;
+}
+
 
 /* content-product */
 
@@ -61,6 +83,25 @@
 }
 
 .row::-webkit-scrollbar-thumb:hover {
+    background: var(--main-color);
+}
+
+.tab-cmt-display::-webkit-scrollbar {
+    height: 10px;
+}
+
+.tab-cmt-display::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: 10px;
+}
+
+.tab-cmt-display::-webkit-scrollbar-thumb {
+    background-color: #fa8383;
+    width: 5px;
+    border-radius: 10px;
+}
+
+.tab-cmt-display::-webkit-scrollbar-thumb:hover {
     background: var(--main-color);
 }
 
@@ -138,6 +179,46 @@
 .info-price span {
     color: gray;
     text-decoration: line-through
+}
+
+.info-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.product-btn-giam button {
+    border-radius: 4px 0 0 4px;
+    background: var(--main-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.product-btn-tang button {
+    border-radius: 0 4px 4px 0;
+    background: var(--main-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.product-value input {
+    background: var(--light-color);
+    width: 2.5rem;
+    height: 1.5rem;
+    text-align: center;
+    color: var(--text-color);
+    border: none;
+}
+
+.product-value input:focus {
+    outline: none;
 }
 
 .infor-btn {
@@ -403,5 +484,35 @@
     .menu-icons {
         height: 40px;
         width: 40px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .ext-price-new h3 {
+        font-size: 15px;
+    }
+    .ext-price-old span {
+        font-size: 13px;
+    }
+    .infor-btn {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .sale span {
+        font-size: 15px;
+    }
+    .ext-price-new h3 {
+        font-size: 12px;
+    }
+    .ext-price-old span {
+        font-size: 10px;
+    }
+    .infor-btn a {
+        font-size: 11px;
+    }
+    .cart-content {
+        margin-top: 6rem;
     }
 }
