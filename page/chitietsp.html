@@ -8,16 +8,24 @@
     <link rel="stylesheet" href="../css/Index2.css">
     <link rel="stylesheet" href="../css/chitietsp.css">
     <link rel="stylesheet" href="../css/stars.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link href="https://cdn.jsdelivr.net/npm/swiper@9.2.4/modules/scrollbar/scrollbar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
     <title>Chi tiết sản phẩm</title>
 </head>
 
 <body>
+    <!-- custom scroll bar -->
+    <div class="progress">
+        <div class="progress-bar" id="scroll-bar"></div>
+    </div>
     <!-- Header -->
     <header>
         <!-- nav -->
@@ -86,27 +94,6 @@
     </header>
     <!-- content -->
     <div class="content-product container">
-        <div class="content-tabs">
-            <div class="container-tab">
-                <img id="expandedImg" style="width:100%">
-                <div id="imgtext"></div>
-            </div>
-            <!-- The grid: four columns -->
-            <div class="row">
-                <div class="column">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_c5cb2cbfaaa835cc774326daf5aad14f82335068.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
-                </div>
-                <div class="column">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_4fd1fc218b1691357e1716f8098582393331f75d.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
-                </div>
-                <div class="column">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_5e79fcf9d3213bf7b2b30f59a94ab80ab8f9d47e.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
-                </div>
-                <div class="column">
-                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_ecf748c1cfeeb89b304cb7665f4d0bd7bef7f828.116x65.jpg?t=1678105868" alt="" onclick="myFunction(this);">
-                </div>
-            </div>
-        </div>
         <div class="content-info">
             <img src="https://cdn.akamai.steamstatic.com/steam/apps/749960/header.jpg?t=1678105868" alt="">
             <h1>Townsmen VR</h1>
@@ -124,11 +111,44 @@
                 <!-- giá cũ sau khi sale (nếu có)-->
                 <span>120.000.000đ</span>
             </div>
+            <div class="info-quantity">
+                <div class="product-btn-giam"><button id="giam" onclick="quantity()">-</button></div>
+                <div class="product-value"><input id="val" type="text" value="1"></div>
+                <div class="product-btn-tang"><button id="tang" onclick="quantity()">+</button></div>
+            </div>
             <div class="infor-btn">
                 <a href="#">Mua</a>
                 <a href="#">Thêm vào giỏ hàng</a>
             </div>
         </div>
+        <div class="content-tabs">
+            <div class="container-tab">
+                <img id="expandedImg" style="width:100%">
+                <div id="imgtext"></div>
+            </div>
+            <!-- The grid: four columns -->
+            <div class="row">
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/ss_2089088c139e275c851bff1f73981e8633ea7d09.600x338.jpg?t=1678444734" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/ss_352a2ff610250d0c824cd1cc4ea7e732fa84f5e8.600x338.jpg?t=1678444734" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/ss_562b11c5e61e1f9cf3de76e1e18dd2e36f213469.600x338.jpg?t=1678444734" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/ss_2089088c139e275c851bff1f73981e8633ea7d09.600x338.jpg?t=1678444734" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/ss_352a2ff610250d0c824cd1cc4ea7e732fa84f5e8.600x338.jpg?t=1678444734" alt="" onclick="myFunction(this);">
+                </div>
+                <div class="column">
+                    <img src="https://cdn.akamai.steamstatic.com/steam/apps/1124300/ss_562b11c5e61e1f9cf3de76e1e18dd2e36f213469.600x338.jpg?t=1678444734" alt="" onclick="myFunction(this);">
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- trailer -->
@@ -292,11 +312,12 @@
     </script>
     <!-- tabs -->
     <script src="../js/index.js"></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="../js/chitietsp.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="../js/slider.js"></script>
+
+
 </body>
 
 </html>
