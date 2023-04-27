@@ -34,6 +34,7 @@ include_once('database_connection.php'); ?>
     }
     </style>
 </head>
+
 <body>
     <div class="menu-title">
         <h1>Quản lý dành cho Admin</h1>
@@ -82,14 +83,6 @@ include_once('database_connection.php'); ?>
                     <span>THÊM GIẢM GIÁ</span>
                 </div>
             </button>
-
-            <button class="btn-menu" onclick="menu(event, 'nsx')">
-                    <div class="menu-item">
-                        <ion-icon name="bookmarks-outline"></ion-icon><span>
-                            THÊM NHÀ SẢN XUẤT
-                        </span>
-                    </div>
-                </button>
 
             <!-- Thống kê -->
             <div class="menu-dropdow">
