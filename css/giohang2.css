@@ -87,7 +87,7 @@ ul.breadcrumb li a:hover {
 }
 
 .scrollbar {
-    max-height: 400px;
+    max-height: 100px;
     width: 100%;
     overflow: auto;
 }
@@ -95,8 +95,6 @@ ul.breadcrumb li a:hover {
 .cart-content {
     padding: 10px;
 }
-
-.cart-product {}
 
 .cart-info {
     margin-top: 1rem;
