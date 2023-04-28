@@ -13,7 +13,7 @@ if (mysqli_num_rows($query) > 0) {
         if (!isset($_SESSION['timkiemKH'][$row['tk_id']])) {
             $_SESSION['timkiemKH'][$row['tk_id']] = array(
                 'stt' => $stt++,
-                'id' => $row['tk_id'],
+                'id' => $row['kh_id'],
                 'hoten' => $row['kh_hoten'],
                 'sdt' => $row['kh_sdt'],
                 'email' => $row['kh_email'],
@@ -50,3 +50,9 @@ foreach ($_SESSION['timkiemKH'] as $key => $value) { ?>
     </tr>
 
 <?php } ?>
+
+<?php if (isset($_POST['xoaKH'])) {
+    $idtk = $_POST['xoaKH'];
+    mysqli_query($cn, "DELETE FROM `taikhoan` WHERE tk_id = $idtk");
+    echo "<script>alert('Xóa thành công!!')</script>";
+    } ?>

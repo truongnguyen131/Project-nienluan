@@ -34,7 +34,9 @@ include_once('database_connection.php'); ?>
     }
     </style>
 </head>
+
 <body>
+ 
     <div class="menu-title">
         <h1>Quản lý dành cho Admin</h1>
     </div>
@@ -83,14 +85,6 @@ include_once('database_connection.php'); ?>
                 </div>
             </button>
 
-            <button class="btn-menu" onclick="menu(event, 'nsx')">
-                    <div class="menu-item">
-                        <ion-icon name="bookmarks-outline"></ion-icon><span>
-                            THÊM NHÀ SẢN XUẤT
-                        </span>
-                    </div>
-                </button>
-
             <!-- Thống kê -->
             <div class="menu-dropdow">
                 <div class="dropdow-selected">
@@ -127,15 +121,6 @@ include_once('database_connection.php'); ?>
                 <!-- tabs -->
                 <div class="tab">
                     <?php
-                    if (isset($_POST['xoaKH'])) {
-                        $idtk = $_POST['xoaKH'];
-                        // mysqli_query($cn, "DELETE FROM `taikhoan` WHERE tk_id = $idtk");
-                        echo "<script>  window.onload = function(){
-                        document.getElementById('Themkhachhang').click();
-                        document.getElementById('tabDSKH').click();
-                        alert('Xóa thành công!!')}
-                       </script>";
-                    }
                     if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == true) {
                         echo "<script> document.getElementById('Themkhachhang').click();
                         document.getElementById('tabThemKH').click();
@@ -157,9 +142,9 @@ include_once('database_connection.php'); ?>
                 <?php
                 $query = mysqli_query($cn, "SELECT * FROM taikhoan");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
-                <script>
-                listTK.push("<?php echo $row['tk_taikhoan']; ?>")
-                </script>
+                        <script>
+                        listTK.push("<?php echo $row['tk_taikhoan']; ?>")
+                        </script>
                 <?php }
                 ?>
                 <div id="add-client" class="tabcontent">
@@ -378,7 +363,6 @@ include_once('database_connection.php'); ?>
                     </table>
                 </div>
             </div>
-            <!-- tabs -->
         </div>
 
         <!-- Thêm Tài khoản -->
@@ -387,10 +371,16 @@ include_once('database_connection.php'); ?>
             <div class="tabs">
                 <!-- tabs -->
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'add-account')" id="defaultOpen">
+                    <!-- <script>
+                           window.onload = function(){
+                            document.getElementById("Themkhachhang").click();
+                            document.getElementById("tabDSKH").click();
+                           }
+                    </script> -->
+                    <button class="tablinks" onclick="openCity(event, 'add-account')" id="tabThemTK">
                         Thêm tài khoản
                     </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-account')">
+                    <button class="tablinks" onclick="openCity(event, 'list-account')" id="tabDSTK">
                         Danh sách tài khoản
                     </button>
                 </div>
@@ -1145,8 +1135,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                    <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
-                                    <?php
+                                            <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1155,8 +1145,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1165,8 +1155,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1214,8 +1204,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1224,8 +1214,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1299,8 +1289,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1309,8 +1299,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1319,8 +1309,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1357,8 +1347,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1367,8 +1357,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1377,8 +1367,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1415,8 +1405,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1425,8 +1415,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1435,8 +1425,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1495,8 +1485,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1505,8 +1495,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1543,8 +1533,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1553,8 +1543,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1591,8 +1581,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1601,8 +1591,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
