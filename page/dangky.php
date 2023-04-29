@@ -26,7 +26,7 @@ include_once('database_connection.php'); ?>
 
 <body>
     <?php
-    if(isset( $_SESSION['dangkythanhcong']) &&  $_SESSION['dangkythanhcong'] == true){
+    if(isset( $_SESSION['dangkythanhcong']) &&  $_SESSION['dangkythanhcong'] == "dangky"){
         echo "<script>alert('Đăng ký thành công!!')</script>";
         unset($_SESSION['dangkythanhcong']);
     }
