@@ -20,7 +20,7 @@ include_once('database_connection.php'); ?>
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "khongthanhcong") {
         unset($_SESSION['dangkythanhcong']);
         echo "<script>
-        $('#mk').addClass('is-invalid');
+            $('#mk').addClass('is-invalid');
             $('#loimk').html('Mật khẩu không hợp lệ');
             $('#tk').addClass('is-invalid');
             $('#loitk').html('Tài khoản không hợp lệ');
@@ -77,7 +77,4 @@ include_once('database_connection.php'); ?>
 <!-- Javascript files-->
 <script src="../js/dangnhap.js"></script>
 <script src="../js/jquery.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/jquery-3.0.0.min.js"></script>
 </html>
