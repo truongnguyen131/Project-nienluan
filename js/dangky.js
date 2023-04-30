@@ -1,12 +1,32 @@
 // thông báo lỗi
 
 function Huy() {
+    var hoten = $('#hoten').val()
+    var sdt = $('#sdt').val()
+    var email = $('#email').val()
+    var tk = $('#tk').val()
+    var mk = $('#mk').val()
+    var nlmk = $('#nlmk').val()
     document.getElementById('hoten').value = "";
     document.getElementById('sdt').value = "";
     document.getElementById('email').value = "";
     document.getElementById('tk').value = "";
     document.getElementById('mk').value = "";
     document.getElementById('nlmk').value = "";
+    document.getElementById('nlmk').value = "";
+    $('#hoten').removeClass('is-invalid')
+    $('#loihoten').html("")
+    $('#sdt').removeClass('is-invalid')
+    $('#loisdt').html("")
+    $('#email').removeClass('is-invalid')
+    $('#loiemail').html("")
+    $('#tk').removeClass('is-invalid')
+    $('#loitk').html("")
+    $('#mk').removeClass('is-invalid')
+    $('#loimk').html("")
+    $('#nlmk').removeClass('is-invalid')
+    $('#loinlmk').html("")
+
 }
 
 function kiemtraloi() {
@@ -61,7 +81,6 @@ function kiemtraloi() {
         $('#loimk').html("")
         check += 1
     }
-
     if (nlmk != mk || nlmk.length == 0) {
         check -= 1
         $('#nlmk').addClass('is-invalid');

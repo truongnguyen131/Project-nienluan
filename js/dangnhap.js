@@ -2,8 +2,15 @@
 
 
 function Huy() {
+    var tk = $('#tk').val()
+    var mk = $('#mk').val()
     document.getElementById('tk').value = "";
     document.getElementById('mk').value = "";
+    $('#tk').removeClass('is-invalid')
+    $('#loitk').html("")
+    $('#mk').removeClass('is-invalid')
+    $('#loimk').html("")
+
 }
 
 function kiemtraloi() {

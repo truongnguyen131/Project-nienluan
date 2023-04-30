@@ -17,6 +17,20 @@
     --text-color: hsl(0, 0%, 91%);
 }
 
+
+/* đưa background input về lại trong suốt khi tự dộng điền trên web */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #ffffff;
+}
+
+
+/* ------------------------------------------------------------------- */
+
 body {
     color: var(--text-color);
     background-image: url(../images/banner.png);
@@ -60,22 +74,8 @@ body {
 }
 
 .register-input:focus {
-    border-color: rgb(43, 226, 226);
+    border-color: rgb(21, 187, 57);
 }
-
-
-/* đưa background input về lại trong suốt khi tự dộng điền trên web */
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: #ffffff;
-}
-
-
-/* ------------------------------------------------------------------- */
 
 .is-invalid {
     border: 2px solid red;
@@ -90,7 +90,7 @@ input:-webkit-autofill:active {
 
 .register-lable {
     position: absolute;
-    color: #eee;
+    color: #747474;
     top: 50%;
     left: 21px;
     transform: translateY(-50%);
@@ -101,8 +101,9 @@ input:-webkit-autofill:active {
 
 .register-input:not(:placeholder-shown)+.register-lable,
 .register-input:focus+.register-lable {
-    top: -15px;
-    color: rgb(43, 226, 226);
+    top: 50%;
+    left: 75%;
+    color: rgb(21, 187, 57);
     display: inline-block;
 }
 
