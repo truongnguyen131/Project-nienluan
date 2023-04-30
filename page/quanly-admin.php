@@ -38,17 +38,30 @@ include_once('database_connection.php'); ?>
 <body>
 
     <?php
-    if (isset($_POST['xoa'])) {
-        $idtk = $_POST['xoa'];
+    if (isset($_POST['xoaTK'])) {
+        $idtk = $_POST['xoaTK'];
+        mysqli_query($cn, "DELETE FROM `taikhoan` WHERE tk_id = $idtk");
+        $_SESSION['xoaTKthanhcong'] = true;
+    }
+    if (isset($_POST['xoaKH'])) {
+        $idtk = $_POST['xoaKH'];
         mysqli_query($cn, "DELETE FROM `taikhoan` WHERE tk_id = $idtk");
         $_SESSION['xoaKHthanhcong'] = true;
+    }
+    if (isset($_POST['xoaNSX'])) {
+        $idtk = $_POST['xoaNSX'];
+        mysqli_query($cn, "DELETE FROM `taikhoan` WHERE tk_id = $idtk");
+        $_SESSION['xoaNSXthanhcong'] = true;
     }
     ?>
 
     <?php if (isset($_POST['updateKH'])) {
         $_SESSION['updateKH'] = $_POST['updateKH'];
     }
-
+    ?>
+     <?php if (isset($_POST['updateTK'])) {
+        $_SESSION['updateTK'] = $_POST['updateTK'];
+    }
     ?>
     <?php if (isset($_POST['updateNSX'])) {
         $_SESSION['updateNSX'] = $_POST['updateNSX'];
@@ -146,11 +159,19 @@ include_once('database_connection.php'); ?>
                 <!-- tabs -->
                 <div class="tab">
                     <?php
-                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemKH") {
-                        echo "<script> document.getElementById('Themkhachhang').click();
-                        document.getElementById('tabThemKH').click();
-                        alert('Thêm khách hàng thành công!!') </script>";
-                        unset($_SESSION['dangkythanhcong']);
+                    if (isset($_SESSION['dangkythanhcong'])) {
+                        if ($_SESSION['dangkythanhcong'] == "ThemKH") {
+                            echo "<script> document.getElementById('Themkhachhang').click();
+                            document.getElementById('tabThemKH').click();
+                            alert('Thêm khách hàng thành công!!') </script>";
+                            unset($_SESSION['dangkythanhcong']);
+                        }
+                        if ($_SESSION['dangkythanhcong'] == "capNhatKH") {
+                            echo "<script> document.getElementById('Themkhachhang').click();
+                            document.getElementById('tabDSKH').click();
+                            alert('Cập nhật khách hàng thành công!!') </script>";
+                            unset($_SESSION['dangkythanhcong']);
+                        }
                     }
                     ?>
                     <script>
@@ -206,8 +227,9 @@ include_once('database_connection.php'); ?>
                             <div class="loi" id="loinlmkkh"></div>
                         </div>
                         <div class="client-item">
-                            <button type="button" id="bntThemKH" onclick="themKH()">Thêm</button>
-                            <button type="button" id="bntUpdateKH" hidden onclick="UpdateKH()">Cập nhật</button>
+                            <button type="button" id="bntThemKH" onclick="add_update_KH('add')">Thêm</button>
+                            <button type="button" id="bntUpdateKH" hidden onclick="add_update_KH('update')">Cập
+                                nhật</button>
                             <button type="button" onclick="HuyKH()">Hủy</button>
                         </div>
                     </div>
@@ -222,9 +244,11 @@ include_once('database_connection.php'); ?>
                     document.getElementById('mkKH').value = "";
                     document.getElementById('nlmk').value = "";
                 }
-
-                function themKH() {
+                </script>
+                <script>
+                function add_update_KH(choose) {
                     var check = 0
+                    let checkTK = true
                     var hoten = $('#hotenKH').val()
                     const testHoTen = new RegExp(
                         '^[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+ [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(?: [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]*)*'
@@ -290,13 +314,15 @@ include_once('database_connection.php'); ?>
                         check += 1
                     }
 
-                    let checkTK = true
-                    for (let i = 0; i < listTK.length; i++) {
-                        if (tkKH == listTK[i]) {
-                            checkTK = false
-                            break
+                    if (choose == 'add') {
+                        for (let i = 0; i < listTK.length; i++) {
+                            if (tkKH == listTK[i]) {
+                                checkTK = false
+                                break
+                            }
                         }
                     }
+
 
                     if (tkKH.length < 5 || tkKH.length > 15 || tkKH.indexOf("admin") != -1) {
                         check -= 1
@@ -314,21 +340,37 @@ include_once('database_connection.php'); ?>
                         }
                     }
 
+
                     if (check == 6) {
-                        $.post('xulydangky.php', {
-                            hoten1: hoten,
-                            sdt1: sdtKH,
-                            email1: emailKH,
-                            taikhoan1: tkKH,
-                            matkhau1: mkKH,
-                            page: "themKH"
-                        }, function(data) {
-                            $('body').html(data);
-                        })
+                        if (choose == 'add') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdtKH,
+                                email1: emailKH,
+                                taikhoan1: tkKH,
+                                matkhau1: mkKH,
+                                page: "themKH"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                        if (choose == 'update') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdtKH,
+                                email1: emailKH,
+                                taikhoan1: tkKH,
+                                matkhau1: mkKH,
+                                page: "capNhatKH"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
 
                     }
                 }
                 </script>
+
 
                 <!-- Danh sách khách hàng -->
                 <div id="list-client" class="tabcontent">
@@ -403,6 +445,12 @@ include_once('database_connection.php'); ?>
                         alert('Thêm NSX thành công!!') </script>";
                     unset($_SESSION['dangkythanhcong']);
                 }
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatNSX") {
+                    echo "<script> document.getElementById('Themnsx').click();
+                        document.getElementById('tabDSNSX').click();
+                        alert('Cập nhật NSX thành công!!') </script>";
+                    unset($_SESSION['dangkythanhcong']);
+                }
                 ?>
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-nsx')" id="tabThemNSX">
@@ -446,7 +494,9 @@ include_once('database_connection.php'); ?>
                             <div class="loi" id="loinlmknsx"></div>
                         </div>
                         <div class="client-item">
-                            <button type="button" onclick="themNSX()">Thêm</button>
+                            <button type="button" id="bntThemNSX" onclick="add_update_NSX('add')">Thêm</button>
+                            <button type="button" id="bntUpdateNSX" hidden onclick="add_update_NSX('update')">Cập
+                                nhật</button>
                             <button type="button" onclick="HuyNSX()">Hủy</button>
                         </div>
                     </div>
@@ -461,9 +511,11 @@ include_once('database_connection.php'); ?>
                     document.getElementById('mkNSX').value = "";
                     document.getElementById('nlmkNSX').value = "";
                 }
-
-                function themNSX() {
+                </script>
+                <script>
+                function add_update_NSX(choose) {
                     var check = 0
+                    let checkTK = true
                     var hoten = $('#tenNSX').val()
                     var sdt = $('#sdtNSX').val()
                     const testSdt = new RegExp(
@@ -525,11 +577,12 @@ include_once('database_connection.php'); ?>
                         check += 1
                     }
 
-                    let checkTK = true
-                    for (let i = 0; i < listTK.length; i++) {
-                        if (tk == listTK[i]) {
-                            checkTK = false
-                            break
+                    if (choose == 'add') {
+                        for (let i = 0; i < listTK.length; i++) {
+                            if (tk == listTK[i]) {
+                                checkTK = false
+                                break
+                            }
                         }
                     }
 
@@ -550,17 +603,30 @@ include_once('database_connection.php'); ?>
                     }
 
                     if (check == 6) {
-                        $.post('xulydangky.php', {
-                            hoten1: hoten,
-                            sdt1: sdt,
-                            email1: email,
-                            taikhoan1: tk,
-                            matkhau1: mk,
-                            page: "themNSX"
-                        }, function(data) {
-                            $('body').html(data);
-                        })
-
+                        if (choose == 'add') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdt,
+                                email1: email,
+                                taikhoan1: tk,
+                                matkhau1: mk,
+                                page: "themNSX"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                        if (choose == 'update') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdt,
+                                email1: email,
+                                taikhoan1: tk,
+                                matkhau1: mk,
+                                page: "capNhatNSX"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
                     }
                 }
                 </script>
@@ -622,9 +688,22 @@ include_once('database_connection.php'); ?>
 
         <!-- Thêm Tài khoản -->
         <div class="client menu-tab" id="account">
-
             <div class="tabs">
-                <!-- tabs -->
+                <?php
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTK") {
+                    echo "<script> document.getElementById('Themtaikhoan').click();
+                        document.getElementById('tabThemTK').click();
+                        alert('Thêm tài khoản thành công!!') </script>";
+                    unset($_SESSION['dangkythanhcong']);
+                }
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTK") {
+                    echo "<script> document.getElementById('Themtaikhoan').click();
+                        document.getElementById('tabDSTK').click();
+                        alert('Cập nhật tài khoản thành công!!') </script>";
+                    unset($_SESSION['dangkythanhcong']);
+                }
+                ?>
+                
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-account')" id="tabThemTK">
                         Thêm tài khoản
@@ -638,49 +717,165 @@ include_once('database_connection.php'); ?>
                     <div class="add-client-main">
                         <div class="client-item">
                             <span>Tài khoản</span>
-                            <input type="text" name="" placeholder="Tài khoản">
+                            <input type="text" name="TaiKhoan" id="TaiKhoan" placeholder="Tài khoản">
+                            <div class="loi" id="loitkTK"></div>
                         </div>
                         <div class="client-item">
                             <span>Mật khẩu</span>
-                            <input type="password" name="" placeholder="Mật khẩu">
+                            <input type="password" name="MatKhau" id="MatKhau" placeholder="Mật khẩu">
+                            <div class="loi" id="loimkTK"></div>
                         </div>
                         <div class="client-item">
                             <span>Nhập lại mật khẩu</span>
-                            <input type="password" name="" placeholder="Nhập lại mật khẩu">
+                            <input type="password" name="NLMatKhau" id="NLMatKhau" placeholder="Nhập lại mật khẩu">
+                            <div class="loi" id="loinlmkTK"></div>
                         </div>
                         <div class="client-item">
                             <span>Loại tài khoản</span>
                             <div class="type-acc">
                                 <div class="type-admin type-item">
                                     <span>Quản lý</span>
-                                    <input type="radio" name="" id="" value="admin">
+                                    <input type="radio" name="loaiTK" id="admin" value="admin">
                                 </div>
                                 <div class="type-nsx type-item">
                                     <span>Nhà sản xuất</span>
-                                    <input type="radio" name="" id="" value="nsx">
+                                    <input type="radio" name="loaiTK" id="nha san xuat" value="nha san xuat">
                                 </div>
                                 <div class="type-kh type-item">
                                     <span>Khách hàng</span>
-                                    <input type="radio" name="" id="" value="kh">
+                                    <input type="radio" name="loaiTK" id="khach hang" value="khach hang">
                                 </div>
                             </div>
-
+                            <div class="loi" id="loiloaiTK"></div>
                         </div>
                         <div class="client-item">
-                            <button type="submit">Thêm</button>
-                            <button type="reset">Hủy</button>
+                            <button type="button" id="bntThemTK" onclick="add_update_TK('add')">Thêm</button>
+                            <button type="button" id="bntCapnhatTK" onclick="add_update_TK('update')" hidden>Cập
+                                nhật</button>
+                            <button type="button" onclick="HuyTK()">Hủy</button>
                         </div>
                     </div>
                 </div>
+                <script>
+                function HuyTK() {
+                    document.getElementById('TaiKhoan').value = ""
+                    document.getElementById('MatKhau').value = ""
+                    document.getElementById('NLMatKhau').value = ""
+                }
+                </script>
+                <script>
+                function add_update_TK(choose) {
+                    var check = 0
+                    let checkTK = true
+                    var tk = $('#TaiKhoan').val()
+                    var mk = $('#MatKhau').val()
+                    var nlmk = $('#NLMatKhau').val()
+                    var loaiTK = $('input[name="loaiTK"]:checked').val();
 
+                    if (loaiTK == undefined) {
+                        check -= 1
+                        $('#loiloaiTK').html("Hãy chọn loại tài khoản")
+                    } else {
+                        $('#loiloaiTK').html("")
+                        check += 1
+                    }
+
+                    if (mk.length < 5 || mk.length > 15) {
+                        check -= 1
+                        $('#MatKhau').addClass('is-invalid');
+                        $('#loimkTK').html("Mật khẩu không đủ mạnh")
+                    } else {
+                        $('#MatKhau').removeClass('is-invalid')
+                        $('#loimkTK').html("")
+                        check += 1
+                    }
+
+                    if (nlmk != mk || nlmk.length == 0) {
+                        check -= 1
+                        $('#NLMatKhau').addClass('is-invalid');
+                        $('#loinlmkTK').html("Hãy nhập lại mật khẩu")
+                    } else {
+                        $('#NLMatKhau').removeClass('is-invalid')
+                        $('#loinlmkTK').html("")
+                        check += 1
+                    }
+
+                    if (choose == 'add') {
+                        for (let i = 0; i < listTK.length; i++) {
+                            if (tk == listTK[i]) {
+                                checkTK = false
+                                break
+                            }
+                        }
+                    }
+
+                    if (tk.length < 5 || tk.length > 15 || tk.indexOf("admin") != -1) {
+                        check -= 1
+                        $('#TaiKhoan').addClass('is-invalid');
+                        $('#loitkTK').html("Tài khoản không hợp lệ")
+                    } else {
+                        if (checkTK == false) {
+                            check -= 1
+                            $('#TaiKhoan').addClass('is-invalid');
+                            $('#loitkTK').html("Tài khoản bị trùng")
+                        } else {
+                            $('#TaiKhoan').removeClass('is-invalid')
+                            $('#loitkTK').html("")
+                            check += 1
+                        }
+                    }
+
+                    if (check == 4) {
+                        if (choose == 'add') {
+                            $.post('xulydangky.php', {
+                                loaitaikhoan1: loaiTK,
+                                taikhoan1: tk,
+                                matkhau1: mk,
+                                page: "themTK"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                        if (choose == 'update') {
+                            $.post('xulydangky.php', {
+                                loaitaikhoan1: loaiTK,
+                                taikhoan1: tk,
+                                matkhau1: mk,
+                                page: "capNhatTK"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                    }
+
+                }
+                </script>
                 <!-- Danh sách tài khoản -->
                 <div id="list-account" class="tabcontent">
                     <!-- Thông tin tài khoản-->
                     <table>
                         <div class="table-control">
                             <div class="search">
-                                <input class="search" type="text" placeholder="Tìm kiếm" />
-                                <button class="search">Tìm kiếm</button>
+                                <input class="search" type="text" id="timkiem_tk"
+                                    placeholder="Tìm kiếm bằng tên tài khoản" />
+                                <button class="search" onclick="timkiemTK()">Tìm kiếm</button>
+                                <script>
+                                var search = $('#timkiem_tk').val()
+                                $.post('timkiemTK.php', {
+                                    data: search
+                                }, function(data) {
+                                    $('.danhsachtimkiemTK').html(data);
+                                })
+
+                                function timkiemTK() {
+                                    var search = $('#timkiem_tk').val()
+                                    $.post('timkiemTK.php', {
+                                        data: search
+                                    }, function(data) {
+                                        $('.danhsachtimkiemTK').html(data);
+                                    })
+                                }
+                                </script>
                             </div>
                         </div>
                         <tr>
@@ -697,24 +892,9 @@ include_once('database_connection.php'); ?>
                                             <th scope="col">Cập nhật</th>
                                             <th scope="col">Xóa</th>
                                         </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>truongnguyennnt131</td>
-                                            <td>ádasd6987d8a2ek</td>
-                                            <td>KH</td>
-                                            <td>
-                                                <button class="tablinks" onclick="openCity(event,'add-account')"
-                                                    id="defaultOpen">
-                                                    <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <a href="">
-                                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <tbody class="danhsachtimkiemTK">
+                                        </tbody>
+
                                     </table>
                                 </div>
                             </td>
@@ -2021,6 +2201,29 @@ include_once('database_connection.php'); ?>
 }
 $_SESSION['xoaKHthanhcong'] = false;
 
+if (isset($_SESSION['xoaNSXthanhcong']) && $_SESSION['xoaNSXthanhcong'] == true) {
+    echo "<script>
+        window.onload = function() {
+            alert('Xóa thành công!!')
+            document.getElementById('Themnsx').click();
+            document.getElementById('tabDSNSX').click();
+        }
+        </script>";
+}
+$_SESSION['xoaNSXthanhcong'] = false;
+
+if (isset($_SESSION['xoaTKthanhcong']) && $_SESSION['xoaTKthanhcong'] == true) {
+    echo "<script>
+        window.onload = function() {
+            alert('Xóa thành công!!')
+            document.getElementById('Themtaikhoan').click();
+            document.getElementById('tabDSTK').click();
+        }
+        </script>";
+}
+$_SESSION['xoaTKthanhcong'] = false;
+
+
 if (isset($_SESSION['updateKH']) && $_SESSION['updateKH'] != 0) {
     $idtk = $_SESSION['updateKH'];
     $sql = "SELECT * FROM taikhoan tk,khachhang kh WHERE kh.tk_id = tk.tk_id and tk.tk_id = $idtk";
@@ -2030,6 +2233,8 @@ if (isset($_SESSION['updateKH']) && $_SESSION['updateKH'] != 0) {
         $sdt = $row['kh_sdt'];
         $email = $row['kh_email'];
         $tk = $row['tk_taikhoan'];
+        $_SESSION['taikhoanUpdate'] = $row['tk_id'];
+        $_SESSION['KHUpdate'] = $row['kh_id'];
         $mk = $row['tk_matkhau'];
     }
     ?>
@@ -2043,8 +2248,8 @@ window.onload = function() {
     document.getElementById('tkKH').value = "<?php echo $tk; ?>";
     document.getElementById('mkKH').value = "<?php echo $mk; ?>";
     document.getElementById("bntUpdateKH").removeAttribute("hidden");
-    document.getElementById("bntThemKH").setAttribute("hidden","hidden" );
-    
+    document.getElementById("bntThemKH").setAttribute("hidden", "hidden");
+
 }
 </script>
 <?php }
@@ -2052,9 +2257,65 @@ $_SESSION['updateKH'] = 0;
 
 
 
+if (isset($_SESSION['updateNSX']) && $_SESSION['updateNSX'] != 0) {
+    $idtk = $_SESSION['updateNSX'];
+    $sql = "SELECT * FROM taikhoan tk,nsx nsx WHERE nsx.tk_id = tk.tk_id and tk.tk_id = $idtk";
+    $query = mysqli_query($cn, $sql);
+    while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+        $tennsx = $row['nsx_ten'];
+        $sdt = $row['nsx_sdt'];
+        $email = $row['nsx_email'];
+        $tk = $row['tk_taikhoan'];
+        $_SESSION['taikhoanUpdate'] = $row['tk_id'];
+        $_SESSION['nsxUpdate'] = $row['nsx_id'];
+        $mk = $row['tk_matkhau'];
+    }
+    ?>
+<script>
+window.onload = function() {
+    document.getElementById('Themnsx').click();
+    document.getElementById('tabThemNSX').click();
+    document.getElementById('tenNSX').value = "<?php echo $tennsx; ?>";
+    document.getElementById('sdtNSX').value = "<?php echo $sdt; ?>";
+    document.getElementById('emailNSX').value = "<?php echo $email; ?>";
+    document.getElementById('tkNSX').value = "<?php echo $tk; ?>";
+    document.getElementById('mkNSX').value = "<?php echo $mk; ?>";
+    document.getElementById("bntUpdateNSX").removeAttribute("hidden");
+    document.getElementById("bntThemNSX").setAttribute("hidden", "hidden");
+}
+</script>
+<?php }
+$_SESSION['updateNSX'] = 0;
+
 ?>
 
+<?php
+if (isset($_SESSION['updateTK']) && $_SESSION['updateTK'] != 0) {
+    $idtk = $_SESSION['updateTK'];
+    $sql = "SELECT * FROM taikhoan WHERE tk_id = $idtk";
+    $query = mysqli_query($cn, $sql);
+    while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+        $loaitk = $row['tk_loaitaikhoan'];
+        $tk = $row['tk_taikhoan'];
+        $_SESSION['taikhoanUpdate'] = $row['tk_id'];
+        $mk = $row['tk_matkhau'];
+    }
+    ?>
+<script>
+window.onload = function() {
+    document.getElementById('Themtaikhoan').click();
+    document.getElementById('tabThemTK').click();
+    document.getElementById('TaiKhoan').value = "<?php echo $tk; ?>";
+    document.getElementById('MatKhau').value = "<?php echo $mk; ?>";
+    document.getElementById('<?php echo $loaitk; ?>').checked = true
+    document.getElementById("bntCapnhatTK").removeAttribute("hidden");
+    document.getElementById("bntThemTK").setAttribute("hidden", "hidden");
+}
+</script>
+<?php }
+$_SESSION['updateTK'] = 0;
 
+?>
 
 
 <!-- select chọn table sản phẩm -->
