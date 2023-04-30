@@ -75,11 +75,7 @@ include_once('database_connection.php'); ?>
 
 </body>
 <!-- Javascript files-->
-<<<<<<< Updated upstream
 <script src="../js/dangnhap.js"></script>
-=======
-
->>>>>>> Stashed changes
 <script src="../js/jquery.min.js"></script>
 <script src="../js/popper.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
