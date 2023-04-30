@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-color: #fa5353;
+    --dark-color: #1b182b;
+    --light-color: #322f40;
+    --text-color: hsl(0, 0%, 91%);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    padding: 10px 40px;
+    border-radius: 6px;
+}
+
+ul {
+    margin: 20px 30px;
+}
+
+.pagination ul li {
+    display: inline-block;
+    margin: 0 10px;
+    color: var(--text-color);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 30px;
+    cursor: pointer;
+    transition: .5s linear;
+}
+
+.pagination ul li.active {
+    background: var(--main-color);
+    background-repeat: no-repeat;
+}
+
+.page-btn1,
+.page-btn2 {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px;
+    color: var(--text-color);
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+.page-btn1:hover {
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+.page-btn2:hover {
+    background: var(--main-color);
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 426px) {
+    .pagination ul li {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        line-height: 20px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .pagination ul li {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        line-height: 20px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .pagination {
+        padding: 10px 14px;
+    }
+    .pagination ul li {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        line-height: 20px;
+    }
+}

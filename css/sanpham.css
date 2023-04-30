@@ -342,3 +342,77 @@ span {
     padding: 10px 5px;
     font-size: 15px;
 }
+
+@media screen and (max-width: 1024px) {
+    .container {
+        margin: 0 auto;
+        width: 90%;
+    }
+    .nav {
+        padding: 10px 0;
+    }
+    .nofication {
+        right: 3rem;
+    }
+    .search {
+        right: 3rem;
+    }
+    .menu img {
+        width: 500px;
+    }
+    .menu-second {
+        margin-top: 7rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .nofication {
+        right: 1rem;
+    }
+    .search {
+        right: 1rem;
+    }
+    .menu img {
+        width: 400px;
+    }
+    .menu-second {
+        margin-top: 6rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .container {
+        margin: 0 auto;
+        width: 80%;
+    }
+    .logo {
+        font-size: 1.2rem;
+    }
+    .menu img {
+        display: none;
+    }
+    .menu {
+        justify-content: flex-end;
+    }
+    .nav {
+        padding: 8px 0;
+    }
+    .nav-icons .bx,
+    .menu-icons {
+        height: 40px;
+        width: 40px;
+    }
+    .menu-second {
+        display: none;
+    }
+    .filter-control {
+        width: 85%;
+        transform: translateX(10%);
+    }
+}
+
+@media screen and (max-width: 320px) {}

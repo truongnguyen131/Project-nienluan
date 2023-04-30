@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/Index2.css">
     <link rel="stylesheet" href="../css/sanpham.css">
     <link rel="stylesheet" href="../css/card2.css">
+    <link rel="stylesheet" href="../css/pagination.css">
 
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -331,6 +332,18 @@
                 </div>
             </div>
         </div>
+        <!-- pagination -->
+        <div class="pagination">
+            <button class="page-btn1" onclick="backbtn()"><i class='bx bxs-left-arrow'></i></button>
+            <ul>
+                <li class="link active" value="1" onclick="activeLink()">1</li>
+                <li class="link" value="2" onclick="activeLink()">2</li>
+                <li class="link" value="3" onclick="activeLink()">3</li>
+                <li class="link" value="4" onclick="activeLink()">4</li>
+                <li class="link" value="5" onclick="activeLink()">5</li>
+            </ul>
+            <button class="page-btn2" onclick="nextbtn()"><i class='bx bxs-right-arrow'></i></button>
+        </div>
     </section>
 
     <!-- Bộ lọc -->
@@ -439,18 +452,22 @@
     </div>
     </div>
 
+
+
+
+
     <!-- coppyright -->
-    <!-- <div class="coppyright container ">
+    <div class="coppyright container ">
         <a href=" " class="logo ">S-Game</a>
         <p>&#169; CarpoolVenom All Right Reserved</p>
-    </div> -->
+    </div>
 
     <script src="../js/index.js "></script>
     <script src="../js/sanpham.js "></script>
+
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
-
-
+    <script src="../js/pagination.js "></script>
 </body>
 
 </html>
