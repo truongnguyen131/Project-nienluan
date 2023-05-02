@@ -11,7 +11,13 @@ $matkhau = isset($_POST['matkhau1']) ? $_POST['matkhau1'] : "";
 $page = isset($_POST['page']) ? $_POST['page'] : "";
 
 if ($page == "themTK") {
-    mysqli_query($cn, "INSERT INTO taikhoan (tk_taikhoan,tk_matkhau,tk_loaitaikhoan) VALUE('$taikhoan','$matkhau','$loaitaikhoan')");
+    if($loaitaikhoan == "admin"){
+        mysqli_query($cn, "INSERT INTO taikhoan (tk_taikhoan,tk_matkhau,tk_loaitaikhoan) VALUE('$taikhoan','$matkhau','$loaitaikhoan')");
+        $id_tk = mysqli_insert_id($cn);
+        mysqli_query($cn, "INSERT INTO `nsx`(`nsx_ten`, `tk_id`) VALUES ('$taikhoan',$id_tk)");
+    }else{
+        mysqli_query($cn, "INSERT INTO taikhoan (tk_taikhoan,tk_matkhau,tk_loaitaikhoan) VALUE('$taikhoan','$matkhau','$loaitaikhoan')");
+    }
 }
 if ($page == "capNhatTK") {
     $TKcanupdate = $_SESSION['taikhoanUpdate'];

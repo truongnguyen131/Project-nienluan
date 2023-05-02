@@ -621,7 +621,7 @@ include_once('database_connection.php'); ?>
                         }
                     }
 
-                    if (tk.length < 5 || tk.length > 15 || tk.indexOf("admin") != -1) {
+                    if (tk.length < 5 || tk.length > 15) {
                         check -= 1
                         $('#tkNSX').addClass('is-invalid');
                         $('#loitknsx').html("Tài khoản không hợp lệ")
@@ -844,7 +844,7 @@ include_once('database_connection.php'); ?>
                         }
                     }
 
-                    if (tk.length < 5 || tk.length > 15 || tk.indexOf("admin") != -1) {
+                    if (tk.length < 5 || tk.length > 15) {
                         check -= 1
                         $('#TaiKhoan').addClass('is-invalid');
                         $('#loitkTK').html("Tài khoản không hợp lệ")
@@ -956,118 +956,39 @@ include_once('database_connection.php'); ?>
                 </div>
 
                 <!-- Thêm sản phẩm -->
-                <?php
-                $tensp = isset($_POST['tensp']) ? $_POST['tensp'] : "";
-                $mota = isset($_POST['mota']) ? $_POST['mota'] : "";
-                $gia = isset($_POST['gia']) ? $_POST['gia'] : "";
-                $theloai = isset($_POST['theloai']) ? $_POST['theloai'] : "";
-                $idtaikhoan = $_SESSION["idtaikhoan"];
-                $typetk = $_SESSION["loaitaikhoan"];
-                $sqlidnsx = mysqli_query($cn, "SELECT nsx_id FROM nsx WHERE tk_id ='$idtaikhoan'");
-                if (mysqli_num_rows($sqlidnsx) == 1) {
-                    while ($row = mysqli_fetch_array($sqlidnsx, MYSQLI_ASSOC)) {
-                        $idnsx = $row['nsx_id'];
-                    }
-                }
-                $target_dir = "../uploads/";
-                $erro = "";
-
-                if (isset($_POST["submit"])) {
-
-                    // check tensp va mota
-                    if ($tensp == "") {
-                        echo "
-            <script>
-                  window.onload = function(){
-                $('#loiten').html('aaaa')
-                $('#loiso').html('bbb')
-            }
-            </script>";
-
-                    }
-                    if ($mota == "") {
-                        $erro .= "<li>Mo ta k dc rong</li>";
-                    }
-                    if ($gia == "") {
-                        $erro .= "<li>Gia k dc rong</li>";
-                    }
-
-                    //check img avt
-                    if (move_uploaded_file($_FILES["imgavt"]["tmp_name"], $target_dir . $_FILES["imgavt"]["name"])) {
-                    } else {
-                        $erro .= "<li>Khong upload duoc anh avt game</li>";
-                    }
-
-                    //check source game
-                    if (move_uploaded_file($_FILES["filezip"]["tmp_name"], $target_dir . $_FILES["filezip"]["name"])) {
-                    } else {
-                        $erro .= "<li>Khong upload duoc source game</li>";
-                    }
-                    //check video trailer
-                    if (move_uploaded_file($_FILES["trailer"]["tmp_name"], $target_dir . $_FILES["trailer"]["name"])) {
-                    } else {
-                        $erro .= "<li>Khong upload duoc trailer game</li>";
-                    }
-
-                    // check img gamepalay
-                    foreach ($_FILES["imggameplay"]["name"] as $key => $value) {
-                        if (move_uploaded_file($_FILES["imggameplay"]["tmp_name"][$key], $target_dir . $value)) {
-                        } else {
-                            $erro .= "<li>Khong upload duoc anh game play</li>";
-                        }
-                    }
-
-                    if ($erro != "") {
-                        echo "<ul>" . $erro . "</ul>";
-                    } else {
-                        $imgavt = $_FILES["imgavt"]["name"];
-                        $filezip = $_FILES["filezip"]["name"];
-                        $trailer = $_FILES["trailer"]["name"];
-                        $sql = "INSERT INTO `sanpham`(`sp_id`, `sp_tengame`, `sp_imgavt`, `sp_file`, `sp_mota`, `sp_trailer`, `sp_gia`, `nsx_id`) VALUES 
-                        ('','$tensp','$imgavt','$filezip','$mota','$trailer','$gia','$idnsx')";
-
-                        mysqli_query($cn, $sql);
-                        $id_sp = mysqli_insert_id($cn);
-                        for ($i = 0; $i < count($_FILES["imggameplay"]["name"]); $i++) {
-                            $valueimgs = $_FILES["imggameplay"]["name"][$i];
-                            mysqli_query($cn, "INSERT INTO `anhgameplay`(`agl_id`, `sp_id`, `agl_ten`) VALUES ('','$id_sp','$valueimgs')");
-                        }
-
-                        // header("location:quanlysanpham.php");
-                    }
-                }
-                ?>
-
                 <div id="add-product" class="tabcontent">
                     <div class="tabcontent-addproduct">
                         <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <div class="client-item">
                                 <span>Tên sản phẩm</span>
-                                <input type="text" name="tensp" id="tensp" value="<?php echo $tensp; ?>"
-                                    placeholder="Tên sản phẩm">
+                                <input type="text" name="tensp" id="tensp" 
+                                    placeholder="Tên sản phẩm"/>
+                                <div id="loiten"></div>
                             </div>
                             <div class="client-item">
                                 <span>Mô tả sản phẩm</span>
-                                <td><input type="text" name="mota" id="mota" value="<?php echo $mota; ?>"
+                                <td><input type="text" name="mota" id="mota"
                                         placeholder="Mô tả sản phẩm"></td>
                             </div>
-                            <?php
-                            function currency_format($number, $suffix = 'đ')
-                            {
-                                if (!empty($number)) {
-                                    return number_format($number, 0, ',', '.') . "{$suffix}";
-                                }
-                            }
-                            ?>
                             <div class="client-item">
                                 <span>Giá sản phẩm</span>
-                                <?php $giaa = ""; ?>
-                                <input type="text" name="gia" id="gia" value="<?php echo currency_format(55000); ?>"
+                                <input type="text" name="gia" id="gia"
                                     placeholder="Giá sản phẩm">
                             </div>
                             <div class="client-item">
+                                <span>Nhà sản xuất</span>
+                                <select name="p_nsx" id="p_nsx">
+                                    <?php
+                                    $query = mysqli_query($cn, "SELECT * FROM nsx");
+                                    while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                                        echo '<option value="' . $row['nsx_id'] . '">' . $row['nsx_ten'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="client-item">
                                 <span>Thể loại</span>
-                                <select name="theloai" multiple>
+                                <select name="theloai[]" multiple>
                                     <?php
                                     $query = mysqli_query($cn, "SELECT * FROM theloai");
                                     while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -1076,10 +997,7 @@ include_once('database_connection.php'); ?>
                                     ?>
                                 </select>
                             </div>
-                            <div class="client-item">
-                                <span>Nhà sản xuất</span>
-                                <input type="text" name="gia" id="gia" value="" placeholder="Nhà sản xuất" />
-                            </div>
+
                             <script>
                             function a(b) {
                                 document.getElementById('gia').value = b
