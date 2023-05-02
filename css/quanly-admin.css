@@ -293,6 +293,19 @@ ion-icon {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.is-invalid {
+    border: 1px solid red;
+    vertical-align: center;
+}
+
+.loi {
+    position: absolute;
+    bottom: -16%;
+    left: 32%;
+    color: red;
 }
 
 .client-item span {
