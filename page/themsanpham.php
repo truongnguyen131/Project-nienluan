@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -34,10 +35,17 @@
     $erro = "";
 
     if (isset($_POST["submit"])) {
-
+        
         // check tensp va mota
         if ($tensp == "") {
-            $erro .= "<li>Ten sp k dc rong</li>";
+            echo "
+            <script>
+                  window.onload = function(){
+                $('#loiten').html('aaaa')
+                $('#loiso').html('bbb')
+            }
+            </script>";
+           
         }
         if ($mota == "") {
             $erro .= "<li>Mo ta k dc rong</li>";
@@ -92,16 +100,17 @@
     }
     ?>
 
-
     <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>Ten san pham</td>
                 <td><input type="text" name="tensp" value="<?php echo $tensp; ?>"></td>
+                <td><div id="loiten"></div></td>
             </tr>
             <tr>
                 <td>Mo ta san pham</td>
                 <td><input type="text" name="mota" value="<?php echo $mota; ?>"></td>
+                <td><div id="loiso"></div></td>          
             </tr>
             <tr>
                 <td>Gia san pham</td>
@@ -110,9 +119,7 @@
             <tr>
                 <td>The loai</td>
                 <td>
-
-
-                    <select name="theloai">
+                    <select  name="theloai[]" multiple>
                         <?php
                         $query = mysqli_query($cn, "SELECT * FROM theloai");
                         while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {

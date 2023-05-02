@@ -22,10 +22,7 @@ if (mysqli_num_rows($Result) == 1) {
         $_SESSION["idtaikhoan"] = $row['tk_id'];
         $_SESSION["loaitaikhoan"] = $row['tk_loaitaikhoan'];
     }
-    if (isset($_SESSION["idsanpham"]) && $_SESSION["idsanpham"] != "") {
-        $_SESSION['dangnhapthanhcong'] = "chitietsp";
-        header("location:dangnhap.php");
-    }else if (isset($_SESSION["chuadangnhapthanhtoan"]) && $_SESSION["idsanpham"] != true) {
+     if (isset($_SESSION["chuadangnhapthanhtoan"]) && $_SESSION["chuadangnhapthanhtoan"] != true) {
         $_SESSION['dangnhapthanhcong'] = "thanhtoan";
         header("location:dangnhap.php");
     } else {

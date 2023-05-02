@@ -34,11 +34,7 @@ include_once('database_connection.php'); ?>
         unset($_SESSION['dangkythanhcong']);
         echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan.php"</script>';
     }
-    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "chitietsp") {
-        unset($_SESSION['dangkythanhcong']);
-        $idsp = $_SESSION["idsanpham"];
-        echo ' <script>window.location="http://localhost/Project-nienluan/page/chitietsanpham.php?idsp=' . $idsp . '"</script>';
-    }
+
     ?>
     <form action="" method="post">
         <div class="login-form">
