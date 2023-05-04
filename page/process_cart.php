@@ -1,4 +1,4 @@
-<?php
+o<?php
 session_start();
 include_once('database_connection.php');
 switch (isset($_GET['action'])) {

@@ -21,6 +21,8 @@ section {
     padding: 4rem 0 3rem;
 }
 
+html {}
+
 body {
     color: var(--text-color);
     background: var(--dark-color);
@@ -338,6 +340,49 @@ header {
 }
 
 
+/* Đăng xuất */
+
+.log_out {
+    position: absolute;
+    top: 110%;
+    right: 5rem;
+    width: 300px;
+    height: 70px;
+    background: var(--light-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    clip-path: circle(0% at 100% 0%);
+}
+
+.log__out.active {
+    clip-path: circle(144% at 100% 0%);
+    transition: .5s;
+}
+
+.logout-box {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    background: hsl(0, 0%, 100%, 0.4);
+    gap: 1rem;
+    row-gap: 1rem;
+    border-radius: 0.5rem;
+    padding: 10px;
+}
+
+.logout-box p {
+    color: var(--text-color);
+}
+
+.out .logout-box:hover {
+    background: var(--main-color);
+}
+
+.logout-box .bx {
+    color: var(--text-color);
+}
+
+
 /* hiển thị sản phẩm */
 
 .product-content {
@@ -475,14 +520,59 @@ header {
 }
 
 .coppyright {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
+    background: var(--light-color);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: sticky;
+    top: 100%;
 }
 
 .coppyright p {
     font-size: 0.9rem;
     color: var(--text-color);
+}
+
+.footer__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.page,
+.conection {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.page a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.page a:hover {
+    color: var(--main-color);
+}
+
+.footer__title {
+    font-size: 18px;
+    color: var(--main-color);
+}
+
+.conection a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.conection a:hover {
+    color: var(--main-color);
+}
+
+.vd {
+    text-align: center;
 }
 
 html::-webkit-scrollbar {

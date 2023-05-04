@@ -21,6 +21,14 @@ html::-webkit-scrollbar {
     display: none;
 }
 
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
 
 /* custom scroll-bar */
 
@@ -87,8 +95,7 @@ ul.breadcrumb li a:hover {
 }
 
 .scrollbar {
-    max-height: 100px;
-    width: 100%;
+    max-height: 300px;
     overflow: auto;
 }
 
@@ -96,8 +103,13 @@ ul.breadcrumb li a:hover {
     padding: 10px;
 }
 
+.cart-product {
+    /* height: 120px; */
+}
+
 .cart-info {
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .cart-content::-webkit-scrollbar {
@@ -273,6 +285,64 @@ ul.breadcrumb li a:hover {
     text-align: center;
 }
 
+.coppyright {
+    position: sticky;
+    padding: 1rem;
+    background: var(--light-color);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.coppyright p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.footer__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.page,
+.conection {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.page a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.page a:hover {
+    color: var(--main-color);
+}
+
+.footer__title {
+    font-size: 18px;
+    color: var(--main-color);
+}
+
+.conection a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.conection a:hover {
+    color: var(--main-color);
+}
+
+.vd {
+    text-align: center;
+}
+
 @media screen and (max-width: 1024px) {
     .container {
         margin: 0 auto;
@@ -293,8 +363,12 @@ ul.breadcrumb li a:hover {
     .menu-second {
         margin-top: 7rem;
     }
+    .cart-content {
+        height: 200px;
+    }
     .cart-info {
         margin-top: 1rem;
+        margin-bottom: 1rem;
     }
     .section {
         padding: 3rem 0 2rem;

@@ -28,11 +28,11 @@ include_once('database_connection.php'); ?>
     }
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhcong") {
         unset($_SESSION['dangkythanhcong']);
-        echo ' <script>window.location="http://localhost/Project-nienluan/index.php"</script>';
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/index2.php"</script>';
     }
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhtoan") {
         unset($_SESSION['dangkythanhcong']);
-        echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan.php"</script>';
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan2.php"</script>';
     }
 
     ?>

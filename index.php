@@ -41,14 +41,11 @@ include_once('page/process_cart.php');
 $tentk = isset($_SESSION["nametaikhoan"]) ? $_SESSION["nametaikhoan"] : "";
 $idtaikhoan = isset($_SESSION["idtaikhoan"]) ? $_SESSION["idtaikhoan"] : "";
 $typetk = isset($_SESSION["loaitaikhoan"]) ? $_SESSION["loaitaikhoan"] : "";
-
-
 ?>
 
 <!-- body -->
 
 <body class="main-layout">
-
     <!-- loader  -->
     <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>

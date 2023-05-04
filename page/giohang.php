@@ -6,261 +6,161 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-   
-    <title>Giỏ Hàng</title> <!-- style css -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/header-page.css">
-    <link rel="stylesheet" href="../css/search.css">
-    <link rel="stylesheet" href="../css/giohang.css">
-    <link rel="stylesheet" href="../css/click_slider.css">
-    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
-
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <title>Document</title>
 </head>
 
 <body>
+    <?php
+    include_once('database_connection.php');
 
-    <header>
-        <div class="header sticky" id="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                        <div class="full">
-                            <div class="center-desk">
-                                <div class="logo">
-                                    <a href="index.html"><img src="../images/logo.png" alt="#" /></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarsExample04">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="page/about.html">About</a>
-                                    </li>
-                                    <div class="dropdown show nav-item">
-                                        <a class="nav-link dropdown-toggle nav-item" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Dropdown link
-                                        </a>
-                                        <div class="dropdown-menu nav-item-drop" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item nav-link" href="#">Action</a>
-                                            <a class="dropdown-item nav-link" href="#">Another action</a>
-                                            <a class="dropdown-item nav-link" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact Us</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <div class="search-box nav-link">
-                                            <button class="btn-search">
-                                                <ion-icon name="search-circle-outline"></ion-icon>
-                                            </button>
-                                            <input type="text" class="input-search" placeholder="Type to Search...">
-                                        </div>
-                                    </li>
-                                    <li class="nav-item d_none">
-                                        <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li class="nav-item d_none">
-                                        <a class="nav-link" href="page/dangnhap.php">Login</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="cart-main">
-        <div class="cart-product">
-            <div class="cart-table">
-                <table>
-                    <tr>
-                        <th class="a"></th>
-                        <th>HÌNH</th>
-                        <th>SẢN PHẨM</th>
-                        <th>GIÁ</th>
-                        <th>SỐ LƯỢNG</th>
-                        <th>TẠM TÍNH</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td colspan="7">
-                            <div class="scrollbar">
-                                <!-- san pham -->
-                                <table>
-                                    <tr class="scrollbar-product">
-                                        <td class="child-dele">
-                                            <div class="i-dele">
-                                                <a href="">
-                                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                                </a>
-
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="img1">
-                                                <img class="img-sp" src="https://muaga.me/wp-content/uploads/2019/09/Human-Fall-Flat-1.jpg" alt="">
-                                                <div class="icon-dele">
-                                                    <a href="">
-                                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-size">Sniper Ghost Warrior Contracts Steam Key
-                                            <div class="quantity-fake">x1</div>
-                                            <div class="price-fake">165.000đ</div>
-                                        </td>
-                                        <td class="product-size">165.000₫</td>
-                                        <!-- tang giam so luong -->
-                                        <td>
-                                            <div class="product-soluong">
-                                                <div class="product-btn-giam"><button id="giam" onclick="quantity()">-</button></div>
-                                                <div class="product-value"><input id="val" type="text" value="1"></div>
-                                                <div class="product-btn-tang"><button id="tang" onclick="quantity()">+</button></div>
-                                            </div>
-                                        </td>
-                                        <td class="product-size">165.000₫</td>
-                                        <td class="b"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr class="scrollbar-product">
-                                        <td class="child-dele">
-                                            <div class="i-dele">
-                                                <a href="">
-                                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                                </a>
-
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="img1">
-                                                <img class="img-sp" src="https://muaga.me/wp-content/uploads/2019/09/Human-Fall-Flat-1.jpg" alt="">
-                                                <div class="icon-dele">
-                                                    <a href="">
-                                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-size">Sniper Ghost Warrior Contracts Steam Key
-                                            <div class="quantity-fake">x1</div>
-                                            <div class="price-fake">165.000đ</div>
-                                        </td>
-                                        <td class="product-size">165.000₫</td>
-                                        <!-- tang giam so luong -->
-                                        <td>
-                                            <div class="product-soluong">
-                                                <div class="product-btn-giam"><button id="giam" onclick="quantity()">-</button></div>
-                                                <div class="product-value"><input id="val" type="text" value="1"></div>
-                                                <div class="product-btn-tang"><button id="tang" onclick="quantity()">+</button></div>
-                                            </div>
-                                        </td>
-                                        <td class="product-size">165.000₫</td>
-                                        <td class="b"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-                                    <tr class="scrollbar-product">
-                                        <td class="child-dele">
-                                            <div class="i-dele">
-                                                <a href="">
-                                                    <ion-icon name="close-circle-outline"></ion-icon>
-                                                </a>
-
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="img1">
-                                                <img class="img-sp" src="https://muaga.me/wp-content/uploads/2019/09/Human-Fall-Flat-1.jpg" alt="">
-                                                <div class="icon-dele">
-                                                    <a href="">
-                                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="product-size">Sniper Ghost Warrior Contracts Steam Key
-                                            <div class="quantity-fake">x1</div>
-                                            <div class="price-fake">165.000đ</div>
-                                        </td>
-                                        <td class="product-size">165.000₫</td>
-                                        <!-- tang giam so luong -->
-                                        <td>
-                                            <div class="product-soluong">
-                                                <div class="product-btn-giam"><button id="giam" onclick="quantity()">-</button></div>
-                                                <div class="product-value"><input id="val" type="text" value="1"></div>
-                                                <div class="product-btn-tang"><button id="tang" onclick="quantity()">+</button></div>
-                                            </div>
-                                        </td>
-                                        <td class="product-size">165.000₫</td>
-                                        <td class="b"><input type="checkbox" name="" id=""></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="cart-bottom">
-                <div class="cart-btn">
-                    <button><ion-icon name="arrow-back-outline"></ion-icon>Tiếp tục xem sản phẩm</button>
-                </div>
-                <div class="cart-btn deletes">
-                    <button>Xóa mục đã chọn</button>
-                </div>
-            </div>
-
-        </div>
-        <div class="cart-total">
-            <div class="cart-total-title"><span>CỘNG GIỎ HÀNG</span></div>
-            <div class="cart-total-content">
-                <div class="content-tamtinh">
-                    <div class="total-content-title"><span>Tạm tính</span></div>
-                    <div class="total-content-price">1.600.000đ</div>
-                </div>
-                <div class="content-total">
-                    <div class="total-content-title"><span>Tổng</span></div>
-                    <div class="total-content-price">1.600.000đ</div>
-                </div>
-            </div>
-            <div class="cart-btn">
-                <button name="">Tiến hành thanh toán</button>
-            </div>
-        </div>
-    </div>
-
-</body>
-<script>
-    var giamsl = document.getElementById("giam");
-    var tangsl = document.getElementById("tang");
-    var valu = document.getElementById("val");
-    giamsl.addEventListener("click", function() {
-        if (valu.value == 1) {
-            valu.value == 1;
-        } else {
-            valu.value--;
+    if (!isset($_SESSION["idtaikhoan"])) {
+        $_SESSION["idsanpham"] = $idsp;
+        header("location:dangnhap.php");
+    }
+    $idsp = "";
+    $today = date('Y-m-d');
+    if (!isset($_SESSION["idtaikhoan"])) {
+        $_SESSION["idsanpham"] = $idsp;
+        header("location:dangnhap.php");
+    } else {
+        if (!isset($_SESSION['xulygiohang'])) {
+            $_SESSION['xulygiohang'] = array();
         }
-    });
-    tangsl.addEventListener("click", function() {
-        valu.value++;
-    });
-</script>
+        if (isset($_GET['idsp'])) {
+            $idsp = $_GET['idsp'];
+            if (isset($_SESSION['xulygiohang'][$idsp])) {
+                $_SESSION['xulygiohang'][$idsp]['soluong'] += 1;
+                header('Location:giohang.php');
+            } else {
+
+                $sp = mysqli_query($cn, "SELECT * FROM sanpham,nsx WHERE sanpham.nsx_id = nsx.nsx_id AND sp_id = $idsp");
+                $kq = mysqli_fetch_array($sp, MYSQLI_ASSOC);
+                $_SESSION['xulygiohang'][$idsp] = array(
+                    'hinhsp' => $kq['sp_imgavt'],
+                    'tensp' => $kq['sp_tengame'],
+                    'dongia' => $kq['sp_gia'],
+                    'nsx' => $kq['nsx_ten'],
+                    'soluong' => 1
+                );
+
+                $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id =  $idsp");
+                if (mysqli_num_rows($query1) > 0) {
+                    $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+                    if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                        $_SESSION['xulygiohang'][$idsp]['dongia'] = 
+                        $_SESSION['xulygiohang'][$idsp]['dongia'] - 
+                        ($_SESSION['xulygiohang'][$idsp]['dongia'] * ($row1['gg_phantram'] / 100));
+                    }
+                }
+                
+            }
+
+            if (isset($_GET['action'])){
+                header('Location:thanhtoan.php');
+            }
+        }
+    }
+
+    if (isset($_GET['action'])) {
+        switch ($_GET['action']) {
+            case "delete":
+                if (isset($_GET['id'])) {
+                    unset($_SESSION['xulygiohang'][$_GET['id']]);
+                    header('Location:giohang.php');
+                }
+                break;
+        }
+    }
+
+    ?>
+
+    <!-- section -->
+    <section>
+        <form method="POST">
+            <table class="table table-bordered">
+                <colgroup>
+                    <col width="80" span="2">
+                    <col width="150" span="1">
+                    <col width="200" span="1">
+                    <col width=auto span="1">
+                    <col width="200" span="1">
+                </colgroup>
+                <tr class="table-danger">
+                    <th>STT</th>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Nhà sản xuất</th>
+                    <th>Xoá</th>
+                </tr>
+                <?php
+                $tt = 0;
+                $num = 1;
+                if (!empty($_SESSION['xulygiohang'])) {
+                    foreach ($_SESSION['xulygiohang'] as $key => $value) {
+
+                        $tt = $tt + ($value['dongia'] * $value['soluong']);
+                        ?>
+                        <tr class="table-info">
+                            <td>
+                                <?php echo $num++; ?>
+                            </td>
+                            <td><img style="height: 100px;" src="../uploads/<?php echo $value['hinhsp'] ?>" /></td>
+                            <td>
+                                <?php echo $value['tensp'] ?>
+                            </td>
+                            <td>
+                                <?php echo $value['dongia'] ?>đ
+                            </td>
+                            <td>
+                                <form action="giohang.php" method="post">
+                                    <input type="submit" name="-<?php echo $key; ?>" value="-">
+                                    <input type="text" name="soluong" style="width: 20px" readonly
+                                        value="<?php echo $value['soluong'] ?>">
+                                    <input type="submit" name="+<?php echo $key; ?>" value="+">
+                                </form>
+                                <?php
+                                if (isset($_POST["+$key"])) {
+                                    header('Location:giohang.php?idsp=' . $key . '');
+                                }
+                                if (isset($_POST["-$key"])) {
+                                    if ($value['soluong'] > 1) {
+                                        $_SESSION['xulygiohang'][$key]['soluong'] -= 1;
+                                        header('Location:giohang.php');
+                                    }
+                                    if ($value['soluong'] == 1) {
+                                        header('Location:giohang.php?action=delete&id=' . $key . '');
+                                    }
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php echo $value['nsx'] ?>
+                            </td>
+                            <td><a href="giohang.php?action=delete&id=<?php echo $key ?>" class="xoa">
+                                    <i class="fa fa-trash fa-2x" aria-hidden="true"></i>Xóa</a></td>
+                        </tr>
+                        <?php
+                    }
+                } else { ?>
+                    <tr class="table-info">
+                    </tr>
+                <?php } ?>
+            </table>
+            <div class="tongtien">
+                <span>Tổng tiền:
+                    <?php echo $tt ?>đ
+                </span>
+            </div>
+            <div class="btn-xuly">
+                <a href="../index.php" class="btn btn-css">Quay lại cửa hàng</a>
+            </div>
+            <div class="btn-xuly">
+                <a href="thanhtoan.php" class="btn btn-css">Đặt hàng</a>
+            </div>
+        </form>
+    </section>
+</body>
 
 </html>
