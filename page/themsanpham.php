@@ -1,6 +1,7 @@
 <?php
 include_once('database_connection.php');
 session_start();
+$page = isset($_POST['page']) ? $_POST['page'] : "";
 $tensp = isset($_POST['tensp']) ? $_POST['tensp'] : "";
 $ngayphathanh = isset($_POST['nph']) ? $_POST['nph'] : "";
 $mota = isset($_POST['motasp']) ? $_POST['motasp'] : "";
@@ -13,6 +14,10 @@ $trailer = isset($_POST['trailer']) ? $_POST['trailer'] : "";
 $igl_name = isset($_POST['igl_name']) ? $_POST['igl_name'] : "";
 $idtaikhoan = $_SESSION["idtaikhoan"];
 $target_dir = "../uploads/";
+
+if ($page == "themSP") {
+    $_SESSION['dangkythanhcong'] = "themSP";
+}
 
 $sql = "INSERT INTO `sanpham`(`sp_tengame`, `sp_imgavt`, `sp_file`, `sp_mota`, `sp_trailer`, `sp_gia`, `sp_ngayphathanh`, `nsx_id`, `sp_trangthai`, `nguoi_duyet`) VALUES 
 ('$tensp','$imgavt','$source','$mota','$trailer','$gia', '$ngayphathanh','$idnsx', 'duyet', '$idtaikhoan')";
@@ -33,6 +38,6 @@ move_uploaded_file($_FILES["trailer"]["tmp_name"], $target_dir . $_FILES["traile
 for ($i=0; $i < count($_FILES['igl']['name']); $i++) { 
     move_uploaded_file($_FILES['igl']['tmp_name'][$i], $target_dir . $_FILES['igl']['name'][$i]);
 }
-header("location: quanly-admin.php");
 
+header("location:quanly-admin.php");
 ?>
