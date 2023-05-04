@@ -19,6 +19,15 @@ if ($page == "themSP") {
     $_SESSION['dangkythanhcong'] = "themSP";
 }
 
+if(isset($_FILES["source"]["tmp_name"])){
+    move_uploaded_file($_FILES["source"]["tmp_name"], $target_dir . $_FILES["source"]["name"]);
+    move_uploaded_file($_FILES["imgavt"]["tmp_name"], $target_dir . $_FILES["imgavt"]["name"]);
+    move_uploaded_file($_FILES["trailer"]["tmp_name"], $target_dir . $_FILES["trailer"]["name"]);
+    for ($i=0; $i < count($_FILES['igl']['name']); $i++) { 
+        move_uploaded_file($_FILES['igl']['tmp_name'][$i], $target_dir . $_FILES['igl']['name'][$i]);
+    } 
+}
+
 $sql = "INSERT INTO `sanpham`(`sp_tengame`, `sp_imgavt`, `sp_file`, `sp_mota`, `sp_trailer`, `sp_gia`, `sp_ngayphathanh`, `nsx_id`, `sp_trangthai`, `nguoi_duyet`) VALUES 
 ('$tensp','$imgavt','$source','$mota','$trailer','$gia', '$ngayphathanh','$idnsx', 'duyet', '$idtaikhoan')";
 
@@ -31,13 +40,7 @@ for ($i = 0; $i < count($igl_name); $i++) {
 for ($i = 0; $i < count($theloai); $i++) {
     mysqli_query($cn, "INSERT INTO `sanphamtheloai`(`sptl_id`, `sp_id`, `tl_id`) VALUES ('',$id_sp,'$theloai[$i]')");
 }
-
-move_uploaded_file($_FILES["source"]["tmp_name"], $target_dir . $_FILES["source"]["name"]);
-move_uploaded_file($_FILES["imgavt"]["tmp_name"], $target_dir . $_FILES["imgavt"]["name"]);
-move_uploaded_file($_FILES["trailer"]["tmp_name"], $target_dir . $_FILES["trailer"]["name"]);
-for ($i=0; $i < count($_FILES['igl']['name']); $i++) { 
-    move_uploaded_file($_FILES['igl']['tmp_name'][$i], $target_dir . $_FILES['igl']['name'][$i]);
-}
-
-header("location:quanly-admin.php");
 ?>
+<script>
+    window.location.reload();
+</script>
