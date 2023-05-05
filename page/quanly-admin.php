@@ -1060,9 +1060,8 @@ include_once('database_connection.php'); ?>
                                 <div class="loi" id="loinph"></div>
                             </div>
                         </div>
-
-                        <div class="add-btn" style="margin-top: 30px;">
-                            <button type="button" id="bntThemSP" onclick="add_update_SP('add')">Thêm</button>
+                        <div class="client-item">
+                        <button type="button" id="bntThemSP" onclick="add_update_SP('add')">Thêm</button>
                             <button type="button" id="bntCapnhatSP" onclick="add_update_SP('update')" hidden>Cập
                                 nhật</button>
                             <button type="button" onclick="HuySP()">Hủy</button>
