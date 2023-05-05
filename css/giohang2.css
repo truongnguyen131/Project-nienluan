@@ -107,6 +107,19 @@ ul.breadcrumb li a:hover {
     /* height: 120px; */
 }
 
+.product-infor {
+    width: calc(100% / 5);
+}
+
+.name2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
 .cart-info {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -146,10 +159,9 @@ ul.breadcrumb li a:hover {
     height: 100px;
 }
 
-.product-infor {}
-
 .product-name {
     color: var(--text-color);
+    font-size: 1.5rem;
 }
 
 .product-price {
@@ -162,11 +174,10 @@ ul.breadcrumb li a:hover {
 }
 
 .info-quantity {
-    display: flex;
-    align-items: center;
+    width: calc(100% / 5);
 }
 
-.product-btn-giam button {
+.product-btn-giam {
     border-radius: 4px 0 0 4px;
     background: var(--main-color);
     color: var(--text-color);
@@ -177,7 +188,7 @@ ul.breadcrumb li a:hover {
     cursor: pointer;
 }
 
-.product-btn-tang button {
+.product-btn-tang {
     border-radius: 0 4px 4px 0;
     background: var(--main-color);
     color: var(--text-color);
@@ -188,7 +199,7 @@ ul.breadcrumb li a:hover {
     cursor: pointer;
 }
 
-.product-value input {
+.product-value {
     background: var(--dark-color);
     width: 2.5rem;
     height: 1.5rem;

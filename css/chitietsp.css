@@ -21,6 +21,11 @@ html::-webkit-scrollbar {
     display: none;
 }
 
+button {
+    outline: none;
+    border: none;
+}
+
 
 /* custom scroll-bar */
 
@@ -141,12 +146,23 @@ html::-webkit-scrollbar {
     flex-direction: column;
     row-gap: 0.5rem;
     min-height: 500px;
+    width: 100%;
+}
+
+.content-tab {
+    width: 100%;
+}
+
+.content-info img {
+    width: 100%;
+    object-fit: cover;
 }
 
 .content-info a {
     background: var(--main-color);
     color: white;
     padding: 3px;
+    margin-left: 5px;
 }
 
 .medium-star {
@@ -186,7 +202,7 @@ html::-webkit-scrollbar {
     align-items: center;
 }
 
-.product-btn-giam button {
+.product-btn-giam {
     border-radius: 4px 0 0 4px;
     background: var(--main-color);
     color: var(--text-color);
@@ -197,7 +213,7 @@ html::-webkit-scrollbar {
     cursor: pointer;
 }
 
-.product-btn-tang button {
+.product-btn-tang {
     border-radius: 0 4px 4px 0;
     background: var(--main-color);
     color: var(--text-color);
@@ -208,7 +224,7 @@ html::-webkit-scrollbar {
     cursor: pointer;
 }
 
-.product-value input {
+.product-value {
     background: var(--light-color);
     width: 2.5rem;
     height: 1.5rem;
@@ -396,7 +412,7 @@ html::-webkit-scrollbar {
     width: 20%;
 }
 
-.tab-cmt-btn a {
+.tab-cmt-btn button {
     background: var(--main-color);
     color: var(--text-color);
     padding: 12px 20px;
@@ -405,7 +421,7 @@ html::-webkit-scrollbar {
     border-radius: 4px;
 }
 
-.tab-cmt-btn a:hover {
+.tab-cmt-btn button:hover {
     background: var(--light-color);
     color: var(--main-color);
     transition: .3s all linear;

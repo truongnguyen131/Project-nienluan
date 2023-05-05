@@ -170,7 +170,6 @@
                             <span>Thanh toán ATM</span>
                         </div>
                         <div class="infor-btn">
-
                             <?php
                             function diemtichluy($x)
                             {
@@ -215,7 +214,6 @@
                             }
 
                             ?>
-
                             <button type="submit" name="submit">ĐẶT HÀNG</button>
                         </div>
                     </div>

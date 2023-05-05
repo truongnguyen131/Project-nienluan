@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Index2.css">
+    <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/thanhtoan2.css">
     <link rel="stylesheet" href="../css/stars.css">
 
@@ -43,8 +44,8 @@ $dtl = 0;
 
 if ($_SESSION["loaitaikhoan"] == "admin") {
     $hoten = "admin";
-    $sdt = "0123456789";
-    $email = "admin@gmail.com";
+    $sdt = "";
+    $email = "";
 }
 if ($_SESSION["loaitaikhoan"] == "khach hang") {
     $sql = mysqli_query($cn, "SELECT * FROM khachhang WHERE tk_id='$idtk'");
@@ -76,18 +77,21 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
         <!-- nav -->
         <div class="nav container">
             <!-- logo -->
-            <div class="logo">
-                <a href="">
-                    <img src="https://evondev.com/wp-content/uploads/2021/12/logo-new.png" alt="">
-                </a>
-            </div>
+            <a href="index2.php" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
-                <a href="">
-                    <i class='bx bx-cart'></i>
+                <a href="giohang2.php">
+                <i class='bx bxs-cart-alt'></i>
                 </a>
+                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" ) { ?>
+                    <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                <?php } else {?>
+                <a href="dangnhap.php">
+                    <i class='bx bxs-user'></i>
+                </a>
+                <?php }?>
                 <div class="menu-icon">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -104,15 +108,28 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     <li>
                         <a href="#">Phổ biến</a>
                     </li>
+                   
                     <li>
                         <a href="#">Game mới</a>
                     </li>
                     <li>
-                        <a href="#">Game giảm giá</a>
+                        <a href="#">Giảm giá</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>
                     </li>
+                    <?php
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
+                    <li>
+                        <a href="#">Quản lý của Admin</a>
+                    </li>
+                    <?php }
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
+                    <li>
+                        <a href="#">Quản lý của Nhà sản xuất</a>
+                    </li>
+                    <?php }  ?>
+                   
                 </div>
             </div>
             <!-- Thông báo -->
@@ -134,6 +151,16 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     <span class="search-lable">Tìm kiếm</span>
                 </div>
             </div>
+
+            <!-- Đăng xuất -->
+            <div class="log-out">
+                <a href="dangxuat.php" class="out">
+                <div class="logout-box box-color">
+                    <p>Đăng xuất</p>
+                    <i class='bx bx-log-out'></i>
+                </div>
+                </a>
+            </div>
         </div>
     </header>
     <!-- menu 2 -->
@@ -144,7 +171,6 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                 <li><a href=" # ">Trang chủ</a></li>
                 <li class="here">Thanh toán</li>
             </ul>
-            <span>Thanh toán: 3 sản phẩm</span>
         </div>
     </div>
     <!-- content -->
@@ -192,7 +218,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                                 return 0;
                             }
 
-                            if (isset($_POST["submit"])) {
+                            if (isset($_POST["dathang"])) {
                                 if ($sanpham == 0) {
                                     echo "<b>Hãy thêm sản phâm bạn muốn mua vào giỏ hàng</b>";
                                 } else {
@@ -216,13 +242,13 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                                         }
 
                                     } else {
-                                        echo "<b>Tài khoản ko được cấp quyền mua game, hãy chuyển sang tk kh để tiếp tục thao tác này!</b>";
+                                        echo "<b>Tài khoản không được cấp quyền mua game!</b>";
                                     }
                                 }
                             }
 
                             ?>
-                    <button class="infor-btn" type="submit" name="submit">Đặt hàng</button>
+                    <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
                     <button type="reset" class="infor-btn">Hủy</button>
                 </div>
             </div>
@@ -254,7 +280,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                         }
                     } else {
                         $sanpham = 0; ?>
-            <div class="cart-item"></div>
+            <div></div>
         <?php } ?>
         <!---------------->
             </div>
@@ -273,19 +299,30 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     </label>
                 </div>
                 <div class="total">
-                    <span>Tổng thành tiền</span>
-                    <h3><?php echo currency_format($tt); ?></h3>
+                    <span>Tổng tiền:</span>
+                    <?php if($sanpham == 0){?>
+                    <h3>0đ</h3>
+                    <?php } else{?>
+                        <h3><?php echo currency_format($tt);?></h3>
+                        <?php }?>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- coppyright -->
-    
-    <footer class="coppyright ">
+
+    <script src="../js/index.js "></script>
+    <script src="../js/logout.js"></script>
+    <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
+    <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
+
+
+</body>
+<!-- coppyright -->
+<footer class="coppyright ">
         <div class="footer__content container">
             <div class="logo-page">
-                <a href="Index2.html" class="logo">S-<span>Game</span></a>
+                <a href="Index2.html" class="logo">Game<span>Store</span></a>
             </div>
             <div class="page">
                 <h1 class="footer__title">Trang</h1>
@@ -307,12 +344,4 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
             <p>&#169; Carpool Venom All Right Reserved</p>
         </div>
     </footer>
-
-    <script src="../js/index.js "></script>
-    <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
-    <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
-
-
-</body>
-
 </html>

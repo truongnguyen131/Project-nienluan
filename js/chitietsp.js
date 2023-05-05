@@ -1,14 +1,22 @@
 // Tăng giảm số lượng
-var giamsl = document.getElementById("giam");
-var tangsl = document.getElementById("tang");
 var valu = document.getElementById("val");
-giamsl.addEventListener("click", function() {
-    if (valu.value == 1) {
-        valu.value == 1;
+var count = valu.value;
+
+let giamsl = () => {
+    if (count > 1) {
+        count--;
+        render(count);
+
     } else {
-        valu.value--;
+        count = 1;
     }
-});
-tangsl.addEventListener("click", function() {
-    valu.value++;
-});
+};
+
+let tangsl = () => {
+    count++;
+    render(count);
+};
+
+let render = (count) => {
+    valu.value = count;
+}

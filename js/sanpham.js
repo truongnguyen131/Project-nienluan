@@ -35,8 +35,7 @@ rangeInput.forEach(input => {
 var modal = document.getElementById("control");
 var theloai = document.getElementById("category");
 var nsx = document.getElementById("nsxx");
-// Get the <span> element that closes the modal
-var span = document.getElementsById("close")[0];
+
 
 // When the user clicks the button, open the modal 
 function opentheloai() {
@@ -135,3 +134,8 @@ $(function() {
 
     $(".pg-link,.arrow").on("click", changeLinks);
 });
+
+
+
+
+// Xử lí filter
