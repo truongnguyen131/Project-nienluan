@@ -4,6 +4,7 @@ include_once('database_connection.php');
 $timkiem = isset($_POST['data']) ? $_POST['data'] : "";
 $stt = 1;
 $arr_search = array();
+
 $sql1 = "SELECT * FROM sanpham sp, sanphamtheloai sptl, nsx n, anhgameplay agl WHERE sp.sp_id = sptl.sp_id AND n.nsx_id = sp.nsx_id AND
 agl.sp_id = sp.sp_id and sp.sp_tengame like '%$timkiem%'";
 $query = mysqli_query($cn, $sql1);

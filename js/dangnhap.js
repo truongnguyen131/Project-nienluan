@@ -14,6 +14,7 @@ function Huy() {
 }
 
 function kiemtraloi() {
+   
     var check = 0
     var tk = $('#tk').val()
     var mk = $('#mk').val()
@@ -27,7 +28,6 @@ function kiemtraloi() {
         $('#loimk').html("")
         check += 1
     }
-
     if (tk.length == 0) {
         check -= 1
         $('#tk').addClass('is-invalid');
@@ -41,8 +41,6 @@ function kiemtraloi() {
     if (document.getElementById('ntk').checked) {
         ntk = "checked";
     }
-
-
 
     if (check == 2) {
         $.post('xulydangnhap.php', {

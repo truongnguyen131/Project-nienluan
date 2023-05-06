@@ -31,7 +31,7 @@
     include_once('database_connection.php');
 
     if (!isset($_SESSION["idtaikhoan"])) {
-        $_SESSION["chuadangnhapthanhtoan"] = false;
+        $_SESSION["chuadangnhapthanhtoan"] = true;
         header("location:dangnhap.php");
     }
     $idtk = $_SESSION["idtaikhoan"];
