@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Index2.css">
     <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/stars.css">
 
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
@@ -30,18 +31,22 @@
         <!-- nav -->
         <div class="nav container">
             <!-- logo -->
-            <div class="logo">
-                <a href="">
-                    <img src="https://evondev.com/wp-content/uploads/2021/12/logo-new.png" alt="">
-                </a>
-            </div>
+            <a href="index2.php" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
-                <a href="">
-                    <i class='bx bx-cart'></i>
+                <a href="giohang2.php">
+                    <!-- cart -->
+                    <i class='bx bxs-cart-alt bx-tada' id="cart-icon"><span></span></i>
                 </a>
+                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" ) { ?>
+                <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                <?php } else {?>
+                <a href="dangnhap.php">
+                    <i class='bx bxs-user'></i>
+                </a>
+                <?php }?>
                 <div class="menu-icon">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -58,15 +63,28 @@
                     <li>
                         <a href="#">Phổ biến</a>
                     </li>
+
                     <li>
                         <a href="#">Game mới</a>
                     </li>
                     <li>
-                        <a href="#">Game giảm giá</a>
+                        <a href="#">Giảm giá</a>
                     </li>
                     <li>
                         <a href="#">Contact Us</a>
                     </li>
+                    <?php
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'ad') { ?>
+                        <li>
+                            <a href="#">Quản lý của Admin</a>
+                        </li>
+                        <?php }
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nsx') { ?>
+                        <li>
+                            <a href="#">Quản lý của Nhà sản xuất</a>
+                        </li>
+                        <?php }  ?>
+
                 </div>
             </div>
             <!-- Thông báo -->
@@ -88,9 +106,18 @@
                     <span class="search-lable">Tìm kiếm</span>
                 </div>
             </div>
+
+            <!-- Đăng xuất -->
+            <div class="log-out">
+                <a href="dangxuat.php" class="out">
+                    <div class="logout-box box-color">
+                        <p>Đăng xuất</p>
+                        <i class='bx bx-log-out'></i>
+                    </div>
+                </a>
+            </div>
         </div>
     </header>
-
     <div class="container menu-second">
         <h2>Liên hệ</h2>
         <div class="menu-content">
@@ -237,34 +264,6 @@
             </div>
         </div>
     </div>
-    <!-- coppyright -->
-    <footer class="coppyright ">
-        <div class="footer__content container">
-            <div class="logo-page">
-                <a href="Index2.html" class="logo">S-<span>Game</span></a>
-            </div>
-            <div class="page">
-                <h1 class="footer__title">Trang</h1>
-                <a href="">Trang chủ</a>
-                <a href="">Phổ biến</a>
-                <a href="">Game giảm giá</a>
-                <a href="">Thể loại</a>
-                <a href="">Liên hệ</a>
-            </div>
-            <div class="conection">
-                <h1 class="footer__title">Liên hệ</h1>
-                <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-                <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-            </div>
-        </div>
-        <div class="vd">
-            <p>&#169; Carpool Venom All Right Reserved</p>
-        </div>
-
-    </footer>
-
 
     <!-- tabs -->
     <script>
@@ -283,12 +282,38 @@
     </script>
     <!-- tabs -->
     <script src="../js/index.js "></script>
-
+    <script src="../js/logout.js"></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
     <script src="../js/contact.js"></script>
 
 
 </body>
+<!-- coppyright -->
+<footer class="coppyright ">
+    <div class="footer__content container">
+        <div class="logo-page">
+            <a href="Index2.html" class="logo">Game<span>Store</span></a>
+        </div>
+        <div class="page">
+            <h1 class="footer__title">Trang</h1>
+            <a href="">Trang chủ</a>
+            <a href="">Phổ biến</a>
+            <a href="">Game giảm giá</a>
+            <a href="">Thể loại</a>
+            <a href="">Liên hệ</a>
+        </div>
+        <div class="conection">
+            <h1 class="footer__title">Liên hệ</h1>
+            <a href=""><i class='bx bxl-facebook-circle'></i></a>
+            <a href=""><i class='bx bxl-instagram-alt'></i></a>
+            <a href=""><i class='bx bxl-twitter'></i></a>
+            <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
+        </div>
+    </div>
+    <div class="vd">
+        <p>&#169; Carpool Venom All Right Reserved</p>
+    </div>
+</footer>
 
 </html>

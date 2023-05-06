@@ -71,9 +71,7 @@
                 break;
         }
     }
-
     ?>
-
     <!-- section -->
     <section>
         <form method="POST">

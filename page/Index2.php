@@ -8,6 +8,7 @@ include_once('database_connection.php'); ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Index2.css">
+    <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/card2.css">
     <link rel="stylesheet" href="../css/click_slider.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -20,13 +21,13 @@ include_once('database_connection.php'); ?>
 <!-- hàm format giá -->
 <?php
 if (!function_exists('currency_format')) {
-    function currency_format($number, $suffix = 'đ') {
+    function currency_format($number, $suffix = 'đ')
+    {
         if (!empty($number)) {
             return number_format($number, 0, ',', '.') . "{$suffix}";
         }
     }
 }
-echo currency_format(5000000);
 ?>
 <?php
 if (isset($_GET['idtaikhoan'])) {
@@ -73,7 +74,7 @@ if (isset($_GET['partnerCode'])) {
         <!-- nav -->
         <div class="nav container">
             <!-- logo -->
-            <a href="#" class="logo">Store<span>Game</span></a>
+            <a href="#" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
@@ -81,13 +82,13 @@ if (isset($_GET['partnerCode'])) {
                 <a href="giohang2.php">
                     <i class='bx bx-cart'></i>
                 </a>
-                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" ) { ?>
+                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
                     <i class='bx bxs-user bx-tada' id="logout-icon"></i>
-                <?php } else {?>
+                <?php } else { ?>
                     <a href="dangnhap.php">
-                    <i class='bx bxs-user'></i>
+                        <i class='bx bxs-user'></i>
                     </a>
-                <?php }?>
+                <?php } ?>
                 <div class="menu-icon">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -99,33 +100,31 @@ if (isset($_GET['partnerCode'])) {
                 <img src="" alt="">
                 <div class="navbar">
                     <li>
-                        <a href="#">Trang chủ</a>
+                        <a href="index2.php">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="#">Phổ biến</a>
-                    </li>
-                   
-                    <li>
-                        <a href="#">Game mới</a>
+                        <a href="#like">Yêu thích</a>
                     </li>
                     <li>
-                        <a href="#">Giảm giá</a>
+                        <a href="#sale">Giảm giá</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="#category">Thể loại</a>
+                    </li>
+                    <li>
+                        <a href="contact.php">Liên hệ chúng tôi</a>
                     </li>
                     <?php
-                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'ad') { ?>
-                    <li>
-                        <a href="#">Quản lý của Admin</a>
-                    </li>
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
+                        <li>
+                            <a href="quanly-admin.php">Quản lý của Admin</a>
+                        </li>
                     <?php }
-                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nsx') { ?>
-                    <li>
-                        <a href="#">Quản lý của Nhà sản xuất</a>
-                    </li>
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
+                        <li>
+                            <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
+                        </li>
                     <?php }  ?>
-                   
                 </div>
             </div>
             <!-- Thông báo -->
@@ -149,12 +148,12 @@ if (isset($_GET['partnerCode'])) {
             </div>
 
             <!-- Đăng xuất -->
-            <div class="log_out">
+            <div class="log-out">
                 <a href="dangxuat.php" class="out">
-                <div class="logout-box box-color">
-                    <p>Đăng xuất</p>
-                    <i class='bx bx-log-out'></i>
-                </div>
+                    <div class="logout-box box-color">
+                        <p>Đăng xuất</p>
+                        <i class='bx bx-log-out'></i>
+                    </div>
                 </a>
             </div>
         </div>
@@ -168,167 +167,117 @@ if (isset($_GET['partnerCode'])) {
             <a href="#" class="btn">Mua ngay</a>
         </div>
     </section>
-    <!-- Game được tải nhiều nhất, slider -->
-    <section class="container product-content">
+    <!-- Game được yêu thích nhất-->
+    <section class="container product-content" id="like">
         <div class="heading">
             <i class='bx bxs-flame'></i>
             <h2>Game được yêu thích </h2>
         </div>
         <!-- Game được yêu thích -->
         <div class="image-slider">
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
-                        alt="" />
-                    <div class="box-text">
-                        <h2>Tên game</h2>
-                        <h3>Thể loại</h3>
-                        <div class="rating-download">
-                            <div class="rating">
-                                <i class='bx bxs-heart'></i>
-                                <span>5</span>
+            <?php
+            $count_star = mysqli_query($cn, "SELECT * FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id");
+            while ($sosao = mysqli_fetch_array($count_star)) {
+                $id = $sosao['sp_id'];
+            ?>
+                <div class="image-item">
+                    <div class="image">
+                        <img src="../uploads/<?php echo $sosao['sp_imgavt']?>" alt="" />
+                        <div class="box-text">
+                            <h2><?php echo $sosao['sp_tengame']?></h2>
+                            <h3>Thể loại</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <?php 
+                                    $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND sanpham.sp_id = $id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id;");
+                                    while ($avg_sao = mysqli_fetch_array($count)) {
+                                        $avg = $avg_sao['AVG(dg_sao)'];
+                                    }
+                                    ?>
+                                    <span><?php echo number_format($avg,"1",".","")?></span>
+                                </div>
+                                <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
                             </div>
-                            <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=710&q=80"
-                        alt="" />
-                    <div class="box-text">
-                        <h2>Tên game</h2>
-                        <h3>Thể loại</h3>
-                        <div class="rating-download">
-                            <div class="rating">
-                                <i class='bx bxs-heart'></i>
-                                <span>5</span>
-                            </div>
-                            <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"
-                        alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
-                        alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=928&q=80"
-                        alt="" />
-                </div>
-            </div>
+            <?php } ?>
         </div>
         <!-- Game được yêu thích -->
     </section>
     <!-- Game đang được giảm giá -->
-    <section class="saling container" id="saling">
+    <section class="saling container" id="sale">
         <div class="heading">
             <i class='bx bxs-flame'></i>
             <h2>Game đang giảm giá</h2>
         </div>
         <div class="saling-content">
             <div class="cards">
-                <?php
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
-                } else {
-                    $page = "";
-                }
-                if ($page == "" || $page == 1) {
-                    $begin = 0;
-                } else {
-                    $begin = ($page * 12) - 12;
-                }
-                $query = mysqli_query($cn, "SELECT * from sanpham,nsx where sanpham.nsx_id = nsx. nsx_id ORDER BY sanpham.sp_id DESC LIMIT $begin,12");
-                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {?>
-                <div class="card">
-                    <div class="content">
-                        <div class="back">
-                            <div class="back-content">
-                                <img src="https://cdn.akamai.steamstatic.com/steam/apps/751630/header_292x136.jpg?t=1678710840"
-                                    alt="">
-                                <div class="rating">
-                                    <i class='bx bxs-star'></i>
-                                    <span>4.7</span>
+                <?php $query = mysqli_query($cn, "SELECT * from sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id");
+                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
+                    <div class="card">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                    <div class="rating">
+                                        <i class='bx bxs-star'></i>
+                                        <span>4.7</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="front">
-                            <div class="img">
-                                <img src="../uploads/<?php echo $row['sp_imgavt']; ?>" alt="">
-                            </div>
-                            <div class="front-content">
-                                <!-- phần trăm sale -->
-                                <?php
-                                        $query1 = mysqli_query($cn, "SELECT * from giamgia");
-                                        while ($row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC)) {
-                                            $today = date('Y-m-d');
-                                            if ($row1['sp_id'] == $row['sp_id'] && strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                                $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
-                                                ?>
-                                <small class="badge"><?php echo $row1['gg_phantram']; ?>%</small>
-                                <div class="description">
-                                    <div class="title">
-                                        <p class="title">
-                                            <!-- tên sản phẩm -->
-                                            <strong><?php echo $row['sp_tengame']; ?> </strong>
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <!-- giá trước khi sale -->
-                                        <div class="footer-label">
-                                            <label for="" class="price-old"><?php echo $row['sp_gia']; ?></label>
+                            <div class="front">
+                                <div class="img">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                </div>
+                                <div class="front-content">
+                                    <!-- phần trăm sale -->
+                                    <small class="badge"><?php echo $row['gg_phantram']?>%</small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title">
+                                                <!-- tên sản phẩm -->
+                                                <strong><?php echo $row['sp_tengame']; ?></strong>
+                                            </p>
                                         </div>
-                                        <!-- giá sau khi sale -->
-                                        <div class="footer-label">
-                                            <label for=""><?php echo $giamoi; ?></label>
+                                        <div class="card-footer">
+                                            <!-- giá trước khi sale -->
+                                            <div class="footer-label">
+                                                <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?>đ</label>
+                                            </div>
+                                            <!-- giá sau khi sale -->
+                                            <div class="footer-label">
+                                                <label for=""><?php echo currency_format($row['sp_gia']) ?></label>
+                                            </div>
                                         </div>
-                                        <?php } else { ?>
-                                        <div class="footer-label">
-                                            <label for="" class="price-old"><?php echo $row['sp_gia']; ?></label>
-                                        </div>
-                                        <?php }}?>
-                                    </div>
 
-                                    <div class="card-btn">
-                                        <!-- chi tiết sản phẩm -->
-                                        <div class="card-button">
-                                            <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>"
-                                                title="Chi tiết sản phẩm">
-                                                <i class='bx bx-dots-horizontal-rounded'></i>
-                                            </a>
-                                        </div>
-                                        <!-- button download -->
-                                        <div class="card-button">
-                                            <a href="" title="Mua sản phẩm">
-                                                <i class='bx bx-download'></i>
-                                            </a>
-                                        </div>
-                                        <!-- button thêm vào giỏ hàng -->
-                                        <div class="card-button">
-                                            <a href="giohang.php?idsp=<?php echo $row['sp_id']; ?>"
-                                                title="Thêm và giỏ hàng">
-                                                <i class='bx bxs-cart'></i>
-                                            </a>
+                                        <div class="card-btn">
+                                            <!-- chi tiết sản phẩm -->
+                                            <div class="card-button">
+                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
+                                                    <i class='bx bx-dots-horizontal-rounded'></i>
+                                                </a>
+                                            </div>
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="">
+                                                    <i class='bx bx-download'></i>
+                                                </a>
+                                            </div>
+                                            <!-- button thêm vào giỏ hàng -->
+                                            <div class="card-button">
+                                                <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                    <i class='bx bxs-cart-alt'></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <?php }?>
+                <?php } ?>
             </div>
         </div>
         <div class="products">
@@ -338,59 +287,26 @@ if (isset($_GET['partnerCode'])) {
     <!-- Game đang được giảm giá -->
 
     <!-- Thể loại -->
-    <section class="container product-content">
+    <section class="container product-content" id="category">
         <div class="heading">
             <i class='bx bxs-flame'></i>
             <h2>Thể loại</h2>
         </div>
         <div class="image-slider">
-            <div class="image-item">
-                <div class="image">
-                    <a href="">
-                        <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
-                            alt="" />
-                    </a>
-                    <div class="box-text-category">
-                        <h2>Tên game</h2>
-
-                    </div>
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=710&q=80"
-                        alt="" />
-                    <div class="box-text">
-                        <h2>Tên game</h2>
-                        <h3>Thể loại</h3>
-                        <div class="rating-download">
-                            <div class="rating">
-                                <i class='bx bxs-heart'></i>
-                                <span>5</span>
-                            </div>
-                            <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
+            <?php $query5 = mysqli_query($cn, "SELECT * from theloai");
+            while ($row5 = mysqli_fetch_array($query5, MYSQLI_ASSOC)) { ?>
+                <div class="image-item">
+                    <div class="image">
+                        <a href="sanpham.php?idtl=<?php echo $row5['tl_id'] ?>">
+                            <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                        </a>
+                        <div class="box-text-category">
+                            <h2><?php echo $row5['tl_ten'] ?></h2>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80"
-                        alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
-                        alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=928&q=80"
-                        alt="" />
-                </div>
-            </div>
+            <?php } ?>
+        </div>
         </div>
         <!-- Game được yêu thích -->
     </section>
@@ -398,7 +314,7 @@ if (isset($_GET['partnerCode'])) {
     <footer class="coppyright ">
         <div class="footer__content container">
             <div class="logo-page">
-                <a href="Index2.html" class="logo">Store<span>Game</span></a>
+                <a href="Index2.html" class="logo">Game<span>Store</span></a>
             </div>
             <div class="page">
                 <h1 class="footer__title">Trang</h1>
@@ -422,7 +338,9 @@ if (isset($_GET['partnerCode'])) {
 
     </footer>
 
+
     <script src="../js/index.js"></script>
+    <script src="../js/logout.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

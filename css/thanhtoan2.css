@@ -100,6 +100,7 @@ ul.breadcrumb li a:hover {
 
 .infor-customer {
     background: var(--light-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 0.5rem;
     width: 70%;
 }
@@ -158,8 +159,6 @@ ul.breadcrumb li a:hover {
     background-color: var(--light-color);
 }
 
-.payments {}
-
 .infor-bottom {
     margin: 0.5rem 0;
 }
@@ -174,9 +173,9 @@ ul.breadcrumb li a:hover {
 }
 
 .infor-btn:hover {
-    background: var(--light-color);
+    background: var(--dark-color);
     color: var(--main-color);
-    transition: .3s all linear;
+    transition: .2s all linear;
 }
 
 .cart-infor {

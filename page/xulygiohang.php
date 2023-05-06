@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
             'soluong' => 1
         );
     }
-     header("location: giohang.php");
+     header("location: giohang2.php");
 } 
 ?>
 

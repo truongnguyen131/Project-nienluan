@@ -9,11 +9,11 @@
     <!-- bootstrap css -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <!-- style css -->
-
     <link rel="stylesheet" href="../css/header-page.css" />
     <link rel="stylesheet" href="../css/tabs.css" />
     <link rel="stylesheet" href="../css/quanly-nsx.css" />
     <link rel="stylesheet" href="../css/search.css" />
+    <link rel="stylesheet" href="../css/a.css">
     <link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -334,7 +334,7 @@ if (isset($_POST["submit"])) {
             <!-- Thống kê sản phẩm đang có -->
             <div id="des" class="tabcontent">
                 <div class="table-control">
-                    <div class="type-table">
+                        <div class="type-table">
                         <select class="type-table" name="" id="" onchange="changetable(this)">
                             <option value="" selected="selected">
                                 ---Chọn loại bảng muốn hiển thị---
@@ -347,13 +347,13 @@ if (isset($_POST["submit"])) {
                             </option>
                             <option value="filegame">Thông tin Game và Source game</option>
                         </select>
-                    </div>
+                        </div>
 
-                    <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm" />
-                        <button class="search">Tìm kiếm</button>
+                        <div class="search">
+                            <input class="search" type="text" placeholder="Tìm kiếm" />
+                            <button class="search">Tìm kiếm</button>
+                        </div>
                     </div>
-                </div>
                 <div class="table-thongke table-responsive-sm">
                     <!-- Thông tin về game -->
                     <table border="1" id="inforgame" style="display: table" class="table table-inforgame">

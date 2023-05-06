@@ -1,0 +1,60 @@
+/* Đăng xuất */
+
+.log-out {
+    position: absolute;
+    top: 110%;
+    right: 7rem;
+    width: 300px;
+    height: 70px;
+    background: var(--light-color);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    clip-path: circle(0% at 100% 0%);
+}
+
+.log-out.active {
+    clip-path: circle(144% at 100% 0%);
+    transition: .5s;
+}
+
+.logout-box {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    background: hsl(0, 0%, 100%, 0.4);
+    gap: 1rem;
+    row-gap: 1rem;
+    border-radius: 0.5rem;
+    padding: 10px;
+}
+
+.logout-box p {
+    color: var(--text-color);
+}
+
+.logout-box:hover {
+    background: var(--main-color);
+}
+
+.logout-box .bx {
+    color: var(--text-color);
+}
+
+@media screen and (max-width: 1024px) {
+    .log-out {
+        right: 3rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .log-out {
+        right: 6rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .log-out {
+        right: 0.5rem;
+    }
+}
