@@ -71,4 +71,6 @@ include_once('database_connection.php'); ?>
 <!-- Javascript files-->
 <script src="../js/dangnhap.js"></script>
 <script src="../js/jquery.min.js"></script>
+
+<
 </html>

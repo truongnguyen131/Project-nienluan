@@ -48,12 +48,13 @@ button {
     margin-left: 10px;
 }
 
-.image img {
+
+/* .image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     border-radius: 12px;
-}
+} */
 
 .image-title {
     font-size: 20px;

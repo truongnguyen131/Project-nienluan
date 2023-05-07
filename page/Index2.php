@@ -11,6 +11,8 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/card2.css">
     <link rel="stylesheet" href="../css/click_slider.css">
+    <link rel="stylesheet" href="../css/a.css">
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -182,20 +184,31 @@ if (isset($_GET['partnerCode'])) {
             ?>
                 <div class="image-item">
                     <div class="image">
-                        <img src="../uploads/<?php echo $sosao['sp_imgavt']?>" alt="" />
+                        <a class="sp_img" href="chitietsp.php?idsp=<?php echo $sosao['sp_id'] ?>">
+                            <img src="../uploads/<?php echo $sosao['sp_imgavt'] ?>" alt="" />
+                        </a>
                         <div class="box-text">
-                            <h2><?php echo $sosao['sp_tengame']?></h2>
-                            <h3>Thể loại</h3>
+                            <h2><?php echo $sosao['sp_tengame'] ?></h2>
+                            <?php
+                            $theloai = mysqli_query($cn, "SELECT * from sanphamtheloai,theloai WHERE sanphamtheloai.tl_id = theloai.tl_id AND $id = sp_id"); ?>
+                            <h3 class="sp_theloai">Thể loại:
+                                <?php
+                                while ($value1 = mysqli_fetch_array($theloai, MYSQLI_ASSOC)) { ?>
+                                    <a class="tl_sp" href="">
+                                        <?php echo $value1['tl_ten'] ?>
+                                    </a>
+                                <?php } ?>
+                            </h3>
                             <div class="rating-download">
                                 <div class="rating">
                                     <i class='bx bxs-star'></i>
-                                    <?php 
+                                    <?php
                                     $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND sanpham.sp_id = $id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id;");
                                     while ($avg_sao = mysqli_fetch_array($count)) {
                                         $avg = $avg_sao['AVG(dg_sao)'];
                                     }
                                     ?>
-                                    <span><?php echo number_format($avg,"1",".","")?></span>
+                                    <span><?php echo number_format($avg, "1", ".", "") ?></span>
                                 </div>
                                 <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
                             </div>
@@ -214,7 +227,7 @@ if (isset($_GET['partnerCode'])) {
         </div>
         <div class="saling-content">
             <div class="cards">
-                <?php $query = mysqli_query($cn, "SELECT * from sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id");
+                <?php $query = mysqli_query($cn, "SELECT * from sanpham ");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
                     <div class="card">
                         <div class="content">
@@ -233,7 +246,7 @@ if (isset($_GET['partnerCode'])) {
                                 </div>
                                 <div class="front-content">
                                     <!-- phần trăm sale -->
-                                    <small class="badge"><?php echo $row['gg_phantram']?>%</small>
+                                    <small class="badge"><?php echo $row['gg_phantram'] ?>%</small>
                                     <div class="description">
                                         <div class="title">
                                             <p class="title">

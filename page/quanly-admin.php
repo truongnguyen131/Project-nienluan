@@ -1054,11 +1054,6 @@ include_once('database_connection.php'); ?>
                                 <input type="file" name="source" id="source" accept=".zip" />
                                 <div class="loi" id="loisource"></div>
                             </div>
-                            <div class="add-source">
-                                <div class="add-title"><span>Ngày phát hành</span></div>
-                                <input type="date" max="<?php echo date('Y-m-d'); ?>" name="nph" id="nph"/>
-                                <div class="loi" id="loinph"></div>
-                            </div>
                         </div>
                         <div class="client-item">
                         <button type="button" id="bntThemSP" onclick="add_update_SP('add')">Thêm</button>

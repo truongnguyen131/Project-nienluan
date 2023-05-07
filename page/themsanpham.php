@@ -28,6 +28,7 @@ if ($page == "themSP") {
     $sql = "INSERT INTO `sanpham`(`sp_tengame`, `sp_imgavt`, `sp_file`, `sp_mota`, `sp_trailer`, `sp_gia`, `sp_ngayphathanh`, `nsx_id`, `sp_trangthai`, `nguoi_duyet`) VALUES 
 ('$tensp','$imgavt','$source','$mota','$trailer','$gia', '$ngayphathanh','$idnsx', 'duyet', '$idtaikhoan')";
 
+
     mysqli_query($cn, $sql);
     $id_sp = mysqli_insert_id($cn);
     for ($i = 0; $i < count($igl_name); $i++) {

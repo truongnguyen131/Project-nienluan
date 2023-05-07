@@ -13,7 +13,11 @@ if ($ntk == "checked") {
 if (isset($_COOKIE['taikhoan']) && isset($_COOKIE['matkhau'])) {
     $taikhoan = $_COOKIE['taikhoan'];
     $matkhau = $_COOKIE['matkhau'];
+   
 }
+// echo ($taikhoan); 
+// echo ($matkhau); 
+// die();
 
 $Result = mysqli_query($cn, "SELECT * FROM taikhoan WHERE tk_taikhoan='$taikhoan' AND tk_matkhau='$matkhau'");
 if (mysqli_num_rows($Result) == 1) {

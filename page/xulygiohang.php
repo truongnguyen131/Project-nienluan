@@ -1,6 +1,6 @@
 <?php session_start(); ?> 
 <?php
-include_once('database_connection.php');
+include_once('database_connection.php');  
 if (isset($_GET['id'])) {
     $sp_id = $_GET['id'];
     

@@ -54,7 +54,7 @@ if (!isset($_SESSION["idtaikhoan"])) {
         $idsp = $_GET['idsp'];
         if (isset($_SESSION['xulygiohang'][$idsp])) {
             $_SESSION['xulygiohang'][$idsp]['soluong'] += 1;
-            header('Location:giohang.php');
+            header('Location:giohang2.php');
         } else {
 
             $sp = mysqli_query($cn, "SELECT * FROM sanpham,nsx WHERE sanpham.nsx_id = nsx.nsx_id AND sp_id = $idsp");

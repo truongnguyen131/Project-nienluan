@@ -8,6 +8,7 @@
     line-height: 1.5;
     word-break: break-word;
     padding: 10px;
+    max-width: 100%;
 }
 
 .tab {

@@ -68,6 +68,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
 ?>
 
 <body>
+
     <!-- custom scroll bar -->
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
@@ -83,15 +84,15 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
                 <a href="giohang2.php">
-                <i class='bx bxs-cart-alt'></i>
+                    <i class='bx bxs-cart-alt'></i>
                 </a>
-                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" ) { ?>
+                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
                     <i class='bx bxs-user bx-tada' id="logout-icon"></i>
-                <?php } else {?>
-                <a href="dangnhap.php">
-                    <i class='bx bxs-user'></i>
-                </a>
-                <?php }?>
+                <?php } else { ?>
+                    <a href="dangnhap.php">
+                        <i class='bx bxs-user'></i>
+                    </a>
+                <?php } ?>
                 <div class="menu-icon">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -108,7 +109,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     <li>
                         <a href="#">Phổ biến</a>
                     </li>
-                   
+
                     <li>
                         <a href="#">Game mới</a>
                     </li>
@@ -120,16 +121,16 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     </li>
                     <?php
                     if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
-                    <li>
-                        <a href="#">Quản lý của Admin</a>
-                    </li>
+                        <li>
+                            <a href="#">Quản lý của Admin</a>
+                        </li>
                     <?php }
                     if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
-                    <li>
-                        <a href="#">Quản lý của Nhà sản xuất</a>
-                    </li>
+                        <li>
+                            <a href="#">Quản lý của Nhà sản xuất</a>
+                        </li>
                     <?php }  ?>
-                   
+
                 </div>
             </div>
             <!-- Thông báo -->
@@ -155,10 +156,10 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
             <!-- Đăng xuất -->
             <div class="log-out">
                 <a href="dangxuat.php" class="out">
-                <div class="logout-box box-color">
-                    <p>Đăng xuất</p>
-                    <i class='bx bx-log-out'></i>
-                </div>
+                    <div class="logout-box box-color">
+                        <p>Đăng xuất</p>
+                        <i class='bx bx-log-out'></i>
+                    </div>
                 </a>
             </div>
         </div>
@@ -174,91 +175,15 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
         </div>
     </div>
     <!-- content -->
-    <div class="checkout-form container">
-        <!-- thông tin khách hàng -->
-        <div class=" infor-customer">
-            <h1 class="title">Thông tin khách hàng</h1>
-            <div class="infor-form">
-                <div class="infor-item">
-                    <input type="text" class="infor-input" placeholder=" " name="hoten" value="<?php echo $hoten; ?>" id="name">
-                    <span class="infor-lable">Họ tên</span>
-                </div>
-                <div class="infor-item">
-                    <input type="text" class="infor-input" placeholder=" " name="sdt" value="<?php echo $sdt; ?>" id="phone">
-                    <span class="infor-lable">Số điện thoại</span>
-                </div>
-                <div class="infor-item">
-                    <input type="text" class="infor-input" placeholder=" " name="email" value="<?php echo $email; ?>" id="mail">
-                    <span class="infor-lable">Email</span>
-                </div>
-                <div class="infor-item">
-                    <h3>Hình thức thanh toán</h3>
-                    <div class="payments">
-                        <input type="radio" id="QR"  name="check" value="QR" onclick="onlyOne(this)">
-                        <label for="QR">Quét mã QR</label>
-                    </div>
-                    <div class="payments">
-                        <input type="radio" id="ATM" name="check" value="ATM" onclick="onlyOne(this)">
-                        <label for="ATM">Thanh toán bằng ngân hàng</label>
-                    </div>
+    <form method="POST">
+        <div class="checkout-form container">
 
-                </div>
-                <div class="infor-bottom">
-                <?php
-                            function diemtichluy($x)
-                            {
-                                if ($x >= 2000000) {
-                                    $x = $x * 0.03 / 1000;
-                                    return CEIL($x);
-                                }
-                                if ($x >= 500000) {
-                                    $x = $x * 0.01 / 1000;
-                                    return CEIL($x);
-                                }
-                                return 0;
-                            }
-
-                            if (isset($_POST["dathang"])) {
-                                if ($sanpham == 0) {
-                                    echo "<b>Hãy thêm sản phâm bạn muốn mua vào giỏ hàng</b>";
-                                } else {
-                                    if ($idkh != "") {
-                                        if (isset($_POST['check']) && !empty($_POST['check'])) {
-
-                                            if (isset($_POST['dtl']) && !empty($_POST['dtl'])) {
-                                                $tt = $tt - $dtl * 1000;
-                                                $_SESSION['diemtichluy'] = 0;
-                                            }
-                                            $_SESSION['thanhtoan'] = $tt;
-                                            if ($_POST['check'] == "QR") {
-                                                echo "<meta http-equiv=" . "refresh" . " content=" . "0;url=thanhtoanQR.php" . ">";
-                                            }
-                                            if ($_POST['check'] == "ATM") {
-                                                echo "<meta http-equiv=" . "refresh" . " content=" . "0;url=thanhtoanATM.php" . ">";
-                                            }
-
-                                        } else {
-                                            echo "<b>Hãy chọn phương thức thanh toán</b>";
-                                        }
-
-                                    } else {
-                                        echo "<b>Tài khoản không được cấp quyền mua game!</b>";
-                                    }
-                                }
-                            }
-
-                            ?>
-                    <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
-                    <button type="reset" class="infor-btn">Hủy</button>
-                </div>
-            </div>
-        </div>
-        <!-- thông tin giỏ hàng -->
-        <div class="cart-infor">
-            <h1 class="title">Giỏ hàng</h1>
-            <div class="cart-form scrollbar">
-                <!-- 1 sản phẩm -->
-                <?php
+            <!-- thông tin giỏ hàng -->
+            <div class="cart-infor">
+                <h1 class="title">Giỏ hàng</h1>
+                <div class="cart-form scrollbar">
+                    <!-- 1 sản phẩm -->
+                    <?php
                     $tt = 0;
                     $sanpham = 1;
                     if (!empty($_SESSION['xulygiohang'])) {
@@ -266,49 +191,129 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                         foreach ($_SESSION['xulygiohang'] as $key => $value) {
                             $tt = $tt + ($value['dongia'] * $value['soluong']);
                     ?>
-                <div class="cart-item">
-                            <div class="item-right">
-                                <h3><?php echo $value['tensp'] ?></h3>
-                                <span class="money"><?php echo currency_format($value['dongia']); ?></span><span> x <?php echo $value['soluong'] ?></span>
+                            <div class="cart-item">
+                                <div class="item-right">
+                                    <h3><?php echo $value['tensp'] ?></h3>
+                                    <span class="money"><?php echo currency_format($value['dongia']); ?></span><span> x <?php echo $value['soluong'] ?></span>
+                                </div>
+                                <div class="item-left">
+                                    <?php $tong = $value['dongia'] * $value['soluong']; ?>
+                                    <span><?php echo currency_format($tong); ?></span>
+                                </div>
                             </div>
-                            <div class="item-left">
-                                <?php $tong = $value['dongia'] * $value['soluong']; ?>
-                                <span><?php echo currency_format($tong); ?></span>
-                            </div>
-                </div>
-            <?php
+                        <?php
                         }
                     } else {
                         $sanpham = 0; ?>
-            <div></div>
-        <?php } ?>
-        <!---------------->
-            </div>
-            <div class="cart-bottom">
-                <div class="points">
-                    <label for="point">
-                        Có <?php echo $dtl; ?> điểm tích lũy
-                    </label>
-                    <!-- Này chỉnh css checkbox-->
-                    <label class="switch">
-                        <!-- sử dụng checkbox này -->
-                        <input type="checkbox" name="dtl" id="dtl" value="<?php echo $dtl * 1000; ?>"
-                                    onclick="clickToTotalDiscount()">
-                        <!-------------------------->
-                        <span class="slider round"></span>
-                    </label>
+                        <div></div>
+                    <?php } ?>
+                    <!---------------->
                 </div>
-                <div class="total">
-                    <span>Tổng tiền:</span>
-                    <?php if($sanpham == 0){?>
-                    <h3>0đ</h3>
-                    <?php } else{?>
-                        <h3><?php echo currency_format($tt);?></h3>
-                        <?php }?>
+                <div class="cart-bottom">
+                    <div class="points">
+                        <label for="point">
+                            Có <?php echo $dtl; ?> điểm tích lũy
+                        </label>
+                        <!-- Này chỉnh css checkbox-->
+                        <label class="switch">
+                            <!-- sử dụng checkbox này -->
+                            <input type="checkbox" name="dtl" id="dtl" value="<?php echo $dtl * 1000; ?>" onclick="clickToTotalDiscount()">
+                            <!-------------------------->
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="total">
+                        <span>Tổng tiền:</span>
+                        <?php if ($sanpham == 0) { ?>
+                            <h3>0đ</h3>
+                        <?php } else { ?>
+                            <input type="text" id="tt" value="<?php echo $tt; ?>" hidden>
+                            <h3 id="total"></h3>
+                        <?php } ?>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- thông tin khách hàng -->
+            <div class=" infor-customer">
+                <h1 class="title">Thông tin khách hàng</h1>
+                <div class="infor-form">
+                    <div class="infor-item">
+                        <input type="text" class="infor-input" placeholder=" " name="hoten" value="<?php echo $hoten; ?>" id="name">
+                        <span class="infor-lable">Họ tên</span>
+                    </div>
+                    <div class="infor-item">
+                        <input type="text" class="infor-input" placeholder=" " name="sdt" value="<?php echo $sdt; ?>" id="phone">
+                        <span class="infor-lable">Số điện thoại</span>
+                    </div>
+                    <div class="infor-item">
+                        <input type="text" class="infor-input" placeholder=" " name="email" value="<?php echo $email; ?>" id="mail">
+                        <span class="infor-lable">Email</span>
+                    </div>
+                    <div class="infor-item">
+                        <h3>Hình thức thanh toán</h3>
+                        <div class="payments">
+                            <input type="radio" id="QR" name="check" value="QR" onclick="onlyOne(this)">
+                            <label for="QR">Quét mã QR</label>
+                        </div>
+                        <div class="payments">
+                            <input type="radio" id="ATM" name="check" value="ATM" onclick="onlyOne(this)">
+                            <label for="ATM">Thanh toán bằng ngân hàng</label>
+                        </div>
+
+                    </div>
+                    <div class="infor-bottom">
+                        <?php
+                        function diemtichluy($x)
+                        {
+                            if ($x >= 2000000) {
+                                $x = $x * 0.03 / 1000;
+                                return CEIL($x);
+                            }
+                            if ($x >= 500000) {
+                                $x = $x * 0.01 / 1000;
+                                return CEIL($x);
+                            }
+                            return 0;
+                        }
+
+                        if (isset($_POST["dathang"])) {
+                            if ($sanpham == 0) {
+                                echo "<b>Hãy thêm sản phâm bạn muốn mua vào giỏ hàng</b>";
+                            } else {
+                                if ($idkh != "") {
+                                    if (isset($_POST['check']) && !empty($_POST['check'])) {
+
+                                        if (isset($_POST['dtl']) && !empty($_POST['dtl'])) {
+                                            $tt = $tt - $dtl * 1000;
+                                            $_SESSION['diemtichluy'] = 0;
+                                        }
+                                        $_SESSION['thanhtoan'] = $tt;
+                                        if ($_POST['check'] == "QR") {
+                                            echo "<meta http-equiv=" . "refresh" . " content=" . "0;url=thanhtoanQR.php" . ">";
+                                        }
+                                        if ($_POST['check'] == "ATM") {
+                                            echo "<meta http-equiv=" . "refresh" . " content=" . "0;url=thanhtoanATM.php" . ">";
+                                        }
+                                    } else {
+                                        echo "<b>Hãy chọn phương thức thanh toán</b>";
+                                    }
+                                } else {
+                                    echo "<b>Tài khoản không được cấp quyền mua game!</b>";
+                                }
+                            }
+                        }
+
+                        ?>
+                        <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
+                        <button type="reset" class="infor-btn">Hủy</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 
 
     <script src="../js/index.js "></script>
@@ -316,32 +321,65 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
 
+    <script>
+        var cb = document.getElementById('dtl').value;
+        var tt = document.getElementById('tt').value;
+        var total = tt - cb;
 
+        document.getElementById('tt').innerText = (total+cb).toLocaleString('vi', {
+            style: 'currency',
+            currency: 'VND'
+        });
+      
+        function onlyOne(checkbox) {
+            var checkboxes = document.getElementsByName('check')
+            checkboxes.forEach((item) => {
+                if (item !== checkbox) item.checked = false
+            })
+        }
+
+
+
+        function clickToTotalDiscount() {
+            if (document.getElementById('dtl').checked) {
+                document.getElementById('total').innerText = total.toLocaleString('vi', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
+            } else {
+                document.getElementById('total').innerText = total.toLocaleString('vi', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
+            }
+        }
+    </script>
 </body>
 <!-- coppyright -->
 <footer class="coppyright ">
-        <div class="footer__content container">
-            <div class="logo-page">
-                <a href="Index2.html" class="logo">Game<span>Store</span></a>
-            </div>
-            <div class="page">
-                <h1 class="footer__title">Trang</h1>
-                <a href="">Trang chủ</a>
-                <a href="">Phổ biến</a>
-                <a href="">Game giảm giá</a>
-                <a href="">Thể loại</a>
-                <a href="">Liên hệ</a>
-            </div>
-            <div class="conection">
-                <h1 class="footer__title">Liên hệ</h1>
-                <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-                <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-            </div>
+    <div class="footer__content container">
+        <div class="logo-page">
+            <a href="Index2.html" class="logo">Game<span>Store</span></a>
         </div>
-        <div class="vd">
-            <p>&#169; Carpool Venom All Right Reserved</p>
+        <div class="page">
+            <h1 class="footer__title">Trang</h1>
+            <a href="">Trang chủ</a>
+            <a href="">Phổ biến</a>
+            <a href="">Game giảm giá</a>
+            <a href="">Thể loại</a>
+            <a href="">Liên hệ</a>
         </div>
-    </footer>
+        <div class="conection">
+            <h1 class="footer__title">Liên hệ</h1>
+            <a href=""><i class='bx bxl-facebook-circle'></i></a>
+            <a href=""><i class='bx bxl-instagram-alt'></i></a>
+            <a href=""><i class='bx bxl-twitter'></i></a>
+            <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
+        </div>
+    </div>
+    <div class="vd">
+        <p>&#169; Carpool Venom All Right Reserved</p>
+    </div>
+</footer>
+
 </html>

@@ -104,7 +104,7 @@
                                 <div class="scrollbar">
                                     <table>
                                         <?php
-                                        $tt = 0;
+                                        $tt = 0; 
                                         $sanpham = 1;
                                         if (!empty($_SESSION['xulygiohang'])) {
                                             $num = 1;

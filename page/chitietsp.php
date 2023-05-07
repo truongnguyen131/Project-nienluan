@@ -205,12 +205,12 @@ if (isset($_GET['idsp'])) {
             </div>
             <div class="infor-btn">
                 <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">Mua</a>
-                <a href="giohang.php?idsp=<?php echo $row['sp_id']; ?>">Thêm vào giỏ hàng</a>
+                <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">Thêm vào giỏ hàng</a>
             </div>
         </div>
         <div class="content-tabs">
             <div class="container-tab">
-                <img id="expandedImg" style="width:100%">
+                <img id="expandedImg">
                 <div id="imgtext"></div>
             </div>
             <!-- The grid: four columns -->
@@ -269,7 +269,7 @@ if (isset($_GET['idsp'])) {
                 <div class="tab-cmt-display">
                     <!-- cmt và đánh giá của 1 người dùng -->
                     <?php
-                    $danhgia2 = mysqli_query($cn, "SELECT * FROM danhgia,taikhoan WHERE danhgia.tk_id = taikhoan.tk_id AND sp_id = $sp_id");
+                    $danhgia2 = mysqli_query($cn, "SELECT * FROM danhgia,taikhoan WHERE danhgia.tk_id = taikhoan.tk_id AND sp_id = $sp_id ORDER BY dg_id DESC");
                     while ($var = mysqli_fetch_array($danhgia2, MYSQLI_ASSOC)) {
                     ?>
                         <div class="tab-user-cmt">
@@ -318,7 +318,7 @@ if (isset($_GET['idsp'])) {
                     <span>Bình luận</span>
                     <div class="product-bottom-inputbtn">
                         <div class="tab-cmt-input">
-                            <textarea name="cmt" id="cmt"></textarea>
+                            <textarea name="cmt" id="cmt" placeholder=" Bình luận "></textarea>
                             <div class="loi" id="loicmt"></div>
                             <input type="text" style="display:none" id="sp__id" value="<?php echo $sp_id?>">
                             <input type="text" style="display:none" id="id_tk" value="<?php echo $idtk?>">
@@ -327,9 +327,7 @@ if (isset($_GET['idsp'])) {
                             <button name="cmt_btn" onclick="kiemtraloi()" type="button">Bình luận</button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </form>

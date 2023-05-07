@@ -1,6 +1,4 @@
 // thông báo lỗi
-
-
 function Huy() {
     var tk = $('#tk').val()
     var mk = $('#mk').val()
