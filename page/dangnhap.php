@@ -33,7 +33,17 @@ include_once('database_connection.php'); ?>
         echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan2.php"</script>';
     }
 
+    if (isset($_COOKIE['taikhoan']) && isset($_COOKIE['matkhau'])) {
+        $tk = $_COOKIE['taikhoan'];
+        $mk = $_COOKIE['matkhau'];
+        echo '<script>  window.onload = function(){
+        document.getElementById("tk").value = "'.$tk.'";
+        document.getElementById("mk").value = "'.$mk.'";}
+        </script>';
+    }
+
     ?>
+
     <form action="" method="post">
         <div class="login-form">
             <div class="login-title">

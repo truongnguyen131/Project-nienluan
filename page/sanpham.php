@@ -1,5 +1,6 @@
 <?php session_start();
 include_once('database_connection.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,30 +22,7 @@ include_once('database_connection.php'); ?>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Sản phẩm</title>
 </head>
-<!-- hàm format giá -->
-<?php
-if (!function_exists('currency_format')) {
-    function currency_format($number, $suffix = 'đ')
-    {
-        if (!empty($number)) {
-            return number_format($number, 0, ',', '.') . "{$suffix}";
-        }
-    }
-} ?>
-<script>
-    var checkbox1 = document.getElementsByName('tl');
-    var theloai1 = [];
-    function add__tl() {
-    var theloai1 = [];
-            for (var i = 0; i < checkbox1.length; i++) {
-                if (checkbox1[i].checked === true) {
-                    theloai1.push(checkbox1[i].value);
-                } else {
-                    const newCompanies = theloai1.filter(item => item !== checkbox1[i].value)
-                }
-            }
-        };
-</script>
+
 <body>
     <!-- custom scroll bar -->
     <div class="progress">
@@ -121,7 +99,7 @@ if (!function_exists('currency_format')) {
     </header>
     <!-- menu 2 -->
     <div class="container menu-second">
-        <h2>Thanh toán</h2>
+        <h2>Các sản phẩm</h2>
         <div class="menu-content">
             <ul class="breadcrumb">
                 <li><a href=" # ">Trang chủ</a></li>
@@ -135,83 +113,101 @@ if (!function_exists('currency_format')) {
     <section class="saling container" id="saling">
         <div class="saling-content">
             <div class="cards">
-                <?php $query = mysqli_query($cn, "SELECT * from sanpham");
+                <?php
+
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                } else {
+                    $page = "";
+                }
+                if ($page == "" || $page == 1) {
+                    $begin = 0;
+                } else {
+                    $begin = ($page * 12) - 12;
+                }
+                $query = mysqli_query($cn, "SELECT * from sanpham  ORDER BY sp_id DESC LIMIT $begin,12");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
+
                     <div class="card">
                         <div class="content">
                             <div class="back">
                                 <div class="back-content">
-                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
-                                    <div class="rating">
-                                        <i class='bx bxs-star'></i>
-                                        <span>4.7</span>
-                                    </div>
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243"
+                                        alt="">
                                 </div>
                             </div>
                             <div class="front">
                                 <div class="img">
-                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243"
+                                        alt="">
                                 </div>
                                 <div class="front-content">
+
                                     <!-- phần trăm sale -->
                                     <small class="badge">20%</small>
                                     <div class="description">
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong><?php echo $row['sp_tengame']; ?></strong>
+                                                <strong>soldes editeur</strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
                                             <!-- giá trước khi sale -->
                                             <div class="footer-label">
-                                                <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?>đ</label>
+                                                <label for="" class="price-old">120.000.000đ</label>
                                             </div>
                                             <!-- giá sai khi sale -->
                                             <div class="footer-label">
-                                                <label for=""><?php echo currency_format($row['sp_gia']) ?></label>
+                                                <label for="">120.000.000đ</label>
                                             </div>
                                         </div>
 
                                         <div class="card-btn">
-                                            <!-- chi tiết sản phẩm -->
-                                            <div class="card-button">
-                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
-                                                    <i class='bx bx-dots-horizontal-rounded'></i>
-                                                </a>
-                                            </div>
-                                            <!-- button download -->
+                                            <!-- button detail -->
                                             <div class="card-button">
                                                 <a href="">
-                                                    <i class='bx bx-download'></i>
+                                                    <ion-icon name="detail-outline"></ion-icon>
                                                 </a>
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
                                             <div class="card-button">
                                                 <a href="">
-                                                    <i class='bx bxs-cart-alt'></i>
+                                                    <ion-icon name="cart-outline"></ion-icon>
                                                 </a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php } ?>
+
+                <?php }
+
+                ?>
             </div>
+        </div>
         </div>
         <!-- pagination -->
         <div class="pagination">
-            <button class="page-btn1" onclick="backbtn()"><i class='bx bxs-left-arrow'></i></button>
-            <ul>
-                <li class="link active" value="1" onclick="activeLink()">1</li>
-                <li class="link" value="2" onclick="activeLink()">2</li>
-                <li class="link" value="3" onclick="activeLink()">3</li>
-                <li class="link" value="4" onclick="activeLink()">4</li>
-                <li class="link" value="5" onclick="activeLink()">5</li>
+            <?php
+            $sl_sp = mysqli_num_rows(mysqli_query($cn, "SELECT * from sanpham"));
+            $tong_page = ceil($sl_sp / 12);
+            ?>
+            <ul class="ul_phantrang">
+                <?php
+                for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>#saling">
+                        <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
+                               echo 'active';
+                           } ?>" value="<?php echo $i; ?>" >
+                            <?php echo $i; ?>
+                        </li>
+                    </a>
+                <?php }
+                ?>
             </ul>
-            <button class="page-btn2" onclick="nextbtn()"><i class='bx bxs-right-arrow'></i></button>
         </div>
     </section>
 
@@ -241,10 +237,8 @@ if (!function_exists('currency_format')) {
             <a href="#" id="theloai" onclick="opentheloai()">
                 <div class=" filter-item items ">
                     <div class="item-title ">
-                        <label for="">Thể loại</label>
-                        <span><script>
-                            console.log(theloai1);
-                        </script></span>
+                        <label for=" ">Thể loại</label>
+                        <span>hành động, đua xe</span>
                     </div>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
@@ -273,19 +267,32 @@ if (!function_exists('currency_format')) {
                 <ion-icon name="arrow-back-outline"></ion-icon>
             </a>
             <h1>Thể loại</h1>
-            <button class="btn-filter" name="ad_tl" onclick="add__tl()">Chọn</button>
+            <button class="btn-filter" onclick="returnmodal()">Chọn</button>
         </div>
         <div class="filter-itemss">
             <!-- 1 thể loại -->
-            <?php $query1 = mysqli_query($cn, "SELECT * from theloai");
-            while ($row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC)) { ?>
-                <label for="<?php echo $row1['tl_id']?>" class="lable-item">
-                    <div class="filter-item items">
-                        <label for="<?php echo $row1['tl_id']?>"><?php echo $row1['tl_ten']?></label>
-                        <input type="checkbox" name="tl" id="<?php echo $row1['tl_id']?>" value="<?php echo $row1['tl_ten']?>">
-                    </div>
-                </label>
-            <?php } ?>
+            <label for="tl_id" class="lable-item">
+                <div class="filter-item items">
+                    <label for="tl_id">Đua xe</label>
+                    <input type="checkbox" name="" id="tl_id">
+                </div>
+            </label>
+            <!-- 1 thể loại -->
+            <!-- 1 thể loại -->
+            <label for="tl_id" class="lable-item">
+                <div class="filter-item items">
+                    <label for="tl_id">Đua xe</label>
+                    <input type="checkbox" name="" id="tl_id">
+                </div>
+            </label>
+            <!-- 1 thể loại -->
+            <!-- 1 thể loại -->
+            <label for="tl_id" class="lable-item">
+                <div class="filter-item items">
+                    <label for="tl_id">Đua xe</label>
+                    <input type="checkbox" name="" id="tl_id">
+                </div>
+            </label>
             <!-- 1 thể loại -->
         </div>
     </div>
@@ -300,18 +307,16 @@ if (!function_exists('currency_format')) {
         </div>
         <div class="filter-itemss">
             <!-- 1 nhà sản xuất -->
-            <?php $query2 = mysqli_query($cn, "SELECT * from nsx WHERE nsx_id != 1 AND nsx_id != 2");
-            while ($row2 = mysqli_fetch_array($query2, MYSQLI_ASSOC)) { ?>
-            <label for="<?php echo $row2['nsx_id']?>" class="lable-item">
+            <label for="nsx_id" class="lable-item">
                 <div class="filter-item items">
-                    <label for="nsx<?php echo $row2['nsx_id']?>"><?php echo $row2['nsx_ten']?></label>
-                    <input type="checkbox" name="nsx" id="<?php echo $row2['nsx_id']?>" value="<?php echo $row2['nsx_ten']?>">
+                    <label for="nsx_id">VNG</label>
+                    <input type="checkbox" name="" id="nsx_id">
                 </div>
             </label>
-            <?php }?>
             <!-- 1 nhà sản xuất -->
         </div>
     </div>
+
 
     <!-- coppyright -->
     <footer class="coppyright ">
@@ -346,7 +351,7 @@ if (!function_exists('currency_format')) {
 
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
-    <script src="../js/pagination.js "></script>
+   
 </body>
 
 </html>
