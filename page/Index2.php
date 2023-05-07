@@ -32,17 +32,31 @@ if (!function_exists('currency_format')) {
 }
 ?>
 <?php
-if (isset($_GET['idtaikhoan'])) {
+ function diemtichluy($x)
+ {
+     if ($x >= 2000000) {
+         $x = $x * 0.03 / 1000;
+         return CEIL($x);
+     }
+     if ($x >= 500000) {
+         $x = $x * 0.01 / 1000;
+         return CEIL($x);
+     }
+     return 0;
+ }
+
+if (isset($_SESSION['idtaikhoan'])) {
     $idtk = $_SESSION["idtaikhoan"];
     $dtl = 0;
 }
-if (isset($_GET['loaitaikhoan']) && $_SESSION["loaitaikhoan"] == "khach hang") {
+if (isset($_SESSION['loaitaikhoan']) && $_SESSION["loaitaikhoan"] == "khach hang") {
     $sql = mysqli_query($cn, "SELECT * FROM khachhang WHERE tk_id='$idtk'");
     while ($row = mysqli_fetch_array($sql, MYSQLI_ASSOC)) {
         $idkh = $row['kh_id'];
         $dtl = $row['kh_diemtichluy'];
     }
 }
+
 if (isset($_GET['partnerCode'])) {
     if (isset($_SESSION['diemtichluy'])) {
         $dtl = $_SESSION['diemtichluy'] + diemtichluy($_SESSION['thanhtoan']);
@@ -67,6 +81,7 @@ if (isset($_GET['partnerCode'])) {
 ?>
 
 <body>
+    
     <!-- custom scroll bar -->
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
