@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 header('Content-type: text/html; charset=utf-8');
 
 
@@ -29,10 +30,10 @@ $partnerCode = 'MOMOBKUN20180529';
 $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua MoMo";
-$amount = "50000";
+$amount = $_SESSION['thanhtoan'];
 $orderId = time() ."";
-$redirectUrl = "http://localhost/cla/index.php";
-$ipnUrl = "http://localhost/cla/index.php";
+$redirectUrl = "http://localhost/Project-nienluan/page/index2.php";
+$ipnUrl = "http://localhost/Project-nienluan/page/index2.php";
 $extraData = "";
 
 
