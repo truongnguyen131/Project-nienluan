@@ -365,6 +365,22 @@ if (!function_exists('currency_format')) {
                     document.getElementById('giaMax').value = 1000000
                     document.getElementById("TLs").innerHTML = ""
                     document.getElementById("NSXs").innerHTML = ""
+                    var checkboxTL = document.getElementsByName('timkiem_TL')
+                    var checkboxNSX = document.getElementsByName('timkiem_NSX')
+
+                    for (var i = 0; i < checkboxTL.length; i++) {
+                        checkboxTL[i].checked = false
+                    }
+                    for (var i = 0; i < checkboxNSX.length; i++) {
+                        checkboxNSX[i].checked = false
+                    }
+
+                    $.post('thanhsearch.php', {
+                        giaMin: document.getElementById('giaMin').value,
+                        giaMax: document.getElementById('giaMax').value
+                    }, function (data) {
+                        $('#saling').html(data);
+                    })
                 }
 
                 function Loc() {
