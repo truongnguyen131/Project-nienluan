@@ -51,9 +51,11 @@ button {
     border-radius: 12px;
 }
 
-.image-title {
-    font-size: 20px;
-    color: #8e8fb5;
+.image1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
 }
 
 .slick-initialized .slick-slide {

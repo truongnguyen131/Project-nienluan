@@ -1293,49 +1293,49 @@ include_once('database_connection.php'); ?>
                         <!-- Thông tin về game -->
                         <table border="1" id="inforgame" style="display: table" class="table
                                             table-inforgame">
-                            <tr class="table-primary">
-                                <th scope="col">STT</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Tên NSX</th>
-                                <th scope="col">Tên Game</th>
-                                <th scope="col">Ngày phát hành</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Giảm giá</th>
-                                <th scope="col">Giảm mới</th>
-                                <th scope="col">Chấp nhận</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1</td>
-                                <td>27</td>
-                                <td>VNG</td>
-                                <td>Sonic</td>
-                                <td>
-                                    12/2/2022
-                                </td>
-                                <td>
-                                    120.000đ
-                                </td>
-                                <td>
-                                    10%
-                                </td>
-                                <td>
-                                    100.000đ
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="bag-check-outline"></ion-icon>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                                <tr class="table-primary">
+                                    <th scope="col">STT</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tên NSX</th>
+                                    <th scope="col">Tên Game</th>
+                                    <th scope="col">Ngày phát hành</th>
+                                    <th scope="col">Giá</th>
+                                    <th scope="col">Giảm giá</th>
+                                    <th scope="col">Giảm mới</th>
+                                    <th scope="col">Chấp nhận</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>VNG</td>
+                                    <td>Sonic</td>
+                                    <td>
+                                       12/2/2022
+                                    </td>
+                                    <td>
+                                      120.000đ
+                                    </td>
+                                    <td>
+                                      10%
+                                    </td>
+                                    <td>
+                                      100.000đ
+                                    </td>
+                                    <td>
+                                      <a href="">
+                                      <ion-icon name="bag-check-outline"></ion-icon>
+                                      </a>
+                                    </td>
+                                    <td>
+                                      <a href="">
+                                      <ion-icon name="close-circle-outline"></ion-icon>
+                                      </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+            </div>
 
             </div>
         </div>
@@ -1463,72 +1463,73 @@ include_once('database_connection.php'); ?>
 
                     </div>
 
+                    </div>
+                    <!-- tabs -->
                 </div>
             </div>
-        </div>
-                                
-        <!-- Thêm giảm giá -->
-        <div class="client menu-tab" id="sale-product">
-            <div class="sale-main">
-                <div class="table-control">
-                    <div class="type-table">
-                        <select class="type-table" name="" id="" onchange="changetable(this)">
-                            <option value="" selected="selected">
-                                ---Chọn loại bảng muốn hiển thị---
-                            </option>
-                            <option value="games">Game</option>
-                            <option value="categorys">Thể loại</option>
-                            <option value="nsxs">Nhà sản xuất</option>
-                        </select>
-                    </div>
 
-                    <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm" />
-                        <button class="search">Tìm kiếm</button>
+            <!-- Thêm giảm giá -->
+            <div class="client menu-tab" id="sale-product">
+                <div class="sale-main">
+                    <div class="table-control">
+                        <div class="type-table">
+                            <select class="type-table" name="" id="" onchange="changetable(this)">
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="games">Game</option>
+                                <option value="categorys">Thể loại</option>
+                                <option value="nsxs">Nhà sản xuất</option>
+                            </select>
+                        </div>
+
+                        <div class="search">
+                            <input class="search" type="text" placeholder="Tìm kiếm" />
+                            <button class="search">Tìm kiếm</button>
+                        </div>
                     </div>
-                </div>
-                <!-- Tất cả sản phẩm -->
-                <table style="display: table" id="all-games">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Ngày phát hành</th>
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Giá mới</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>12/4/2022</td>
-                                        <td>120.000đ</td>
-                                        <td></td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>12/4/2022</td>
-                                        <td>120.000đ</td>
-                                        <td></td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
+                    <!-- Tất cả sản phẩm -->
+                    <table style="display: table" id="all-games">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Ngày phát hành</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Giá mới</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>STAR WARS Jedi: Fallen Order</td>
+                                            <td>12/4/2022</td>
+                                            <td>120.000đ</td>
+                                            <td></td>
+                                            <td>60.000đ</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>STAR WARS Jedi: Fallen Order</td>
+                                            <td>12/4/2022</td>
+                                            <td>120.000đ</td>
+                                            <td></td>
+                                            <td>60.000đ</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                        </tr>
 
                                 </table>
                             </div>

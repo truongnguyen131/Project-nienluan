@@ -192,6 +192,29 @@ if (isset($_GET['partnerCode'])) {
             <a href="#sale" class="btn">Mua ngay</a>
         </div>
     </section>
+
+    <!-- Game được đề xuất-->
+    <section class="container product-content" id="dexuat">
+        <div class="heading">
+            <i class='bx bxs-flame'></i>
+            <h2>Game đề xuất </h2>
+        </div>
+        <!-- Game được đề xuất -->
+        <div class="image-slider1">
+            <?php $query6 = mysqli_query($cn, "SELECT * from sanpham");
+            while ($row6 = mysqli_fetch_array($query6, MYSQLI_ASSOC)) { ?>
+            <a href="chitietsp.php?idsp=<?php echo $row6['sp_id']?>">
+            <div class="image-item1">
+                    <div class="image1">
+                        <img src="../uploads/<?php echo $row6['sp_imgavt']?>" alt="" />
+                    </div>
+                </div>
+            </a>
+            <?php } ?>
+
+        </div>
+        <!-- Game được đề xuất -->
+    </section>
     <!-- Game được yêu thích nhất-->
     <section class="container product-content" id="like">
         <div class="heading">
@@ -346,27 +369,6 @@ if (isset($_GET['partnerCode'])) {
                 </div>
             <?php } ?>
 
-            <!-- <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
-                </div>
-            </div>
-            <div class="image-item">
-                <div class="image">
-                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
-                </div>
-            </div> -->
-
         </div>
     </section>
     <!-- coppyright -->
@@ -397,14 +399,13 @@ if (isset($_GET['partnerCode'])) {
 
     </footer>
 
-
-    <script src="../js/index.js"></script>
-    <script src="../js/logout.js"></script>
-    <!-- <script src="../js/themvaogiohang.js"></script> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/logout.js"></script>
     <script src="../js/slider.js"></script>
+    <script src="../js/slider1.js"></script>
 </body>
 
 </html>
