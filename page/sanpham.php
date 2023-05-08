@@ -24,6 +24,10 @@ include_once('database_connection.php'); ?>
 </head>
 
 <body>
+    <script>
+        let arr_TL = []
+        let arr_NSX = []
+    </script>
     <!-- custom scroll bar -->
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
@@ -91,8 +95,20 @@ include_once('database_connection.php'); ?>
             <!-- tìm kiếm -->
             <div class="search">
                 <div class="search-item">
-                    <input type="text" class="search-input" placeholder=" " name="hoten" value="">
+                    <input type="text" class="search-input" placeholder=" " onkeyup="thanhsearch()" id="thanhsearch"
+                        name="thanhsearch">
                     <span class="search-lable">Tìm kiếm</span>
+                    <script>
+                        function thanhsearch() {
+                            let tk = document.getElementById("thanhsearch").value;
+                            $.post('thanhsearch.php', {
+                                data: tk
+                            }, function (data) {
+                                $('#saling').html(data);
+                            })
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
@@ -107,9 +123,8 @@ include_once('database_connection.php'); ?>
             </ul>
         </div>
     </div>
-    <!-- content -->
 
-    <!-- Game đang được giảm giá -->
+    <!-- content -->
     <section class="saling container" id="saling">
         <div class="saling-content">
             <div class="cards">
@@ -132,42 +147,73 @@ include_once('database_connection.php'); ?>
                         <div class="content">
                             <div class="back">
                                 <div class="back-content">
-                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243"
-                                        alt="">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt']; ?>">
                                 </div>
                             </div>
                             <div class="front">
                                 <div class="img">
-                                    <img src="https://cdn.akamai.steamstatic.com/steam/spotlights/3158a7251c1744ddf5bbb2e1/spotlight_image_french.jpg?t=1681343243"
-                                        alt="">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt']; ?>">
                                 </div>
                                 <div class="front-content">
+                                    <?php
+                                    $query1 = mysqli_query($cn, "SELECT * from giamgia");
+                                    $giamoi = 0;
+                                    while ($row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC)) {
+                                        $today = date('Y-m-d');
+                                        if ($row1['sp_id'] == $row['sp_id'] && strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                                            $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
+                                            ?>
+                                            <small class="badge">
+                                                <?php echo $row1['gg_phantram']; ?>%
+                                            </small>
+                                        <?php } else { ?>
+                                            <small></small>
+                                        <?php }
 
-                                    <!-- phần trăm sale -->
-                                    <small class="badge">20%</small>
+                                    }
+                                    ?>
                                     <div class="description">
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>soldes editeur</strong>
+                                                <strong>
+                                                    <?php echo $row['sp_tengame']; ?>
+                                                </strong>
                                             </p>
                                         </div>
-                                        <div class="card-footer">
-                                            <!-- giá trước khi sale -->
-                                            <div class="footer-label">
-                                                <label for="" class="price-old">120.000.000đ</label>
+                                        <?php
+                                        if ($giamoi != 0) { ?>
+                                            <div class="card-footer">
+                                                <!-- giá trước khi sale -->
+                                                <div class="footer-label">
+                                                    <label for="" class="price-old">
+                                                        <?php echo $row['sp_gia']; ?>đ
+                                                    </label>
+                                                </div>
+                                                <!-- giá sai khi sale -->
+                                                <div class="footer-label">
+                                                    <label for="">
+                                                        <?php echo $giamoi; ?>đ
+                                                    </label>
+                                                </div>
                                             </div>
+                                            <?php $giamoi = 0;
+                                        } else { ?>
                                             <!-- giá sai khi sale -->
                                             <div class="footer-label">
-                                                <label for="">120.000.000đ</label>
+                                                <label for="">
+                                                    <?php echo $row['sp_gia']; ?>đ
+                                                </label>
                                             </div>
-                                        </div>
+                                        <?php }
+                                        ?>
+
 
                                         <div class="card-btn">
                                             <!-- button detail -->
                                             <div class="card-button">
-                                                <a href="">
-                                                    <ion-icon name="detail-outline"></ion-icon>
+                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                    <i class="bx bx-dots-horizontal-rounded"></i>
                                                 </a>
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
@@ -201,7 +247,7 @@ include_once('database_connection.php'); ?>
                 for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>#saling">
                         <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
                                echo 'active';
-                           } ?>" value="<?php echo $i; ?>" >
+                           } ?>" value="<?php echo $i; ?>">
                             <?php echo $i; ?>
                         </li>
                     </a>
@@ -225,8 +271,8 @@ include_once('database_connection.php'); ?>
                 <div class="group">
                     <div class="pro"></div>
                     <div class="range-input">
-                        <input class="range-min" max="1000000" type="range" value="0">
-                        <input class="range-max" max="1000000" type="range" value="1000000">
+                        <input class="range-min" max="1000000" id="giaMin" type="range" value="0">
+                        <input class="range-max" max="1000000" id="giaMax" type="range" value="1000000">
                     </div>
                     <div class="range-text">
                         <div class="text-min">0</div>
@@ -238,7 +284,7 @@ include_once('database_connection.php'); ?>
                 <div class=" filter-item items ">
                     <div class="item-title ">
                         <label for=" ">Thể loại</label>
-                        <span>hành động, đua xe</span>
+                        <span id="TLs"></span>
                     </div>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
@@ -247,18 +293,29 @@ include_once('database_connection.php'); ?>
                 <div class="filter-item items ">
                     <div class="item-title ">
                         <label for=" ">Nhà sản xuất</label>
-                        <span>VNG</span>
+                        <span id="NSXs"></span>
                     </div>
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </div>
             </a>
 
             <div class="filter-item filter-btn ">
-                <a href="#" class="btn-filter">Lọc</a>
-                <a href="#" class="btn-filter">Hủy</a>
+                <button id="Loc" onclick="Loc()">Lọc</button>
+                <button id="Huy">Hủy</button>
             </div>
+            <script>
+                function Loc() {
+                    let giaMin = document.getElementById('giaMin').value
+                    let giaMax = document.getElementById('giaMax').value
+                    
+                    arr_NSX.forEach(element => {
+                        alert(element)
+                    });
+                }
+            </script>
         </div>
     </div>
+
 
     <!-- Thể loại -->
     <div class="filter-control hidden" id="category">
@@ -268,32 +325,45 @@ include_once('database_connection.php'); ?>
             </a>
             <h1>Thể loại</h1>
             <button class="btn-filter" onclick="returnmodal()">Chọn</button>
+            <script>
+                function returnmodal() {
+                    var textTL = ""
+                    var textNSX = ""
+                    var checkboxTL = document.getElementsByName('timkiem_TL')
+                    var checkboxNSX = document.getElementsByName('timkiem_NSX')
+                    for (var i = 0; i < checkboxTL.length; i++) {
+                        if (checkboxTL[i].checked == true) {
+                            arr_TL.push(checkboxTL[i].value)
+                            textTL = textTL + checkboxTL[i].value + " "
+                        }
+                    }
+                    for (var i = 0; i < checkboxNSX.length; i++) {
+                        if (checkboxNSX[i].checked == true) {
+                            arr_NSX.push(checkboxNSX[i].value)
+                            textNSX = textNSX + checkboxNSX[i].value + " "
+                        }
+                    }
+                    document.getElementById("TLs").innerHTML = textTL
+                    document.getElementById("NSXs").innerHTML = textNSX
+                    modal.style.display = "block";
+                    nsx.style.display = "none";
+                    theloai.style.display = "none";
+                }
+            </script>
         </div>
         <div class="filter-itemss">
-            <!-- 1 thể loại -->
-            <label for="tl_id" class="lable-item">
-                <div class="filter-item items">
-                    <label for="tl_id">Đua xe</label>
-                    <input type="checkbox" name="" id="tl_id">
-                </div>
-            </label>
-            <!-- 1 thể loại -->
-            <!-- 1 thể loại -->
-            <label for="tl_id" class="lable-item">
-                <div class="filter-item items">
-                    <label for="tl_id">Đua xe</label>
-                    <input type="checkbox" name="" id="tl_id">
-                </div>
-            </label>
-            <!-- 1 thể loại -->
-            <!-- 1 thể loại -->
-            <label for="tl_id" class="lable-item">
-                <div class="filter-item items">
-                    <label for="tl_id">Đua xe</label>
-                    <input type="checkbox" name="" id="tl_id">
-                </div>
-            </label>
-            <!-- 1 thể loại -->
+            <?php
+            $s = mysqli_query($cn, "SELECT * from theloai");
+            while ($r = mysqli_fetch_array($s, MYSQLI_ASSOC)) { ?>
+                <label class="lable-item">
+                    <div class="filter-item items">
+                        <label for="<?php echo $r['tl_ten']; ?>"><?php echo $r['tl_ten']; ?></label>
+                        <input type="checkbox" name="timkiem_TL" value="<?php echo $r['tl_ten']; ?>">
+                    </div>
+                </label>
+            <?php }
+            ?>
+
         </div>
     </div>
     <!-- nsx -->
@@ -306,52 +376,28 @@ include_once('database_connection.php'); ?>
             <button class="btn-filter" onclick="returnmodal()">Chọn</button>
         </div>
         <div class="filter-itemss">
-            <!-- 1 nhà sản xuất -->
-            <label for="nsx_id" class="lable-item">
-                <div class="filter-item items">
-                    <label for="nsx_id">VNG</label>
-                    <input type="checkbox" name="" id="nsx_id">
-                </div>
-            </label>
-            <!-- 1 nhà sản xuất -->
+            <?php
+            $s = mysqli_query($cn, "SELECT * from nsx");
+            while ($r = mysqli_fetch_array($s, MYSQLI_ASSOC)) {
+                if (strpos($r['nsx_ten'], "a") != false) { ?>
+                    <label class="lable-item">
+                        <div class="filter-item items">
+                            <label for="<?php echo $r['nsx_ten']; ?>"><?php echo $r['nsx_ten']; ?></label>
+                            <input type="checkbox" name="timkiem_NSX" value="<?php echo $r['nsx_ten']; ?>">
+                        </div>
+                    </label>
+                <?php }
+            } ?>
+
         </div>
     </div>
-
-
-    <!-- coppyright -->
-    <footer class="coppyright ">
-        <div class="footer__content container">
-            <div class="logo-page">
-                <a href="Index2.html" class="logo">S-<span>Game</span></a>
-            </div>
-            <div class="page">
-                <h1 class="footer__title">Trang</h1>
-                <a href="">Trang chủ</a>
-                <a href="">Phổ biến</a>
-                <a href="">Game giảm giá</a>
-                <a href="">Thể loại</a>
-                <a href="">Liên hệ</a>
-            </div>
-            <div class="conection">
-                <h1 class="footer__title">Liên hệ</h1>
-                <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-                <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-            </div>
-        </div>
-        <div class="vd">
-            <p>&#169; Carpool Venom All Right Reserved</p>
-        </div>
-
-    </footer>
 
     <script src="../js/index.js "></script>
     <script src="../js/sanpham.js "></script>
 
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
-   
+
 </body>
 
 </html>
