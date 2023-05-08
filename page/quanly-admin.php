@@ -1344,25 +1344,25 @@ include_once('database_connection.php'); ?>
                     </div>
                 </div>
             </div>
-
+        </div>
         <!-- Thêm Thể loại -->
         <div class="client menu-tab" id="category">
             <!-- tabs -->
             <div class="tabs">
                 <?php
-            if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
-                echo "<script> document.getElementById('Themtheloai').click();
+                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
+                        echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabThemTL').click();
                         alert('Thêm thể loại thành công!!') </script>";
-                unset($_SESSION['dangkythanhcong']);
-            }
-            if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
-                echo "<script> document.getElementById('Themtheloai').click();
+                        unset($_SESSION['dangkythanhcong']);
+                    }
+                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
+                        echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabDSTL').click();
                         alert('Cập nhật thể loại thành công!!') </script>";
-                unset($_SESSION['dangkythanhcong']);
-            }
-            ?>
+                        unset($_SESSION['dangkythanhcong']);
+                    }
+                    ?>
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-category')" id="tabThemTL">
                         Thêm thể loại
@@ -1463,7 +1463,7 @@ include_once('database_connection.php'); ?>
 
                             <tbody class="danhsachtimkiemTL">
                             </tbody>
-
+                        </table>
                     </div>
 
                 </div>
@@ -1668,32 +1668,32 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị ngày -->
                                 <select name="ngay" id="">
                                     <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
+                                        for ($date = 1; $date <= 31; $date++) {
+                                            ?>
                                     <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="thang" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="nam" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -1737,22 +1737,22 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -1822,32 +1822,32 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị ngày -->
                                 <select name="" id="">
                                     <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
+                                        for ($date = 1; $date <= 31; $date++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -1880,32 +1880,32 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị ngày -->
                                 <select name="" id="">
                                     <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
+                                        for ($date = 1; $date <= 31; $date++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -1938,32 +1938,32 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị ngày -->
                                 <select name="" id="">
                                     <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
+                                        for ($date = 1; $date <= 31; $date++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -2018,22 +2018,22 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -2066,22 +2066,22 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -2114,22 +2114,22 @@ include_once('database_connection.php'); ?>
                                 <!-- Hiển thị tháng -->
                                 <select name="" id="">
                                     <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
+                                        for ($month = 1; $month <= 12; $month++) {
+                                            ?>
                                     <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                                 <!-- Hiển thị năm -->
                                 <select name="" id="">
                                     <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                            ?>
                                     <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
                                     <?php
-                                    }
-                                    ?>
+                                        }
+                                        ?>
                                 </select>
                             </td>
                         </tr>
@@ -2161,20 +2161,20 @@ include_once('database_connection.php'); ?>
         </div>
 
 
-            <!-- Sản phẩm đang giảm giá -->
-            <div class="client menu-tab" id="on-sale">
-                <div class="sale-main">
-                    <div class="table-control">
-                        <div class="type-table">
-                            <select class="type-table" name="" id="" onchange="saletable(this)">
-                                <option value="" selected="selected">
-                                    ---Chọn loại bảng muốn hiển thị---
-                                </option>
-                                <option value="sale-games">Giảm giá theo game</option>
-                                <option value="sale-categorys">Giảm giá theo thể loại</option>
-                                <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
-                            </select>
-                        </div>
+        <!-- Sản phẩm đang giảm giá -->
+        <div class="client menu-tab" id="on-sale">
+            <div class="sale-main">
+                <div class="table-control">
+                    <div class="type-table">
+                        <select class="type-table" name="" id="" onchange="saletable(this)">
+                            <option value="" selected="selected">
+                                ---Chọn loại bảng muốn hiển thị---
+                            </option>
+                            <option value="sale-games">Giảm giá theo game</option>
+                            <option value="sale-categorys">Giảm giá theo thể loại</option>
+                            <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
+                        </select>
+                    </div>
 
                     <div class="search">
                         <input class="search" type="text" placeholder="Tìm kiếm" />
@@ -2294,8 +2294,11 @@ include_once('database_connection.php'); ?>
             </div>
         </div>
 
-            <!-- ========================================THỐNG KÊ=============================================== -->
-        </div>
+        <!-- ========================================THỐNG KÊ=============================================== -->
+
+
+
+
 </body>
 <script>
 window.onload = function() {
