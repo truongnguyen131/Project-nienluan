@@ -10,15 +10,16 @@ menu.onclick = () => {
 
 let bell = document.querySelector(".nofication");
 document.querySelector("#bell-icon").onclick = () => {
-        bell.classList.toggle("active");
-    }
-    // tìm kiếm
+    bell.classList.toggle("active");
+}
+// tìm kiếm
 let search = document.querySelector(".search");
 document.querySelector("#search-icon").onclick = () => {
-        search.classList.toggle("active");
-    }
-    // custom scroll bar
-window.onscroll = function() { mufuntion() };
+    search.classList.toggle("active");
+}
+
+// custom scroll bar
+window.onscroll = function () { mufuntion() };
 
 function mufuntion() {
     var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
