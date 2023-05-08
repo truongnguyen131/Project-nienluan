@@ -36,6 +36,9 @@ include_once('database_connection.php');
 
 if (!isset($_SESSION["idtaikhoan"])) {
     $_SESSION["chuadangnhapthanhtoan"] = false;
+    if(isset($_GET['idsp'])){
+        $_SESSION["idsp"] = $_GET['idsp'];
+    }
     header("location:dangnhap.php");
 }
 $idtk = $_SESSION["idtaikhoan"];
@@ -186,27 +189,6 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     <?php
                     $tt = 0;
                     $sanpham = 1;
-                    if(isset($_GET['idsp'])){
-                        $idsp = $_GET['idsp'];
-                        $sp = mysqli_query($cn, "SELECT * FROM sanpham WHERE sp_id = $idsp");
-                        while ($row = mysqli_fetch_array($sp, MYSQLI_ASSOC)) {
-                            $tt = $tt + ($row['sp_gia'] * 1);
-                    ?>
-                            <div class="cart-item">
-                                <div class="item-right">
-                                    <h3><?php echo $row['sp_tengame'] ?></h3>
-                                    <span class="money"><?php echo currency_format($row['sp_gia']); ?></span><span> x 1</span>
-                                </div>
-                                <div class="item-left">
-                                    <?php $tong = $row['sp_gia']; ?>
-                                    <span><?php echo currency_format($tong); ?></span>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        
-                    }
-                    
                     if (!empty($_SESSION['xulygiohang']) && !isset($_GET['huy'])) {
                         foreach ($_SESSION['xulygiohang'] as $key => $value) {
                             $tt = $tt + ($value['dongia'] * $value['soluong']);
@@ -227,6 +209,31 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                         $sanpham = 0; ?>
                         <div></div>
                     <?php } ?>
+
+                    <?php
+                    
+                    if(isset($_GET['idsp'])){
+                        $sanpham = 1;
+                        $idsp = $_GET['idsp'];
+                        $sp = mysqli_query($cn, "SELECT * FROM sanpham WHERE sp_id = $idsp");
+                        while ($row = mysqli_fetch_array($sp, MYSQLI_ASSOC)) {
+                            $tt = $tt + ($row['sp_gia'] * 1);
+                    ?>
+                            <div class="cart-item">
+                                <div class="item-right">
+                                    <h3><?php echo $row['sp_tengame'] ?></h3>
+                                    <span class="money"><?php echo currency_format($row['sp_gia']); ?></span><span> x 1</span>
+                                </div>
+                                <div class="item-left">
+                                    <?php $tong = $row['sp_gia']; ?>
+                                    <span><?php echo currency_format($tong); ?></span>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        
+                    }?>
+                    
                     <!---------------->
                 </div>
                 <div class="cart-bottom">
@@ -248,7 +255,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                             <h3>0đ</h3>
                         <?php } else { ?>
                             <input type="text" id="tt" value="<?php echo $tt; ?>" hidden>
-                            <h3 id="total"></h3>
+                            <h3 id="total"><?php echo currency_format($tt); ?></h3>
                         <?php } ?>
 
 
@@ -345,11 +352,6 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
         var cb = document.getElementById('dtl').value;
         var tt = document.getElementById('tt').value;
         var total = tt - cb;
-
-        document.getElementById('tt').innerText = (total+cb).toLocaleString('vi', {
-            style: 'currency',
-            currency: 'VND'
-        });
       
         function onlyOne(checkbox) {
             var checkboxes = document.getElementsByName('check')
@@ -358,16 +360,15 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
             })
         }
 
-
-
         function clickToTotalDiscount() {
             if (document.getElementById('dtl').checked) {
                 document.getElementById('total').innerText = total.toLocaleString('vi', {
                     style: 'currency',
                     currency: 'VND'
                 });
-            } else {
-                document.getElementById('total').innerText = total.toLocaleString('vi', {
+            }
+            if (!document.getElementById('dtl').checked) {
+                document.getElementById('total').innerText = parseInt(tt).toLocaleString('vi', {
                     style: 'currency',
                     currency: 'VND'
                 });

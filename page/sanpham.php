@@ -24,10 +24,7 @@ include_once('database_connection.php'); ?>
 </head>
 
 <body>
-    <script>
-        let arr_TL = []
-        let arr_NSX = []
-    </script>
+
     <!-- custom scroll bar -->
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
@@ -301,23 +298,48 @@ include_once('database_connection.php'); ?>
 
             <div class="filter-item filter-btn ">
                 <button id="Loc" onclick="Loc()">Lọc</button>
-                <button id="Huy">Hủy</button>
+                <button id="Huy" onclick="Huy()">Hủy</button>
             </div>
             <script>
+                function Huy() {
+                    document.getElementById('giaMin').value = 0
+                    document.getElementById('giaMax').value = 1000000
+                    document.getElementById("TLs").innerHTML = ""
+                    document.getElementById("NSXs").innerHTML = ""
+                }
+
                 function Loc() {
                     let giaMin = document.getElementById('giaMin').value
                     let giaMax = document.getElementById('giaMax').value
-                    
-                    arr_NSX.forEach(element => {
-                        alert(element)
-                    });
+                    var checkboxTL = document.getElementsByName('timkiem_TL')
+                    var checkboxNSX = document.getElementsByName('timkiem_NSX')
+                    let arr_TL = []
+                    let arr_NSX = []
+                    for (var i = 0; i < checkboxTL.length; i++) {
+                        if (checkboxTL[i].checked == true) {
+                            arr_TL.push(checkboxTL[i].value)
+                        }
+                    }
+                    for (var i = 0; i < checkboxNSX.length; i++) {
+                        if (checkboxNSX[i].checked == true) {
+                            arr_NSX.push(checkboxNSX[i].value)
+                        }
+                    }
+                    $.post('thanhsearch.php', {
+                        giaMin: giaMin,
+                        giaMax: giaMax,
+                        arr_TL: arr_TL,
+                        arr_NSX: arr_NSX
+                    }, function (data) {
+                        $('#saling').html(data);
+                    })
                 }
             </script>
         </div>
     </div>
 
 
-    <!-- Thể loại -->
+    <!--filter Thể loại -->
     <div class="filter-control hidden" id="category">
         <div class="filter-title-item">
             <a href="#" onclick="returnmodal()">
@@ -333,16 +355,16 @@ include_once('database_connection.php'); ?>
                     var checkboxNSX = document.getElementsByName('timkiem_NSX')
                     for (var i = 0; i < checkboxTL.length; i++) {
                         if (checkboxTL[i].checked == true) {
-                            arr_TL.push(checkboxTL[i].value)
                             textTL = textTL + checkboxTL[i].value + " "
                         }
                     }
+
                     for (var i = 0; i < checkboxNSX.length; i++) {
                         if (checkboxNSX[i].checked == true) {
-                            arr_NSX.push(checkboxNSX[i].value)
                             textNSX = textNSX + checkboxNSX[i].value + " "
                         }
                     }
+
                     document.getElementById("TLs").innerHTML = textTL
                     document.getElementById("NSXs").innerHTML = textNSX
                     modal.style.display = "block";
@@ -351,6 +373,8 @@ include_once('database_connection.php'); ?>
                 }
             </script>
         </div>
+
+
         <div class="filter-itemss">
             <?php
             $s = mysqli_query($cn, "SELECT * from theloai");
@@ -366,7 +390,8 @@ include_once('database_connection.php'); ?>
 
         </div>
     </div>
-    <!-- nsx -->
+
+    <!--filter nsx -->
     <div class="filter-control hidden" id="nsxx">
         <div class="filter-title-item">
             <a href="#" onclick="returnmodal()">

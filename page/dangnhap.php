@@ -30,7 +30,13 @@ include_once('database_connection.php'); ?>
     }
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhtoan") {
         unset($_SESSION['dangkythanhcong']);
-        echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan2.php"</script>';
+        if(isset($_SESSION["idsp"])){
+            $idsp = $_SESSION["idsp"];
+            echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan2.php?idsp='.$idsp.'"</script>';
+            unset($_SESSION["idsp"]);
+        }else{
+            echo ' <script>window.location="http://localhost/Project-nienluan/page/thanhtoan2.php"</script>';
+        }
     }
 
     if (isset($_COOKIE['taikhoan']) && isset($_COOKIE['matkhau'])) {
