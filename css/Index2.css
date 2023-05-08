@@ -21,8 +21,6 @@ section {
     padding: 4rem 0 3rem;
 }
 
-html {}
-
 body {
     color: var(--text-color);
     background: var(--dark-color);
@@ -396,26 +394,25 @@ a {
     position: relative;
 }
 
+.box-text {
+    height: 100%;
+    background-image: linear-gradient(to top, rgb(249, 28, 28), rgba(249, 28, 28, 0.9), rgb(249, 28, 28, 0.8), rgb(249, 28, 28, 0.7), rgb(249, 28, 28, 0.6), rgb(249, 28, 28, 0.5), rgb(249, 28, 28, 0.4), rgb(249, 28, 28, 0.3), rgb(249, 28, 28, 0.2), rgb(249, 28, 28, 0.1), rgb(249, 28, 28, 0.05));
+}
+
 .image .box-text {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
     padding: 10px;
-    background: hsl(277, 14%, 20%, 0.8);
-    backdrop-filter: blur(10px);
-    border-radius: 0.5rem;
 }
 
 .image .box-text h2 {
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.image .box-text h3 {
-    font-size: 0.9rem;
-    font-weight: 400;
-    margin-bottom: 0.8rem;
+    text-align: center;
+    margin-top: 100%;
+    font-weight: bold;
+    font-size: 30px;
+    color: var(--text-color);
 }
 
 .rating-download {

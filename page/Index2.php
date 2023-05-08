@@ -11,7 +11,7 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/card2.css">
     <link rel="stylesheet" href="../css/click_slider.css">
-    <link rel="stylesheet" href="../css/a.css">
+    <link rel="stylesheet" href="../css/product-like.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -32,18 +32,18 @@ if (!function_exists('currency_format')) {
 }
 ?>
 <?php
- function diemtichluy($x)
- {
-     if ($x >= 2000000) {
-         $x = $x * 0.03 / 1000;
-         return CEIL($x);
-     }
-     if ($x >= 500000) {
-         $x = $x * 0.01 / 1000;
-         return CEIL($x);
-     }
-     return 0;
- }
+function diemtichluy($x)
+{
+    if ($x >= 2000000) {
+        $x = $x * 0.03 / 1000;
+        return CEIL($x);
+    }
+    if ($x >= 500000) {
+        $x = $x * 0.01 / 1000;
+        return CEIL($x);
+    }
+    return 0;
+}
 
 if (isset($_SESSION['idtaikhoan'])) {
     $idtk = $_SESSION["idtaikhoan"];
@@ -81,7 +81,7 @@ if (isset($_GET['partnerCode'])) {
 ?>
 
 <body>
-    
+
     <!-- custom scroll bar -->
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
@@ -198,22 +198,18 @@ if (isset($_GET['partnerCode'])) {
                 $id = $sosao['sp_id'];
             ?>
                 <div class="image-item">
-                    <div class="image">
+                    <div class="card">
                         <a class="sp_img" href="chitietsp.php?idsp=<?php echo $sosao['sp_id'] ?>">
-                            <img src="../uploads/<?php echo $sosao['sp_imgavt'] ?>" alt="" />
+                            <img src="../uploads/<?php echo $sosao['sp_imgavt'] ?>" alt="" class="card-image" />
                         </a>
-                        <div class="box-text">
-                            <h2><?php echo $sosao['sp_tengame'] ?></h2>
-                            <?php
-                            $theloai = mysqli_query($cn, "SELECT * from sanphamtheloai,theloai WHERE sanphamtheloai.tl_id = theloai.tl_id AND $id = sp_id"); ?>
-                            <h3 class="sp_theloai">Thể loại:
-                                <?php
-                                while ($value1 = mysqli_fetch_array($theloai, MYSQLI_ASSOC)) { ?>
-                                    <a class="tl_sp" href="">
-                                        <?php echo $value1['tl_ten'] ?>
-                                    </a>
-                                <?php } ?>
-                            </h3>
+                        <div class="card-content">
+                            <div class="card-top">
+                                <h3 class="card-title"><?php echo $sosao['sp_tengame'] ?></h3>
+                                <div class="card-user">
+                                    <h3><?php echo currency_format($sosao['sp_gia']) ?></h3>
+                                    <span><?php echo currency_format($sosao['sp_gia']) ?></span>
+                                </div>
+                            </div>
                             <div class="rating-download">
                                 <div class="rating">
                                     <i class='bx bxs-star'></i>
@@ -289,7 +285,7 @@ if (isset($_GET['partnerCode'])) {
                                             </div>
                                             <!-- button download -->
                                             <div class="card-button">
-                                                <a href="">
+                                                <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
                                                     <i class='bx bx-download'></i>
                                                 </a>
                                             </div>
@@ -324,19 +320,41 @@ if (isset($_GET['partnerCode'])) {
             <?php $query5 = mysqli_query($cn, "SELECT * from theloai");
             while ($row5 = mysqli_fetch_array($query5, MYSQLI_ASSOC)) { ?>
                 <div class="image-item">
-                    <div class="image">
-                        <a href="sanpham.php?idtl=<?php echo $row5['tl_id'] ?>">
-                            <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
-                        </a>
-                        <div class="box-text-category">
-                            <h2><?php echo $row5['tl_ten'] ?></h2>
+                    <a href="">
+                        <div class="image">
+                            <img src="../uploads/tl_<?php echo $row5['tl_id'] ?>.png" alt="" />
+                            <div class="box-text">
+                                <h2>
+                                    <?php echo $row5['tl_ten'] ?>
+                                </h2>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             <?php } ?>
+
+            <!-- <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                </div>
+            </div>
+            <div class="image-item">
+                <div class="image">
+                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80" alt="" />
+                </div>
+            </div> -->
+
         </div>
-        </div>
-        <!-- Game được yêu thích -->
     </section>
     <!-- coppyright -->
     <footer class="coppyright ">

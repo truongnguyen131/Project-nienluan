@@ -43,10 +43,6 @@ if (!isset($_SESSION["idtaikhoan"])) {
 }
 $idsp = "";
 $today = date('Y-m-d');
-if (!isset($_SESSION["idtaikhoan"])) {
-    $_SESSION["idsanpham"] = $idsp;
-    header("location:dangnhap.php");
-} else {
     if (!isset($_SESSION['xulygiohang'])) {
         $_SESSION['xulygiohang'] = array();
     }
@@ -76,13 +72,13 @@ if (!isset($_SESSION["idtaikhoan"])) {
                         ($_SESSION['xulygiohang'][$idsp]['dongia'] * ($row1['gg_phantram'] / 100));
                 }
             }
+            
         }
 
         if (isset($_GET['action'])) {
             header('Location:thanhtoan.php');
         }
     }
-}
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {

@@ -198,11 +198,11 @@ if (isset($_GET['idsp'])) {
                 <?php } ?>
 
             </div>
-            <div class="info-quantity">
+            <!-- <div class="info-quantity">
                <input class="product-btn-giam" type="button" id="giam" onclick="giamsl()" value="-"></input>
                 <input class="product-value" id="val" type="text" value="1">
                 <input class="product-btn-tang" type="button" id="tang" onclick="tangsl()" value="+"></input>
-            </div>
+            </div> -->
             <div class="infor-btn">
                 <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">Mua</a>
                 <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">Thêm vào giỏ hàng</a>

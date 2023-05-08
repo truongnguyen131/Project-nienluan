@@ -226,9 +226,9 @@ include_once('database_connection.php'); ?>
                     <?php
                     $query = mysqli_query($cn, "SELECT * FROM taikhoan");
                     while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
-                                                <script>
-                                                listTK.push("<?php echo $row['tk_taikhoan']; ?>")
-                                                </script>
+                        <script>
+                            listTK.push("<?php echo $row['tk_taikhoan']; ?>")
+                        </script>
                     <?php }
                     ?>
                     <button class="tablinks" onclick="openCity(event, 'add-client')" id="tabThemKH">
@@ -936,7 +936,6 @@ include_once('database_connection.php'); ?>
                                         </tr>
                                         <tbody class="danhsachtimkiemTK">
                                         </tbody>
-
                                     </table>
                                 </div>
                             </td>
@@ -961,9 +960,9 @@ include_once('database_connection.php'); ?>
                 echo "<script> document.getElementById('Themsanpham').click();
                         document.getElementById('tabDSSP').click();
                         alert('Cập nhật sản phẩm thành công!!') </script>";
-            unset($_SESSION['dangkythanhcong']);
-        }
-        ?>
+                unset($_SESSION['dangkythanhcong']);
+            }
+            ?>
             <div class="tabs">
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-product')" id="tabThemSP">
@@ -971,6 +970,9 @@ include_once('database_connection.php'); ?>
                     </button>
                     <button class="tablinks" onclick="openCity(event, 'list-product')" id="tabDSSP">
                         Danh sách sản phẩm
+                    </button>
+                    <button class="tablinks" onclick="openCity(event, 'accept-product')" id="tabXNSP">
+                        Xác nhận sản phẩm
                     </button>
                 </div>
 
@@ -1018,7 +1020,7 @@ include_once('database_connection.php'); ?>
                             <div class="loi" style="margin-bottom: 10px;" id="loitheloaisp"></div>
                         </div>
                         <div class="client-item" style="margin-top: 15px;">
-                        <span>Ngày phát hành</span>
+                            <span>Ngày phát hành</span>
                             <input type="date" max="<?php echo date('Y-m-d'); ?>" name="nph" id="nph" />
                             <div class="loi" id="loinph"></div>
                         </div>
@@ -1056,7 +1058,7 @@ include_once('database_connection.php'); ?>
                             </div>
                         </div>
                         <div class="client-item">
-                        <button type="button" id="bntThemSP" onclick="add_update_SP('add')">Thêm</button>
+                            <button type="button" id="bntThemSP" onclick="add_update_SP('add')">Thêm</button>
                             <button type="button" id="bntCapnhatSP" onclick="add_update_SP('update')" hidden>Cập
                                 nhật</button>
                             <button type="button" onclick="HuySP()">Hủy</button>
@@ -1075,40 +1077,40 @@ include_once('database_connection.php'); ?>
                         }
                     </script>
                     <script>
-                       function add_update_SP(choose){
-                        var check = 0
-                        var tensp = $('#tensp').val()
-                        var giasp = $('#giasp').val()
-                        var motasp = $('#motasp').val()
-                        var nph = $('#nph').val()
-                        var p_nsx = $('#p_nsx').val()
-                        var theloaisp = document.getElementById('theloaisp')
-                        var trailer = document.getElementById('trailer')
-                        var source = document.getElementById('source')
-                        var imgavt = document.getElementById('imgavt')
-                        var igl = document.getElementById('igl')
-                        let arr_tlsp = []
-                        let arr_igl = []
+                        function add_update_SP(choose) {
+                            var check = 0
+                            var tensp = $('#tensp').val()
+                            var giasp = $('#giasp').val()
+                            var motasp = $('#motasp').val()
+                            var nph = $('#nph').val()
+                            var p_nsx = $('#p_nsx').val()
+                            var theloaisp = document.getElementById('theloaisp')
+                            var trailer = document.getElementById('trailer')
+                            var source = document.getElementById('source')
+                            var imgavt = document.getElementById('imgavt')
+                            var igl = document.getElementById('igl')
+                            let arr_tlsp = []
+                            let arr_igl = []
 
-                        if (tensp.length < 5 || tensp.length > 50) {
-                            check -= 1
-                            $('#tensp').addClass('is-invalid');
-                            $('#loitensp').html("Tên sản phẩm chứa ít nhất 5-50 ký tự")
-                        } else {
-                            $('#tensp').removeClass('is-invalid')
-                            $('#loitensp').html("")
-                            check += 1
-                        }
+                            if (tensp.length < 5 || tensp.length > 50) {
+                                check -= 1
+                                $('#tensp').addClass('is-invalid');
+                                $('#loitensp').html("Tên sản phẩm chứa ít nhất 5-50 ký tự")
+                            } else {
+                                $('#tensp').removeClass('is-invalid')
+                                $('#loitensp').html("")
+                                check += 1
+                            }
 
-                        if (nph == "") {
-                            check -= 1
-                            $('#nph').addClass('is-invalid');
-                            $('#loinph').html("Hãy chọn ngày phát hành")
-                        } else {
-                            $('#nph').removeClass('is-invalid')
-                            $('#loinph').html("")
-                            check += 1
-                        }
+                            if (nph == "") {
+                                check -= 1
+                                $('#nph').addClass('is-invalid');
+                                $('#loinph').html("Hãy chọn ngày phát hành")
+                            } else {
+                                $('#nph').removeClass('is-invalid')
+                                $('#loinph').html("")
+                                check += 1
+                            }
 
                             if (giasp <= 50000) {
                                 check -= 1
@@ -1120,35 +1122,35 @@ include_once('database_connection.php'); ?>
                                 check += 1
                             }
 
-                        if (motasp.length < 10 || motasp.length > 100) {
-                            check -= 1
-                            $('#motasp').addClass('is-invalid');
-                            $('#loimotasp').html("Mô tả sản phẩm chứa ít nhất 10-100 ký tự")
-                        } else {
-                            $('#motasp').removeClass('is-invalid')
-                            $('#loimotasp').html("")
-                            check += 1
-                        }
-                        
-                        if (imgavt.files.length == "") {
-                            check -= 1
-                            $('#imgavt').addClass('is-invalid');
-                            $('#loiimgavt').html("Hãy chọn ảnh đại diện game")
-                        } else {
-                            $('#imgavt').removeClass('is-invalid')
-                            $('#loiimgavt').html("")
-                            check += 1
-                        }
-                        
-                        if (trailer.files.length == "") {
-                            check -= 1
-                            $('#trailer').addClass('is-invalid');
-                            $('#loitrailer').html("Hãy chọn trailer game")
-                        } else {
-                            $('#trailer').removeClass('is-invalid')
-                            $('#loitrailer').html("")
-                            check += 1
-                        }
+                            if (motasp.length < 10 || motasp.length > 100) {
+                                check -= 1
+                                $('#motasp').addClass('is-invalid');
+                                $('#loimotasp').html("Mô tả sản phẩm chứa ít nhất 10-100 ký tự")
+                            } else {
+                                $('#motasp').removeClass('is-invalid')
+                                $('#loimotasp').html("")
+                                check += 1
+                            }
+
+                            if (imgavt.files.length == "") {
+                                check -= 1
+                                $('#imgavt').addClass('is-invalid');
+                                $('#loiimgavt').html("Hãy chọn ảnh đại diện game")
+                            } else {
+                                $('#imgavt').removeClass('is-invalid')
+                                $('#loiimgavt').html("")
+                                check += 1
+                            }
+
+                            if (trailer.files.length == "") {
+                                check -= 1
+                                $('#trailer').addClass('is-invalid');
+                                $('#loitrailer').html("Hãy chọn trailer game")
+                            } else {
+                                $('#trailer').removeClass('is-invalid')
+                                $('#loitrailer').html("")
+                                check += 1
+                            }
 
                             if (source.files.length == "") {
                                 check -= 1
@@ -1160,105 +1162,113 @@ include_once('database_connection.php'); ?>
                                 check += 1
                             }
 
-                        if(theloaisp.options.selectedIndex == -1){
-                            check -= 1
-                            $('#theloaisp').addClass('is-invalid');
-                            $('#loitheloaisp').html("Hãy chọn thể loại của sản phẩm")
-                        }else{
-                            $('#theloaisp').removeClass('is-invalid')
-                            $('#loitheloaisp').html("")
-                            check += 1
-                            for (let index = 0; index < theloaisp.options.length; index++) {
-                            if (theloaisp.options[index].selected) {
-                                arr_tlsp.push(theloaisp.options[index].value)
-                            }                        
-                        }
-                        }
-
-                        if(igl.files.length == ""){
-                            check -= 1
-                            $('#igl').addClass('is-invalid');
-                            $('#loiigl').html("Hãy chọn ảnh mô tả sản phẩm")
-                        }else{
-                            $('#igl').removeClass('is-invalid')
-                            $('#loiigl').html("")
-                            check += 1  
-                            for (let index = 0; index < igl.files.length; index++) {
-                                arr_igl.push(igl.files[index].name)
-                            }             
-                        }
-
-                        if (check ==9) {
-                            if (choose == 'add') {
-
-                                let formData2 = new FormData()
-                                formData2.append("source",source.files[0]);
-                                fetch('themsanpham.php', {method: "POST", body: formData2})
-                              
-                                let formData = new FormData()
-                                formData.append("imgavt",imgavt.files[0]);
-                                fetch('themsanpham.php', {method: "POST", body: formData})
-                        
-                                let formData1 = new FormData()
-                                formData1.append("trailer",trailer.files[0]);
-                                fetch('themsanpham.php', {method: "POST", body: formData1})
-
-                                
-                                let formData0 = new FormData()
-                                for (let index = 0; index < igl.files.length; index++) {
-                                    formData0.append("igl[]",igl.files[index])
+                            if (theloaisp.options.selectedIndex == -1) {
+                                check -= 1
+                                $('#theloaisp').addClass('is-invalid');
+                                $('#loitheloaisp').html("Hãy chọn thể loại của sản phẩm")
+                            } else {
+                                $('#theloaisp').removeClass('is-invalid')
+                                $('#loitheloaisp').html("")
+                                check += 1
+                                for (let index = 0; index < theloaisp.options.length; index++) {
+                                    if (theloaisp.options[index].selected) {
+                                        arr_tlsp.push(theloaisp.options[index].value)
+                                    }
                                 }
-                                var x = new XMLHttpRequest()
-                                x.open("POST","themsanpham.php", true)
-                                x.send(formData0)
-
-                                $.post('themsanpham.php', {
-                                    tensp: tensp,
-                                    giasp: giasp,
-                                    motasp: motasp,
-                                    p_nsx: p_nsx,
-                                    nph: nph,
-                                    imgavt: imgavt.files[0].name,
-                                    trailer: trailer.files[0].name,
-                                    source: source.files[0].name,
-                                    igl_name: arr_igl,
-                                    theloaisp: arr_tlsp,
-                                    page: "themSP"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
                             }
-                        
-                        }
 
-                    
-                        
-                        } 
+                            if (igl.files.length == "") {
+                                check -= 1
+                                $('#igl').addClass('is-invalid');
+                                $('#loiigl').html("Hãy chọn ảnh mô tả sản phẩm")
+                            } else {
+                                $('#igl').removeClass('is-invalid')
+                                $('#loiigl').html("")
+                                check += 1
+                                for (let index = 0; index < igl.files.length; index++) {
+                                    arr_igl.push(igl.files[index].name)
+                                }
+                            }
+
+                            if (check == 9) {
+                                if (choose == 'add') {
+
+                                    let formData2 = new FormData()
+                                    formData2.append("source", source.files[0]);
+                                    fetch('themsanpham.php', {
+                                        method: "POST",
+                                        body: formData2
+                                    })
+
+                                    let formData = new FormData()
+                                    formData.append("imgavt", imgavt.files[0]);
+                                    fetch('themsanpham.php', {
+                                        method: "POST",
+                                        body: formData
+                                    })
+
+                                    let formData1 = new FormData()
+                                    formData1.append("trailer", trailer.files[0]);
+                                    fetch('themsanpham.php', {
+                                        method: "POST",
+                                        body: formData1
+                                    })
+
+
+                                    let formData0 = new FormData()
+                                    for (let index = 0; index < igl.files.length; index++) {
+                                        formData0.append("igl[]", igl.files[index])
+                                    }
+                                    var x = new XMLHttpRequest()
+                                    x.open("POST", "themsanpham.php", true)
+                                    x.send(formData0)
+
+                                    $.post('themsanpham.php', {
+                                        tensp: tensp,
+                                        giasp: giasp,
+                                        motasp: motasp,
+                                        p_nsx: p_nsx,
+                                        nph: nph,
+                                        imgavt: imgavt.files[0].name,
+                                        trailer: trailer.files[0].name,
+                                        source: source.files[0].name,
+                                        igl_name: arr_igl,
+                                        theloaisp: arr_tlsp,
+                                        page: "themSP"
+                                    }, function(data) {
+                                        $('body').html(data);
+                                    })
+                                }
+
+                            }
+
+
+
+                        }
                     </script>
                 </div>
                 <!-- Danh sách sản phẩm-->
                 <div id="list-product" class="tabcontent">
                     <div class="table-control">
                         <div class="search">
-                            <input class="search" type="text" id="timkiem_sp"
-                                placeholder="Tìm kiếm bằng tên sản phẩm" />
+                            <input class="search" type="text" id="timkiem_sp" placeholder="Tìm kiếm bằng tên sản phẩm" />
                             <button class="search" onclick="timkiemSP()">Tìm kiếm</button>
                             <script>
-                            var search = $('#timkiem_sp').val()
-                            $.post('timkiemSP.php', {
-                                data: search
-                            }, function(data) {
-                                $('.danhsachtimkiemSP').html(data);
-                            })
-
-                            function timkiemSP() {
                                 var search = $('#timkiem_sp').val()
                                 $.post('timkiemSP.php', {
                                     data: search
                                 }, function(data) {
                                     $('.danhsachtimkiemSP').html(data);
                                 })
-                            }
+
+                                function timkiemSP() {
+                                    var search = $('#timkiem_sp').val()
+                                    $.post('timkiemSP.php', {
+                                        data: search
+                                    }, function(data) {
+                                        $('.danhsachtimkiemSP').html(data);
+                                    })
+                                }
                             </script>
                         </div>
                     </div>
@@ -1268,533 +1278,953 @@ include_once('database_connection.php'); ?>
                         </div>
                     </div>
                 </div>
+                <!-- Xác nhận sản phẩm -->
+                <div class="tabcontent" id="accept-product">
+                <div class="table-control">
+                            <div class="search">
+                                <input class="search" type="text" placeholder="Tìm kiếm nhà sản xuất" />
+                                <button class="search">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <div class="table-thongke table-responsive-sm">
+                            <!-- Thông tin về game -->
+                            <table border="1" id="inforgame" style="display: table" class="table
+                                            table-inforgame">
+                                <tr class="table-primary">
+                                    <th scope="col">STT</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tên NSX</th>
+                                    <th scope="col">Tên Game</th>
+                                    <th scope="col">Ngày phát hành</th>
+                                    <th scope="col">Giá</th>
+                                    <th scope="col">Giảm giá</th>
+                                    <th scope="col">Giảm mới</th>
+                                    <th scope="col">Chấp nhận</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>VNG</td>
+                                    <td>Sonic</td>
+                                    <td>
+                                       12/2/2022
+                                    </td>
+                                    <td>
+                                      120.000đ
+                                    </td>
+                                    <td>
+                                      10%
+                                    </td>
+                                    <td>
+                                      100.000đ
+                                    </td>
+                                    <td>
+                                      <a href="">
+                                      <ion-icon name="bag-check-outline"></ion-icon>
+                                      </a>
+                                    </td>
+                                    <td>
+                                      <a href="">
+                                      <ion-icon name="close-circle-outline"></ion-icon>
+                                      </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
             </div>
-        </div>
 
-        <!-- Thêm Thể loại -->
-        <div class="client menu-tab" id="category">
-            <!-- tabs -->
-            <div class="tabs">
+            <!-- Thêm Thể loại -->
+            <div class="client menu-tab" id="category">
                 <!-- tabs -->
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'add-category')" id="defaultOpen">
-                        Thêm thể loại
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-category')">
-                        Danh sách thể loại
-                    </button>
-                </div>
-                <!-- Thêm thể loại -->
-                <div id="add-category" class="tabcontent">
-                    <div class="tabcontent-addproduct">
+                <div class="tabs">
+                    <!-- tabs -->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'add-category')" id="defaultOpen">
+                            Thêm thể loại
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'list-category')">
+                            Danh sách thể loại
+                        </button>
+                    </div>
+                    <!-- Thêm thể loại -->
+                    <div id="add-category" class="tabcontent">
+                        <div class="tabcontent-addproduct">
+                            <div class="client-item">
+                                <span>Tên thể loại</span>
+                                <input type="text" placeholder="Tên thể loại " />
+                            </div>
+                        </div>
                         <div class="client-item">
-                            <span>Tên thể loại</span>
-                            <input type="text" placeholder="Tên thể loại " />
+                            <button type="submit">Thêm</button>
+                            <button type="reset">Hủy</button>
                         </div>
                     </div>
-                    <div class="client-item">
-                        <button type="submit">Thêm</button>
-                        <button type="reset">Hủy</button>
+                    <!-- Danh sách thể loại -->
+                    <div id="list-category" class="tabcontent">
+                        <div class="table-control">
+                            <div class="search">
+                                <input class="search" type="text" placeholder="Tìm kiếm" />
+                                <button class="search">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <div class="table-thongke table-responsive-sm">
+                            <!-- Thông tin về game -->
+                            <table border="1" id="inforgame" style="display: table" class="table
+                                            table-inforgame">
+                                <tr class="table-primary">
+                                    <th scope="col">STT</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tên thể loại</th>
+                                    <th scope="col">Tổng số game</th>
+                                    <th scope="col">Cập nhật</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>Hành động</td>
+                                    <td>50</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-category')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và thể loại -->
+                            <table border="1 " id="inforgame-and-category" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Thể loại</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>abc,ol,io</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và nsx -->
+                            <table border="1 " id="inforgame-and-nsx" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Tên nhà sản xuất</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>VNG</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và ảnh,trailer -->
+                            <table border="1 " id="inforgame-and-img" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Ảnh đại diện</th>
+                                    <th>Ảnh liên quan</th>
+                                    <th>Trailer</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>abc.jpn</td>
+                                    <td>th.jpn,th2.jpn,th3.jpn</td>
+                                    <td>th.video</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và source game -->
+                            <table border="1 " id="inforgame-and-source" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>File game</th>
+                                    <th>File mở rộng</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>okoko.zip</td>
+                                    <td>1.zip,2.zip,3.zip</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- tabs -->
+                </div>
+            </div>
+
+            <!-- Thêm giảm giá -->
+            <div class="client menu-tab" id="sale-product">
+                <div class="sale-main">
+                    <div class="table-control">
+                        <div class="type-table">
+                            <select class="type-table" name="" id="" onchange="changetable(this)">
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="games">Game</option>
+                                <option value="categorys">Thể loại</option>
+                                <option value="nsxs">Nhà sản xuất</option>
+                            </select>
+                        </div>
+
+                        <div class="search">
+                            <input class="search" type="text" placeholder="Tìm kiếm" />
+                            <button class="search">Tìm kiếm</button>
+                        </div>
+                    </div>
+                    <!-- Tất cả sản phẩm -->
+                    <table style="display: table" id="all-games">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Ngày phát hành</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Giá mới</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>STAR WARS Jedi: Fallen Order</td>
+                                            <td>12/4/2022</td>
+                                            <td>120.000đ</td>
+                                            <td></td>
+                                            <td>60.000đ</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>STAR WARS Jedi: Fallen Order</td>
+                                            <td>12/4/2022</td>
+                                            <td>120.000đ</td>
+                                            <td></td>
+                                            <td>60.000đ</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- Tất cả thể loại -->
+                    <table style="display: none" id="all-category">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên thể loại</th>
+                                            <th scope="col">Tổng cộng game</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>Hành động</td>
+                                            <td>30</td>
+                                            <td>30</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- Tất cả nhà sản xuất -->
+                    <table style="display: none" id="all-nsx">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên nhà sản xuất</th>
+                                            <th scope="col">Tổng cộng game</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>VNG</td>
+                                            <td>20</td>
+                                            <td>40</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="control-sale">
+                        <div class="sale-title">
+                            Kéo để chọn phần trăm
+                        </div>
+                        <div class="control-middel">
+                            <div class="slidecontainer">
+                                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                                <p><b>Value: <span id="demo"></span>%</b></p>
+                            </div>
+                            <div class="date-star-end">
+                                <div class="date-star">
+                                    <span>Ngày bắt đầu</span>
+                                    <input type="datetime-local" name="" id="">
+                                </div>
+                                <div class="date-end">
+                                    <span>Ngày kết thúc</span>
+                                    <input type="datetime-local" name="" id="">
+                                </div>
+
+                            </div>
+                            <div class="sale-screen">
+                                <table border="1" class="table">
+                                    <tr class="table-light">
+                                        <td>27</td>
+                                        <td>STAR WARS Jedi: Fallen Order</td>
+                                        <td>30%</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="sale-update">
+                            <button type="submit">Cập nhật</button>
+                            <button type="reset">Hủy bỏ</button>
+                        </div>
                     </div>
                 </div>
-                <!-- Danh sách thể loại -->
-                <div id="list-category" class="tabcontent">
+            </div>
+
+            <!-- ========================================THỐNG KÊ=============================================== -->
+            <!-- Doanh thu -->
+            <div class="client menu-tab" id="revenue">
+                <div class="sale-main">
                     <div class="table-control">
+                        <div class="type-table">
+                            <select class="type-table" name="" id="" onchange="statistical(this)">
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="revenue_date">Doanh thu hằng ngày</option>
+                                <option value="revenue_month">Doanh thu hằng tháng</option>
+                            </select>
+                        </div>
+
                         <div class="search">
                             <input class="search" type="text" placeholder="Tìm kiếm" />
                             <button class="search">Tìm kiếm</button>
                         </div>
                     </div>
                     <div class="table-thongke table-responsive-sm">
-                        <!-- Thông tin về game -->
-                        <table border="1" id="inforgame" style="display: table" class="table
-                                            table-inforgame">
+                        <!-- Thống kê doanh thu theo từng ngày -->
+                        <table border="1" id="revenue-date" style="display: table" class="table">
+                            <tr class="table-success">
+                                <td colspan="7">
+                                    <!-- Hiển thị ngày -->
+                                    <select name="ngay" id="">
+                                        <?php
+                                        for ($date = 1; $date <= 31; $date++) {
+                                        ?>
+                                            <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị tháng -->
+                                    <select name="thang" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="nam" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
                             <tr class="table-primary">
                                 <th scope="col">STT</th>
+                                <th scope="col">Ngày/Tháng/Năm</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th>Lượt tải</th>
+                                <th scope="col">Tổng tiền (Lượt tải)</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>
+                                    13/01/2001
+                                </td>
+                                <td>27</td>
+                                <td>STAR WARS Jedi: Fallen Order</td>
+
+                                <td>120.000đ</td>
+                                <td>
+                                    10
+                                </td>
+                                <td>
+                                    1.200.000đ
+                                </td>
+                            </tr>
+                            <!-- tổng cộng -->
+                            <tr class="table-danger">
+                                <th colspan="5">Tổng</th>
+                                <td>10</td>
+                                <td>1.200.000đ</td>
+                            </tr>
+                        </table>
+                        <!-- Thống kê doanh thu theo từng tháng -->
+                        <table border="1" id="revenue-month" style="display: none" class="table">
+                            <tr class="table-success">
+                                <td colspan="7">
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Tháng/Năm</th>
+                                <th scope="col">Số lượt tải(tháng)</th>
+                                <th scope="col">Tổng tiền(tháng)</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>
+                                    01/2021
+                                </td>
+                                <td>30</td>
+                                <td>100.000.000đ</td>
+                            </tr>
+                            <!-- tổng cộng -->
+                            <tr class="table-danger">
+                                <th colspan="2">Tổng cộng</th>
+                                <td>30</td>
+                                <td>1.200.000đ</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Số lượt tải -->
+            <div class="client menu-tab" id="downloads">
+                <!-- tabs -->
+                <div class="tabs">
+                    <!-- tabs -->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'download_date')" id="defaultOpen">
+                            Số lượt tải mỗi ngày
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'download_month')">
+                            Số lượt tải mỗi tháng
+                        </button>
+                    </div>
+                    <!-- Lượt tải mỗi ngày -->
+                    <div id="download_date" class="tabcontent">
+                        <div class="table-control">
+                            <div class="type-table">
+                                <select class="type-table" name="" id="" onchange="downloads_date(this)">
+                                    <option value="" selected="selected">
+                                        ---Chọn loại bảng muốn hiển thị---
+                                    </option>
+                                    <option value="downloads-games-date">Số lượt tải theo game (ngày)</option>
+                                    <option value="downloads-category-date">Số lượt tải theo thể loại (ngày)</option>
+                                    <option value="downloads-nsx-date">Số lượt tải theo nhà sản xuất (ngày)</option>
+                                </select>
+                            </div>
+
+                            <div class="search">
+                                <input class="search" type="text" placeholder="Tìm kiếm" />
+                                <button class="search">Tìm kiếm</button>
+                            </div>
+                        </div>
+
+                        <!-- Thống kê lượt tải game trong ngày -->
+                        <table border="1" id="downloadsgametheongay" style="display: table" class="table">
+                            <tr class="table-success">
+                                <td colspan="8">
+                                    <!-- Hiển thị ngày -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($date = 1; $date <= 31; $date++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Ngày/Tháng/Năm tải</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên game</th>
+                                <th scope="col">Số lượt tải</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>
+                                    13/01/2021
+                                </td>
+                                <td>27</td>
+                                <td>Mario</td>
+                                <td>100</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <th colspan="4">Tổng</th>
+                                <td>10</td>
+                            </tr>
+                        </table>
+                        <!-- Thống kê lượt tải thể loại trong ngày -->
+                        <table border="1" id="downloadscategorytheongay" style="display: none" class="table">
+                            <tr class="table-success">
+                                <td colspan="8">
+                                    <!-- Hiển thị ngày -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($date = 1; $date <= 31; $date++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Ngày/Tháng/Năm tải</th>
                                 <th scope="col">ID</th>
                                 <th scope="col">Tên thể loại</th>
-                                <th scope="col">Tổng số game</th>
-                                <th scope="col">Cập nhật</th>
-                                <th scope="col">Xóa</th>
+                                <th scope="col">Số lượt tải</th>
                             </tr>
+                            <!-- dữ liệu từng game -->
                             <tr class="table-light">
                                 <td>1</td>
+                                <td>
+                                    13/01/2021
+                                </td>
                                 <td>27</td>
                                 <td>Hành động</td>
-                                <td>50</td>
-                                <td>
-                                    <button class="tablinks" onclick="openCity(event,
-                                                        'add-category')" id="defaultOpen">
-                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
+                                <td>100</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <th colspan="4">Tổng</th>
+                                <td>10</td>
                             </tr>
                         </table>
-                        <!-- Thông tin về game và thể loại -->
-                        <table border="1 " id="inforgame-and-category" style="display: none" class="table">
-                            <tr class="table-primary">
-                                <th>STT</th>
-                                <th>ID</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Thể loại</th>
-                                <th>Cập nhật</th>
-                                <th>Xóa</th>
+                        <!-- Thống kê lượt tải nsx trong ngày -->
+                        <table border="1" id="downloadsnsxtheongay" style="display: none" class="table">
+                            <tr class="table-success">
+                                <td colspan="8">
+                                    <!-- Hiển thị ngày -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($date = 1; $date <= 31; $date++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
                             </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Ngày/Tháng/Năm tải</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên nhà sản xuất</th>
+                                <th scope="col">Số lượt tải</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
                             <tr class="table-light">
                                 <td>1</td>
-                                <td>27</td>
-                                <td>STAR WARS Jedi: Fallen Order</td>
-                                <td>abc,ol,io</td>
                                 <td>
-                                    <button class="tablinks" onclick="openCity(event,
-                                                        'add-product')" id="defaultOpen">
-                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                    </button>
+                                    13/01/2021
                                 </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                        <!-- Thông tin về game và nsx -->
-                        <table border="1 " id="inforgame-and-nsx" style="display: none" class="table">
-                            <tr class="table-primary">
-                                <th>STT</th>
-                                <th>ID</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Tên nhà sản xuất</th>
-                                <th>Cập nhật</th>
-                                <th>Xóa</th>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1</td>
                                 <td>27</td>
-                                <td>STAR WARS Jedi: Fallen Order</td>
                                 <td>VNG</td>
-                                <td>
-                                    <button class="tablinks" onclick="openCity(event,
-                                                        'add-product')" id="defaultOpen">
-                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
+                                <td>100</td>
                             </tr>
-                        </table>
-                        <!-- Thông tin về game và ảnh,trailer -->
-                        <table border="1 " id="inforgame-and-img" style="display: none" class="table">
-                            <tr class="table-primary">
-                                <th>STT</th>
-                                <th>ID</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Ảnh đại diện</th>
-                                <th>Ảnh liên quan</th>
-                                <th>Trailer</th>
-                                <th>Cập nhật</th>
-                                <th>Xóa</th>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1</td>
-                                <td>27</td>
-                                <td>STAR WARS Jedi: Fallen Order</td>
-                                <td>abc.jpn</td>
-                                <td>th.jpn,th2.jpn,th3.jpn</td>
-                                <td>th.video</td>
-                                <td>
-                                    <button class="tablinks" onclick="openCity(event,
-                                                        'add-product')" id="defaultOpen">
-                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                        <!-- Thông tin về game và source game -->
-                        <table border="1 " id="inforgame-and-source" style="display: none" class="table">
-                            <tr class="table-primary">
-                                <th>STT</th>
-                                <th>ID</th>
-                                <th>Tên sản phẩm</th>
-                                <th>File game</th>
-                                <th>File mở rộng</th>
-                                <th>Cập nhật</th>
-                                <th>Xóa</th>
-                            </tr>
-                            <tr class="table-light">
-                                <td>1</td>
-                                <td>27</td>
-                                <td>STAR WARS Jedi: Fallen Order</td>
-                                <td>okoko.zip</td>
-                                <td>1.zip,2.zip,3.zip</td>
-                                <td>
-                                    <button class="tablinks" onclick="openCity(event,
-                                                        'add-product')" id="defaultOpen">
-                                        <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
-                                    </button>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
+                            <tr class="table-danger">
+                                <th colspan="4">Tổng</th>
+                                <td>10</td>
                             </tr>
                         </table>
                     </div>
 
+                    <!-- Lượt tải mỗi tháng -->
+                    <div id="download_month" class="tabcontent">
+                        <div class="table-control">
+                            <div class="type-table">
+                                <select class="type-table" name="" id="" onchange="downloads_month(this)">
+                                    <option value="" selected="selected">
+                                        ---Chọn loại bảng muốn hiển thị---
+                                    </option>
+                                    <option value="downloads-games-month">Số lượt tải theo game (tháng)</option>
+                                    <option value="downloads-category-month">Số lượt tải theo thể loại (tháng)</option>
+                                    <option value="downloads-nsx-month">Số lượt tải theo nhà sản xuất (tháng)</option>
+                                </select>
+                            </div>
+
+                            <div class="search">
+                                <input class="search" type="text" placeholder="Tìm kiếm" />
+                                <button class="search">Tìm kiếm</button>
+                            </div>
+                        </div>
+
+                        <!-- Thống kê lượt tải game trong tháng -->
+                        <table border="1" id="downloadsgametheothang" style="display: table" class="table">
+                            <tr class="table-success">
+                                <td colspan="8">
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Tháng/Năm tải</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên game</th>
+                                <th scope="col">Số lượt tải</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>
+                                    01/2021
+                                </td>
+                                <td>27</td>
+                                <td>Mario</td>
+                                <td>100</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <th colspan="4">Tổng</th>
+                                <td>10</td>
+                            </tr>
+                        </table>
+                        <!-- Thống kê lượt tải thể loại trong tháng -->
+                        <table border="1" id="downloadscategorytheothang" style="display: none" class="table">
+                            <tr class="table-success">
+                                <td colspan="8">
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Tháng/Năm tải</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên thể loại</th>
+                                <th scope="col">Số lượt tải</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>
+                                    01/2021
+                                </td>
+                                <td>27</td>
+                                <td>Hành động</td>
+                                <td>100</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <th colspan="4">Tổng</th>
+                                <td>10</td>
+                            </tr>
+                        </table>
+                        <!-- Thống kê lượt tải nsx trong tháng -->
+                        <table border="1" id="downloadsnsxtheothang" style="display: none" class="table">
+                            <tr class="table-success">
+                                <td colspan="8">
+                                    <!-- Hiển thị tháng -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($month = 1; $month <= 12; $month++) {
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- Hiển thị năm -->
+                                    <select name="" id="">
+                                        <?php
+                                        for ($year = 2022; $year <= 2030; $year++) {
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">Tháng/Năm tải</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên nhà sản xuất</th>
+                                <th scope="col">Số lượt tải</th>
+                            </tr>
+                            <!-- dữ liệu từng game -->
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>
+                                    01/2021
+                                </td>
+                                <td>27</td>
+                                <td>VNG</td>
+                                <td>100</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <th colspan="4">Tổng</th>
+                                <td>10</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <!-- tabs -->
             </div>
-        </div>
 
-        <!-- Thêm giảm giá -->
-        <div class="client menu-tab" id="sale-product">
-            <div class="sale-main">
-                <div class="table-control">
-                    <div class="type-table">
-                        <select class="type-table" name="" id="" onchange="changetable(this)">
-                            <option value="" selected="selected">
-                                ---Chọn loại bảng muốn hiển thị---
-                            </option>
-                            <option value="games">Game</option>
-                            <option value="categorys">Thể loại</option>
-                            <option value="nsxs">Nhà sản xuất</option>
-                        </select>
-                    </div>
 
-                    <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm" />
-                        <button class="search">Tìm kiếm</button>
-                    </div>
-                </div>
-                <!-- Tất cả sản phẩm -->
-                <table style="display: table" id="all-games">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Ngày phát hành</th>
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Giá mới</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>12/4/2022</td>
-                                        <td>120.000đ</td>
-                                        <td></td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>12/4/2022</td>
-                                        <td>120.000đ</td>
-                                        <td></td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <!-- Tất cả thể loại -->
-                <table style="display: none" id="all-category">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên thể loại</th>
-                                        <th scope="col">Tổng cộng game</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>Hành động</td>
-                                        <td>30</td>
-                                        <td>30</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <!-- Tất cả nhà sản xuất -->
-                <table style="display: none" id="all-nsx">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên nhà sản xuất</th>
-                                        <th scope="col">Tổng cộng game</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>VNG</td>
-                                        <td>20</td>
-                                        <td>40</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <div class="control-sale">
-                    <div class="sale-title">
-                        Kéo để chọn phần trăm
-                    </div>
-                    <div class="control-middel">
-                        <div class="slidecontainer">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                            <p><b>Value: <span id="demo"></span>%</b></p>
-                        </div>
-                        <div class="date-star-end">
-                            <div class="date-star">
-                                <span>Ngày bắt đầu</span>
-                                <input type="datetime-local" name="" id="">
-                            </div>
-                            <div class="date-end">
-                                <span>Ngày kết thúc</span>
-                                <input type="datetime-local" name="" id="">
-                            </div>
-
-                        </div>
-                        <div class="sale-screen">
-                            <table border="1" class="table">
-                                <tr class="table-light">
-                                    <td>27</td>
-                                    <td>STAR WARS Jedi: Fallen Order</td>
-                                    <td>30%</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="sale-update">
-                        <button type="submit">Cập nhật</button>
-                        <button type="reset">Hủy bỏ</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ========================================THỐNG KÊ=============================================== -->
-        <!-- Doanh thu -->
-        <div class="client menu-tab" id="revenue">
-            <div class="sale-main">
-                <div class="table-control">
-                    <div class="type-table">
-                        <select class="type-table" name="" id="" onchange="statistical(this)">
-                            <option value="" selected="selected">
-                                ---Chọn loại bảng muốn hiển thị---
-                            </option>
-                            <option value="revenue_date">Doanh thu hằng ngày</option>
-                            <option value="revenue_month">Doanh thu hằng tháng</option>
-                        </select>
-                    </div>
-
-                    <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm" />
-                        <button class="search">Tìm kiếm</button>
-                    </div>
-                </div>
-                <div class="table-thongke table-responsive-sm">
-                    <!-- Thống kê doanh thu theo từng ngày -->
-                    <table border="1" id="revenue-date" style="display: table" class="table">
-                        <tr class="table-success">
-                            <td colspan="7">
-                                <!-- Hiển thị ngày -->
-                                <select name="ngay" id="">
-                                    <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
-                                                                <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị tháng -->
-                                <select name="thang" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="nam" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Ngày/Tháng/Năm</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên sản phẩm</th>
-                            <th scope="col">Giá</th>
-                            <th>Lượt tải</th>
-                            <th scope="col">Tổng tiền (Lượt tải)</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                13/01/2001
-                            </td>
-                            <td>27</td>
-                            <td>STAR WARS Jedi: Fallen Order</td>
-
-                            <td>120.000đ</td>
-                            <td>
-                                10
-                            </td>
-                            <td>
-                                1.200.000đ
-                            </td>
-                        </tr>
-                        <!-- tổng cộng -->
-                        <tr class="table-danger">
-                            <th colspan="5">Tổng</th>
-                            <td>10</td>
-                            <td>1.200.000đ</td>
-                        </tr>
-                    </table>
-                    <!-- Thống kê doanh thu theo từng tháng -->
-                    <table border="1" id="revenue-month" style="display: none" class="table">
-                        <tr class="table-success">
-                            <td colspan="7">
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Tháng/Năm</th>
-                            <th scope="col">Số lượt tải(tháng)</th>
-                            <th scope="col">Tổng tiền(tháng)</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                01/2021
-                            </td>
-                            <td>30</td>
-                            <td>100.000.000đ</td>
-                        </tr>
-                        <!-- tổng cộng -->
-                        <tr class="table-danger">
-                            <th colspan="2">Tổng cộng</th>
-                            <td>30</td>
-                            <td>1.200.000đ</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Số lượt tải -->
-        <div class="client menu-tab" id="downloads">
-            <!-- tabs -->
-            <div class="tabs">
-                <!-- tabs -->
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'download_date')" id="defaultOpen">
-                        Số lượt tải mỗi ngày
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'download_month')">
-                        Số lượt tải mỗi tháng
-                    </button>
-                </div>
-                <!-- Lượt tải mỗi ngày -->
-                <div id="download_date" class="tabcontent">
+            <!-- Sản phẩm đang giảm giá -->
+            <div class="client menu-tab" id="on-sale">
+                <div class="sale-main">
                     <div class="table-control">
                         <div class="type-table">
-                            <select class="type-table" name="" id="" onchange="downloads_date(this)">
+                            <select class="type-table" name="" id="" onchange="saletable(this)">
                                 <option value="" selected="selected">
                                     ---Chọn loại bảng muốn hiển thị---
                                 </option>
-                                <option value="downloads-games-date">Số lượt tải theo game (ngày)</option>
-                                <option value="downloads-category-date">Số lượt tải theo thể loại (ngày)</option>
-                                <option value="downloads-nsx-date">Số lượt tải theo nhà sản xuất (ngày)</option>
+                                <option value="sale-games">Giảm giá theo game</option>
+                                <option value="sale-categorys">Giảm giá theo thể loại</option>
+                                <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
                             </select>
                         </div>
 
@@ -1803,487 +2233,120 @@ include_once('database_connection.php'); ?>
                             <button class="search">Tìm kiếm</button>
                         </div>
                     </div>
+                    <!-- Tất cả sản phẩm -->
+                    <table style="display: table" id="sale-all-games">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Ngày phát hành</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Giá mới</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
 
-                    <!-- Thống kê lượt tải game trong ngày -->
-                    <table border="1" id="downloadsgametheongay" style="display: table" class="table">
-                        <tr class="table-success">
-                            <td colspan="8">
-                                <!-- Hiển thị ngày -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Ngày/Tháng/Năm tải</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên game</th>
-                            <th scope="col">Số lượt tải</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                13/01/2021
-                            </td>
-                            <td>27</td>
-                            <td>Mario</td>
-                            <td>100</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th colspan="4">Tổng</th>
-                            <td>10</td>
-                        </tr>
-                    </table>
-                    <!-- Thống kê lượt tải thể loại trong ngày -->
-                    <table border="1" id="downloadscategorytheongay" style="display: none" class="table">
-                        <tr class="table-success">
-                            <td colspan="8">
-                                <!-- Hiển thị ngày -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Ngày/Tháng/Năm tải</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên thể loại</th>
-                            <th scope="col">Số lượt tải</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                13/01/2021
-                            </td>
-                            <td>27</td>
-                            <td>Hành động</td>
-                            <td>100</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th colspan="4">Tổng</th>
-                            <td>10</td>
-                        </tr>
-                    </table>
-                    <!-- Thống kê lượt tải nsx trong ngày -->
-                    <table border="1" id="downloadsnsxtheongay" style="display: none" class="table">
-                        <tr class="table-success">
-                            <td colspan="8">
-                                <!-- Hiển thị ngày -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($date = 1; $date <= 31; $date++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Ngày/Tháng/Năm tải</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên nhà sản xuất</th>
-                            <th scope="col">Số lượt tải</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                13/01/2021
-                            </td>
-                            <td>27</td>
-                            <td>VNG</td>
-                            <td>100</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th colspan="4">Tổng</th>
-                            <td>10</td>
-                        </tr>
-                    </table>
-                </div>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>STAR WARS Jedi: Fallen Order</td>
+                                            <td>12/4/2022</td>
+                                            <td>120.000đ</td>
+                                            <td></td>
+                                            <td>60.000đ</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
 
-                <!-- Lượt tải mỗi tháng -->
-                <div id="download_month" class="tabcontent">
-                    <div class="table-control">
-                        <div class="type-table">
-                            <select class="type-table" name="" id="" onchange="downloads_month(this)">
-                                <option value="" selected="selected">
-                                    ---Chọn loại bảng muốn hiển thị---
-                                </option>
-                                <option value="downloads-games-month">Số lượt tải theo game (tháng)</option>
-                                <option value="downloads-category-month">Số lượt tải theo thể loại (tháng)</option>
-                                <option value="downloads-nsx-month">Số lượt tải theo nhà sản xuất (tháng)</option>
-                            </select>
-                        </div>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>STAR WARS Jedi: Fallen Order</td>
+                                            <td>12/4/2022</td>
+                                            <td>120.000đ</td>
+                                            <td></td>
+                                            <td>60.000đ</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
 
-                        <div class="search">
-                            <input class="search" type="text" placeholder="Tìm kiếm" />
-                            <button class="search">Tìm kiếm</button>
-                        </div>
-                    </div>
+                                        </tr>
 
-                    <!-- Thống kê lượt tải game trong tháng -->
-                    <table border="1" id="downloadsgametheothang" style="display: table" class="table">
-                        <tr class="table-success">
-                            <td colspan="8">
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
+                                    </table>
+                                </div>
                             </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Tháng/Năm tải</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên game</th>
-                            <th scope="col">Số lượt tải</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                01/2021
-                            </td>
-                            <td>27</td>
-                            <td>Mario</td>
-                            <td>100</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th colspan="4">Tổng</th>
-                            <td>10</td>
                         </tr>
                     </table>
-                    <!-- Thống kê lượt tải thể loại trong tháng -->
-                    <table border="1" id="downloadscategorytheothang" style="display: none" class="table">
-                        <tr class="table-success">
-                            <td colspan="8">
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
+                    <!-- Tất cả thể loại -->
+                    <table style="display: none" id="sale-all-category">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên thể loại</th>
+                                            <th scope="col">Tổng cộng game</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>Hành động</td>
+                                            <td>30</td>
+                                            <td>30</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Tháng/Năm tải</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên thể loại</th>
-                            <th scope="col">Số lượt tải</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                01/2021
-                            </td>
-                            <td>27</td>
-                            <td>Hành động</td>
-                            <td>100</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th colspan="4">Tổng</th>
-                            <td>10</td>
                         </tr>
                     </table>
-                    <!-- Thống kê lượt tải nsx trong tháng -->
-                    <table border="1" id="downloadsnsxtheothang" style="display: none" class="table">
-                        <tr class="table-success">
-                            <td colspan="8">
-                                <!-- Hiển thị tháng -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($month = 1; $month <= 12; $month++) {
-                                        ?>
-                                                                <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
-                                <!-- Hiển thị năm -->
-                                <select name="" id="">
-                                    <?php
-                                    for ($year = 2022; $year <= 2030; $year++) {
-                                        ?>
-                                                                <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                                <?php
-                                    }
-                                    ?>
-                                </select>
+                    <!-- Tất cả nhà sản xuất -->
+                    <table style="display: none" id="sale-all-nsx">
+                        <tr>
+                            <td colspan="10">
+                                <div class="scrollbar">
+                                    <table border="1" class="table">
+                                        <tr class="table-primary">
+                                            <th scope="col">STT</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên nhà sản xuất</th>
+                                            <th scope="col">Tổng cộng game</th>
+                                            <th scope="col">Phần trăm giảm giá</th>
+                                            <th scope="col">Ngày bắt đầu</th>
+                                            <th scope="col">Ngày kết thúc</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                        <tr class="table-light">
+                                            <td>1</td>
+                                            <td>27</td>
+                                            <td>VNG</td>
+                                            <td>20</td>
+                                            <td>40</td>
+                                            <td>20/3/2022</td>
+                                            <td>30/3/2022</td>
+                                            <td><input class="addpercent" type="submit" name="" id="" value="Thêm %"></td>
+                                        </tr>
+
+                                    </table>
+                                </div>
                             </td>
-                        </tr>
-                        <tr class="table-primary">
-                            <th scope="col">STT</th>
-                            <th scope="col">Tháng/Năm tải</th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên nhà sản xuất</th>
-                            <th scope="col">Số lượt tải</th>
-                        </tr>
-                        <!-- dữ liệu từng game -->
-                        <tr class="table-light">
-                            <td>1</td>
-                            <td>
-                                01/2021
-                            </td>
-                            <td>27</td>
-                            <td>VNG</td>
-                            <td>100</td>
-                        </tr>
-                        <tr class="table-danger">
-                            <th colspan="4">Tổng</th>
-                            <td>10</td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <!-- tabs -->
+
+            <!-- ========================================THỐNG KÊ=============================================== -->
         </div>
-
-
-        <!-- Sản phẩm đang giảm giá -->
-        <div class="client menu-tab" id="on-sale">
-            <div class="sale-main">
-                <div class="table-control">
-                    <div class="type-table">
-                        <select class="type-table" name="" id="" onchange="saletable(this)">
-                            <option value="" selected="selected">
-                                ---Chọn loại bảng muốn hiển thị---
-                            </option>
-                            <option value="sale-games">Giảm giá theo game</option>
-                            <option value="sale-categorys">Giảm giá theo thể loại</option>
-                            <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
-                        </select>
-                    </div>
-
-                    <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm" />
-                        <button class="search">Tìm kiếm</button>
-                    </div>
-                </div>
-                <!-- Tất cả sản phẩm -->
-                <table style="display: table" id="sale-all-games">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Ngày phát hành</th>
-                                        <th scope="col">Giá</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Giá mới</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>12/4/2022</td>
-                                        <td>120.000đ</td>
-                                        <td></td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>12/4/2022</td>
-                                        <td>120.000đ</td>
-                                        <td></td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <!-- Tất cả thể loại -->
-                <table style="display: none" id="sale-all-category">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên thể loại</th>
-                                        <th scope="col">Tổng cộng game</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>Hành động</td>
-                                        <td>30</td>
-                                        <td>30</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <!-- Tất cả nhà sản xuất -->
-                <table style="display: none" id="sale-all-nsx">
-                    <tr>
-                        <td colspan="10">
-                            <div class="scrollbar">
-                                <table border="1" class="table">
-                                    <tr class="table-primary">
-                                        <th scope="col">STT</th>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Tên nhà sản xuất</th>
-                                        <th scope="col">Tổng cộng game</th>
-                                        <th scope="col">Phần trăm giảm giá</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>VNG</td>
-                                        <td>20</td>
-                                        <td>40</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input class="addpercent" type="submit" name="" id="" value="Thêm %"></td>
-                                    </tr>
-
-                                </table>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- ========================================THỐNG KÊ=============================================== -->
-    </div>
 </body>
 <script>
     window.onload = function() {
@@ -2350,21 +2413,21 @@ if (isset($_SESSION['updateKH']) && $_SESSION['updateKH'] != 0) {
         $_SESSION['KHUpdate'] = $row['kh_id'];
         $mk = $row['tk_matkhau'];
     }
-    ?>
-                            <script>
-                            window.onload = function() {
-                                document.getElementById('Themkhachhang').click();
-                                document.getElementById('tabThemKH').click();
-                                document.getElementById('hotenKH').value = "<?php echo $hoten; ?>";
-                                document.getElementById('sdtKH').value = "<?php echo $sdt; ?>";
-                                document.getElementById('emailKH').value = "<?php echo $email; ?>";
-                                document.getElementById('tkKH').value = "<?php echo $tk; ?>";
-                                document.getElementById('mkKH').value = "<?php echo $mk; ?>";
-                                document.getElementById("bntUpdateKH").removeAttribute("hidden");
-                                document.getElementById("bntThemKH").setAttribute("hidden", "hidden");
+?>
+    <script>
+        window.onload = function() {
+            document.getElementById('Themkhachhang').click();
+            document.getElementById('tabThemKH').click();
+            document.getElementById('hotenKH').value = "<?php echo $hoten; ?>";
+            document.getElementById('sdtKH').value = "<?php echo $sdt; ?>";
+            document.getElementById('emailKH').value = "<?php echo $email; ?>";
+            document.getElementById('tkKH').value = "<?php echo $tk; ?>";
+            document.getElementById('mkKH').value = "<?php echo $mk; ?>";
+            document.getElementById("bntUpdateKH").removeAttribute("hidden");
+            document.getElementById("bntThemKH").setAttribute("hidden", "hidden");
 
-                            }
-                            </script>
+        }
+    </script>
 <?php }
 $_SESSION['updateKH'] = 0;
 
@@ -2381,20 +2444,20 @@ if (isset($_SESSION['updateNSX']) && $_SESSION['updateNSX'] != 0) {
         $_SESSION['nsxUpdate'] = $row['nsx_id'];
         $mk = $row['tk_matkhau'];
     }
-    ?>
-                            <script>
-                            window.onload = function() {
-                                document.getElementById('Themnsx').click();
-                                document.getElementById('tabThemNSX').click();
-                                document.getElementById('tenNSX').value = "<?php echo $tennsx; ?>";
-                                document.getElementById('sdtNSX').value = "<?php echo $sdt; ?>";
-                                document.getElementById('emailNSX').value = "<?php echo $email; ?>";
-                                document.getElementById('tkNSX').value = "<?php echo $tk; ?>";
-                                document.getElementById('mkNSX').value = "<?php echo $mk; ?>";
-                                document.getElementById("bntUpdateNSX").removeAttribute("hidden");
-                                document.getElementById("bntThemNSX").setAttribute("hidden", "hidden");
-                            }
-                            </script>
+?>
+    <script>
+        window.onload = function() {
+            document.getElementById('Themnsx').click();
+            document.getElementById('tabThemNSX').click();
+            document.getElementById('tenNSX').value = "<?php echo $tennsx; ?>";
+            document.getElementById('sdtNSX').value = "<?php echo $sdt; ?>";
+            document.getElementById('emailNSX').value = "<?php echo $email; ?>";
+            document.getElementById('tkNSX').value = "<?php echo $tk; ?>";
+            document.getElementById('mkNSX').value = "<?php echo $mk; ?>";
+            document.getElementById("bntUpdateNSX").removeAttribute("hidden");
+            document.getElementById("bntThemNSX").setAttribute("hidden", "hidden");
+        }
+    </script>
 <?php }
 $_SESSION['updateNSX'] = 0;
 
@@ -2411,18 +2474,18 @@ if (isset($_SESSION['updateTK']) && $_SESSION['updateTK'] != 0) {
         $_SESSION['taikhoanUpdate'] = $row['tk_id'];
         $mk = $row['tk_matkhau'];
     }
-    ?>
-                            <script>
-                            window.onload = function() {
-                                document.getElementById('Themtaikhoan').click();
-                                document.getElementById('tabThemTK').click();
-                                document.getElementById('TaiKhoan').value = "<?php echo $tk; ?>";
-                                document.getElementById('MatKhau').value = "<?php echo $mk; ?>";
-                                document.getElementById('<?php echo $loaitk; ?>').checked = true
-                                document.getElementById("bntCapnhatTK").removeAttribute("hidden");
-                                document.getElementById("bntThemTK").setAttribute("hidden", "hidden");
-                            }
-                            </script>
+?>
+    <script>
+        window.onload = function() {
+            document.getElementById('Themtaikhoan').click();
+            document.getElementById('tabThemTK').click();
+            document.getElementById('TaiKhoan').value = "<?php echo $tk; ?>";
+            document.getElementById('MatKhau').value = "<?php echo $mk; ?>";
+            document.getElementById('<?php echo $loaitk; ?>').checked = true
+            document.getElementById("bntCapnhatTK").removeAttribute("hidden");
+            document.getElementById("bntThemTK").setAttribute("hidden", "hidden");
+        }
+    </script>
 <?php }
 $_SESSION['updateTK'] = 0;
 
@@ -2431,31 +2494,31 @@ $_SESSION['updateTK'] = 0;
 
 <!-- select chọn table sản phẩm -->
 <script>
-var infors = document.getElementById("inforgamess");
-var categorys = document.getElementById("inforgame-and-categoryss");
-var imgtrailers = document.getElementById("inforgame-and-imgss");
+    var infors = document.getElementById("inforgamess");
+    var categorys = document.getElementById("inforgame-and-categoryss");
+    var imgtrailers = document.getElementById("inforgame-and-imgss");
 
-function change(obj) {
-    var values = obj.value;
-    if (values === "infor") {
-        infors.style.display = "table";
-        categorys.style.display = "none";
-        imgtrailers.style.display = "none";
+    function change(obj) {
+        var values = obj.value;
+        if (values === "infor") {
+            infors.style.display = "table";
+            categorys.style.display = "none";
+            imgtrailers.style.display = "none";
+        }
+        if (values === "category") {
+            infors.style.display = "none";
+            categorys.style.display = "table";
+            imgtrailers.style.display = "none";
+        }
+
+        if (values === "img-trailer") {
+            infors.style.display = "none";
+            categorys.style.display = "none";
+            imgtrailers.style.display = "table";
+        }
+
+
     }
-    if (values === "category") {
-        infors.style.display = "none";
-        categorys.style.display = "table";
-        imgtrailers.style.display = "none";
-    }
-
-    if (values === "img-trailer") {
-        infors.style.display = "none";
-        categorys.style.display = "none";
-        imgtrailers.style.display = "table";
-    }
-
-
-}
 </script>
 <!-- select chọn table giảm giá -->
 <script>

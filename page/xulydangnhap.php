@@ -20,7 +20,7 @@ if (mysqli_num_rows($Result) == 1) {
         $_SESSION["idtaikhoan"] = $row['tk_id'];
         $_SESSION["loaitaikhoan"] = $row['tk_loaitaikhoan'];
     }
-     if (isset($_SESSION["chuadangnhapthanhtoan"]) && $_SESSION["chuadangnhapthanhtoan"] != false) {
+     if (isset($_SESSION["chuadangnhapthanhtoan"]) && $_SESSION["chuadangnhapthanhtoan"] == false) {
         $_SESSION['dangnhapthanhcong'] = "thanhtoan";
         unset($_SESSION["chuadangnhapthanhtoan"]);
         header("location:dangnhap.php");
