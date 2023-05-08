@@ -250,7 +250,7 @@ if (isset($_GET['partnerCode'])) {
                 $today = date('Y-m-d');
                 $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id ");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                    if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                    if (strtotime($row['gg_ngaybatdau']) <= strtotime($today) && strtotime($row['gg_ngayketthuc']) >= strtotime($today)) {
                 ?>
                         <div class="card" id="<?php echo $row['sp_id'] ?>">
                             <div class="content">

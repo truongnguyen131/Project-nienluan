@@ -9,6 +9,11 @@ $email = isset($_POST['email1']) ? $_POST['email1'] : "";
 $taikhoan = isset($_POST['taikhoan1']) ? $_POST['taikhoan1'] : "";
 $matkhau = isset($_POST['matkhau1']) ? $_POST['matkhau1'] : "";
 $page = isset($_POST['page']) ? $_POST['page'] : "";
+$tenTL = isset($_POST['tenTL']) ? $_POST['tenTL'] : "";
+
+if ($page == "themTL") {
+    mysqli_query($cn, "INSERT INTO `theloai`(`tl_ten`) VALUES ('$tenTL')");
+}
 
 if ($page == "themTK") {
     if($loaitaikhoan == "admin"){
@@ -70,6 +75,10 @@ if ($page == "themKH") {
 }
 if ($page == "themNSX") {
     $_SESSION['dangkythanhcong'] = "ThemNSX";
+    header("location:quanly-admin.php");
+}
+if ($page == "themTL") {
+    $_SESSION['dangkythanhcong'] = "ThemTL";
     header("location:quanly-admin.php");
 }
 if ($page == "capNhatKH") {
