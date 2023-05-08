@@ -223,6 +223,24 @@ small {
     transform: translateY(-3px);
 }
 
+.card-button button {
+    outline: none;
+    border: 2px solid #eee;
+    display: flex;
+    padding: .5em;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: .3s ease-in-out;
+    color: white;
+    transition: 0.25s ease;
+}
+
+.card-button button:hover {
+    background: #fa5353;
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+    transform: translateY(-3px);
+}
+
 .front .img {
     position: absolute;
     width: 100%;

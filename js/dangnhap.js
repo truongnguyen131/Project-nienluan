@@ -12,7 +12,6 @@ function Huy() {
 }
 
 function kiemtraloi() {
-   
     var check = 0
     var tk = $('#tk').val()
     var mk = $('#mk').val()
@@ -50,7 +49,6 @@ function kiemtraloi() {
         })
 
     }
-
 }
 
 

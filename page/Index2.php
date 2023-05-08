@@ -96,11 +96,19 @@ if (isset($_GET['partnerCode'])) {
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
-                <a href="giohang2.php">
-                    <i class='bx bx-cart'></i>
-                </a>
+                <?php
+                if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
+                ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
+                    </a>
+                <?php } else { ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart'></i>
+                    </a>
+                <?php } ?>
                 <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
-                    <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                    <i class='bx bxs-user bx-tada' id="logout-icon"><span></span></i>
                 <?php } else { ?>
                     <a href="dangnhap.php">
                         <i class='bx bxs-user'></i>
@@ -181,7 +189,7 @@ if (isset($_GET['partnerCode'])) {
         <img src="https://dotesports.com/wp-content/uploads/2020/10/27031436/VALORANT_YR1_KeyArt_4k_3_.0-2.jpg" alt="">
         <div class="home-text">
             <h1>CITY OF THE <br> FUTURE</h1>
-            <a href="#" class="btn">Mua ngay</a>
+            <a href="#sale" class="btn">Mua ngay</a>
         </div>
     </section>
     <!-- Game được yêu thích nhất-->
@@ -221,7 +229,7 @@ if (isset($_GET['partnerCode'])) {
                                     ?>
                                     <span><?php echo number_format($avg, "1", ".", "") ?></span>
                                 </div>
-                                <a href="#" class="box-btn"><i class='bx bx-download'></i></a>
+                                <a href="thanhtoan2.php?idsp=<?php echo $sosao['sp_id'] ?>" class="box-btn"><i class='bx bx-download'></i></a>
                             </div>
                         </div>
                     </div>
@@ -238,70 +246,75 @@ if (isset($_GET['partnerCode'])) {
         </div>
         <div class="saling-content">
             <div class="cards">
-                <?php $query = mysqli_query($cn, "SELECT * from sanpham ");
-                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
-                    <div class="card">
-                        <div class="content">
-                            <div class="back">
-                                <div class="back-content">
-                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
-                                    <div class="rating">
-                                        <i class='bx bxs-star'></i>
-                                        <span>4.7</span>
+                <?php
+                $today = date('Y-m-d');
+                $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id ");
+                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                    if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                ?>
+                        <div class="card" id="<?php echo $row['sp_id'] ?>">
+                            <div class="content">
+                                <div class="back">
+                                    <div class="back-content">
+                                        <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                        <div class="rating">
+                                            <i class='bx bxs-star'></i>
+                                            <span>4.7</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="front">
-                                <div class="img">
-                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
-                                </div>
-                                <div class="front-content">
-                                    <!-- phần trăm sale -->
-                                    <small class="badge"><?php echo $row['gg_phantram'] ?>%</small>
-                                    <div class="description">
-                                        <div class="title">
-                                            <p class="title">
-                                                <!-- tên sản phẩm -->
-                                                <strong><?php echo $row['sp_tengame']; ?></strong>
-                                            </p>
-                                        </div>
-                                        <div class="card-footer">
-                                            <!-- giá trước khi sale -->
-                                            <div class="footer-label">
-                                                <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?>đ</label>
+                                <div class="front">
+                                    <div class="img">
+                                        <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                    </div>
+                                    <div class="front-content">
+                                        <!-- phần trăm sale -->
+                                        <small class="badge"><?php echo $row['gg_phantram'] ?>%</small>
+                                        <div class="description">
+                                            <div class="title">
+                                                <p class="title">
+                                                    <!-- tên sản phẩm -->
+                                                    <strong><?php echo $row['sp_tengame']; ?></strong>
+                                                </p>
                                             </div>
-                                            <!-- giá sau khi sale -->
-                                            <div class="footer-label">
-                                                <label for=""><?php echo currency_format($row['sp_gia']) ?></label>
+                                            <div class="card-footer">
+                                                <!-- giá trước khi sale -->
+                                                <div class="footer-label">
+                                                    <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?>đ</label>
+                                                </div>
+                                                <!-- giá sau khi sale -->
+                                                <div class="footer-label">
+                                                    <label for=""><?php echo currency_format($row['sp_gia']) ?></label>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="card-btn">
-                                            <!-- chi tiết sản phẩm -->
-                                            <div class="card-button">
-                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
-                                                    <i class='bx bx-dots-horizontal-rounded'></i>
-                                                </a>
-                                            </div>
-                                            <!-- button download -->
-                                            <div class="card-button">
-                                                <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
-                                                    <i class='bx bx-download'></i>
-                                                </a>
-                                            </div>
-                                            <!-- button thêm vào giỏ hàng -->
-                                            <div class="card-button">
-                                                <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">
-                                                    <i class='bx bxs-cart-alt'></i>
-                                                </a>
+                                            <div class="card-btn">
+                                                <!-- chi tiết sản phẩm -->
+                                                <div class="card-button">
+                                                    <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
+                                                        <i class='bx bx-dots-horizontal-rounded'></i>
+                                                    </a>
+                                                </div>
+                                                <!-- button download -->
+                                                <div class="card-button">
+                                                    <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                        <i class='bx bx-download'></i>
+                                                    </a>
+                                                </div>
+                                                <!-- button thêm vào giỏ hàng -->
+                                                <div class="card-button">
+                                                    <a href="themvaogiohang.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                        <i class='bx bx-cart'></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php } ?>
+                <?php }
+                } ?>
             </div>
         </div>
         <div class="products">
@@ -387,6 +400,7 @@ if (isset($_GET['partnerCode'])) {
 
     <script src="../js/index.js"></script>
     <script src="../js/logout.js"></script>
+    <!-- <script src="../js/themvaogiohang.js"></script> -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
