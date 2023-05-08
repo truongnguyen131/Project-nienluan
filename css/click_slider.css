@@ -35,10 +35,6 @@ button {
     padding-bottom: 50px;
 }
 
-.image-slider1 {
-    padding-bottom: 50px;
-}
-
 .image {
     height: 350px;
     margin-bottom: 20px;
@@ -48,13 +44,12 @@ button {
     margin-left: 10px;
 }
 
-
-/* .image img {
+.image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 12px;
-} */
+}
 
 .image-title {
     font-size: 20px;

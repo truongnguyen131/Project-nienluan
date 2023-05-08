@@ -186,8 +186,28 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     <?php
                     $tt = 0;
                     $sanpham = 1;
-                    if (!empty($_SESSION['xulygiohang'])) {
-                        $num = 1;
+                    if(isset($_GET['idsp'])){
+                        $idsp = $_GET['idsp'];
+                        $sp = mysqli_query($cn, "SELECT * FROM sanpham WHERE sp_id = $idsp");
+                        while ($row = mysqli_fetch_array($sp, MYSQLI_ASSOC)) {
+                            $tt = $tt + ($row['sp_gia'] * 1);
+                    ?>
+                            <div class="cart-item">
+                                <div class="item-right">
+                                    <h3><?php echo $row['sp_tengame'] ?></h3>
+                                    <span class="money"><?php echo currency_format($row['sp_gia']); ?></span><span> x 1</span>
+                                </div>
+                                <div class="item-left">
+                                    <?php $tong = $row['sp_gia']; ?>
+                                    <span><?php echo currency_format($tong); ?></span>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        
+                    }
+                    
+                    if (!empty($_SESSION['xulygiohang']) && !isset($_GET['huy'])) {
                         foreach ($_SESSION['xulygiohang'] as $key => $value) {
                             $tt = $tt + ($value['dongia'] * $value['soluong']);
                     ?>
@@ -308,7 +328,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
 
                         ?>
                         <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
-                        <button type="reset" class="infor-btn">Hủy</button>
+                        <a href="thanhtoan2.php?huy=huy">Hủy</a>
                     </div>
                 </div>
             </div>
