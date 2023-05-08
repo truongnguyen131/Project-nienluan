@@ -206,6 +206,7 @@ include_once('database_connection.php'); ?>
 
             </div>
         </div>
+
         <!-- Thêm Khách hàng -->
         <div class="client menu-tab" id="clients">
             <!-- tabs -->
@@ -1344,127 +1345,190 @@ include_once('database_connection.php'); ?>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Thêm Thể loại -->
-        <div class="client menu-tab" id="category">
-            <!-- tabs -->
-            <div class="tabs">
-                <?php
-                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
-                        echo "<script> document.getElementById('Themtheloai').click();
-                        document.getElementById('tabThemTL').click();
-                        alert('Thêm thể loại thành công!!') </script>";
-                        unset($_SESSION['dangkythanhcong']);
-                    }
-                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
-                        echo "<script> document.getElementById('Themtheloai').click();
-                        document.getElementById('tabDSTL').click();
-                        alert('Cập nhật thể loại thành công!!') </script>";
-                        unset($_SESSION['dangkythanhcong']);
-                    }
-                    ?>
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'add-category')" id="tabThemTL">
-                        Thêm thể loại
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-category')" id="tabDSTL">
-                        Danh sách thể loại
-                    </button>
-                </div>
-                <!-- Thêm thể loại -->
-                <div id="add-category" class="tabcontent">
-                    <div class="tabcontent-addproduct">
+
+            <!-- Thêm Thể loại -->
+            <div class="client menu-tab" id="category">
+                <!-- tabs -->
+                <div class="tabs">
+                    <!-- tabs -->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'add-category')" id="defaultOpen">
+                            Thêm thể loại
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'list-category')">
+                            Danh sách thể loại
+                        </button>
+                    </div>
+                    <!-- Thêm thể loại -->
+                    <div id="add-category" class="tabcontent">
+                        <div class="tabcontent-addproduct">
+                            <div class="client-item">
+                                <span>Tên thể loại</span>
+                                <input type="text" placeholder="Tên thể loại " />
+                            </div>
+                        </div>
                         <div class="client-item">
-                            <span>Tên thể loại</span>
-                            <input type="text" id="TenTheLoai" placeholder="Tên thể loại " />
-                            <div class="loi" id="loitentl"></div>
+                            <button type="submit">Thêm</button>
+                            <button type="reset">Hủy</button>
                         </div>
                     </div>
-                    <div class="client-item">
-                        <button type="button" id="bntThemTK" onclick="add_update_TL('add')">Thêm</button>
-                        <button type="button" id="bntCapnhatTK" onclick="add_update_TL('update')" hidden>Cập
-                            nhật</button>
-                        <button type="button" onclick="HuyTL()">Hủy</button>
-                    </div>
-                </div>
-                <script>
-                function HuyTL() {
-                    document.getElementById('TenTheLoai').value = ""
-                }
-
-                function add_update_TL(choose) {
-                    var tenTL = $('#TenTheLoai').val()
-                    var check = 0
-                    if (tenTL == "") {
-                        check -= 1
-                        $('#loitentl').html("Hãy nhập tên thể loại")
-                    } else {
-                        $('#loitentl').html("")
-                        check += 1
-                    }
-                    if (check == 1) {
-                        if (choose == 'add') {
-                            $.post('xulydangky.php', {
-                                tenTL: tenTL,
-                                page: "themTL"
-                            }, function(data) {
-                                $('body').html(data);
-                            })
-                        }
-                        if (choose == 'update') {
-                            $.post('xulydangky.php', {
-                                tenTL: tenTL,
-                                page: "capNhatTL"
-                            }, function(data) {
-                                $('body').html(data);
-                            })
-                        }
-                    }
-
-                }
-                </script>
-                <!-- Danh sách thể loại -->
-                <div id="list-category" class="tabcontent">
-                    <div class="table-control">
-                        <div class="search">
-                            <input class="search" type="text" id="timkiem_tl"
-                                placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
-                            <button class="search" onclick="timkiemTL()">Tìm kiếm</button>
-                            <script>
-                            var search = $('#timkiem_tl').val()
-                            $.post('timkiemTL.php', {
-                                data: search
-                            }, function(data) {
-                                $('.danhsachtimkiemTL').html(data);
-                            })
-
-
-                            function timkiemTL() {
-                                var search = $('#timkiem_tl').val()
-                                $.post('timkiemTL.php', {
-                                    data: search
-                                }, function(data) {
-                                    $('.danhsachtimkiemTL').html(data);
-                                })
-                            }
-                            </script>
+                    <!-- Danh sách thể loại -->
+                    <div id="list-category" class="tabcontent">
+                        <div class="table-control">
+                            <div class="search">
+                                <input class="search" type="text" placeholder="Tìm kiếm" />
+                                <button class="search">Tìm kiếm</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="table-thongke table-responsive-sm">
-                        <!-- Thông tin về game -->
-                        <table border="1" id="inforgame" style="display: table" class="table table-inforgame">
-                            <tr class="table-primary">
-                                <th scope="col">STT</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Tên thể loại</th>
-                                <th scope="col">Cập nhật</th>
-                                <th scope="col">Xóa</th>
-                            </tr>
-
-                            <tbody class="danhsachtimkiemTL">
-                            </tbody>
-                        </table>
-                    </div>
+                        <div class="table-thongke table-responsive-sm">
+                            <!-- Thông tin về game -->
+                            <table border="1" id="inforgame" style="display: table" class="table
+                                            table-inforgame">
+                                <tr class="table-primary">
+                                    <th scope="col">STT</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tên thể loại</th>
+                                    <th scope="col">Tổng số game</th>
+                                    <th scope="col">Cập nhật</th>
+                                    <th scope="col">Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>Hành động</td>
+                                    <td>50</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-category')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và thể loại -->
+                            <table border="1 " id="inforgame-and-category" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Thể loại</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>abc,ol,io</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và nsx -->
+                            <table border="1 " id="inforgame-and-nsx" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Tên nhà sản xuất</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>VNG</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và ảnh,trailer -->
+                            <table border="1 " id="inforgame-and-img" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Ảnh đại diện</th>
+                                    <th>Ảnh liên quan</th>
+                                    <th>Trailer</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>abc.jpn</td>
+                                    <td>th.jpn,th2.jpn,th3.jpn</td>
+                                    <td>th.video</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Thông tin về game và source game -->
+                            <table border="1 " id="inforgame-and-source" style="display: none" class="table">
+                                <tr class="table-primary">
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>File game</th>
+                                    <th>File mở rộng</th>
+                                    <th>Cập nhật</th>
+                                    <th>Xóa</th>
+                                </tr>
+                                <tr class="table-light">
+                                    <td>1</td>
+                                    <td>27</td>
+                                    <td>STAR WARS Jedi: Fallen Order</td>
+                                    <td>okoko.zip</td>
+                                    <td>1.zip,2.zip,3.zip</td>
+                                    <td>
+                                        <button class="tablinks" onclick="openCity(event,
+                                                        'add-product')" id="defaultOpen">
+                                            <ion-icon name="create-outline" alt="cập nhật"></ion-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <a href="">
+                                            <ion-icon name="close-circle-outline"></ion-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
 
                 </div>
                 <!-- tabs -->
@@ -2161,20 +2225,20 @@ include_once('database_connection.php'); ?>
         </div>
 
 
-        <!-- Sản phẩm đang giảm giá -->
-        <div class="client menu-tab" id="on-sale">
-            <div class="sale-main">
-                <div class="table-control">
-                    <div class="type-table">
-                        <select class="type-table" name="" id="" onchange="saletable(this)">
-                            <option value="" selected="selected">
-                                ---Chọn loại bảng muốn hiển thị---
-                            </option>
-                            <option value="sale-games">Giảm giá theo game</option>
-                            <option value="sale-categorys">Giảm giá theo thể loại</option>
-                            <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
-                        </select>
-                    </div>
+            <!-- Sản phẩm đang giảm giá -->
+            <div class="client menu-tab" id="on-sale">
+                <div class="sale-main">
+                    <div class="table-control">
+                        <div class="type-table">
+                            <select class="type-table" name="" id="" onchange="saletable(this)">
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="sale-games">Giảm giá theo game</option>
+                                <option value="sale-categorys">Giảm giá theo thể loại</option>
+                                <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
+                            </select>
+                        </div>
 
                     <div class="search">
                         <input class="search" type="text" placeholder="Tìm kiếm" />
@@ -2294,11 +2358,8 @@ include_once('database_connection.php'); ?>
             </div>
         </div>
 
-        <!-- ========================================THỐNG KÊ=============================================== -->
-
-
-
-
+            <!-- ========================================THỐNG KÊ=============================================== -->
+        </div>
 </body>
 <script>
 window.onload = function() {

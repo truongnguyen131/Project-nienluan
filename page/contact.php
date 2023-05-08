@@ -58,33 +58,31 @@
                 <img src="" alt="">
                 <div class="navbar">
                     <li>
-                        <a href="#">Trang chủ</a>
+                        <a href="index2.php">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="#">Phổ biến</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Game mới</a>
+                        <a href="index2.php#like">Yêu thích</a>
                     </li>
                     <li>
-                        <a href="#">Giảm giá</a>
+                        <a href="index2.php#sale">Giảm giá</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="index2.php#category">Thể loại</a>
+                    </li>
+                    <li>
+                        <a href="contact.php">Liên hệ chúng tôi</a>
                     </li>
                     <?php
-                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'ad') { ?>
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
                         <li>
-                            <a href="#">Quản lý của Admin</a>
+                            <a href="quanly-admin.php">Quản lý của Admin</a>
                         </li>
-                        <?php }
-                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nsx') { ?>
+                    <?php }
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
                         <li>
-                            <a href="#">Quản lý của Nhà sản xuất</a>
+                            <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
-                        <?php }  ?>
-
+                    <?php }  ?>
                 </div>
             </div>
             <!-- Thông báo -->

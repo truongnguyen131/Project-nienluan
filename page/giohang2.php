@@ -43,42 +43,41 @@ if (!isset($_SESSION["idtaikhoan"])) {
 }
 $idsp = "";
 $today = date('Y-m-d');
-    if (!isset($_SESSION['xulygiohang'])) {
-        $_SESSION['xulygiohang'] = array();
-    }
-    if (isset($_GET['idsp'])) {
-        $idsp = $_GET['idsp'];
-        if (isset($_SESSION['xulygiohang'][$idsp])) {
-            $_SESSION['xulygiohang'][$idsp]['soluong'] += 1;
-            header('Location:giohang2.php');
-        } else {
+if (!isset($_SESSION['xulygiohang'])) {
+    $_SESSION['xulygiohang'] = array();
+}
+if (isset($_GET['idsp'])) {
+    $idsp = $_GET['idsp'];
+    if (isset($_SESSION['xulygiohang'][$idsp])) {
+        $_SESSION['xulygiohang'][$idsp]['soluong'] += 1;
+        header('Location:giohang2.php');
+    } else {
 
-            $sp = mysqli_query($cn, "SELECT * FROM sanpham,nsx WHERE sanpham.nsx_id = nsx.nsx_id AND sp_id = $idsp");
-            $kq = mysqli_fetch_array($sp, MYSQLI_ASSOC);
-            $_SESSION['xulygiohang'][$idsp] = array(
-                'hinhsp' => $kq['sp_imgavt'],
-                'tensp' => $kq['sp_tengame'],
-                'dongia' => $kq['sp_gia'],
-                'nsx' => $kq['nsx_ten'],
-                'soluong' => 1
-            );
+        $sp = mysqli_query($cn, "SELECT * FROM sanpham,nsx WHERE sanpham.nsx_id = nsx.nsx_id AND sp_id = $idsp");
+        $kq = mysqli_fetch_array($sp, MYSQLI_ASSOC);
+        $_SESSION['xulygiohang'][$idsp] = array(
+            'hinhsp' => $kq['sp_imgavt'],
+            'tensp' => $kq['sp_tengame'],
+            'dongia' => $kq['sp_gia'],
+            'nsx' => $kq['nsx_ten'],
+            'soluong' => 1
+        );
 
-            $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id =  $idsp");
-            if (mysqli_num_rows($query1) > 0) {
-                $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
-                if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                    $_SESSION['xulygiohang'][$idsp]['dongia'] =
-                        $_SESSION['xulygiohang'][$idsp]['dongia'] -
-                        ($_SESSION['xulygiohang'][$idsp]['dongia'] * ($row1['gg_phantram'] / 100));
-                }
+        $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id =  $idsp");
+        if (mysqli_num_rows($query1) > 0) {
+            $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+            if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                $_SESSION['xulygiohang'][$idsp]['dongia'] =
+                    $_SESSION['xulygiohang'][$idsp]['dongia'] -
+                    ($_SESSION['xulygiohang'][$idsp]['dongia'] * ($row1['gg_phantram'] / 100));
             }
-            
-        }
-
-        if (isset($_GET['action'])) {
-            header('Location:thanhtoan.php');
         }
     }
+
+    if (isset($_GET['action'])) {
+        header('Location:thanhtoan.php');
+    }
+}
 
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
@@ -109,11 +108,19 @@ if (isset($_GET['action'])) {
                 <div class="nav-icons">
                     <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                     <i class='bx bx-search-alt' id="search-icon"></i>
-                    <a href="giohang2.php">
-                        <i class='bx bxs-cart-alt'></i>
-                    </a>
+                    <?php
+                    if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
+                    ?>
+                        <a href="giohang2.php">
+                            <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
+                        </a>
+                    <?php } else { ?>
+                        <a href="giohang2.php">
+                            <i class='bx bx-cart'></i>
+                        </a>
+                    <?php } ?>
                     <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
-                        <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                        <i class='bx bxs-user bx-tada' id="logout-icon"><span></span></i>
                     <?php } else { ?>
                         <a href="dangnhap.php">
                             <i class='bx bxs-user'></i>
@@ -130,30 +137,29 @@ if (isset($_GET['action'])) {
                     <img src="" alt="">
                     <div class="navbar">
                         <li>
-                            <a href="#">Trang chủ</a>
+                            <a href="index2.php">Trang chủ</a>
                         </li>
                         <li>
-                            <a href="#">Phổ biến</a>
-                        </li>
-
-                        <li>
-                            <a href="#">Game mới</a>
+                            <a href="index2.php#like">Yêu thích</a>
                         </li>
                         <li>
-                            <a href="#">Giảm giá</a>
+                            <a href="index2.php#sale">Giảm giá</a>
                         </li>
                         <li>
-                            <a href="#">Contact Us</a>
+                            <a href="index2.php#category">Thể loại</a>
+                        </li>
+                        <li>
+                            <a href="contact.php">Liên hệ chúng tôi</a>
                         </li>
                         <?php
-                        if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'ad') { ?>
+                        if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
                             <li>
-                                <a href="#">Quản lý của Admin</a>
+                                <a href="quanly-admin.php">Quản lý của Admin</a>
                             </li>
                         <?php }
-                        if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nsx') { ?>
+                        if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
                             <li>
-                                <a href="#">Quản lý của Nhà sản xuất</a>
+                                <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                             </li>
                         <?php }  ?>
                     </div>

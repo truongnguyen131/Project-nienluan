@@ -127,13 +127,13 @@ if (isset($_GET['partnerCode'])) {
                         <a href="index2.php">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="#like">Yêu thích</a>
+                        <a href="index2.php#like">Yêu thích</a>
                     </li>
                     <li>
-                        <a href="#sale">Giảm giá</a>
+                        <a href="index2.php#sale">Giảm giá</a>
                     </li>
                     <li>
-                        <a href="#category">Thể loại</a>
+                        <a href="index2.php#category">Thể loại</a>
                     </li>
                     <li>
                         <a href="contact.php">Liên hệ chúng tôi</a>
