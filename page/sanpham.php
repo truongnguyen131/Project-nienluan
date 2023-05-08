@@ -12,6 +12,7 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/sanpham.css">
     <link rel="stylesheet" href="../css/card2.css">
     <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/logout.css">
 
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -22,6 +23,17 @@ include_once('database_connection.php'); ?>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Sản phẩm</title>
 </head>
+<!-- hàm format giá -->
+<?php
+if (!function_exists('currency_format')) {
+    function currency_format($number, $suffix = 'đ')
+    {
+        if (!empty($number)) {
+            return number_format($number, 0, ',', '.') . "{$suffix}";
+        }
+    }
+}
+?>
 
 <body>
 
@@ -29,16 +41,13 @@ include_once('database_connection.php'); ?>
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
     </div>
+   
     <!-- Header -->
     <header>
         <!-- nav -->
         <div class="nav container">
             <!-- logo -->
-            <div class="logo">
-                <a href="">
-                    <img src="https://evondev.com/wp-content/uploads/2021/12/logo-new.png" alt="">
-                </a>
-            </div>
+            <a href="index2.php" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
@@ -46,10 +55,24 @@ include_once('database_connection.php'); ?>
                 <a href="#" onclick="openmodal()">
                     <i class='bx bx-filter-alt' id="filter-icon"></i>
                 </a>
-
-                <a href="">
-                    <i class='bx bx-cart'></i>
-                </a>
+                <?php
+                if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
+                ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
+                    </a>
+                <?php } else { ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart'></i>
+                    </a>
+                <?php } ?>
+                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
+                    <i class='bx bxs-user bx-tada' id="logout-icon"><span></span></i>
+                <?php } else { ?>
+                    <a href="dangnhap.php">
+                        <i class='bx bxs-user'></i>
+                    </a>
+                <?php } ?>
                 <div class="menu-icon">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -61,20 +84,31 @@ include_once('database_connection.php'); ?>
                 <img src="" alt="">
                 <div class="navbar">
                     <li>
-                        <a href="#">Trang chủ</a>
+                        <a href="index2.php">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="#">Phổ biến</a>
+                        <a href="index2.php#like">Yêu thích</a>
                     </li>
                     <li>
-                        <a href="#">Game mới</a>
+                        <a href="index2.php#sale">Giảm giá</a>
                     </li>
                     <li>
-                        <a href="#">Game giảm giá</a>
+                        <a href="index2.php#category">Thể loại</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="contact.php">Liên hệ chúng tôi</a>
                     </li>
+                    <?php
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
+                        <li>
+                            <a href="quanly-admin.php">Quản lý của Admin</a>
+                        </li>
+                    <?php }
+                    if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
+                        <li>
+                            <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
+                        </li>
+                    <?php }  ?>
                 </div>
             </div>
             <!-- Thông báo -->
@@ -92,21 +126,19 @@ include_once('database_connection.php'); ?>
             <!-- tìm kiếm -->
             <div class="search">
                 <div class="search-item">
-                    <input type="text" class="search-input" placeholder=" " onkeyup="thanhsearch()" id="thanhsearch"
-                        name="thanhsearch">
+                    <input type="text" class="search-input" placeholder=" " name="hoten" value="">
                     <span class="search-lable">Tìm kiếm</span>
-                    <script>
-                        function thanhsearch() {
-                            let tk = document.getElementById("thanhsearch").value;
-                            $.post('thanhsearch.php', {
-                                data: tk
-                            }, function (data) {
-                                $('#saling').html(data);
-                            })
-                        }
-                    </script>
-
                 </div>
+            </div>
+
+            <!-- Đăng xuất -->
+            <div class="log-out">
+                <a href="dangxuat.php" class="out">
+                    <div class="logout-box box-color">
+                        <p>Đăng xuất</p>
+                        <i class='bx bx-log-out'></i>
+                    </div>
+                </a>
             </div>
         </div>
     </header>
@@ -115,7 +147,7 @@ include_once('database_connection.php'); ?>
         <h2>Các sản phẩm</h2>
         <div class="menu-content">
             <ul class="breadcrumb">
-                <li><a href=" # ">Trang chủ</a></li>
+                <li><a href="index2.php">Trang chủ</a></li>
                 <li class="here">Sản phẩm</li>
             </ul>
         </div>
@@ -126,7 +158,6 @@ include_once('database_connection.php'); ?>
         <div class="saling-content">
             <div class="cards">
                 <?php
-
                 if (isset($_GET['page'])) {
                     $page = $_GET['page'];
                 } else {
@@ -137,98 +168,102 @@ include_once('database_connection.php'); ?>
                 } else {
                     $begin = ($page * 12) - 12;
                 }
-                $query = mysqli_query($cn, "SELECT * from sanpham  ORDER BY sp_id DESC LIMIT $begin,12");
-                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
-
+                $query = mysqli_query($cn, "SELECT * from sanpham ");
+                while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+                    $idsp = $row['sp_id'];
+                ?>
                     <div class="card">
                         <div class="content">
                             <div class="back">
                                 <div class="back-content">
-                                    <img src="../uploads/<?php echo $row['sp_imgavt']; ?>">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                    <!-- số sao trung bình được đánh giá -->
+                                    <?php
+                                    $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM danhgia WHERE sp_id =  $idsp");
+                                    while ($avg_sao = mysqli_fetch_array($count)) {
+                                        $avg = $avg_sao['AVG(dg_sao)'];
+                                    }
+                                    if ($avg > 0) { ?>
+                                        <div class="rating">
+                                            <span class="starss"><?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star'></i></span>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div></div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="front">
                                 <div class="img">
-                                    <img src="../uploads/<?php echo $row['sp_imgavt']; ?>">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
                                 </div>
                                 <div class="front-content">
+                                    <!-- phần trăm sale -->
                                     <?php
-                                    $query1 = mysqli_query($cn, "SELECT * from giamgia");
-                                    $giamoi = 0;
-                                    while ($row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC)) {
-                                        $today = date('Y-m-d');
-                                        if ($row1['sp_id'] == $row['sp_id'] && strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                            $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
-                                            ?>
-                                            <small class="badge">
-                                                <?php echo $row1['gg_phantram']; ?>%
-                                            </small>
-                                        <?php } else { ?>
-                                            <small></small>
+                                    $today = date('Y-m-d');
+                                    $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp");
+                                    if (mysqli_num_rows($query1) > 0) {
+                                    $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+                                        if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                                            $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));?>
+                                            <small class="badge"><?php echo $row1['gg_phantram'] ?>%</small>
                                         <?php }
-
-                                    }
-                                    ?>
+                                    } else { ?>
+                                        <small></small>
+                                    <?php } ?>
                                     <div class="description">
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong>
-                                                    <?php echo $row['sp_tengame']; ?>
-                                                </strong>
+                                                <strong><?php echo $row['sp_tengame']; ?></strong>
                                             </p>
                                         </div>
-                                        <?php
-                                        if ($giamoi != 0) { ?>
-                                            <div class="card-footer">
+                                        <div class="card-footer">
+                                            <?php
+                                            if (mysqli_num_rows($query1) > 0) {?>
                                                 <!-- giá trước khi sale -->
                                                 <div class="footer-label">
-                                                    <label for="" class="price-old">
-                                                        <?php echo $row['sp_gia']; ?>đ
-                                                    </label>
+                                                    <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?></label>
                                                 </div>
-                                                <!-- giá sai khi sale -->
+                                                <!-- giá sau khi sale -->
                                                 <div class="footer-label">
-                                                    <label for="">
-                                                        <?php echo $giamoi; ?>đ
-                                                    </label>
+                                                    <label for=""><?php echo currency_format($giamoi)?></label>
                                                 </div>
-                                            </div>
-                                            <?php $giamoi = 0;
-                                        } else { ?>
-                                            <!-- giá sai khi sale -->
-                                            <div class="footer-label">
-                                                <label for="">
-                                                    <?php echo $row['sp_gia']; ?>đ
-                                                </label>
-                                            </div>
-                                        <?php }
-                                        ?>
-
+                                            <?php } else { ?>
+                                                <!-- giá trước khi sale -->
+                                                <div></div>
+                                                <!-- giá sau khi sale -->
+                                                <div class="footer-label">
+                                                    <label for=""><?php echo currency_format($row['sp_gia'])?></label>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
 
                                         <div class="card-btn">
-                                            <!-- button detail -->
+                                            <!-- chi tiết sản phẩm -->
                                             <div class="card-button">
-                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>">
-                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
+                                                    <i class='bx bx-dots-horizontal-rounded'></i>
+                                                </a>
+                                            </div>
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                    <i class='bx bx-download'></i>
                                                 </a>
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
                                             <div class="card-button">
-                                                <a href="">
-                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                <a href="themvaogiohang.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                    <i class='bx bx-cart'></i>
                                                 </a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 <?php }
-
                 ?>
             </div>
         </div>
@@ -243,8 +278,8 @@ include_once('database_connection.php'); ?>
                 <?php
                 for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>#saling">
                         <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
-                               echo 'active';
-                           } ?>" value="<?php echo $i; ?>">
+                                                                    echo 'active';
+                                                                } ?>" value="<?php echo $i; ?>">
                             <?php echo $i; ?>
                         </li>
                     </a>
@@ -296,7 +331,7 @@ include_once('database_connection.php'); ?>
                 </div>
             </a>
 
-            <div class="filter-item filter-btn ">
+            <div class="filter-item filter-btn">
                 <button id="Loc" onclick="Loc()">Lọc</button>
                 <button id="Huy" onclick="Huy()">Hủy</button>
             </div>
@@ -330,7 +365,7 @@ include_once('database_connection.php'); ?>
                         giaMax: giaMax,
                         arr_TL: arr_TL,
                         arr_NSX: arr_NSX
-                    }, function (data) {
+                    }, function(data) {
                         $('#saling').html(data);
                     })
                 }
@@ -411,18 +446,18 @@ include_once('database_connection.php'); ?>
                             <input type="checkbox" name="timkiem_NSX" value="<?php echo $r['nsx_ten']; ?>">
                         </div>
                     </label>
-                <?php }
+            <?php }
             } ?>
 
         </div>
     </div>
 
-    <script src="../js/index.js "></script>
-    <script src="../js/sanpham.js "></script>
-
+    
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
-
+    <script src="../js/index.js "></script>
+    <script src="../js/sanpham.js "></script>
+    <script src="../js/logout.js"></script>
 </body>
 
 </html>

@@ -86,11 +86,19 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
-                <a href="giohang2.php">
-                    <i class='bx bxs-cart-alt'></i>
-                </a>
+                <?php
+                if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
+                ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
+                    </a>
+                <?php } else { ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart'></i>
+                    </a>
+                <?php } ?>
                 <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
-                    <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                    <i class='bx bxs-user bx-tada' id="logout-icon"><span></span></i>
                 <?php } else { ?>
                     <a href="dangnhap.php">
                         <i class='bx bxs-user'></i>
@@ -107,33 +115,31 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                 <img src="" alt="">
                 <div class="navbar">
                     <li>
-                        <a href="#">Trang chủ</a>
+                        <a href="index2.php">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="#">Phổ biến</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Game mới</a>
+                        <a href="index2.php#like">Yêu thích</a>
                     </li>
                     <li>
-                        <a href="#">Giảm giá</a>
+                        <a href="index2.php#sale">Giảm giá</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="index2.php#category">Thể loại</a>
+                    </li>
+                    <li>
+                        <a href="contact.php">Liên hệ chúng tôi</a>
                     </li>
                     <?php
                     if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
                         <li>
-                            <a href="#">Quản lý của Admin</a>
+                            <a href="quanly-admin.php">Quản lý của Admin</a>
                         </li>
                     <?php }
                     if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
                         <li>
-                            <a href="#">Quản lý của Nhà sản xuất</a>
+                            <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
                     <?php }  ?>
-
                 </div>
             </div>
             <!-- Thông báo -->
@@ -172,7 +178,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
         <h2>Thanh toán</h2>
         <div class="menu-content">
             <ul class="breadcrumb">
-                <li><a href=" # ">Trang chủ</a></li>
+                <li><a href="index2.php">Trang chủ</a></li>
                 <li class="here">Thanh toán</li>
             </ul>
         </div>
@@ -335,7 +341,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
 
                         ?>
                         <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
-                        <a href="thanhtoan2.php?huy=huy">Hủy</a>
+                        <a class="infor-btn" href="thanhtoan2.php?huy=huy">Hủy</a>
                     </div>
                 </div>
             </div>

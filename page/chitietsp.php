@@ -67,12 +67,19 @@ if (isset($_GET['idsp'])) {
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
-                <a href="giohang2.php">
-                    <!-- cart -->
-                    <i class='bx bxs-cart-alt bx-tada' id="cart-icon"><span></span></i>
-                </a>
+                <?php
+                if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
+                ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
+                    </a>
+                <?php } else { ?>
+                    <a href="giohang2.php">
+                        <i class='bx bx-cart'></i>
+                    </a>
+                <?php } ?>
                 <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
-                    <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                    <i class='bx bxs-user bx-tada' id="logout-icon"><span></span></i>
                 <?php } else { ?>
                     <a href="dangnhap.php">
                         <i class='bx bxs-user'></i>
@@ -89,33 +96,31 @@ if (isset($_GET['idsp'])) {
                 <img src="" alt="">
                 <div class="navbar">
                     <li>
-                        <a href="#">Trang chủ</a>
+                        <a href="index2.php">Trang chủ</a>
                     </li>
                     <li>
-                        <a href="#">Phổ biến</a>
-                    </li>
-
-                    <li>
-                        <a href="#">Game mới</a>
+                        <a href="index2.php#like">Yêu thích</a>
                     </li>
                     <li>
-                        <a href="#">Giảm giá</a>
+                        <a href="index2.php#sale">Giảm giá</a>
                     </li>
                     <li>
-                        <a href="#">Contact Us</a>
+                        <a href="index2.php#category">Thể loại</a>
+                    </li>
+                    <li>
+                        <a href="contact.php">Liên hệ chúng tôi</a>
                     </li>
                     <?php
                     if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'admin') { ?>
                         <li>
-                            <a href="#">Quản lý của Admin</a>
+                            <a href="quanly-admin.php">Quản lý của Admin</a>
                         </li>
                     <?php }
                     if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" && $_SESSION['loaitaikhoan'] == 'nha san xuat') { ?>
                         <li>
-                            <a href="#">Quản lý của Nhà sản xuất</a>
+                            <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
                     <?php }  ?>
-
                 </div>
             </div>
             <!-- Thông báo -->
@@ -168,13 +173,13 @@ if (isset($_GET['idsp'])) {
             <span>Nhà sản xuất: <?php echo $row['nsx_ten'] ?></span>
             <div class="sale-and-star">
                 <!-- số sao trung bình được đánh giá -->
-                <?php 
+                <?php
                 $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM danhgia WHERE sp_id = $sp_id");
-                while($avg_sao = mysqli_fetch_array($count)){
+                while ($avg_sao = mysqli_fetch_array($count)) {
                     $avg = $avg_sao['AVG(dg_sao)'];
                 }
                 ?>
-                <span class="medium-star"><?php echo number_format($avg,"1",".","")?> <i class='bx bxs-star bx-tada'></i></span>
+                <span class="medium-star"><?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star bx-tada'></i></span>
                 <!-- % giảm giá (nếu có)-->
                 <?php $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id = $sp_id");
                 if (mysqli_num_rows($query1) > 0) {
@@ -198,11 +203,6 @@ if (isset($_GET['idsp'])) {
                 <?php } ?>
 
             </div>
-            <!-- <div class="info-quantity">
-               <input class="product-btn-giam" type="button" id="giam" onclick="giamsl()" value="-"></input>
-                <input class="product-value" id="val" type="text" value="1">
-                <input class="product-btn-tang" type="button" id="tang" onclick="tangsl()" value="+"></input>
-            </div> -->
             <div class="infor-btn">
                 <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">Mua</a>
                 <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">Thêm vào giỏ hàng</a>
@@ -275,7 +275,7 @@ if (isset($_GET['idsp'])) {
                         <div class="tab-user-cmt">
                             <!-- tên khách hàng -->
                             <div class="cmt-user-name">
-                                <span><?php echo $var['tk_taikhoan']?></span>
+                                <span><?php echo $var['tk_taikhoan'] ?></span>
                             </div>
                             <!-- ngày hiện tại -->
                             <div class="cmt-date">
@@ -320,8 +320,8 @@ if (isset($_GET['idsp'])) {
                         <div class="tab-cmt-input">
                             <textarea name="cmt" id="cmt" placeholder=" Bình luận "></textarea>
                             <div class="loi" id="loicmt"></div>
-                            <input type="text" style="display:none" id="sp__id" value="<?php echo $sp_id?>">
-                            <input type="text" style="display:none" id="id_tk" value="<?php echo $idtk?>">
+                            <input type="text" style="display:none" id="sp__id" value="<?php echo $sp_id ?>">
+                            <input type="text" style="display:none" id="id_tk" value="<?php echo $idtk ?>">
                         </div>
                         <div class="tab-cmt-btn">
                             <button name="cmt_btn" onclick="kiemtraloi()" type="button">Bình luận</button>
