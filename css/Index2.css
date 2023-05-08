@@ -366,9 +366,10 @@ header {
 
 /* hiển thị sản phẩm */
 
-.product-content {
+
+/* .product-content {
     margin-top: 3rem;
-}
+} */
 
 a {
     color: var(--text-color);

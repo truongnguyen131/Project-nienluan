@@ -947,7 +947,6 @@ include_once('database_connection.php'); ?>
         </div>
 
         <!-- Thêm Sản phẩm -->
-
         <div class="client menu-tab" id="product">
             <?php
             if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemSP") {
@@ -1333,7 +1332,7 @@ include_once('database_connection.php'); ?>
                     </div>
                 </div>
             </div>
-
+        </div>
             <!-- Thêm Thể loại -->
             <div class="client menu-tab" id="category">
                 <!-- tabs -->
@@ -2211,7 +2210,6 @@ include_once('database_connection.php'); ?>
                 <!-- tabs -->
             </div>
 
-
             <!-- Sản phẩm đang giảm giá -->
             <div class="client menu-tab" id="on-sale">
                 <div class="sale-main">
@@ -2345,7 +2343,7 @@ include_once('database_connection.php'); ?>
             </div>
 
             <!-- ========================================THỐNG KÊ=============================================== -->
-        </div>
+     
 </body>
 <script>
     window.onload = function() {
