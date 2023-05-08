@@ -1343,28 +1343,26 @@ include_once('database_connection.php'); ?>
                         </table>
                     </div>
                 </div>
-
             </div>
-        </div>
 
         <!-- Thêm Thể loại -->
         <div class="client menu-tab" id="category">
             <!-- tabs -->
             <div class="tabs">
                 <?php
-                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
-                    echo "<script> document.getElementById('Themtheloai').click();
+            if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
+                echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabThemTL').click();
                         alert('Thêm thể loại thành công!!') </script>";
-                    unset($_SESSION['dangkythanhcong']);
-                }
-                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
-                    echo "<script> document.getElementById('Themtheloai').click();
+                unset($_SESSION['dangkythanhcong']);
+            }
+            if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
+                echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabDSTL').click();
                         alert('Cập nhật thể loại thành công!!') </script>";
-                    unset($_SESSION['dangkythanhcong']);
-                }
-                ?>
+                unset($_SESSION['dangkythanhcong']);
+            }
+            ?>
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-category')" id="tabThemTL">
                         Thêm thể loại
@@ -1383,8 +1381,8 @@ include_once('database_connection.php'); ?>
                         </div>
                     </div>
                     <div class="client-item">
-                        <button type="button" id="bntThemTL" onclick="add_update_TL('add')">Thêm</button>
-                        <button type="button" id="bntCapnhatTL" onclick="add_update_TL('update')" hidden>Cập
+                        <button type="button" id="bntThemTK" onclick="add_update_TL('add')">Thêm</button>
+                        <button type="button" id="bntCapnhatTK" onclick="add_update_TL('update')" hidden>Cập
                             nhật</button>
                         <button type="button" onclick="HuyTL()">Hủy</button>
                     </div>
@@ -1430,7 +1428,7 @@ include_once('database_connection.php'); ?>
                     <div class="table-control">
                         <div class="search">
                             <input class="search" type="text" id="timkiem_tl"
-                                placeholder="Tìm kiếm bằng tên thể loại" />
+                                placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
                             <button class="search" onclick="timkiemTL()">Tìm kiếm</button>
                             <script>
                             var search = $('#timkiem_tl').val()
@@ -1465,7 +1463,7 @@ include_once('database_connection.php'); ?>
 
                             <tbody class="danhsachtimkiemTL">
                             </tbody>
-                        </table>
+
                     </div>
 
                 </div>
@@ -2163,20 +2161,20 @@ include_once('database_connection.php'); ?>
         </div>
 
 
-        <!-- Sản phẩm đang giảm giá -->
-        <div class="client menu-tab" id="on-sale">
-            <div class="sale-main">
-                <div class="table-control">
-                    <div class="type-table">
-                        <select class="type-table" name="" id="" onchange="saletable(this)">
-                            <option value="" selected="selected">
-                                ---Chọn loại bảng muốn hiển thị---
-                            </option>
-                            <option value="sale-games">Giảm giá theo game</option>
-                            <option value="sale-categorys">Giảm giá theo thể loại</option>
-                            <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
-                        </select>
-                    </div>
+            <!-- Sản phẩm đang giảm giá -->
+            <div class="client menu-tab" id="on-sale">
+                <div class="sale-main">
+                    <div class="table-control">
+                        <div class="type-table">
+                            <select class="type-table" name="" id="" onchange="saletable(this)">
+                                <option value="" selected="selected">
+                                    ---Chọn loại bảng muốn hiển thị---
+                                </option>
+                                <option value="sale-games">Giảm giá theo game</option>
+                                <option value="sale-categorys">Giảm giá theo thể loại</option>
+                                <option value="sale-nsxs">Giảm giá theo nhà sản xuất</option>
+                            </select>
+                        </div>
 
                     <div class="search">
                         <input class="search" type="text" placeholder="Tìm kiếm" />
@@ -2296,7 +2294,8 @@ include_once('database_connection.php'); ?>
             </div>
         </div>
 
-    </div>
+            <!-- ========================================THỐNG KÊ=============================================== -->
+        </div>
 </body>
 <script>
 window.onload = function() {
