@@ -12,7 +12,6 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/card2.css">
     <link rel="stylesheet" href="../css/click_slider.css">
     <link rel="stylesheet" href="../css/product-like.css">
-
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -343,9 +342,8 @@ if (isset($_GET['partnerCode'])) {
                                                 </div>
                                                 <!-- button thêm vào giỏ hàng -->
                                                 <div class="card-button">
-                                                 <button class="add-product" onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)" title="Thêm vào giỏ hàng">
-                                                 <i class='bx bxs-cart'></i>
-                                                 </button>
+                                                    <input type="button"
+                                                        onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)" value="Thêm">
                                                 </div>
                                             </div>
                                         </div>
