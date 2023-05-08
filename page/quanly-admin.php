@@ -226,9 +226,9 @@ include_once('database_connection.php'); ?>
                     <?php
                     $query = mysqli_query($cn, "SELECT * FROM taikhoan");
                     while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
-                                            <script>
-                                            listTK.push("<?php echo $row['tk_taikhoan']; ?>")
-                                            </script>
+                    <script>
+                    listTK.push("<?php echo $row['tk_taikhoan']; ?>")
+                    </script>
                     <?php }
                     ?>
                     <button class="tablinks" onclick="openCity(event, 'add-client')" id="tabThemKH">
@@ -685,15 +685,14 @@ include_once('database_connection.php'); ?>
                                 placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
                             <button class="search" onclick="timkiemNSX()">Tìm kiếm</button>
                             <script>
-                            
-                                var search = $('#timkiem_nsx').val()
-                                $.post('timkiemKH_NSX.php', {
-                                    data: search,
-                                    page: "NSX"
-                                }, function(data) {
-                                    $('.danhsachtimkiemNSX').html(data);
-                                })
-                            
+                            var search = $('#timkiem_nsx').val()
+                            $.post('timkiemKH_NSX.php', {
+                                data: search,
+                                page: "NSX"
+                            }, function(data) {
+                                $('.danhsachtimkiemNSX').html(data);
+                            })
+
 
                             function timkiemNSX() {
                                 var search = $('#timkiem_nsx').val()
@@ -946,7 +945,7 @@ include_once('database_connection.php'); ?>
                     </table>
                 </div>
             </div>
-            
+
         </div>
 
         <!-- Thêm Sản phẩm -->
@@ -1293,49 +1292,49 @@ include_once('database_connection.php'); ?>
                         <!-- Thông tin về game -->
                         <table border="1" id="inforgame" style="display: table" class="table
                                             table-inforgame">
-                                <tr class="table-primary">
-                                    <th scope="col">STT</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Tên NSX</th>
-                                    <th scope="col">Tên Game</th>
-                                    <th scope="col">Ngày phát hành</th>
-                                    <th scope="col">Giá</th>
-                                    <th scope="col">Giảm giá</th>
-                                    <th scope="col">Giảm mới</th>
-                                    <th scope="col">Chấp nhận</th>
-                                    <th scope="col">Xóa</th>
-                                </tr>
-                                <tr class="table-light">
-                                    <td>1</td>
-                                    <td>27</td>
-                                    <td>VNG</td>
-                                    <td>Sonic</td>
-                                    <td>
-                                       12/2/2022
-                                    </td>
-                                    <td>
-                                      120.000đ
-                                    </td>
-                                    <td>
-                                      10%
-                                    </td>
-                                    <td>
-                                      100.000đ
-                                    </td>
-                                    <td>
-                                      <a href="">
-                                      <ion-icon name="bag-check-outline"></ion-icon>
-                                      </a>
-                                    </td>
-                                    <td>
-                                      <a href="">
-                                      <ion-icon name="close-circle-outline"></ion-icon>
-                                      </a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-            </div>
+                            <tr class="table-primary">
+                                <th scope="col">STT</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên NSX</th>
+                                <th scope="col">Tên Game</th>
+                                <th scope="col">Ngày phát hành</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Giảm giá</th>
+                                <th scope="col">Giảm mới</th>
+                                <th scope="col">Chấp nhận</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                            <tr class="table-light">
+                                <td>1</td>
+                                <td>27</td>
+                                <td>VNG</td>
+                                <td>Sonic</td>
+                                <td>
+                                    12/2/2022
+                                </td>
+                                <td>
+                                    120.000đ
+                                </td>
+                                <td>
+                                    10%
+                                </td>
+                                <td>
+                                    100.000đ
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <ion-icon name="bag-check-outline"></ion-icon>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <ion-icon name="close-circle-outline"></ion-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -1344,7 +1343,7 @@ include_once('database_connection.php'); ?>
         <div class="client menu-tab" id="category">
             <!-- tabs -->
             <div class="tabs">
-            <?php
+                <?php
             if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
                 echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabThemTL').click();
@@ -1376,27 +1375,28 @@ include_once('database_connection.php'); ?>
                         </div>
                     </div>
                     <div class="client-item">
-                    <button type="button" id="bntThemTK" onclick="add_update_TL('add')">Thêm</button>
-                            <button type="button" id="bntCapnhatTK" onclick="add_update_TL('update')" hidden>Cập nhật</button>
-                            <button type="button" onclick="HuyTL()">Hủy</button>
+                        <button type="button" id="bntThemTK" onclick="add_update_TL('add')">Thêm</button>
+                        <button type="button" id="bntCapnhatTK" onclick="add_update_TL('update')" hidden>Cập
+                            nhật</button>
+                        <button type="button" onclick="HuyTL()">Hủy</button>
                     </div>
                 </div>
                 <script>
-                    function HuyTL() {
-                        document.getElementById('TenTheLoai').value = ""
-                    }
+                function HuyTL() {
+                    document.getElementById('TenTheLoai').value = ""
+                }
 
-                    function add_update_TL(choose) {
-                        var tenTL = $('#TenTheLoai').val()
-                        var check = 0
-                        if (tenTL == "") {
+                function add_update_TL(choose) {
+                    var tenTL = $('#TenTheLoai').val()
+                    var check = 0
+                    if (tenTL == "") {
                         check -= 1
                         $('#loitentl').html("Hãy nhập tên thể loại")
-                        } else {
+                    } else {
                         $('#loitentl').html("")
                         check += 1
-                        }
-                        if (check == 1) {
+                    }
+                    if (check == 1) {
                         if (choose == 'add') {
                             $.post('xulydangky.php', {
                                 tenTL: tenTL,
@@ -1415,9 +1415,7 @@ include_once('database_connection.php'); ?>
                         }
                     }
 
-                    }
-                
-
+                }
                 </script>
                 <!-- Danh sách thể loại -->
                 <div id="list-category" class="tabcontent">
@@ -1427,23 +1425,22 @@ include_once('database_connection.php'); ?>
                                 placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
                             <button class="search" onclick="timkiemTL()">Tìm kiếm</button>
                             <script>
-                            
-                                var search = $('#timkiem_tl').val()
-                                $.post('timkiemTL.php', {
-                                    data: search
-                                }, function(data) {
-                                    $('.danhsachtimkiemTL').html(data);
-                                })
-                            
+                            var search = $('#timkiem_tl').val()
+                            $.post('timkiemTL.php', {
+                                data: search
+                            }, function(data) {
+                                $('.danhsachtimkiemTL').html(data);
+                            })
 
-                                function timkiemTL() {
+
+                            function timkiemTL() {
                                 var search = $('#timkiem_tl').val()
                                 $.post('timkiemTL.php', {
                                     data: search
                                 }, function(data) {
                                     $('.danhsachtimkiemTL').html(data);
                                 })
-                                }
+                            }
                             </script>
                         </div>
                     </div>
@@ -1457,79 +1454,79 @@ include_once('database_connection.php'); ?>
                                 <th scope="col">Cập nhật</th>
                                 <th scope="col">Xóa</th>
                             </tr>
-                            
+
                             <tbody class="danhsachtimkiemTL">
                             </tbody>
 
                     </div>
 
-                    </div>
-                    <!-- tabs -->
                 </div>
+                <!-- tabs -->
             </div>
+        </div>
 
-            <!-- Thêm giảm giá -->
-            <div class="client menu-tab" id="sale-product">
-                <div class="sale-main">
-                    <div class="table-control">
-                        <div class="type-table">
-                            <select class="type-table" name="" id="" onchange="changetable(this)">
-                                <option value="" selected="selected">
-                                    ---Chọn loại bảng muốn hiển thị---
-                                </option>
-                                <option value="games">Game</option>
-                                <option value="categorys">Thể loại</option>
-                                <option value="nsxs">Nhà sản xuất</option>
-                            </select>
-                        </div>
-
-                        <div class="search">
-                            <input class="search" type="text" placeholder="Tìm kiếm" />
-                            <button class="search">Tìm kiếm</button>
-                        </div>
+        <!-- Thêm giảm giá -->
+        <div class="client menu-tab" id="sale-product">
+            <div class="sale-main">
+                <div class="table-control">
+                    <div class="type-table">
+                        <select class="type-table" name="" id="" onchange="changetable(this)">
+                            <option value="" selected="selected">
+                                ---Chọn loại bảng muốn hiển thị---
+                            </option>
+                            <option value="games">Game</option>
+                            <option value="categorys">Thể loại</option>
+                            <option value="nsxs">Nhà sản xuất</option>
+                        </select>
                     </div>
-                    <!-- Tất cả sản phẩm -->
-                    <table style="display: table" id="all-games">
-                        <tr>
-                            <td colspan="10">
-                                <div class="scrollbar">
-                                    <table border="1" class="table">
-                                        <tr class="table-primary">
-                                            <th scope="col">STT</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Tên sản phẩm</th>
-                                            <th scope="col">Ngày phát hành</th>
-                                            <th scope="col">Giá</th>
-                                            <th scope="col">Phần trăm giảm giá</th>
-                                            <th scope="col">Giá mới</th>
-                                            <th scope="col">Ngày bắt đầu</th>
-                                            <th scope="col">Ngày kết thúc</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>STAR WARS Jedi: Fallen Order</td>
-                                            <td>12/4/2022</td>
-                                            <td>120.000đ</td>
-                                            <td></td>
-                                            <td>60.000đ</td>
-                                            <td>20/3/2022</td>
-                                            <td>30/3/2022</td>
-                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                        </tr>
-                                        <tr class="table-light">
-                                            <td>1</td>
-                                            <td>27</td>
-                                            <td>STAR WARS Jedi: Fallen Order</td>
-                                            <td>12/4/2022</td>
-                                            <td>120.000đ</td>
-                                            <td></td>
-                                            <td>60.000đ</td>
-                                            <td>20/3/2022</td>
-                                            <td>30/3/2022</td>
-                                            <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                        </tr>
+
+                    <div class="search">
+                        <input class="search" type="text" placeholder="Tìm kiếm" />
+                        <button class="search">Tìm kiếm</button>
+                    </div>
+                </div>
+                <!-- Tất cả sản phẩm -->
+                <table style="display: table" id="all-games">
+                    <tr>
+                        <td colspan="10">
+                            <div class="scrollbar">
+                                <table border="1" class="table">
+                                    <tr class="table-primary">
+                                        <th scope="col">STT</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Ngày phát hành</th>
+                                        <th scope="col">Giá</th>
+                                        <th scope="col">Phần trăm giảm giá</th>
+                                        <th scope="col">Giá mới</th>
+                                        <th scope="col">Ngày bắt đầu</th>
+                                        <th scope="col">Ngày kết thúc</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    <tr class="table-light">
+                                        <td>1</td>
+                                        <td>27</td>
+                                        <td>STAR WARS Jedi: Fallen Order</td>
+                                        <td>12/4/2022</td>
+                                        <td>120.000đ</td>
+                                        <td></td>
+                                        <td>60.000đ</td>
+                                        <td>20/3/2022</td>
+                                        <td>30/3/2022</td>
+                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                    </tr>
+                                    <tr class="table-light">
+                                        <td>1</td>
+                                        <td>27</td>
+                                        <td>STAR WARS Jedi: Fallen Order</td>
+                                        <td>12/4/2022</td>
+                                        <td>120.000đ</td>
+                                        <td></td>
+                                        <td>60.000đ</td>
+                                        <td>20/3/2022</td>
+                                        <td>30/3/2022</td>
+                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
+                                    </tr>
 
                                 </table>
                             </div>
@@ -1667,8 +1664,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                                            <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1677,8 +1674,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1687,8 +1684,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1736,8 +1733,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1746,8 +1743,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1821,8 +1818,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1831,8 +1828,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1841,8 +1838,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1879,8 +1876,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1889,8 +1886,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1899,8 +1896,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1937,8 +1934,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1947,8 +1944,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -1957,8 +1954,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2017,8 +2014,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2027,8 +2024,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2065,8 +2062,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2075,8 +2072,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2113,8 +2110,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
                                         ?>
-                                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2123,8 +2120,8 @@ include_once('database_connection.php'); ?>
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
                                         ?>
-                                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                                            <?php
+                                    <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -2359,20 +2356,20 @@ if (isset($_SESSION['updateKH']) && $_SESSION['updateKH'] != 0) {
         $mk = $row['tk_matkhau'];
     }
     ?>
-                        <script>
-                        window.onload = function() {
-                            document.getElementById('Themkhachhang').click();
-                            document.getElementById('tabThemKH').click();
-                            document.getElementById('hotenKH').value = "<?php echo $hoten; ?>";
-                            document.getElementById('sdtKH').value = "<?php echo $sdt; ?>";
-                            document.getElementById('emailKH').value = "<?php echo $email; ?>";
-                            document.getElementById('tkKH').value = "<?php echo $tk; ?>";
-                            document.getElementById('mkKH').value = "<?php echo $mk; ?>";
-                            document.getElementById("bntUpdateKH").removeAttribute("hidden");
-                            document.getElementById("bntThemKH").setAttribute("hidden", "hidden");
+<script>
+window.onload = function() {
+    document.getElementById('Themkhachhang').click();
+    document.getElementById('tabThemKH').click();
+    document.getElementById('hotenKH').value = "<?php echo $hoten; ?>";
+    document.getElementById('sdtKH').value = "<?php echo $sdt; ?>";
+    document.getElementById('emailKH').value = "<?php echo $email; ?>";
+    document.getElementById('tkKH').value = "<?php echo $tk; ?>";
+    document.getElementById('mkKH').value = "<?php echo $mk; ?>";
+    document.getElementById("bntUpdateKH").removeAttribute("hidden");
+    document.getElementById("bntThemKH").setAttribute("hidden", "hidden");
 
-                        }
-                        </script>
+}
+</script>
 <?php }
 $_SESSION['updateKH'] = 0;
 
@@ -2390,19 +2387,19 @@ if (isset($_SESSION['updateNSX']) && $_SESSION['updateNSX'] != 0) {
         $mk = $row['tk_matkhau'];
     }
     ?>
-                        <script>
-                        window.onload = function() {
-                            document.getElementById('Themnsx').click();
-                            document.getElementById('tabThemNSX').click();
-                            document.getElementById('tenNSX').value = "<?php echo $tennsx; ?>";
-                            document.getElementById('sdtNSX').value = "<?php echo $sdt; ?>";
-                            document.getElementById('emailNSX').value = "<?php echo $email; ?>";
-                            document.getElementById('tkNSX').value = "<?php echo $tk; ?>";
-                            document.getElementById('mkNSX').value = "<?php echo $mk; ?>";
-                            document.getElementById("bntUpdateNSX").removeAttribute("hidden");
-                            document.getElementById("bntThemNSX").setAttribute("hidden", "hidden");
-                        }
-                        </script>
+<script>
+window.onload = function() {
+    document.getElementById('Themnsx').click();
+    document.getElementById('tabThemNSX').click();
+    document.getElementById('tenNSX').value = "<?php echo $tennsx; ?>";
+    document.getElementById('sdtNSX').value = "<?php echo $sdt; ?>";
+    document.getElementById('emailNSX').value = "<?php echo $email; ?>";
+    document.getElementById('tkNSX').value = "<?php echo $tk; ?>";
+    document.getElementById('mkNSX').value = "<?php echo $mk; ?>";
+    document.getElementById("bntUpdateNSX").removeAttribute("hidden");
+    document.getElementById("bntThemNSX").setAttribute("hidden", "hidden");
+}
+</script>
 <?php }
 $_SESSION['updateNSX'] = 0;
 
@@ -2420,17 +2417,17 @@ if (isset($_SESSION['updateTK']) && $_SESSION['updateTK'] != 0) {
         $mk = $row['tk_matkhau'];
     }
     ?>
-                        <script>
-                        window.onload = function() {
-                            document.getElementById('Themtaikhoan').click();
-                            document.getElementById('tabThemTK').click();
-                            document.getElementById('TaiKhoan').value = "<?php echo $tk; ?>";
-                            document.getElementById('MatKhau').value = "<?php echo $mk; ?>";
-                            document.getElementById('<?php echo $loaitk; ?>').checked = true
-                            document.getElementById("bntCapnhatTK").removeAttribute("hidden");
-                            document.getElementById("bntThemTK").setAttribute("hidden", "hidden");
-                        }
-                        </script>
+<script>
+window.onload = function() {
+    document.getElementById('Themtaikhoan').click();
+    document.getElementById('tabThemTK').click();
+    document.getElementById('TaiKhoan').value = "<?php echo $tk; ?>";
+    document.getElementById('MatKhau').value = "<?php echo $mk; ?>";
+    document.getElementById('<?php echo $loaitk; ?>').checked = true
+    document.getElementById("bntCapnhatTK").removeAttribute("hidden");
+    document.getElementById("bntThemTK").setAttribute("hidden", "hidden");
+}
+</script>
 <?php }
 $_SESSION['updateTK'] = 0;
 
