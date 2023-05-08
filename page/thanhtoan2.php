@@ -338,7 +338,6 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                                 }
                             }
                         }
-
                         ?>
                         <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
                         <a class="infor-btn" href="thanhtoan2.php?huy=huy">Hủy</a>

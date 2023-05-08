@@ -337,14 +337,15 @@ if (isset($_GET['partnerCode'])) {
                                                 </div>
                                                 <!-- button download -->
                                                 <div class="card-button">
-                                                    <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                    <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>" title="Mua sản phẩm">
                                                         <i class='bx bx-download'></i>
                                                     </a>
                                                 </div>
                                                 <!-- button thêm vào giỏ hàng -->
                                                 <div class="card-button">
-                                                    <input type="button"
-                                                        onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)" value="Thêm">
+                                                 <button class="add-product" onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)" title="Thêm vào giỏ hàng">
+                                                 <i class='bx bxs-cart'></i>
+                                                 </button>
                                                 </div>
                                             </div>
                                         </div>
