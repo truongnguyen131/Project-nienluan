@@ -14,6 +14,11 @@ $tenTL = isset($_POST['tenTL']) ? $_POST['tenTL'] : "";
 if ($page == "themTL") {
     mysqli_query($cn, "INSERT INTO `theloai`(`tl_ten`) VALUES ('$tenTL')");
 }
+if ($page == "capNhatTL") {
+    $TLcanupdate = $_SESSION['theloaiUpdate'];
+    mysqli_query($cn, "UPDATE `theloai` SET `tl_ten`='tenTL' WHERE tl_id = $TLcanupdate");
+}
+
 
 if ($page == "themTK") {
     if($loaitaikhoan == "admin"){

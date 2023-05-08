@@ -51,9 +51,17 @@ include_once('database_connection.php'); ?>
         mysqli_query($cn, "DELETE FROM `sanpham` WHERE sp_id = $idsp");
         $_SESSION['xoaSPthanhcong'] = true;
     }
+    if (isset($_POST['xoaTL'])) {
+        $idtl = $_POST['xoaTL'];
+        mysqli_query($cn, "DELETE FROM `theloai` WHERE tl_id = $idtl");
+        $_SESSION['xoaTLthanhcong'] = true;
+    }
     ?>
 
-
+    <?php if (isset($_POST['updateTL'])) {
+        $_SESSION['updateTL'] = $_POST['updateTL'];
+    }
+    ?>
     <?php if (isset($_POST['updateKH'])) {
         $_SESSION['updateKH'] = $_POST['updateKH'];
     }
@@ -1344,19 +1352,19 @@ include_once('database_connection.php'); ?>
             <!-- tabs -->
             <div class="tabs">
                 <?php
-            if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
-                echo "<script> document.getElementById('Themtheloai').click();
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
+                    echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabThemTL').click();
                         alert('Thêm thể loại thành công!!') </script>";
-                unset($_SESSION['dangkythanhcong']);
-            }
-            if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
-                echo "<script> document.getElementById('Themtheloai').click();
+                    unset($_SESSION['dangkythanhcong']);
+                }
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
+                    echo "<script> document.getElementById('Themtheloai').click();
                         document.getElementById('tabDSTL').click();
                         alert('Cập nhật thể loại thành công!!') </script>";
-                unset($_SESSION['dangkythanhcong']);
-            }
-            ?>
+                    unset($_SESSION['dangkythanhcong']);
+                }
+                ?>
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'add-category')" id="tabThemTL">
                         Thêm thể loại
@@ -1375,8 +1383,8 @@ include_once('database_connection.php'); ?>
                         </div>
                     </div>
                     <div class="client-item">
-                        <button type="button" id="bntThemTK" onclick="add_update_TL('add')">Thêm</button>
-                        <button type="button" id="bntCapnhatTK" onclick="add_update_TL('update')" hidden>Cập
+                        <button type="button" id="bntThemTL" onclick="add_update_TL('add')">Thêm</button>
+                        <button type="button" id="bntCapnhatTL" onclick="add_update_TL('update')" hidden>Cập
                             nhật</button>
                         <button type="button" onclick="HuyTL()">Hủy</button>
                     </div>
@@ -1422,7 +1430,7 @@ include_once('database_connection.php'); ?>
                     <div class="table-control">
                         <div class="search">
                             <input class="search" type="text" id="timkiem_tl"
-                                placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
+                                placeholder="Tìm kiếm bằng tên thể loại" />
                             <button class="search" onclick="timkiemTL()">Tìm kiếm</button>
                             <script>
                             var search = $('#timkiem_tl').val()
@@ -1457,7 +1465,7 @@ include_once('database_connection.php'); ?>
 
                             <tbody class="danhsachtimkiemTL">
                             </tbody>
-
+                        </table>
                     </div>
 
                 </div>
@@ -2296,7 +2304,18 @@ window.onload = function() {
 }
 </script>
 
-<?php if (isset($_SESSION['xoaKHthanhcong']) && $_SESSION['xoaKHthanhcong'] == true) {
+<?php if (isset($_SESSION['xoaTLthanhcong']) && $_SESSION['xoaTLthanhcong'] == true) {
+    echo "<script>
+        window.onload = function() {
+            alert('Xóa thành công!!')
+            document.getElementById('Themtheloai').click();
+            document.getElementById('tabDSTL').click();
+        }
+        </script>";
+}
+$_SESSION['xoaTLthanhcong'] = false;
+
+if (isset($_SESSION['xoaKHthanhcong']) && $_SESSION['xoaKHthanhcong'] == true) {
     echo "<script>
         window.onload = function() {
             alert('Xóa thành công!!')
@@ -2430,6 +2449,31 @@ window.onload = function() {
 </script>
 <?php }
 $_SESSION['updateTK'] = 0;
+
+?>
+
+
+<?php
+if (isset($_SESSION['updateTL']) && $_SESSION['updateTL'] != 0) {
+    $idtl = $_SESSION['updateTL'];
+    $sql = "SELECT * FROM theloai WHERE tl_id = $idtl";
+    $query = mysqli_query($cn, $sql);
+    while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+        $_SESSION['theloaiUpdate'] = $row['tk_id'];
+        $tentl = $row['tl_ten'];
+    }
+    ?>
+<script>
+window.onload = function() {
+    document.getElementById('Themtheloai').click();
+    document.getElementById('tabThemTL').click();
+    document.getElementById('TenTheLoai').value = "<?php echo $tentl; ?>"
+    document.getElementById("bntCapnhatTL").removeAttribute("hidden");
+    document.getElementById("bntThemTL").setAttribute("hidden", "hidden");
+}
+</script>
+<?php }
+$_SESSION['updateTL'] = 0;
 
 ?>
 
