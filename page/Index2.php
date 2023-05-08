@@ -20,6 +20,7 @@ include_once('database_connection.php'); ?>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Trang chủ</title>
 </head>
+
 <!-- hàm format giá -->
 <?php
 if (!function_exists('currency_format')) {
@@ -81,7 +82,6 @@ if (isset($_GET['partnerCode'])) {
 ?>
 
 <body>
-
     <!-- custom scroll bar -->
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
@@ -94,17 +94,17 @@ if (isset($_GET['partnerCode'])) {
             <a href="#" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
-                <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
+                <i class='bx bxs-bell' id="bell-icon"></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
                 <?php
                 if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
-                ?>
+                    ?>
                     <a href="giohang2.php">
                         <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
                     </a>
                 <?php } else { ?>
                     <a href="giohang2.php">
-                        <i class='bx bx-cart'></i>
+                        <i class='bx bx-cart' id="cart-icon"></i>
                     </a>
                 <?php } ?>
                 <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
@@ -149,19 +149,18 @@ if (isset($_GET['partnerCode'])) {
                         <li>
                             <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
-                    <?php }  ?>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Thông báo -->
-            <div class="nofication">
-                <div class="nofication-box">
-                    <p>Bạn đã tải game thành công</p>
-                    <i class='bx bxs-check-circle bx-tada'></i>
+            <div class="nofication" id="nofication">
+                <div class="nofication-box" id="noteTxT">
+                    
                 </div>
-                <div class="nofication-box box-color">
-                    <p>Bạn đã tải game thành công</p>
+                <!-- <div class="nofication-box box-color">
+                    <p>Bạn đã không tải game thành công</p>
                     <i class='bx bxs-x-circle bx-tada'></i>
-                </div>
+                </div> -->
             </div>
 
             <!-- tìm kiếm -->
@@ -203,13 +202,13 @@ if (isset($_GET['partnerCode'])) {
         <div class="image-slider1">
             <?php $query6 = mysqli_query($cn, "SELECT * from sanpham");
             while ($row6 = mysqli_fetch_array($query6, MYSQLI_ASSOC)) { ?>
-            <a href="chitietsp.php?idsp=<?php echo $row6['sp_id']?>">
-            <div class="image-item1">
-                    <div class="image1">
-                        <img src="../uploads/<?php echo $row6['sp_imgavt']?>" alt="" />
+                <a href="chitietsp.php?idsp=<?php echo $row6['sp_id'] ?>">
+                    <div class="image-item1">
+                        <div class="image1">
+                            <img src="../uploads/<?php echo $row6['sp_imgavt'] ?>" alt="" />
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             <?php } ?>
 
         </div>
@@ -227,7 +226,7 @@ if (isset($_GET['partnerCode'])) {
             $count_star = mysqli_query($cn, "SELECT * FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id");
             while ($sosao = mysqli_fetch_array($count_star)) {
                 $id = $sosao['sp_id'];
-            ?>
+                ?>
                 <div class="image-item">
                     <div class="card">
                         <a class="sp_img" href="chitietsp.php?idsp=<?php echo $sosao['sp_id'] ?>">
@@ -235,10 +234,16 @@ if (isset($_GET['partnerCode'])) {
                         </a>
                         <div class="card-content">
                             <div class="card-top">
-                                <h3 class="card-title"><?php echo $sosao['sp_tengame'] ?></h3>
+                                <h3 class="card-title">
+                                    <?php echo $sosao['sp_tengame'] ?>
+                                </h3>
                                 <div class="card-user">
-                                    <h3><?php echo currency_format($sosao['sp_gia']) ?></h3>
-                                    <span><?php echo currency_format($sosao['sp_gia']) ?></span>
+                                    <h3>
+                                        <?php echo currency_format($sosao['sp_gia']) ?>
+                                    </h3>
+                                    <span>
+                                        <?php echo currency_format($sosao['sp_gia']) ?>
+                                    </span>
                                 </div>
                             </div>
                             <div class="rating-download">
@@ -250,9 +255,12 @@ if (isset($_GET['partnerCode'])) {
                                         $avg = $avg_sao['AVG(dg_sao)'];
                                     }
                                     ?>
-                                    <span><?php echo number_format($avg, "1", ".", "") ?></span>
+                                    <span>
+                                        <?php echo number_format($avg, "1", ".", "") ?>
+                                    </span>
                                 </div>
-                                <a href="thanhtoan2.php?idsp=<?php echo $sosao['sp_id'] ?>" class="box-btn"><i class='bx bx-download'></i></a>
+                                <a href="thanhtoan2.php?idsp=<?php echo $sosao['sp_id'] ?>" class="box-btn"><i
+                                        class='bx bx-download'></i></a>
                             </div>
                         </div>
                     </div>
@@ -274,7 +282,7 @@ if (isset($_GET['partnerCode'])) {
                 $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id ");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                     if (strtotime($row['gg_ngaybatdau']) <= strtotime($today) && strtotime($row['gg_ngayketthuc']) >= strtotime($today)) {
-                ?>
+                        ?>
                         <div class="card" id="<?php echo $row['sp_id'] ?>">
                             <div class="content">
                                 <div class="back">
@@ -292,29 +300,38 @@ if (isset($_GET['partnerCode'])) {
                                     </div>
                                     <div class="front-content">
                                         <!-- phần trăm sale -->
-                                        <small class="badge"><?php echo $row['gg_phantram'] ?>%</small>
+                                        <small class="badge">
+                                            <?php echo $row['gg_phantram'] ?>%
+                                        </small>
                                         <div class="description">
                                             <div class="title">
                                                 <p class="title">
                                                     <!-- tên sản phẩm -->
-                                                    <strong><?php echo $row['sp_tengame']; ?></strong>
+                                                    <strong>
+                                                        <?php echo $row['sp_tengame']; ?>
+                                                    </strong>
                                                 </p>
                                             </div>
                                             <div class="card-footer">
                                                 <!-- giá trước khi sale -->
                                                 <div class="footer-label">
-                                                    <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?>đ</label>
+                                                    <label for="" class="price-old">
+                                                        <?php echo currency_format($row['sp_gia']) ?>đ
+                                                    </label>
                                                 </div>
                                                 <!-- giá sau khi sale -->
                                                 <div class="footer-label">
-                                                    <label for=""><?php echo currency_format($row['sp_gia']) ?></label>
+                                                    <label for="">
+                                                        <?php echo currency_format($row['sp_gia']) ?>
+                                                    </label>
                                                 </div>
                                             </div>
 
                                             <div class="card-btn">
                                                 <!-- chi tiết sản phẩm -->
                                                 <div class="card-button">
-                                                    <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
+                                                    <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>"
+                                                        title="Chi tiết sản phẩm">
                                                         <i class='bx bx-dots-horizontal-rounded'></i>
                                                     </a>
                                                 </div>
@@ -326,9 +343,8 @@ if (isset($_GET['partnerCode'])) {
                                                 </div>
                                                 <!-- button thêm vào giỏ hàng -->
                                                 <div class="card-button">
-                                                    <a href="themvaogiohang.php?idsp=<?php echo $row['sp_id']; ?>">
-                                                        <i class='bx bx-cart'></i>
-                                                    </a>
+                                                    <input type="button"
+                                                        onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)" value="Thêm">
                                                 </div>
                                             </div>
                                         </div>
@@ -336,7 +352,7 @@ if (isset($_GET['partnerCode'])) {
                                 </div>
                             </div>
                         </div>
-                <?php }
+                    <?php }
                 } ?>
             </div>
         </div>
@@ -371,6 +387,7 @@ if (isset($_GET['partnerCode'])) {
 
         </div>
     </section>
+    <div id="note"></div>
     <!-- coppyright -->
     <footer class="coppyright ">
         <div class="footer__content container">
@@ -398,7 +415,7 @@ if (isset($_GET['partnerCode'])) {
         </div>
 
     </footer>
-
+               
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -407,5 +424,14 @@ if (isset($_GET['partnerCode'])) {
     <script src="../js/slider.js"></script>
     <script src="../js/slider1.js"></script>
 </body>
+<script>
+    function themsanphamindex(idsp) {
+        $.post('themvaogiohang.php', {
+            data: idsp
+        }, function (data) {
+            $('#note').html(data);
+        })
+    }
+</script>
 
 </html>
