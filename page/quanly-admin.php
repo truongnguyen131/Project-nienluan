@@ -1334,15 +1334,14 @@ include_once('database_connection.php'); ?>
             <div class="sale-main">
                 <div class="table-control">
                     <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm" />
-                        <button class="search">Tìm kiếm</button>
+                        <input class="search" type="text" placeholder="Tìm kiếm sản phẩm" />
                     </div>
                 </div>
                 <!-- Tất cả sản phẩm -->
                 <table style="display: table" id="all-games">
                     <tr>
                         <td colspan="10">
-                            <div class="scrollbar">
+                            <div class="scrollbar2">
                                 <table border="1" class="table">
                                     <tr class="table-primary">
                                         <th scope="col">STT</th>
@@ -1366,17 +1365,14 @@ include_once('database_connection.php'); ?>
                                         <td>30/3/2022</td>
                                         <td><input type="checkbox" name="" id="" value="Thêm %"></td>
                                     </tr>
-
+                                    
                                 </table>
                             </div>
                         </td>
                     </tr>
                 </table>
 
-                <div class="control-sale">
-                    <div class="sale-title">
-                        Kéo để chọn phần trăm
-                    </div>
+                <div class="control-sale" style="margin-top: 20px;">
                     <div class="control-middel">
                         <div class="slidecontainer">
                             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
@@ -1395,7 +1391,7 @@ include_once('database_connection.php'); ?>
                         </div>
 
                     </div>
-                    <div class="sale-update">
+                    <div class="sale-update" style="margin-top: 30px;">
                         <button>Thêm</button>
                         <button>Xóa</button>
                         <button>Cập nhật</button>
@@ -2251,7 +2247,7 @@ window.onload = function() {
 }
 </script>
 <?php }
-$_SESSION['updateTK'] = 0;
+$_SESSION['updateSP'] = 0;
 
 ?>
 
