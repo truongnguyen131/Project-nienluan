@@ -129,14 +129,11 @@ ul.breadcrumb li a:hover {
 .pro {
     position: absolute;
     height: 100%;
+    left: 0;
+    right: 0;
     background-color: goldenrod;
     border-radius: 5px;
     background-attachment: fixed;
-}
-
-.color {
-    left: 0;
-    right: 0;
 }
 
 .range-text div {

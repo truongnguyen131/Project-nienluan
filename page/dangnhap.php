@@ -10,8 +10,6 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/dangnhap.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Đăng nhập</title>
 </head>
 
@@ -55,9 +53,6 @@ include_once('database_connection.php'); ?>
     <form action="" method="post">
         <div class="login-form">
             <div class="login-title">
-                <a class="home" href="index2.php" title="Trang chủ">
-                <i class='bx bxs-home-smile'></i>
-                </a>
                 ĐĂNG NHẬP
             </div>
             <div class="login-item">

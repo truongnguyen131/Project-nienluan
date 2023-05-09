@@ -36,7 +36,7 @@ include_once('database_connection.php');
 
 if (!isset($_SESSION["idtaikhoan"])) {
     $_SESSION["chuadangnhapthanhtoan"] = false;
-    if (isset($_GET['idsp'])) {
+    if(isset($_GET['idsp'])){
         $_SESSION["idsp"] = $_GET['idsp'];
     }
     header("location:dangnhap.php");
@@ -216,8 +216,30 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                         <div></div>
                     <?php } ?>
 
-                 
-
+                    <?php
+                    
+                    if(isset($_GET['idsp'])){
+                        $sanpham = 1;
+                        $idsp = $_GET['idsp'];
+                        $sp = mysqli_query($cn, "SELECT * FROM sanpham WHERE sp_id = $idsp");
+                        while ($row = mysqli_fetch_array($sp, MYSQLI_ASSOC)) {
+                            $tt = $tt + ($row['sp_gia'] * 1);
+                    ?>
+                            <div class="cart-item">
+                                <div class="item-right">
+                                    <h3><?php echo $row['sp_tengame'] ?></h3>
+                                    <span class="money"><?php echo currency_format($row['sp_gia']); ?></span><span> x 1</span>
+                                </div>
+                                <div class="item-left">
+                                    <?php $tong = $row['sp_gia']; ?>
+                                    <span><?php echo currency_format($tong); ?></span>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        
+                    }?>
+                    
                     <!---------------->
                 </div>
                 <div class="cart-bottom">
@@ -335,7 +357,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
         var cb = document.getElementById('dtl').value;
         var tt = document.getElementById('tt').value;
         var total = tt - cb;
-
+      
         function onlyOne(checkbox) {
             var checkboxes = document.getElementsByName('check')
             checkboxes.forEach((item) => {
