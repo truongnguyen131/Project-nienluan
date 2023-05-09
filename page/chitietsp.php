@@ -169,7 +169,6 @@ if (isset($_GET['idsp'])) {
                     </a>
                 <?php } ?>
             </p>
-
             <span>Nhà sản xuất: <?php echo $row['nsx_ten'] ?></span>
             <div class="sale-and-star">
                 <!-- số sao trung bình được đánh giá -->
@@ -178,31 +177,49 @@ if (isset($_GET['idsp'])) {
                 while ($avg_sao = mysqli_fetch_array($count)) {
                     $avg = $avg_sao['AVG(dg_sao)'];
                 }
+                if ($avg > 0) {
                 ?>
-                <span class="medium-star"><?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star bx-tada'></i></span>
-                <!-- % giảm giá (nếu có)-->
-                <?php $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id = $sp_id");
-                if (mysqli_num_rows($query1) > 0) {
-                    $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC); ?>
-                    <span class="sale"><?php echo $row1['gg_phantram'] ?>%</span>
-                <?php $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
-                } else {
-                    $giamoi = $row['sp_gia'];
-                } ?>
-            </div>
-            <div class="info-price">
-                <!-- giá mới -->
-                <h2><?php echo currency_format($giamoi) ?></h2>
-                <!-- giá cũ trước khi sale (nếu có)-->
-                <?php
-                $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id = $sp_id");
-                if (mysqli_num_rows($query1) > 0) { ?>
-                    <span><?php echo currency_format($row['sp_gia']) ?></span>
+                    <span class="medium-star"><?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star bx-tada'></i></span>
                 <?php } else { ?>
                     <span></span>
                 <?php } ?>
-
+                <!-- % giảm giá (nếu có)-->
+                <?php
+                $today = date('Y-m-d');
+                $query1 = mysqli_query($cn, "SELECT * from giamgia where sp_id = $sp_id");
+                if (mysqli_num_rows($query1) > 0) {
+                    $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+                    if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                        $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
+                ?>
+                        <span class="sale"><?php echo $row1['gg_phantram'] ?>%</span>
+                        <div class="info-price">
+                            <!-- giá mới -->
+                            <h2><?php echo currency_format($giamoi) ?></h2>
+                            <!-- giá cũ trước khi sale (nếu có)-->
+                            <span><?php echo currency_format($row['sp_gia']) ?></span>
+                        </div>
+                    <?php } else { ?>
+                        <span></span>
+                        <div class="info-price">
+                            <!-- giá mới -->
+                            <h2><?php echo currency_format($row['sp_gia']) ?></h2>
+                            <!-- giá cũ trước khi sale (nếu có)-->
+                            <span></span>
+                        </div>
+                    <?php } ?>
+                <?php
+                } else { ?>
+                    <span></span>
+                    <div class="info-price">
+                        <!-- giá mới -->
+                        <h2><?php echo currency_format($row['sp_gia']) ?></h2>
+                        <!-- giá cũ trước khi sale (nếu có)-->
+                        <span></span>
+                    </div>
+                <?php } ?>
             </div>
+
             <div class="infor-btn">
                 <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">Mua</a>
                 <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">Thêm vào giỏ hàng</a>
