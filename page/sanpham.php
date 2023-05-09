@@ -216,7 +216,6 @@ if (!function_exists('currency_format')) {
                                     $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp");
                                     if (mysqli_num_rows($query1) > 0) {
                                         $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
-                                        echo strtotime($row1['gg_ngaybatdau']). "  ". strtotime($today) ;
                                         if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
                                             $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100)); ?>
                                             <small class="badge">

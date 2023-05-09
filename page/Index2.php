@@ -165,8 +165,19 @@ if (isset($_GET['partnerCode'])) {
             <!-- tìm kiếm -->
             <div class="search">
                 <div class="search-item">
-                    <input type="text" class="search-input" placeholder=" " name="hoten" value="">
+                    <input type="text" class="search-input" placeholder=" " onkeyup="thanhsearch()" id="thanhsearch"
+                        name="thanhsearch">
                     <span class="search-lable">Tìm kiếm</span>
+                    <script>
+                        function thanhsearch() {
+                            let tk = document.getElementById("thanhsearch").value;
+                            $.post('thanhsearchindex.php', {
+                                data: tk
+                            }, function (data) {
+                                $('#sale').html(data);
+                            })
+                        }
+                    </script>
                 </div>
             </div>
 
@@ -279,9 +290,10 @@ if (isset($_GET['partnerCode'])) {
                 <?php
                 $today = date('Y-m-d');
                 $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id ");
+                $gioihan = 0;
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                    if (strtotime($row['gg_ngaybatdau']) <= strtotime($today) && strtotime($row['gg_ngayketthuc']) >= strtotime($today)) {
-                        ?>
+                    if (strtotime($row['gg_ngaybatdau']) <= strtotime($today) && strtotime($row['gg_ngayketthuc']) >= strtotime($today) && $gioihan < 9) {
+                        $gioihan++; ?>
                         <div class="card" id="<?php echo $row['sp_id'] ?>">
                             <div class="content">
                                 <div class="back">
@@ -289,7 +301,16 @@ if (isset($_GET['partnerCode'])) {
                                         <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
                                         <div class="rating">
                                             <i class='bx bxs-star'></i>
-                                            <span>4.7</span>
+                                            <?php
+                                            $id = $row['sp_id'];
+                                            $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND sanpham.sp_id = $id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id;");
+                                            while ($avg_sao = mysqli_fetch_array($count)) {
+                                                $avg = $avg_sao['AVG(dg_sao)'];
+                                            }
+                                            ?>
+                                            <span>
+                                                <?php echo number_format($avg, "1", ".", "") ?>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
