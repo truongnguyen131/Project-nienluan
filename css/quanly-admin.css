@@ -388,7 +388,7 @@ td button {
 }
 
 .scrollbar {
-    max-height: 430px;
+    max-height: 350px;
     width: 100%;
     overflow: auto;
 }

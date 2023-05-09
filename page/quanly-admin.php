@@ -902,7 +902,7 @@ include_once('database_connection.php'); ?>
                     }
                 </script>
                 <!-- Danh sách tài khoản -->
-                <div id="list-account" class="tabcontent">
+                <div id="list-account" class="tabcontent ">
                     <!-- Thông tin tài khoản-->
                     <table>
                         <div class="table-control">
@@ -951,7 +951,6 @@ include_once('database_connection.php'); ?>
                     </table>
                 </div>
             </div>
-
         </div>
 
         <!-- Thêm Sản phẩm -->
@@ -1279,7 +1278,7 @@ include_once('database_connection.php'); ?>
                         </div>
                     </div>
                     <div class="table-thongke table-responsive-sm">
-                        <div class="danhsachtimkiemSP">
+                        <div class="danhsachtimkiemSP scrollbar">
 
                         </div>
                     </div>
@@ -1394,7 +1393,7 @@ include_once('database_connection.php'); ?>
                             </script>
                         </div>
                     </div>
-                    <div class="table-thongke table-responsive-sm">
+                    <div class="table-thongke table-responsive-sm scrollbar">
                         <!-- Danh sách thể loại-->
                         <table border="1" id="inforgame" style="display: table" class="table
                                             table-inforgame">
@@ -1405,7 +1404,7 @@ include_once('database_connection.php'); ?>
                                 <th scope="col">Cập nhật</th>
                                 <th scope="col">Xóa</th>
                             </tr>
-                            <tbody class="danhsachtimkiemTL">
+                            <tbody class="danhsachtimkiemTL ">
                             </tbody>
                         </table>
                     </div>
