@@ -132,7 +132,6 @@ if ($giaMax != "") {
                             $today = date('Y-m-d');
                             $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp");
                             if (mysqli_num_rows($query1) > 0) {
-                                echo strtotime($row1['gg_ngaybatdau'])."  ".  strtotime($today);
                                 $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                                 if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
                                     $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
@@ -195,9 +194,10 @@ if ($giaMax != "") {
                                     </div>
                                     <!-- button thêm vào giỏ hàng -->
                                     <div class="card-button">
-                                        <a href="themvaogiohang.php?idsp=<?php echo $row['sp_id']; ?>">
-                                            <i class='bx bx-cart'></i>
-                                        </a>
+                                        <button style="display: block;"
+                                            onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
+                                            <ion-icon name="cart-outline"></ion-icon>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
