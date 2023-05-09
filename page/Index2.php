@@ -154,7 +154,7 @@ if (isset($_GET['partnerCode'])) {
             <!-- Thông báo -->
             <div class="nofication" id="nofication">
                 <div class="nofication-box" id="noteTxT">
-                    
+
                 </div>
                 <!-- <div class="nofication-box box-color">
                     <p>Bạn đã không tải game thành công</p>
@@ -336,14 +336,17 @@ if (isset($_GET['partnerCode'])) {
                                                 </div>
                                                 <!-- button download -->
                                                 <div class="card-button">
-                                                    <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>" title="Mua sản phẩm">
+                                                    <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>"
+                                                        title="Mua sản phẩm">
                                                         <i class='bx bx-download'></i>
                                                     </a>
                                                 </div>
                                                 <!-- button thêm vào giỏ hàng -->
                                                 <div class="card-button">
-                                                    <input type="button"
-                                                        onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)" value="Thêm">
+                                                    <button style="display: block;"
+                                                        onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
+                                                        <ion-icon name="cart-outline"></ion-icon>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -414,7 +417,7 @@ if (isset($_GET['partnerCode'])) {
         </div>
 
     </footer>
-               
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -425,6 +428,8 @@ if (isset($_GET['partnerCode'])) {
 </body>
 <script>
     function themsanphamindex(idsp) {
+        var audio = new Audio('click.mp3')
+        audio.play()
         $.post('themvaogiohang.php', {
             data: idsp
         }, function (data) {
