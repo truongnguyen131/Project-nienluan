@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start();
+include_once('database_connection.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,22 +11,50 @@
 </head>
 
 <body>
-    <a href="../uploads/website.zip" id="dl"></a>
-    <script>
-      window.onload = function(){
-            document.getElementById('dl').click();
-        }
-    </script>
+
+
+
     <?php
-    echo $_GET['idsp'];
-    echo $_SESSION['idtaikhoan'];
+    foreach ($_SESSION['xulygiohang'] as $key => $value) {
+        $tenGame = $value['tensp'];
+
+        for ($i = 1; $i <= $value['soluong']; $i++) {
+            echo "<li onclick='downloadSource(\"../uploads/GAME.zip\",\"$tenGame$i\")' id='$tenGame$i'>$tenGame$i </li>\n";
+        }
+
+    }
     ?>
 
-    <!-- Javascript files-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
+    <script>
+        function downloadSource(url, fileName) {
+            let link = document.createElement("a")
+            link.setAttribute("download", fileName)
+            link.href = url
+            document.body.appendChild(link)
+            link.click()
+            link.remove()
+        }
+
+        window.onload = function () {
+            <?php
+
+            foreach ($_SESSION['xulygiohang'] as $key => $value) {
+                $tenGame = $value['tensp'];
+                for ($i = 1; $i <= $value['soluong']; $i++) {
+                    echo 'document.getElementById("' . $tenGame . $i . '").click()  
+                    ';
+                }
+
+            }
+
+            unset($_SESSION['thanhtoan']);
+            unset($_SESSION['xulygiohang']);
+
+            ?>
+            window.location = "http://localhost/Project-nienluan/page/index2.php"
+        }
+    </script>
+
 </body>
 
 </html>

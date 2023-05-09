@@ -16,7 +16,7 @@ if ($page == "themTL") {
 }
 if ($page == "capNhatTL") {
     $TLcanupdate = $_SESSION['theloaiUpdate'];
-    mysqli_query($cn, "UPDATE `theloai` SET `tl_ten`='tenTL' WHERE tl_id = $TLcanupdate");
+    mysqli_query($cn, "UPDATE `theloai` SET `tl_ten`='$tenTL' WHERE tl_id = $TLcanupdate");
 }
 
 
@@ -96,6 +96,10 @@ if ($page == "capNhatNSX") {
 }
 if ($page == "capNhatTK") {
     $_SESSION['dangkythanhcong'] = "capNhatTK";
+    header("location:quanly-admin.php");
+}
+if ($page == "capNhatTL") {
+    $_SESSION['dangkythanhcong'] = "capNhatTL";
     header("location:quanly-admin.php");
 }
 
