@@ -11,8 +11,6 @@ if ($ntk == "checked") {
     setcookie("taikhoan", $taikhoan, time() + 60);
     setcookie("matkhau", $matkhau, time() + 60);
 }
-
-
 $Result = mysqli_query($cn, "SELECT * FROM taikhoan WHERE tk_taikhoan='$taikhoan' AND tk_matkhau='$matkhau'");
 if (mysqli_num_rows($Result) == 1) {
     $_SESSION["tentaikhoan"] = $taikhoan;

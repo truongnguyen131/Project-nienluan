@@ -39,8 +39,6 @@ document.getElementById("cart-icon").innerHTML = "<span></span>"
 document.getElementById("bell-icon").classList.toggle("bx-tada")
 document.getElementById("bell-icon").innerHTML = "<span></span>"
 document.getElementById("noteTxT").innerHTML = "<p>Thêm sản phẩm thành công ùi</p>"
-if(!document.getElementById("nofication").classList.contains("active")){
-    document.querySelector(".nofication").classList.toggle("active");
-}
+
 </script>';
 ?>

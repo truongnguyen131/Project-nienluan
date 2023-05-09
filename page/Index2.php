@@ -154,12 +154,9 @@ if (isset($_GET['partnerCode'])) {
             <!-- Thông báo -->
             <div class="nofication" id="nofication">
                 <div class="nofication-box" id="noteTxT">
-
+                    
                 </div>
-                <!-- <div class="nofication-box box-color">
-                    <p>Bạn đã không tải game thành công</p>
-                    <i class='bx bxs-x-circle bx-tada'></i>
-                </div> -->
+
             </div>
 
             <!-- tìm kiếm -->
@@ -183,6 +180,12 @@ if (isset($_GET['partnerCode'])) {
 
             <!-- Đăng xuất -->
             <div class="log-out">
+            <a href="khachhang.php?idtk=<?php echo $idtk?>">
+                    <div class="logout-box box-color">
+                        <p>Thông tin Khách hàng</p>
+                        <i class='bx bx-spreadsheet'></i>
+                    </div>
+                </a>
                 <a href="dangxuat.php" class="out">
                     <div class="logout-box box-color">
                         <p>Đăng xuất</p>

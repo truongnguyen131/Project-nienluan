@@ -29,7 +29,6 @@ include_once('database_connection.php'); ?>
 
     <form action="" method="post">
         <div class="register-form">
-
             <div class="register-title">
                 <a class="home" href="index2.php" title="Trang chủ">
                     <i class='bx bxs-home-smile'></i>

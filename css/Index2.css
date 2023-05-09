@@ -213,7 +213,7 @@ header {
     top: 110%;
     right: 7rem;
     width: 300px;
-    height: 350px;
+    height: 70px;
     background: var(--light-color);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 0.5rem;

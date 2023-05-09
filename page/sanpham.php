@@ -112,9 +112,9 @@ if (!function_exists('currency_format')) {
                 </div>
             </div>
             <!-- Thông báo -->
-            <div class="nofication" id="nofication">
+            <div class="nofication1" id="nofication">
                 <div class="nofication-box" id="noteTxT">
-
+                        
                 </div>
                 <!-- <div class="nofication-box box-color">
                     <p>Bạn đã không tải game thành công</p>
@@ -123,7 +123,7 @@ if (!function_exists('currency_format')) {
             </div>
 
             <!-- tìm kiếm -->
-            <div class="search">
+            <div class="search1">
                 <div class="search-item">
                     <input type="text" class="search-input" placeholder=" " onkeyup="thanhsearch()" id="thanhsearch"
                         name="thanhsearch">
@@ -509,6 +509,7 @@ if (!function_exists('currency_format')) {
     <script src="../js/index.js "></script>
     <script src="../js/sanpham.js "></script>
     <script src="../js/logout.js"></script>
+    <script src="../js/search_nofication.js"></script>
     <div id="note"></div>
 </body>
 <?php

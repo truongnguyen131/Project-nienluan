@@ -1,0 +1,146 @@
+:root {
+    --main-color: #fa5353;
+    --dark-color: #1b182b;
+    --light-color: #322f40;
+    --text-color: hsl(0, 0%, 91%);
+}
+
+
+/* Breadcrumb */
+
+.menu-second {
+    margin-top: 6rem;
+}
+
+.menu-second h2 {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.menu-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: var(--text-color);
+    content: " \276f";
+}
+
+ul.breadcrumb .here {
+    color: var(--main-color);
+}
+
+ul.breadcrumb li a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+    color: var(--main-color);
+}
+
+.scrollbar {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.cart-content {
+    padding: 10px;
+}
+
+.register-form {
+    width: 100%;
+    margin: 3rem auto;
+    backdrop-filter: blur(10px);
+    padding: 0 20px;
+    border-radius: 14px;
+}
+
+.register-input {
+    outline: none;
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 4px;
+    border: 2px solid #eee;
+    background-color: transparent;
+    transition: 0.25s ease;
+    color: var(--text-color);
+    padding: 10px;
+}
+
+.register-input:focus {
+    border-color: var(--main-color);
+}
+
+.is-invalid {
+    border: 2px solid red;
+    vertical-align: center;
+}
+
+.loi {
+    position: absolute;
+    bottom: -1.5rem;
+    color: red;
+}
+
+.register-lable {
+    position: absolute;
+    color: #747474;
+    top: 50%;
+    left: 21px;
+    transform: translateY(-50%);
+    user-select: none;
+    pointer-events: none;
+    transition: 0.25s ease;
+    background: var(--dark-color);
+    padding: 5px;
+}
+
+.register-input:not(:placeholder-shown)+.register-lable,
+.register-input:focus+.register-lable {
+    top: 0;
+    /* left: 75%; */
+    color: var(--main-color);
+    display: inline-block;
+}
+
+.register-item {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.register-btn {
+    display: flex;
+    gap: 10px;
+}
+
+.register-item button {
+    width: 100px;
+    height: 50px;
+    border-radius: 4px;
+    outline: none;
+    border: 2px solid white;
+    color: white;
+    background: var(--main-color);
+    transition: 0.25s ease;
+}
+
+.register-item button:hover {
+    background: var(--light-color);
+    border-color: var(--main-color);
+    transform: translateY(-2px);
+}
