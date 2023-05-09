@@ -166,6 +166,15 @@ a ion-icon:hover {
     box-sizing: border-box;
 }
 
+.client-item {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 .search button {
     width: 20%;
     background-color: black;
