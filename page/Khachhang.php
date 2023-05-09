@@ -159,6 +159,7 @@ include_once('database_connection.php'); ?>
             $sdt = $row1['kh_sdt'];
             $email = $row1['kh_email'];
             $taikhoan = $row1['tk_taikhoan'];
+            $matkhau = $row1['tk_matkhau'];
         }
         if ($loaitk == "nha san xuat") {
             $nsx = mysqli_query($cn, "SELECT * FROM nsx,taikhoan WHERE nsx.tk_id = taikhoan.tk_id AND  taikhoan.tk_id  = $tk_id");
@@ -167,55 +168,72 @@ include_once('database_connection.php'); ?>
             $sdt = $row2['nsx_sdt'];
             $email = $row2['nsx_email'];
             $taikhoan = $row2['tk_taikhoan'];
+            $matkhau = $row2['tk_matkhau'];
         }
         if ($loaitk == "admin") {
-             $ad = mysqli_query($cn, "SELECT * FROM taikhoan WHERE tk_id  = $tk_id");
-             $row3 = mysqli_fetch_array($ad, MYSQLI_ASSOC);
+            $ad = mysqli_query($cn, "SELECT * FROM taikhoan WHERE tk_id  = $tk_id");
+            $row3 = mysqli_fetch_array($ad, MYSQLI_ASSOC);
             $ten = "Quản lý";
             $sdt = "0947492641";
             $email = "GameStore@gmail.com";
             $taikhoan = $row3['tk_taikhoan'];
-        }?>
-        <div class="register-item">
-            <input type="text" class="register-input" id="hoten" placeholder=" " name="hoten" value="<?php echo $ten;?>">
-            <span class="register-lable">Họ tên</span>
-            <div class="loi" id="loihoten"></div>
+            $matkhau = $row3['tk_matkhau'];
+        } ?>
+        <input type="text" hidden value="<?php echo $tk_id?>" id="id_tk">
+        <div class="left">
+            <div class="register-item">
+                <input type="text" class="register-input" id="hoten" placeholder=" " name="hoten" value="<?php echo $ten; ?>" readonly>
+                <span class="register-lable">Họ tên</span>
+                <div class="loi" id="loihoten"></div>
+            </div>
+            <div class="register-item">
+                <input type="text" class="register-input" id="sdt" name="sdt" placeholder=" " value="<?php echo $sdt; ?>" readonly>
+                <span class="register-lable">Số điện thoại</span>
+                <div class="loi" id="loisdt"></div>
+            </div>
+            <div class="register-item">
+                <input type="email" class="register-input" id="email" name="email" placeholder=" " value="<?php echo $email; ?>" readonly>
+                <span class="register-lable">Email</span>
+                <div class="loi" id="loiemail"></div>
+            </div>
+            <div class="register-item">
+                <input type="text" class="register-input" id="tk" placeholder=" " name="taikhoan" value="<?php echo $taikhoan; ?>" readonly>
+                <span class="register-lable">Tài khoản</span>
+                <div class="loi" id="loitk"></div>
+            </div>
+            <button id="update" class="change_pass">Đổi mật khẩu</button>
         </div>
-        <div class="register-item">
-            <input type="text" class="register-input" id="sdt" name="sdt" placeholder=" " value="<?php echo $sdt;?>">
-            <span class="register-lable">Số điện thoại</span>
-            <div class="loi" id="loisdt"></div>
-        </div>
-        <div class="register-item">
-            <input type="email" class="register-input" id="email" name="email" placeholder=" " value="<?php echo $email;?>">
-            <span class="register-lable">Email</span>
-            <div class="loi" id="loiemail"></div>
-        </div>
-        <div class="register-item">
-            <input type="text" class="register-input" id="tk" placeholder=" " name="taikhoan" value="<?php echo $taikhoan;?>">
-            <span class="register-lable">Tài khoản</span>
-            <div class="loi" id="loitk"></div>
-        </div>
-        <div class="register-item">
-            <input type="password" class="register-input input-pass" placeholder=" " id="mk" name="matkhau" >
-            <span class="register-lable">Mật khẩu</span>
-            <div class="loi" id="loimk"></div>
-            <ion-icon name="eye-off-outline" class="eye eye-close"></ion-icon>
-            <ion-icon name="eye-outline" class="eye eye-open hidden"></ion-icon>
-        </div>
-        <div class="register-item">
-            <input type="password" class="register-input input-pass-again" placeholder=" " id="nlmk" name="matkhau_again">
-            <span class="register-lable">Nhập lại mật khẩu</span>
-            <div class="loi" id="loinlmk"></div>
-            <ion-icon name="eye-off-outline" class="eye eye-close-again"></ion-icon>
-            <ion-icon name="eye-outline" class="eye eye-open-again hidden"></ion-icon>
-        </div>
-        <div class="register-item register-btn">
-            <button onclick="capnhat()" type="button">Cập nhật</button>
-            <button type="button" onclick="Huy()">Hủy</button>
+
+        <div class="right">
+            <div class="register-item" id="pass1">
+                <input type="text" hidden value="<?php echo $matkhau?>" id="mk_old">
+                <input type="password" class="register-input input-pass" placeholder=" " id="mk1" name="matkhau">
+                <span class="register-lable2">Mật khẩu cũ</span>
+                <div class="loi" id="loimkcu"></div>
+                <ion-icon name="eye-off-outline" class="eye eye-close"></ion-icon>
+                <ion-icon name="eye-outline" class="eye eye-open hidden"></ion-icon>
+            </div>
+            <div class="register-item" id="pass2">
+                <input type="password" class="register-input input-pass" placeholder=" " id="mk2" name="matkhau">
+                <span class="register-lable2">Mật khẩu mới</span>
+                <div class="loi" id="loimkmoi"></div>
+                <ion-icon name="eye-off-outline" class="eye eye-close"></ion-icon>
+                <ion-icon name="eye-outline" class="eye eye-open hidden"></ion-icon>
+            </div>
+            <div class="register-item" id="pass3">
+                <input type="password" class="register-input input-pass-again" placeholder=" " id="nlmk" name="matkhau_again">
+                <span class="register-lable2">Nhập lại mật khẩu mới</span>
+                <div class="loi" id="loinlmk"></div>
+                <ion-icon name="eye-off-outline" class="eye eye-close-again"></ion-icon>
+                <ion-icon name="eye-outline" class="eye eye-open-again hidden"></ion-icon>
+            </div>
+            <div class="register-item register-btn">
+                <button onclick="capnhat()" type="button">Cập nhật</button>
+                <button type="button" onclick="huy()">Hủy</button>
+            </div>
         </div>
     </div>
-
+    <div id="thongbao"></div>
 </body>
 
 
@@ -223,5 +241,7 @@ include_once('database_connection.php'); ?>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="../js/index.js"></script>
 <script src="../js/logout.js"></script>
+<script src="../js/khachhang.js"></script>
+<script src="../js/dangnhap.js"></script>
 
 </html>
