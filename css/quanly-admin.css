@@ -399,6 +399,12 @@ td button {
     overflow: auto;
 }
 
+.scrollbar2 {
+    max-height: 200px;
+    width: 100%;
+    overflow: auto;
+}
+
 table {
     width: 100%;
     text-align: center;
