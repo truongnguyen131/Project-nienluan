@@ -41,7 +41,7 @@ if (!function_exists('currency_format')) {
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
     </div>
-   
+
     <!-- Header -->
     <header>
         <!-- nav -->
@@ -50,20 +50,20 @@ if (!function_exists('currency_format')) {
             <a href="index2.php" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
-                <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
+                <i class='bx bxs-bell' id="bell-icon"></i>
                 <i class='bx bx-search-alt' id="search-icon"></i>
                 <a href="#" onclick="openmodal()">
                     <i class='bx bx-filter-alt' id="filter-icon"></i>
                 </a>
                 <?php
                 if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
-                ?>
+                    ?>
                     <a href="giohang2.php">
                         <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
                     </a>
                 <?php } else { ?>
                     <a href="giohang2.php">
-                        <i class='bx bx-cart'></i>
+                        <i class='bx bx-cart' id="cart-icon"></i>
                     </a>
                 <?php } ?>
                 <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
@@ -108,26 +108,36 @@ if (!function_exists('currency_format')) {
                         <li>
                             <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
-                    <?php }  ?>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Thông báo -->
-            <div class="nofication">
-                <div class="nofication-box">
-                    <p>Bạn đã tải game thành công</p>
-                    <i class='bx bxs-check-circle bx-tada'></i>
+            <div class="nofication" id="nofication">
+                <div class="nofication-box" id="noteTxT">
+
                 </div>
-                <div class="nofication-box box-color">
-                    <p>Bạn đã tải game thành công</p>
+                <!-- <div class="nofication-box box-color">
+                    <p>Bạn đã không tải game thành công</p>
                     <i class='bx bxs-x-circle bx-tada'></i>
-                </div>
+                </div> -->
             </div>
 
             <!-- tìm kiếm -->
             <div class="search">
                 <div class="search-item">
-                    <input type="text" class="search-input" placeholder=" " name="hoten" value="">
+                    <input type="text" class="search-input" placeholder=" " onkeyup="thanhsearch()" id="thanhsearch"
+                        name="thanhsearch">
                     <span class="search-lable">Tìm kiếm</span>
+                    <script>
+                        function thanhsearch() {
+                            let tk = document.getElementById("thanhsearch").value;
+                            $.post('thanhsearch.php', {
+                                data: tk
+                            }, function (data) {
+                                $('#saling').html(data);
+                            })
+                        }
+                    </script>
                 </div>
             </div>
 
@@ -168,10 +178,10 @@ if (!function_exists('currency_format')) {
                 } else {
                     $begin = ($page * 12) - 12;
                 }
-                $query = mysqli_query($cn, "SELECT * from sanpham ");
+                $query = mysqli_query($cn, "SELECT * from sanpham ORDER BY sanpham.sp_id DESC LIMIT $begin,12");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                     $idsp = $row['sp_id'];
-                ?>
+                    ?>
                     <div class="card">
                         <div class="content">
                             <div class="back">
@@ -185,7 +195,9 @@ if (!function_exists('currency_format')) {
                                     }
                                     if ($avg > 0) { ?>
                                         <div class="rating">
-                                            <span class="starss"><?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star'></i></span>
+                                            <span class="starss">
+                                                <?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star'></i>
+                                            </span>
                                         </div>
                                     <?php } else { ?>
                                         <div></div>
@@ -200,12 +212,16 @@ if (!function_exists('currency_format')) {
                                     <!-- phần trăm sale -->
                                     <?php
                                     $today = date('Y-m-d');
+                                    $giamoi = 0;
                                     $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp");
                                     if (mysqli_num_rows($query1) > 0) {
-                                    $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+                                        $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
+                                        echo strtotime($row1['gg_ngaybatdau']). "  ". strtotime($today) ;
                                         if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                            $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));?>
-                                            <small class="badge"><?php echo $row1['gg_phantram'] ?>%</small>
+                                            $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100)); ?>
+                                            <small class="badge">
+                                                <?php echo $row1['gg_phantram'] ?>%
+                                            </small>
                                         <?php }
                                     } else { ?>
                                         <small></small>
@@ -214,26 +230,35 @@ if (!function_exists('currency_format')) {
                                         <div class="title">
                                             <p class="title">
                                                 <!-- tên sản phẩm -->
-                                                <strong><?php echo $row['sp_tengame']; ?></strong>
+                                                <strong>
+                                                    <?php echo $row['sp_tengame']; ?>
+                                                </strong>
                                             </p>
                                         </div>
                                         <div class="card-footer">
                                             <?php
-                                            if (mysqli_num_rows($query1) > 0) {?>
+                                            if (mysqli_num_rows($query1) > 0) { ?>
                                                 <!-- giá trước khi sale -->
                                                 <div class="footer-label">
-                                                    <label for="" class="price-old"><?php echo currency_format($row['sp_gia']) ?></label>
+                                                    <label for="" class="price-old">
+                                                        <?php echo currency_format($row['sp_gia']) ?>
+                                                    </label>
                                                 </div>
                                                 <!-- giá sau khi sale -->
                                                 <div class="footer-label">
-                                                    <label for=""><?php echo currency_format($giamoi)?></label>
+                                                    <label for="">
+                                                        <?php if(strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) { echo currency_format($giamoi);} ?>
+                                                    </label>
                                                 </div>
-                                            <?php } else { ?>
+                                                <?php
+                                            } else { ?>
                                                 <!-- giá trước khi sale -->
                                                 <div></div>
                                                 <!-- giá sau khi sale -->
                                                 <div class="footer-label">
-                                                    <label for=""><?php echo currency_format($row['sp_gia'])?></label>
+                                                    <label for="">
+                                                        <?php echo currency_format($row['sp_gia']) ?>
+                                                    </label>
                                                 </div>
                                             <?php } ?>
                                         </div>
@@ -241,7 +266,8 @@ if (!function_exists('currency_format')) {
                                         <div class="card-btn">
                                             <!-- chi tiết sản phẩm -->
                                             <div class="card-button">
-                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
+                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>"
+                                                    title="Chi tiết sản phẩm">
                                                     <i class='bx bx-dots-horizontal-rounded'></i>
                                                 </a>
                                             </div>
@@ -253,9 +279,10 @@ if (!function_exists('currency_format')) {
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
                                             <div class="card-button">
-                                                <a href="themvaogiohang.php?idsp=<?php echo $row['sp_id']; ?>">
-                                                    <i class='bx bx-cart'></i>
-                                                </a>
+                                                <button style="display: block;"
+                                                    onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
+                                                    <ion-icon name="cart-outline"></ion-icon>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -278,8 +305,8 @@ if (!function_exists('currency_format')) {
                 <?php
                 for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>#saling">
                         <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
-                                                                    echo 'active';
-                                                                } ?>" value="<?php echo $i; ?>">
+                               echo 'active';
+                           } ?>" value="<?php echo $i; ?>">
                             <?php echo $i; ?>
                         </li>
                     </a>
@@ -341,6 +368,22 @@ if (!function_exists('currency_format')) {
                     document.getElementById('giaMax').value = 1000000
                     document.getElementById("TLs").innerHTML = ""
                     document.getElementById("NSXs").innerHTML = ""
+                    var checkboxTL = document.getElementsByName('timkiem_TL')
+                    var checkboxNSX = document.getElementsByName('timkiem_NSX')
+
+                    for (var i = 0; i < checkboxTL.length; i++) {
+                        checkboxTL[i].checked = false
+                    }
+                    for (var i = 0; i < checkboxNSX.length; i++) {
+                        checkboxNSX[i].checked = false
+                    }
+
+                    $.post('thanhsearch.php', {
+                        giaMin: document.getElementById('giaMin').value,
+                        giaMax: document.getElementById('giaMax').value
+                    }, function (data) {
+                        $('#saling').html(data);
+                    })
                 }
 
                 function Loc() {
@@ -365,7 +408,7 @@ if (!function_exists('currency_format')) {
                         giaMax: giaMax,
                         arr_TL: arr_TL,
                         arr_NSX: arr_NSX
-                    }, function(data) {
+                    }, function (data) {
                         $('#saling').html(data);
                     })
                 }
@@ -446,18 +489,32 @@ if (!function_exists('currency_format')) {
                             <input type="checkbox" name="timkiem_NSX" value="<?php echo $r['nsx_ten']; ?>">
                         </div>
                     </label>
-            <?php }
+                <?php }
             } ?>
 
         </div>
     </div>
 
-    
-    <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
-    <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="../js/jquery-3.0.0.min.js"></script>
     <script src="../js/index.js "></script>
     <script src="../js/sanpham.js "></script>
     <script src="../js/logout.js"></script>
+    <div id="note"></div>
 </body>
+<script>
+    function themsanphamindex(idsp) {
+        var audio = new Audio('click.mp3')
+        audio.play()
+        $.post('themvaogiohang.php', {
+            data: idsp
+        }, function (data) {
+            $('#note').html(data);
+        })
+    }
+</script>
 
 </html>
