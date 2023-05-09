@@ -54,6 +54,24 @@ body {
     font-size: 30px;
     font-weight: bold;
     color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home {
+    color: var(--text-color);
+}
+
+.home:hover {
+    color: var(--main-color);
+}
+
+.login {
+    color: var(--text-color);
+}
+
+.login:hover {
+    color: var(--main-color);
 }
 
 .register-item {

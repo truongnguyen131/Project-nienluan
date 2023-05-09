@@ -156,7 +156,7 @@ textarea:focus {
     text-align: left;
     display: flex;
     flex-direction: column;
-    row-gap: 0.5rem;
+    row-gap: 1rem;
     min-height: 500px;
     width: 35%;
 }
@@ -198,6 +198,7 @@ textarea:focus {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-top: 1rem;
 }
 
 .info-price h2 {
