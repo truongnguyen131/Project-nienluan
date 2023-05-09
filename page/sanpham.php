@@ -246,7 +246,9 @@ if (!function_exists('currency_format')) {
                                                 <!-- giá sau khi sale -->
                                                 <div class="footer-label">
                                                     <label for="">
-                                                        <?php if(strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) { echo currency_format($giamoi);} ?>
+                                                        <?php if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
+                                                            echo currency_format($giamoi);
+                                                        } ?>
                                                     </label>
                                                 </div>
                                                 <?php
@@ -272,7 +274,7 @@ if (!function_exists('currency_format')) {
                                             </div>
                                             <!-- button download -->
                                             <div class="card-button">
-                                                <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
+                                                <a href="themvaothanhtoan.php?idsp=<?php echo $row['sp_id']; ?>">
                                                     <i class='bx bx-download'></i>
                                                 </a>
                                             </div>
@@ -369,7 +371,12 @@ if (!function_exists('currency_format')) {
                     document.getElementById("NSXs").innerHTML = ""
                     var checkboxTL = document.getElementsByName('timkiem_TL')
                     var checkboxNSX = document.getElementsByName('timkiem_NSX')
-
+                    progress.style.left = 0 + '%';
+                    progress.style.right = 0 + '%';
+                    rangeText[0].style.left = 0 + '%';
+                    rangeText[1].style.right = 0 + '%';
+                    rangeText[0].innerText = 0;
+                    rangeText[1].innerText = 1000000;
                     for (var i = 0; i < checkboxTL.length; i++) {
                         checkboxTL[i].checked = false
                     }
@@ -504,6 +511,25 @@ if (!function_exists('currency_format')) {
     <script src="../js/logout.js"></script>
     <div id="note"></div>
 </body>
+<?php
+if (isset($_GET['tenTL'])) {
+    $tentl = $_GET['tenTL'];
+    echo "<script>
+    let giaMin = document.getElementById('giaMin').value
+    let giaMax = document.getElementById('giaMax').value
+    let arr_TL = []
+    arr_TL.push('$tentl')
+    $.post('thanhsearch.php', {
+        giaMin: giaMin,
+        giaMax: giaMax,
+        arr_TL: arr_TL,
+    }, function (data) {
+        $('#saling').html(data);
+    })
+</script>";
+}
+?>
+
 <script>
     function themsanphamindex(idsp) {
         var audio = new Audio('click.mp3')

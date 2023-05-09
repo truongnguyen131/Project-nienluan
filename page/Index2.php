@@ -269,7 +269,7 @@ if (isset($_GET['partnerCode'])) {
                                         <?php echo number_format($avg, "1", ".", "") ?>
                                     </span>
                                 </div>
-                                <a href="thanhtoan2.php?idsp=<?php echo $sosao['sp_id'] ?>" class="box-btn"><i
+                                <a href="themvaothanhtoan.php?idsp=<?php echo $sosao['sp_id'] ?>" class="box-btn"><i
                                         class='bx bx-download'></i></a>
                             </div>
                         </div>
@@ -357,7 +357,7 @@ if (isset($_GET['partnerCode'])) {
                                                 </div>
                                                 <!-- button download -->
                                                 <div class="card-button">
-                                                    <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>"
+                                                    <a href="themvaothanhtoan.php?idsp=<?php echo $row['sp_id']; ?>"
                                                         title="Mua sản phẩm">
                                                         <i class='bx bx-download'></i>
                                                     </a>
@@ -395,7 +395,7 @@ if (isset($_GET['partnerCode'])) {
             <?php $query5 = mysqli_query($cn, "SELECT * from theloai");
             while ($row5 = mysqli_fetch_array($query5, MYSQLI_ASSOC)) { ?>
                 <div class="image-item">
-                    <a href="">
+                    <a href="sanpham.php?tenTL=<?php echo $row5['tl_ten']; ?>">
                         <div class="image">
                             <img src="../uploads/tl_<?php echo $row5['tl_id'] ?>.png" alt="" />
                             <div class="box-text">
