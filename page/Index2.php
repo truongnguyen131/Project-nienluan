@@ -180,7 +180,7 @@ if (isset($_GET['partnerCode'])) {
 
             <!-- Đăng xuất -->
             <div class="log-out">
-            <a href="khachhang.php">
+                <a href="khachhang.php">
                     <div class="logout-box box-color">
                         <p>Thông tin Khách hàng</p>
                         <i class='bx bx-spreadsheet'></i>

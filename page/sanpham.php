@@ -114,7 +114,7 @@ if (!function_exists('currency_format')) {
             <!-- Thông báo -->
             <div class="nofication1" id="nofication">
                 <div class="nofication-box" id="noteTxT">
-                        
+
                 </div>
                 <!-- <div class="nofication-box box-color">
                     <p>Bạn đã không tải game thành công</p>
@@ -143,6 +143,12 @@ if (!function_exists('currency_format')) {
 
             <!-- Đăng xuất -->
             <div class="log-out">
+                <a href="khachhang.php">
+                    <div class="logout-box box-color">
+                        <p>Thông tin Khách hàng</p>
+                        <i class='bx bx-spreadsheet'></i>
+                    </div>
+                </a>
                 <a href="dangxuat.php" class="out">
                     <div class="logout-box box-color">
                         <p>Đăng xuất</p>

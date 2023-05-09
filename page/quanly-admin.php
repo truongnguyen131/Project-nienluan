@@ -1334,14 +1334,36 @@ include_once('database_connection.php'); ?>
             <div class="sale-main">
                 <div class="table-control">
                     <div class="search">
-                        <input class="search" type="text" placeholder="Tìm kiếm sản phẩm" />
+                        <input class="search" type="text" name="timkiem_gg" id="timkiem_gg"
+                            placeholder="Tìm kiếm sản phẩm" />
                     </div>
                 </div>
+                <script>
+                $('#timkiem_gg').keyup(function() {
+                    var tk = $('#timkiem_gg').val()
+                    $.post('timkiemGG.php', {
+                        data: tk
+                    }, function(data) {
+                        $('.danhsachtimkiemGG').html(data);
+                    })
+
+                })
+
+                $('#timkiem_gg').has(function() {
+                    var tk = $('#timkiem_gg').val()
+                    $.post('timkiemGG.php', {
+                        data: tk
+                    }, function(data) {
+                        $('.danhsachtimkiemGG').html(data);
+                    })
+
+                })
+                </script>
                 <!-- Tất cả sản phẩm -->
                 <table style="display: table" id="all-games">
                     <tr>
                         <td colspan="10">
-                            <div class="scrollbar2">
+                            <div style=" max-height: 300px;width: 100%;overflow: auto;">
                                 <table border="1" class="table">
                                     <tr class="table-primary">
                                         <th scope="col">STT</th>
@@ -1354,18 +1376,11 @@ include_once('database_connection.php'); ?>
                                         <th scope="col">Ngày kết thúc</th>
                                         <th scope="col">Chọn</th>
                                     </tr>
-                                    <tr class="table-light">
-                                        <td>1</td>
-                                        <td>27</td>
-                                        <td>STAR WARS Jedi: Fallen Order</td>
-                                        <td>20%</td>
-                                        <td>120.000đ</td>
-                                        <td>60.000đ</td>
-                                        <td>20/3/2022</td>
-                                        <td>30/3/2022</td>
-                                        <td><input type="checkbox" name="" id="" value="Thêm %"></td>
-                                    </tr>
-                                    
+                                    <tbody class="danhsachtimkiemGG">
+
+                                    </tbody>
+
+
                                 </table>
                             </div>
                         </td>
@@ -1375,32 +1390,119 @@ include_once('database_connection.php'); ?>
                 <div class="control-sale" style="margin-top: 20px;">
                     <div class="control-middel">
                         <div class="slidecontainer">
-                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                            <p><b>Value: <span id="demo"></span>%</b></p>
+                            <div style="margin-bottom: 10px;">Giảm giá (%)</div>
+                            <input id="input" type="range" name="gg" min="10" max="90" step="5" value="10" />
+                            <output id="value"></output><br>
+                            <script>
+                            const value = document.querySelector("#value")
+                            const input = document.querySelector("#input")
+
+                            value.textContent = input.value
+                            input.addEventListener("input", (event) => {
+                                value.textContent = event.target.value;
+                            })
+                            </script>
+
                         </div>
                         <div class="date-star-end">
                             <div class="date-star">
                                 <span>Ngày bắt đầu</span>
-                                <input type="datetime-local" name="" id="">
+                                <input type="date" id="ngaybd" min="<?php echo date('Y-m-d'); ?>">
                             </div>
                             <div class="date-end">
                                 <span>Ngày kết thúc</span>
-                                <input type="datetime-local" name="" id="">
+                                <input type="date" id="ngaykt"
+                                    min="<?php echo date('Y-m-d', strtotime(' + 1 days')); ?>">
                             </div>
 
                         </div>
 
                     </div>
                     <div class="sale-update" style="margin-top: 30px;">
-                        <button>Thêm</button>
-                        <button>Xóa</button>
+                        <button onclick="ThemGG()">Thêm</button>
+                        <button onclick="XoaGG()">Xóa</button>
                         <button>Cập nhật</button>
-                        <button>Hủy bỏ</button>
+                        <button onclick="HuyGG()" id="bntHuyGG">Hủy bỏ</button>
                     </div>
+                    <script>
+                    function HuyGG() {
+                        document.getElementById("input").value = "10"
+                        value.textContent = 10
+                        document.getElementById("ngaybd").value = ""
+                        document.getElementById("ngaykt").value = ""
+                        document.getElementById("timkiem_gg").value = ""
+                        $.post('timkiemGG.php', {
+                            data: ""
+                        }, function(data) {
+                            $('.danhsachtimkiemGG').html(data);
+                        })
+                    }
+                    </script>
+
+                    <script>
+                    function XoaGG() {
+                        let arr_idsp = []
+                        $('input:checkbox[name=chon_gg]').each(function() {
+                            if ($(this).is(':checked'))
+                                arr_idsp.push($(this).val())
+                        });
+
+                        $.post('xoagiamgia.php', {
+                            data: arr_idsp
+                        }, function(data) {
+                            $('#thongbao').html(data);
+                        })
+                    }
+                    </script>
+
+                    <script>
+                    function ThemGG() {
+                        var check = 4
+                        let arr_idsp = []
+                        var nbd = document.getElementById('ngaybd').value
+                        var nkt = document.getElementById('ngaykt').value
+                        var input = document.getElementById('input').value
+                        $('input:checkbox[name=chon_gg]').each(function() {
+                            if ($(this).is(':checked'))
+                                arr_idsp.push($(this).val())
+                        });
+
+                        if (nbd == "") {
+                            $('#ngaybd').addClass('is-invalid')
+                            check--
+                        }
+                        if (nkt == "") {
+                            $('#ngaykt').addClass('is-invalid')
+                            check--
+                        }
+                        if (nbd > nkt) {
+                            alert("Ngày bắt đầu không được lớn hơn ngày kết thúc")
+                            check--
+                        }
+                        if(arr_idsp.length==0){
+                            alert("Hãy chọn sản phẩm cần thêm")
+                            check--
+                        } 
+                        if(check==4) {
+                            $.post('themgiamgia.php', {
+                                arr_idsp: arr_idsp,
+                                nbd: nbd,
+                                nkt: nkt,
+                                ptgg: input
+                            }, function(data) {
+                                $('#thongbao').html(data);
+                            })
+                        }
+
+
+                    }
+                    </script>
+
+
                 </div>
             </div>
         </div>
-
+        <div id="thongbao"></div>
         <!-- ========================================THỐNG KÊ=============================================== -->
         <!-- Doanh thu -->
         <div class="client menu-tab" id="revenue">
@@ -2230,7 +2332,7 @@ if (isset($_SESSION['updateSP']) && $_SESSION['updateSP'] != 0) {
     ?>
 <script>
 window.onload = function() {
-    
+
     document.getElementById('Themsanpham').click();
     document.getElementById('tabThemSP').click();
     document.getElementById('tensp').value = "<?php echo $tensp; ?>"

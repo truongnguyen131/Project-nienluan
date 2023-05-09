@@ -40,13 +40,13 @@
                     <!-- cart -->
                     <i class='bx bxs-cart-alt bx-tada' id="cart-icon"><span></span></i>
                 </a>
-                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "" ) { ?>
-                <i class='bx bxs-user bx-tada' id="logout-icon"></i>
-                <?php } else {?>
-                <a href="dangnhap.php">
-                    <i class='bx bxs-user'></i>
-                </a>
-                <?php }?>
+                <?php if (isset($_SESSION['loaitaikhoan']) && $_SESSION['loaitaikhoan'] != "") { ?>
+                    <i class='bx bxs-user bx-tada' id="logout-icon"></i>
+                <?php } else { ?>
+                    <a href="dangnhap.php">
+                        <i class='bx bxs-user'></i>
+                    </a>
+                <?php } ?>
                 <div class="menu-icon">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -82,7 +82,7 @@
                         <li>
                             <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
-                    <?php }  ?>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Thông báo -->
@@ -107,6 +107,12 @@
 
             <!-- Đăng xuất -->
             <div class="log-out">
+                <a href="khachhang.php">
+                    <div class="logout-box box-color">
+                        <p>Thông tin Khách hàng</p>
+                        <i class='bx bx-spreadsheet'></i>
+                    </div>
+                </a>
                 <a href="dangxuat.php" class="out">
                     <div class="logout-box box-color">
                         <p>Đăng xuất</p>
@@ -265,7 +271,7 @@
 
     <!-- tabs -->
     <script>
-        window.onload = function() {
+        window.onload = function () {
             document.getElementById("expandedImg ").src = "https://cdn.akamai.steamstatic.com/steam/apps/749960/ss_c5cb2cbfaaa835cc774326daf5aad14f82335068.116x65.jpg?t=1678105868 ";
             document.getElementById("expandedImg ").parentElement.style.display = "block ";
         }
