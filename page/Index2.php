@@ -364,7 +364,7 @@ if (isset($_GET['partnerCode'])) {
                                                 </div>
                                                 <!-- button thêm vào giỏ hàng -->
                                                 <div class="card-button">
-                                                    <button style="display: block;"
+                                                    <button class="add-product"
                                                         onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
                                                         <ion-icon name="cart-outline"></ion-icon>
                                                     </button>
