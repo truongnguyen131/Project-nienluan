@@ -108,13 +108,6 @@ include_once('database_connection.php'); ?>
                 </div>
             </button>
 
-            <button class="btn-menu" onclick="menu(event, 'account')" id="Themtaikhoan">
-                <div class="menu-item">
-                    <ion-icon name="person-add-outline"></ion-icon>
-                    <span>THÊM TÀI KHOẢN</span>
-                </div>
-            </button>
-
             <button class="btn-menu" onclick="menu(event, 'product')" id="Themsanpham">
                 <div class="menu-item">
                     <ion-icon name="add-circle-outline"></ion-icon>
@@ -230,14 +223,14 @@ include_once('database_connection.php'); ?>
                     }
                     ?>
                     <script>
-                        let listTK = [];
+                    let listTK = [];
                     </script>
                     <?php
                     $query = mysqli_query($cn, "SELECT * FROM taikhoan");
                     while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) { ?>
-                        <script>
+                            <script>
                             listTK.push("<?php echo $row['tk_taikhoan']; ?>")
-                        </script>
+                            </script>
                     <?php }
                     ?>
                     <button class="tablinks" onclick="openCity(event, 'add-client')" id="tabThemKH">
@@ -291,139 +284,145 @@ include_once('database_connection.php'); ?>
                 </div>
 
                 <script>
-                    function HuyKH() {
-                        document.getElementById('hotenKH').value = "";
-                        document.getElementById('sdtKH').value = "";
-                        document.getElementById('emailKH').value = "";
-                        document.getElementById('tkKH').value = "";
-                        document.getElementById('mkKH').value = "";
-                        document.getElementById('nlmk').value = "";
-                    }
+                function HuyKH() {
+                    document.getElementById('hotenKH').value = "";
+                    document.getElementById('sdtKH').value = "";
+                    document.getElementById('emailKH').value = "";
+                    document.getElementById('tkKH').value = "";
+                    document.getElementById('mkKH').value = "";
+                    document.getElementById('nlmkKH').value = "";
+                    $('#loihotenkh').html("")
+                    $('#loisdtkh').html("")
+                    $('#loiemailkh').html("")
+                    $('#loimkkh').html("")
+                    $('#loinlmkkh').html("")
+                    $('#loitkkh').html("")
+                }
                 </script>
                 <script>
-                    function add_update_KH(choose) {
-                        var check = 0
-                        let checkTK = true
-                        var hoten = $('#hotenKH').val()
-                        const testHoTen = new RegExp(
-                            '^[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+ [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(?: [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]*)*'
-                        )
-                        var sdtKH = $('#sdtKH').val()
-                        const testSdt = new RegExp(
-                            "^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$"
-                        )
-                        var emailKH = $('#emailKH').val()
-                        const testEmail = new RegExp("^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$")
-                        var tkKH = $('#tkKH').val()
-                        var mkKH = $('#mkKH').val()
-                        var nlmkKH = $('#nlmkKH').val()
+                function add_update_KH(choose) {
+                    var check = 0
+                    let checkTK = true
+                    var hoten = $('#hotenKH').val()
+                    const testHoTen = new RegExp(
+                        '^[AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+ [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+(?: [AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZ][aàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]*)*'
+                    )
+                    var sdtKH = $('#sdtKH').val()
+                    const testSdt = new RegExp(
+                        "^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$"
+                    )
+                    var emailKH = $('#emailKH').val()
+                    const testEmail = new RegExp("^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$")
+                    var tkKH = $('#tkKH').val()
+                    var mkKH = $('#mkKH').val()
+                    var nlmkKH = $('#nlmkKH').val()
 
 
-                        if (testHoTen.test(hoten) != true) {
-                            check -= 1
-                            $('#hotenKH').addClass('is-invalid');
-                            $('#loihotenkh').html("Họ tên phải là chữ có ít nhất 4 đến 20 kí tự")
-                        } else {
-                            $('#hotenKH').removeClass('is-invalid')
-                            $('#loihotenkh').html("")
-                            check += 1
-                        }
+                    if (testHoTen.test(hoten) != true) {
+                        check -= 1
+                        $('#hotenKH').addClass('is-invalid');
+                        $('#loihotenkh').html("Họ tên phải là chữ có ít nhất 4 đến 20 kí tự")
+                    } else {
+                        $('#hotenKH').removeClass('is-invalid')
+                        $('#loihotenkh').html("")
+                        check += 1
+                    }
 
-                        if (testSdt.test(sdtKH) != true) {
-                            check -= 1
-                            $('#sdtKH').addClass('is-invalid');
-                            $('#loisdtkh').html("Số điện thoại không hợp lệ")
-                        } else {
-                            $('#sdtKH').removeClass('is-invalid')
-                            $('#loisdtkh').html("")
-                            check += 1
-                        }
+                    if (testSdt.test(sdtKH) != true) {
+                        check -= 1
+                        $('#sdtKH').addClass('is-invalid');
+                        $('#loisdtkh').html("Số điện thoại không hợp lệ")
+                    } else {
+                        $('#sdtKH').removeClass('is-invalid')
+                        $('#loisdtkh').html("")
+                        check += 1
+                    }
 
-                        if (testEmail.test(emailKH) != true) {
-                            check -= 1
-                            $('#emailKH').addClass('is-invalid');
-                            $('#loiemailkh').html("Email không hợp lệ")
-                        } else {
-                            $('#emailKH').removeClass('is-invalid')
-                            $('#loiemailkh').html("")
-                            check += 1
-                        }
+                    if (testEmail.test(emailKH) != true) {
+                        check -= 1
+                        $('#emailKH').addClass('is-invalid');
+                        $('#loiemailkh').html("Email không hợp lệ")
+                    } else {
+                        $('#emailKH').removeClass('is-invalid')
+                        $('#loiemailkh').html("")
+                        check += 1
+                    }
 
-                        if (mkKH.length < 5 || mkKH.length > 15) {
-                            check -= 1
-                            $('#mkKH').addClass('is-invalid');
-                            $('#loimkkh').html("Mật khẩu không đủ mạnh")
-                        } else {
-                            $('#mkKH').removeClass('is-invalid')
-                            $('#loimkkh').html("")
-                            check += 1
-                        }
+                    if (mkKH.length < 5 || mkKH.length > 15) {
+                        check -= 1
+                        $('#mkKH').addClass('is-invalid');
+                        $('#loimkkh').html("Mật khẩu không đủ mạnh")
+                    } else {
+                        $('#mkKH').removeClass('is-invalid')
+                        $('#loimkkh').html("")
+                        check += 1
+                    }
 
-                        if (nlmkKH != mkKH || nlmkKH.length == 0) {
-                            check -= 1
-                            $('#nlmkKH').addClass('is-invalid');
-                            $('#loinlmkkh').html("Hãy nhập lại mật khẩu")
-                        } else {
-                            $('#nlmkKH').removeClass('is-invalid')
-                            $('#loinlmkkh').html("")
-                            check += 1
-                        }
+                    if (nlmkKH != mkKH || nlmkKH.length == 0) {
+                        check -= 1
+                        $('#nlmkKH').addClass('is-invalid');
+                        $('#loinlmkkh').html("Hãy nhập lại mật khẩu")
+                    } else {
+                        $('#nlmkKH').removeClass('is-invalid')
+                        $('#loinlmkkh').html("")
+                        check += 1
+                    }
 
-                        if (choose == 'add') {
-                            for (let i = 0; i < listTK.length; i++) {
-                                if (tkKH == listTK[i]) {
-                                    checkTK = false
-                                    break
-                                }
+                    if (choose == 'add') {
+                        for (let i = 0; i < listTK.length; i++) {
+                            if (tkKH == listTK[i]) {
+                                checkTK = false
+                                break
                             }
-                        }
-
-
-                        if (tkKH.length < 5 || tkKH.length > 15 || tkKH.indexOf("admin") != -1) {
-                            check -= 1
-                            $('#tkKH').addClass('is-invalid');
-                            $('#loitkkh').html("Tài khoản không hợp lệ")
-                        } else {
-                            if (checkTK == false) {
-                                check -= 1
-                                $('#tkKH').addClass('is-invalid');
-                                $('#loitkkh').html("Tài khoản bị trùng")
-                            } else {
-                                $('#tkKH').removeClass('is-invalid')
-                                $('#loitkkh').html("")
-                                check += 1
-                            }
-                        }
-
-
-                        if (check == 6) {
-                            if (choose == 'add') {
-                                $.post('xulydangky.php', {
-                                    hoten1: hoten,
-                                    sdt1: sdtKH,
-                                    email1: emailKH,
-                                    taikhoan1: tkKH,
-                                    matkhau1: mkKH,
-                                    page: "themKH"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
-                            }
-                            if (choose == 'update') {
-                                $.post('xulydangky.php', {
-                                    hoten1: hoten,
-                                    sdt1: sdtKH,
-                                    email1: emailKH,
-                                    taikhoan1: tkKH,
-                                    matkhau1: mkKH,
-                                    page: "capNhatKH"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
-                            }
-
                         }
                     }
+
+
+                    if (tkKH.length < 5 || tkKH.length > 15 || tkKH.indexOf("admin") != -1) {
+                        check -= 1
+                        $('#tkKH').addClass('is-invalid');
+                        $('#loitkkh').html("Tài khoản không hợp lệ")
+                    } else {
+                        if (checkTK == false) {
+                            check -= 1
+                            $('#tkKH').addClass('is-invalid');
+                            $('#loitkkh').html("Tài khoản bị trùng")
+                        } else {
+                            $('#tkKH').removeClass('is-invalid')
+                            $('#loitkkh').html("")
+                            check += 1
+                        }
+                    }
+
+
+                    if (check == 6) {
+                        if (choose == 'add') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdtKH,
+                                email1: emailKH,
+                                taikhoan1: tkKH,
+                                matkhau1: mkKH,
+                                page: "themKH"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                        if (choose == 'update') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdtKH,
+                                email1: emailKH,
+                                taikhoan1: tkKH,
+                                matkhau1: mkKH,
+                                page: "capNhatKH"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+
+                    }
+                }
                 </script>
 
 
@@ -434,10 +433,21 @@ include_once('database_connection.php'); ?>
                         <tr>
                             <div class="table-control">
                                 <div class="search">
-                                    <input class="search" type="text" id="timkiem_kh" placeholder="Tìm kiếm bằng tên tài khoản khách hàng" />
+                                    <input class="search" type="text" id="timkiem_kh"
+                                        placeholder="Tìm kiếm bằng tên tài khoản khách hàng" />
                                     <button class="search" onclick="timkiemKH()">Tìm kiếm</button>
 
                                     <script>
+                                    var search = $('#timkiem_kh').val()
+                                    $.post('timkiemKH_NSX.php', {
+                                        data: search,
+                                        page: "KH"
+                                    }, function(data) {
+                                        $('.danhsachtimkiemKH').html(data);
+                                    })
+
+
+                                    function timkiemKH() {
                                         var search = $('#timkiem_kh').val()
                                         $.post('timkiemKH_NSX.php', {
                                             data: search,
@@ -445,17 +455,7 @@ include_once('database_connection.php'); ?>
                                         }, function(data) {
                                             $('.danhsachtimkiemKH').html(data);
                                         })
-
-
-                                        function timkiemKH() {
-                                            var search = $('#timkiem_kh').val()
-                                            $.post('timkiemKH_NSX.php', {
-                                                data: search,
-                                                page: "KH"
-                                            }, function(data) {
-                                                $('.danhsachtimkiemKH').html(data);
-                                            })
-                                        }
+                                    }
                                     </script>
 
 
@@ -557,141 +557,158 @@ include_once('database_connection.php'); ?>
                 </div>
 
                 <script>
-                    function HuyNSX() {
-                        document.getElementById('tenNSX').value = "";
-                        document.getElementById('sdtNSX').value = "";
-                        document.getElementById('emailNSX').value = "";
-                        document.getElementById('tkNSX').value = "";
-                        document.getElementById('mkNSX').value = "";
-                        document.getElementById('nlmkNSX').value = "";
-                    }
+                function HuyNSX() {
+                    document.getElementById('tenNSX').value = "";
+                    document.getElementById('sdtNSX').value = "";
+                    document.getElementById('emailNSX').value = "";
+                    document.getElementById('tkNSX').value = "";
+                    document.getElementById('mkNSX').value = "";
+                    document.getElementById('nlmkNSX').value = "";
+                    $('#loitennsx').html("")
+                    $('#loisdtnsx').html("")
+                    $('#loiemailnsx').html("")
+                    $('#loimknsx').html("")
+                    $('#loinlmknsx').html("")
+                    $('#loitknsx').html("")
+                }
                 </script>
                 <script>
-                    function add_update_NSX(choose) {
-                        var check = 0
-                        let checkTK = true
-                        var hoten = $('#tenNSX').val()
-                        var sdt = $('#sdtNSX').val()
-                        const testSdt = new RegExp(
-                            "^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$"
-                        )
-                        var email = $('#emailNSX').val()
-                        const testEmail = new RegExp("^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$")
-                        var tk = $('#tkNSX').val()
-                        var mk = $('#mkNSX').val()
-                        var nlmk = $('#nlmkNSX').val()
+                function add_update_NSX(choose) {
+                    var check = 0
+                    let checkTK = true
+                    var hoten = $('#tenNSX').val()
+                    var sdt = $('#sdtNSX').val()
+                    const testSdt = new RegExp(
+                        "^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$"
+                    )
+                    var email = $('#emailNSX').val()
+                    const testEmail = new RegExp("^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$")
+                    var tk = $('#tkNSX').val()
+                    var mk = $('#mkNSX').val()
+                    var nlmk = $('#nlmkNSX').val()
 
-                        if (hoten.length < 5 || hoten.length > 15) {
-                            check -= 1
-                            $('#tenNSX').addClass('is-invalid');
-                            $('#loitennsx').html("Hãy nhập tên khác")
-                        } else {
-                            $('#tenNSX').removeClass('is-invalid')
-                            $('#loitennsx').html("")
-                            check += 1
-                        }
+                    if (hoten.length < 5 || hoten.length > 15) {
+                        check -= 1
+                        $('#tenNSX').addClass('is-invalid');
+                        $('#loitennsx').html("Hãy nhập tên khác")
+                    } else {
+                        $('#tenNSX').removeClass('is-invalid')
+                        $('#loitennsx').html("")
+                        check += 1
+                    }
 
-                        if (testSdt.test(sdt) != true) {
-                            check -= 1
-                            $('#sdtNSX').addClass('is-invalid');
-                            $('#loisdtnsx').html("Số điện thoại không hợp lệ")
-                        } else {
-                            $('#sdtNSX').removeClass('is-invalid')
-                            $('#loisdtnsx').html("")
-                            check += 1
-                        }
+                    if (testSdt.test(sdt) != true) {
+                        check -= 1
+                        $('#sdtNSX').addClass('is-invalid');
+                        $('#loisdtnsx').html("Số điện thoại không hợp lệ")
+                    } else {
+                        $('#sdtNSX').removeClass('is-invalid')
+                        $('#loisdtnsx').html("")
+                        check += 1
+                    }
 
-                        if (testEmail.test(email) != true) {
-                            check -= 1
-                            $('#emailNSX').addClass('is-invalid');
-                            $('#loiemailnsx').html("Email không hợp lệ")
-                        } else {
-                            $('#emailNSX').removeClass('is-invalid')
-                            $('#loiemailnsx').html("")
-                            check += 1
-                        }
+                    if (testEmail.test(email) != true) {
+                        check -= 1
+                        $('#emailNSX').addClass('is-invalid');
+                        $('#loiemailnsx').html("Email không hợp lệ")
+                    } else {
+                        $('#emailNSX').removeClass('is-invalid')
+                        $('#loiemailnsx').html("")
+                        check += 1
+                    }
 
-                        if (mk.length < 5 || mk.length > 15) {
-                            check -= 1
-                            $('#mkNSX').addClass('is-invalid');
-                            $('#loimknsx').html("Mật khẩu không đủ mạnh")
-                        } else {
-                            $('#mkNSX').removeClass('is-invalid')
-                            $('#loimknsx').html("")
-                            check += 1
-                        }
+                    if (mk.length < 5 || mk.length > 15) {
+                        check -= 1
+                        $('#mkNSX').addClass('is-invalid');
+                        $('#loimknsx').html("Mật khẩu không đủ mạnh")
+                    } else {
+                        $('#mkNSX').removeClass('is-invalid')
+                        $('#loimknsx').html("")
+                        check += 1
+                    }
 
-                        if (nlmk != mk || nlmk.length == 0) {
-                            check -= 1
-                            $('#nlmkNSX').addClass('is-invalid');
-                            $('#loinlmknsx').html("Hãy nhập lại mật khẩu")
-                        } else {
-                            $('#nlmkNSX').removeClass('is-invalid')
-                            $('#loinlmknsx').html("")
-                            check += 1
-                        }
+                    if (nlmk != mk || nlmk.length == 0) {
+                        check -= 1
+                        $('#nlmkNSX').addClass('is-invalid');
+                        $('#loinlmknsx').html("Hãy nhập lại mật khẩu")
+                    } else {
+                        $('#nlmkNSX').removeClass('is-invalid')
+                        $('#loinlmknsx').html("")
+                        check += 1
+                    }
 
-                        if (choose == 'add') {
-                            for (let i = 0; i < listTK.length; i++) {
-                                if (tk == listTK[i]) {
-                                    checkTK = false
-                                    break
-                                }
-                            }
-                        }
-
-                        if (tk.length < 5 || tk.length > 15) {
-                            check -= 1
-                            $('#tkNSX').addClass('is-invalid');
-                            $('#loitknsx').html("Tài khoản không hợp lệ")
-                        } else {
-                            if (checkTK == false) {
-                                check -= 1
-                                $('#tkNSX').addClass('is-invalid');
-                                $('#loitknsx').html("Tài khoản bị trùng")
-                            } else {
-                                $('#tkNSX').removeClass('is-invalid')
-                                $('#loitknsx').html("")
-                                check += 1
-                            }
-                        }
-
-                        if (check == 6) {
-                            if (choose == 'add') {
-                                $.post('xulydangky.php', {
-                                    hoten1: hoten,
-                                    sdt1: sdt,
-                                    email1: email,
-                                    taikhoan1: tk,
-                                    matkhau1: mk,
-                                    page: "themNSX"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
-                            }
-                            if (choose == 'update') {
-                                $.post('xulydangky.php', {
-                                    hoten1: hoten,
-                                    sdt1: sdt,
-                                    email1: email,
-                                    taikhoan1: tk,
-                                    matkhau1: mk,
-                                    page: "capNhatNSX"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
+                    if (choose == 'add') {
+                        for (let i = 0; i < listTK.length; i++) {
+                            if (tk == listTK[i]) {
+                                checkTK = false
+                                break
                             }
                         }
                     }
+
+                    if (tk.length < 5 || tk.length > 15) {
+                        check -= 1
+                        $('#tkNSX').addClass('is-invalid');
+                        $('#loitknsx').html("Tài khoản không hợp lệ")
+                    } else {
+                        if (checkTK == false) {
+                            check -= 1
+                            $('#tkNSX').addClass('is-invalid');
+                            $('#loitknsx').html("Tài khoản bị trùng")
+                        } else {
+                            $('#tkNSX').removeClass('is-invalid')
+                            $('#loitknsx').html("")
+                            check += 1
+                        }
+                    }
+
+                    if (check == 6) {
+                        if (choose == 'add') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdt,
+                                email1: email,
+                                taikhoan1: tk,
+                                matkhau1: mk,
+                                page: "themNSX"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                        if (choose == 'update') {
+                            $.post('xulydangky.php', {
+                                hoten1: hoten,
+                                sdt1: sdt,
+                                email1: email,
+                                taikhoan1: tk,
+                                matkhau1: mk,
+                                page: "capNhatNSX"
+                            }, function(data) {
+                                $('body').html(data);
+                            })
+                        }
+                    }
+                }
                 </script>
 
                 <!-- Danh sách nhà sản xuất -->
                 <div id="list-nsx" class="tabcontent">
                     <div class="table-control">
                         <div class="search">
-                            <input class="search" type="text" id="timkiem_nsx" placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
+                            <input class="search" type="text" id="timkiem_nsx"
+                                placeholder="Tìm kiếm bằng tên tài khoản nhà sản xuất" />
                             <button class="search" onclick="timkiemNSX()">Tìm kiếm</button>
                             <script>
+                            var search = $('#timkiem_nsx').val()
+                            $.post('timkiemKH_NSX.php', {
+                                data: search,
+                                page: "NSX"
+                            }, function(data) {
+                                $('.danhsachtimkiemNSX').html(data);
+                            })
+
+
+                            function timkiemNSX() {
                                 var search = $('#timkiem_nsx').val()
                                 $.post('timkiemKH_NSX.php', {
                                     data: search,
@@ -699,17 +716,7 @@ include_once('database_connection.php'); ?>
                                 }, function(data) {
                                     $('.danhsachtimkiemNSX').html(data);
                                 })
-
-
-                                function timkiemNSX() {
-                                    var search = $('#timkiem_nsx').val()
-                                    $.post('timkiemKH_NSX.php', {
-                                        data: search,
-                                        page: "NSX"
-                                    }, function(data) {
-                                        $('.danhsachtimkiemNSX').html(data);
-                                    })
-                                }
+                            }
                             </script>
                         </div>
                     </div>
@@ -734,221 +741,6 @@ include_once('database_connection.php'); ?>
                         </table>
                     </div>
 
-                </div>
-            </div>
-        </div>
-
-        <!-- Thêm Tài khoản -->
-        <div class="client menu-tab" id="account">
-            <div class="tabs">
-                <div class="tab">
-                    <?php
-                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTK") {
-                        echo "<script> document.getElementById('Themtaikhoan').click();
-                        document.getElementById('tabThemTK').click();
-                        alert('Thêm tài khoản thành công!!') </script>";
-                        unset($_SESSION['dangkythanhcong']);
-                    }
-                    if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTK") {
-                        echo "<script> document.getElementById('Themtaikhoan').click();
-                        document.getElementById('tabDSTK').click();
-                        alert('Cập nhật tài khoản thành công!!') </script>";
-                        unset($_SESSION['dangkythanhcong']);
-                    }
-                    ?>
-                    <button class="tablinks" onclick="openCity(event, 'add-account')" id="tabThemTK">
-                        Thêm tài khoản
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-account')" id="tabDSTK">
-                        Danh sách tài khoản
-                    </button>
-                </div>
-                <!-- Thêm tài khoản -->
-                <div id="add-account" class="tabcontent">
-                    <div class="add-client-main">
-                        <div class="client-item">
-                            <span>Tài khoản</span>
-                            <input type="text" name="TaiKhoan" id="TaiKhoan" placeholder="Tài khoản">
-                            <div class="loi" id="loitkTK"></div>
-                        </div>
-                        <div class="client-item">
-                            <span>Mật khẩu</span>
-                            <input type="password" name="MatKhau" id="MatKhau" placeholder="Mật khẩu">
-                            <div class="loi" id="loimkTK"></div>
-                        </div>
-                        <div class="client-item">
-                            <span>Nhập lại mật khẩu</span>
-                            <input type="password" name="NLMatKhau" id="NLMatKhau" placeholder="Nhập lại mật khẩu">
-                            <div class="loi" id="loinlmkTK"></div>
-                        </div>
-                        <div class="client-item">
-                            <span>Loại tài khoản</span>
-                            <div class="type-acc">
-                                <div class="type-admin type-item">
-                                    <span>Quản lý</span>
-                                    <input type="radio" name="loaiTK" id="admin" value="admin">
-                                </div>
-                                <div class="type-nsx type-item">
-                                    <span>Nhà sản xuất</span>
-                                    <input type="radio" name="loaiTK" id="nha san xuat" value="nha san xuat">
-                                </div>
-                                <div class="type-kh type-item">
-                                    <span>Khách hàng</span>
-                                    <input type="radio" name="loaiTK" id="khach hang" value="khach hang">
-                                </div>
-                            </div>
-                            <div class="loi" id="loiloaiTK"></div>
-                        </div>
-                        <div class="client-item">
-                            <button type="button" id="bntThemTK" onclick="add_update_TK('add')">Thêm</button>
-                            <button type="button" id="bntCapnhatTK" onclick="add_update_TK('update')" hidden>Cập
-                                nhật</button>
-                            <button type="button" onclick="HuyTK()">Hủy</button>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    function HuyTK() {
-                        document.getElementById('TaiKhoan').value = ""
-                        document.getElementById('MatKhau').value = ""
-                        document.getElementById('NLMatKhau').value = ""
-                    }
-                </script>
-                <script>
-                    function add_update_TK(choose) {
-                        var check = 0
-                        let checkTK = true
-                        var tk = $('#TaiKhoan').val()
-                        var mk = $('#MatKhau').val()
-                        var nlmk = $('#NLMatKhau').val()
-                        var loaiTK = $('input[name="loaiTK"]:checked').val();
-
-                        if (loaiTK == undefined) {
-                            check -= 1
-                            $('#loiloaiTK').html("Hãy chọn loại tài khoản")
-                        } else {
-                            $('#loiloaiTK').html("")
-                            check += 1
-                        }
-
-                        if (mk.length < 5 || mk.length > 15) {
-                            check -= 1
-                            $('#MatKhau').addClass('is-invalid');
-                            $('#loimkTK').html("Mật khẩu không đủ mạnh")
-                        } else {
-                            $('#MatKhau').removeClass('is-invalid')
-                            $('#loimkTK').html("")
-                            check += 1
-                        }
-
-                        if (nlmk != mk || nlmk.length == 0) {
-                            check -= 1
-                            $('#NLMatKhau').addClass('is-invalid');
-                            $('#loinlmkTK').html("Hãy nhập lại mật khẩu")
-                        } else {
-                            $('#NLMatKhau').removeClass('is-invalid')
-                            $('#loinlmkTK').html("")
-                            check += 1
-                        }
-
-                        if (choose == 'add') {
-                            for (let i = 0; i < listTK.length; i++) {
-                                if (tk == listTK[i]) {
-                                    checkTK = false
-                                    break
-                                }
-                            }
-                        }
-
-                        if (tk.length < 5 || tk.length > 15) {
-                            check -= 1
-                            $('#TaiKhoan').addClass('is-invalid');
-                            $('#loitkTK').html("Tài khoản không hợp lệ")
-                        } else {
-                            if (checkTK == false) {
-                                check -= 1
-                                $('#TaiKhoan').addClass('is-invalid');
-                                $('#loitkTK').html("Tài khoản bị trùng")
-                            } else {
-                                $('#TaiKhoan').removeClass('is-invalid')
-                                $('#loitkTK').html("")
-                                check += 1
-                            }
-                        }
-
-                        if (check == 4) {
-                            if (choose == 'add') {
-                                $.post('xulydangky.php', {
-                                    loaitaikhoan1: loaiTK,
-                                    taikhoan1: tk,
-                                    matkhau1: mk,
-                                    page: "themTK"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
-                            }
-                            if (choose == 'update') {
-                                $.post('xulydangky.php', {
-                                    loaitaikhoan1: loaiTK,
-                                    taikhoan1: tk,
-                                    matkhau1: mk,
-                                    page: "capNhatTK"
-                                }, function(data) {
-                                    $('body').html(data);
-                                })
-                            }
-                        }
-
-                    }
-                </script>
-                <!-- Danh sách tài khoản -->
-                <div id="list-account" class="tabcontent ">
-                    <!-- Thông tin tài khoản-->
-                    <table>
-                        <div class="table-control">
-                            <div class="search">
-                                <input class="search" type="text" id="timkiem_tk" placeholder="Tìm kiếm bằng tên tài khoản" />
-                                <button class="search" onclick="timkiemTK()">Tìm kiếm</button>
-                                <script>
-                                    var search = $('#timkiem_tk').val()
-                                    $.post('timkiemTK.php', {
-                                        data: search
-                                    }, function(data) {
-                                        $('.danhsachtimkiemTK').html(data);
-                                    })
-
-                                    function timkiemTK() {
-                                        var search = $('#timkiem_tk').val()
-                                        $.post('timkiemTK.php', {
-                                            data: search
-                                        }, function(data) {
-                                            $('.danhsachtimkiemTK').html(data);
-                                        })
-                                    }
-                                </script>
-                            </div>
-                        </div>
-                        <tr>
-                            <td colspan="11">
-                                <div class="scrollbar">
-                                    <table border="1" id="infor-acc" style="display: table" class="table
-                                                        table-inforgame">
-                                        <tr class="table-primary">
-                                            <th scope="col">STT</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Tài khoản</th>
-                                            <th scope="col">Mật khẩu</th>
-                                            <th scope="col">Loại tài khoản</th>
-                                            <th scope="col">Cập nhật</th>
-                                            <th scope="col">Xóa</th>
-                                        </tr>
-                                        <tbody class="danhsachtimkiemTK">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
                 </div>
             </div>
         </div>
@@ -996,7 +788,8 @@ include_once('database_connection.php'); ?>
                         </div>
                         <div class="client-item" style="margin-top: 15px;">
                             <span>Giá sản phẩm</span>
-                            <input type="number" min="50000" step="10000" name="giasp" id="giasp" value="50000" placeholder="Giá sản phẩm">
+                            <input type="number" min="50000" step="10000" name="giasp" id="giasp" value="50000"
+                                placeholder="Giá sản phẩm">
                             <div class="loi" id="loigiasp"></div>
                         </div>
                         <div class="client-item" style="margin-top: 15px;">
@@ -1030,13 +823,13 @@ include_once('database_connection.php'); ?>
                             <div class="loi" id="loinph"></div>
                         </div>
                         <script>
-                            // hàm tăng số
-                            function a(b) {
-                                document.getElementById('gia').value = b
-                                setTimeout(function() {
-                                    a(b + 1)
-                                }, 50);
-                            }
+                        // hàm tăng số
+                        function a(b) {
+                            document.getElementById('gia').value = b
+                            setTimeout(function() {
+                                a(b + 1)
+                            }, 50);
+                        }
                         </script>
                         <div class="add-upload" style="margin-top: 20px;">
                             <div class="add-avatar">
@@ -1070,210 +863,212 @@ include_once('database_connection.php'); ?>
                         </div>
                     </div>
                     <script>
-                        function HuySP() {
-                            document.getElementById('tensp').value = ""
-                            document.getElementById('giasp').value = "50000"
-                            document.getElementById('motasp').value = ""
-                            document.getElementById('source').value = ""
-                            document.getElementById('trailer').value = ""
-                            document.getElementById('imgavt').value = ""
-                            document.getElementById('igl').value = ""
-                            document.getElementById('nph').value = ""
-                        }
+                    function HuySP() {
+                        document.getElementById('tensp').value = ""
+                        document.getElementById('giasp').value = "50000"
+                        document.getElementById('motasp').value = ""
+                        document.getElementById('source').value = ""
+                        document.getElementById('trailer').value = ""
+                        document.getElementById('imgavt').value = ""
+                        document.getElementById('igl').value = ""
+                        document.getElementById('nph').value = ""
+                        $('#loitensp').html("")
+                        $('#loinph').html("")
+                        $('#loigiasp').html("")
+                        $('#loimotasp').html("")
+                        $('#imgavt').removeClass('is-invalid')
+                        $('#trailer').removeClass('is-invalid')
+                        $('#source').removeClass('is-invalid')
+                        $('#igl').removeClass('is-invalid')
+                        $('#loitheloaisp').html("")
+                    }
                     </script>
                     <script>
-                        function add_update_SP(choose) {
-                            var check = 0
-                            var tensp = $('#tensp').val()
-                            var giasp = $('#giasp').val()
-                            var motasp = $('#motasp').val()
-                            var nph = $('#nph').val()
-                            var p_nsx = $('#p_nsx').val()
-                            var theloaisp = document.getElementById('theloaisp')
-                            var trailer = document.getElementById('trailer')
-                            var source = document.getElementById('source')
-                            var imgavt = document.getElementById('imgavt')
-                            var igl = document.getElementById('igl')
-                            let arr_tlsp = []
-                            let arr_igl = []
+                    function add_update_SP(choose) {
+                        var check = 0
+                        var tensp = $('#tensp').val()
+                        var giasp = $('#giasp').val()
+                        var motasp = $('#motasp').val()
+                        var nph = $('#nph').val()
+                        var p_nsx = $('#p_nsx').val()
+                        var theloaisp = document.getElementById('theloaisp')
+                        var trailer = document.getElementById('trailer')
+                        var source = document.getElementById('source')
+                        var imgavt = document.getElementById('imgavt')
+                        var igl = document.getElementById('igl')
+                        let arr_tlsp = []
+                        let arr_igl = []
 
-                            if (tensp.length < 5 || tensp.length > 50) {
-                                check -= 1
-                                $('#tensp').addClass('is-invalid');
-                                $('#loitensp').html("Tên sản phẩm chứa ít nhất 5-50 ký tự")
-                            } else {
-                                $('#tensp').removeClass('is-invalid')
-                                $('#loitensp').html("")
-                                check += 1
-                            }
+                        if (tensp.length < 5 || tensp.length > 50) {
+                            check -= 1
+                            $('#tensp').addClass('is-invalid');
+                            $('#loitensp').html("Tên sản phẩm chứa ít nhất 5-50 ký tự")
+                        } else {
+                            $('#tensp').removeClass('is-invalid')
+                            $('#loitensp').html("")
+                            check += 1
+                        }
 
-                            if (nph == "") {
-                                check -= 1
-                                $('#nph').addClass('is-invalid');
-                                $('#loinph').html("Hãy chọn ngày phát hành")
-                            } else {
-                                $('#nph').removeClass('is-invalid')
-                                $('#loinph').html("")
-                                check += 1
-                            }
+                        if (nph == "") {
+                            check -= 1
+                            $('#nph').addClass('is-invalid');
+                            $('#loinph').html("Hãy chọn ngày phát hành")
+                        } else {
+                            $('#nph').removeClass('is-invalid')
+                            $('#loinph').html("")
+                            check += 1
+                        }
 
-                            if (giasp <= 50000) {
-                                check -= 1
-                                $('#giasp').addClass('is-invalid');
-                                $('#loigiasp').html("Giá sản phẩm phải trên 50.000VND")
-                            } else {
-                                $('#giasp').removeClass('is-invalid')
-                                $('#loigiasp').html("")
-                                check += 1
-                            }
+                        if (giasp <= 50000) {
+                            check -= 1
+                            $('#giasp').addClass('is-invalid');
+                            $('#loigiasp').html("Giá sản phẩm phải trên 50.000VND")
+                        } else {
+                            $('#giasp').removeClass('is-invalid')
+                            $('#loigiasp').html("")
+                            check += 1
+                        }
 
-                            if (motasp.length < 10 || motasp.length > 100) {
-                                check -= 1
-                                $('#motasp').addClass('is-invalid');
-                                $('#loimotasp').html("Mô tả sản phẩm chứa ít nhất 10-100 ký tự")
-                            } else {
-                                $('#motasp').removeClass('is-invalid')
-                                $('#loimotasp').html("")
-                                check += 1
-                            }
+                        if (motasp.length < 10 || motasp.length > 100) {
+                            check -= 1
+                            $('#motasp').addClass('is-invalid');
+                            $('#loimotasp').html("Mô tả sản phẩm chứa ít nhất 10-100 ký tự")
+                        } else {
+                            $('#motasp').removeClass('is-invalid')
+                            $('#loimotasp').html("")
+                            check += 1
+                        }
 
-                            if (imgavt.files.length == "") {
-                                check -= 1
-                                $('#imgavt').addClass('is-invalid');
-                                $('#loiimgavt').html("Hãy chọn ảnh đại diện game")
-                            } else {
-                                $('#imgavt').removeClass('is-invalid')
-                                $('#loiimgavt').html("")
-                                check += 1
-                            }
+                        if (imgavt.files.length == "") {
+                            check -= 1
+                            $('#imgavt').addClass('is-invalid');
+                        } else {
+                            $('#imgavt').removeClass('is-invalid')
+                            check += 1
+                        }
 
-                            if (trailer.files.length == "") {
-                                check -= 1
-                                $('#trailer').addClass('is-invalid');
-                                $('#loitrailer').html("Hãy chọn trailer game")
-                            } else {
-                                $('#trailer').removeClass('is-invalid')
-                                $('#loitrailer').html("")
-                                check += 1
-                            }
+                        if (trailer.files.length == "") {
+                            check -= 1
+                            $('#trailer').addClass('is-invalid');
+                        } else {
+                            $('#trailer').removeClass('is-invalid')
+                            check += 1
+                        }
 
-                            if (source.files.length == "") {
-                                check -= 1
-                                $('#source').addClass('is-invalid');
-                                $('#loisource').html("Hãy chọn trailer game")
-                            } else {
-                                $('#source').removeClass('is-invalid')
-                                $('#loisource').html("")
-                                check += 1
-                            }
+                        if (source.files.length == "") {
+                            check -= 1
+                            $('#source').addClass('is-invalid');
+                        } else {
+                            $('#source').removeClass('is-invalid')
+                            check += 1
+                        }
 
-                            if (theloaisp.options.selectedIndex == -1) {
-                                check -= 1
-                                $('#theloaisp').addClass('is-invalid');
-                                $('#loitheloaisp').html("Hãy chọn thể loại của sản phẩm")
-                            } else {
-                                $('#theloaisp').removeClass('is-invalid')
-                                $('#loitheloaisp').html("")
-                                check += 1
-                                for (let index = 0; index < theloaisp.options.length; index++) {
-                                    if (theloaisp.options[index].selected) {
-                                        arr_tlsp.push(theloaisp.options[index].value)
-                                    }
+                        if (theloaisp.options.selectedIndex == -1) {
+                            check -= 1
+                            $('#theloaisp').addClass('is-invalid');
+                            $('#loitheloaisp').html("Hãy chọn thể loại của sản phẩm")
+                        } else {
+                            $('#theloaisp').removeClass('is-invalid')
+                            $('#loitheloaisp').html("")
+                            check += 1
+                            for (let index = 0; index < theloaisp.options.length; index++) {
+                                if (theloaisp.options[index].selected) {
+                                    arr_tlsp.push(theloaisp.options[index].value)
                                 }
                             }
+                        }
 
-                            if (igl.files.length == "") {
-                                check -= 1
-                                $('#igl').addClass('is-invalid');
-                                $('#loiigl').html("Hãy chọn ảnh mô tả sản phẩm")
-                            } else {
-                                $('#igl').removeClass('is-invalid')
-                                $('#loiigl').html("")
-                                check += 1
+                        if (igl.files.length == "") {
+                            check -= 1
+                            $('#igl').addClass('is-invalid');
+                        } else {
+                            $('#igl').removeClass('is-invalid')
+                            check += 1
+                            for (let index = 0; index < igl.files.length; index++) {
+                                arr_igl.push(igl.files[index].name)
+                            }
+                        }
+
+                        if (check == 9) {
+                            if (choose == 'add') {
+
+                                let formData2 = new FormData()
+                                formData2.append("source", source.files[0]);
+                                fetch('themsanpham.php', {
+                                    method: "POST",
+                                    body: formData2
+                                })
+
+                                let formData = new FormData()
+                                formData.append("imgavt", imgavt.files[0]);
+                                fetch('themsanpham.php', {
+                                    method: "POST",
+                                    body: formData
+                                })
+
+                                let formData1 = new FormData()
+                                formData1.append("trailer", trailer.files[0]);
+                                fetch('themsanpham.php', {
+                                    method: "POST",
+                                    body: formData1
+                                })
+
+
+                                let formData0 = new FormData()
                                 for (let index = 0; index < igl.files.length; index++) {
-                                    arr_igl.push(igl.files[index].name)
+                                    formData0.append("igl[]", igl.files[index])
                                 }
+                                var x = new XMLHttpRequest()
+                                x.open("POST", "themsanpham.php", true)
+                                x.send(formData0)
+
+                                $.post('themsanpham.php', {
+                                    tensp: tensp,
+                                    giasp: giasp,
+                                    motasp: motasp,
+                                    p_nsx: p_nsx,
+                                    nph: nph,
+                                    imgavt: imgavt.files[0].name,
+                                    trailer: trailer.files[0].name,
+                                    source: source.files[0].name,
+                                    igl_name: arr_igl,
+                                    theloaisp: arr_tlsp,
+                                    page: "themSP"
+                                }, function(data) {
+                                    $('body').html(data);
+                                })
                             }
-
-                            if (check == 9) {
-                                if (choose == 'add') {
-
-                                    let formData2 = new FormData()
-                                    formData2.append("source", source.files[0]);
-                                    fetch('themsanpham.php', {
-                                        method: "POST",
-                                        body: formData2
-                                    })
-
-                                    let formData = new FormData()
-                                    formData.append("imgavt", imgavt.files[0]);
-                                    fetch('themsanpham.php', {
-                                        method: "POST",
-                                        body: formData
-                                    })
-
-                                    let formData1 = new FormData()
-                                    formData1.append("trailer", trailer.files[0]);
-                                    fetch('themsanpham.php', {
-                                        method: "POST",
-                                        body: formData1
-                                    })
-
-
-                                    let formData0 = new FormData()
-                                    for (let index = 0; index < igl.files.length; index++) {
-                                        formData0.append("igl[]", igl.files[index])
-                                    }
-                                    var x = new XMLHttpRequest()
-                                    x.open("POST", "themsanpham.php", true)
-                                    x.send(formData0)
-
-                                    $.post('themsanpham.php', {
-                                        tensp: tensp,
-                                        giasp: giasp,
-                                        motasp: motasp,
-                                        p_nsx: p_nsx,
-                                        nph: nph,
-                                        imgavt: imgavt.files[0].name,
-                                        trailer: trailer.files[0].name,
-                                        source: source.files[0].name,
-                                        igl_name: arr_igl,
-                                        theloaisp: arr_tlsp,
-                                        page: "themSP"
-                                    }, function(data) {
-                                        $('body').html(data);
-                                    })
-                                }
-
-                            }
-
-
 
                         }
+
+
+
+                    }
                     </script>
                 </div>
                 <!-- Danh sách sản phẩm-->
                 <div id="list-product" class="tabcontent">
                     <div class="table-control">
                         <div class="search">
-                            <input class="search" type="text" id="timkiem_sp" placeholder="Tìm kiếm bằng tên sản phẩm" />
+                            <input class="search" type="text" id="timkiem_sp"
+                                placeholder="Tìm kiếm bằng tên sản phẩm" />
                             <button class="search" onclick="timkiemSP()">Tìm kiếm</button>
                             <script>
+                            var search = $('#timkiem_sp').val()
+                            $.post('timkiemSP.php', {
+                                data: search
+                            }, function(data) {
+                                $('.danhsachtimkiemSP').html(data);
+                            })
+
+                            function timkiemSP() {
                                 var search = $('#timkiem_sp').val()
                                 $.post('timkiemSP.php', {
                                     data: search
                                 }, function(data) {
                                     $('.danhsachtimkiemSP').html(data);
                                 })
-
-                                function timkiemSP() {
-                                    var search = $('#timkiem_sp').val()
-                                    $.post('timkiemSP.php', {
-                                        data: search
-                                    }, function(data) {
-                                        $('.danhsachtimkiemSP').html(data);
-                                    })
-                                }
+                            }
                             </script>
                         </div>
                     </div>
@@ -1340,17 +1135,30 @@ include_once('database_connection.php'); ?>
                 </div>
             </div>
         </div>
-        
+
         <!-- Thêm Thể loại -->
         <div class="client menu-tab" id="category">
             <!-- tabs -->
             <div class="tabs">
-                <!-- tabs -->
+                <?php
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "ThemTL") {
+                    echo "<script> document.getElementById('Themtheloai').click();
+                        document.getElementById('tabThemTL').click();
+                        alert('Thêm thể loại thành công!!') </script>";
+                    unset($_SESSION['dangkythanhcong']);
+                }
+                if (isset($_SESSION['dangkythanhcong']) && $_SESSION['dangkythanhcong'] == "capNhatTL") {
+                    echo "<script> document.getElementById('Themtheloai').click();
+                        document.getElementById('tabDSTL').click();
+                        alert('Cập nhật thể loại thành công!!') </script>";
+                    unset($_SESSION['dangkythanhcong']);
+                }
+                ?>
                 <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'add-category')" id="defaultOpen">
+                    <button class="tablinks" onclick="openCity(event, 'add-category')" id="tabThemTL">
                         Thêm thể loại
                     </button>
-                    <button class="tablinks" onclick="openCity(event, 'list-category')">
+                    <button class="tablinks" onclick="openCity(event, 'list-category')" id="tabDSTL">
                         Danh sách thể loại
                     </button>
                 </div>
@@ -1359,15 +1167,53 @@ include_once('database_connection.php'); ?>
                     <div class="tabcontent-addproduct">
                         <div class="client-item">
                             <span>Tên thể loại</span>
-                            <input type="text" placeholder="Tìm kiếm tên thể loại" />
+                            <input type="text" id="TenTheLoai" placeholder="Tìm kiếm tên thể loại" />
+                            <div class="loi" id="loitentl"></div>
                         </div>
                     </div>
+                    
                     <div class="client-item">
                         <button type="button" id="bntThemTL" onclick="add_update_TL('add')">Thêm</button>
                         <button type="button" id="bntCapnhatTL" onclick="add_update_TL('update')" hidden>Cập
                             nhật</button>
                         <button type="button" onclick="HuyTL()">Hủy</button>
                     </div>
+                    <script>
+                    function HuyTL() {
+                        document.getElementById('TenTheLoai').value = ""
+                        $('#loitentl').html("")
+                    }
+
+                    function add_update_TL(choose) {
+                        var tenTL = $('#TenTheLoai').val()
+                        var check = 0
+                        if (tenTL == "") {
+                            check -= 1
+                            $('#loitentl').html("Hãy nhập tên thể loại")
+                        } else {
+                            $('#loitentl').html("")
+                            check += 1
+                        }
+
+                        if (check == 1) {
+                            if (choose == 'add') {
+                                $.post('xulydangky.php', {
+                                    tenTL: tenTL,
+                                    page: "themTL"
+                                }, function(data) {
+                                    $('body').html(data);
+                                })
+                            }
+                            if (choose == 'update') {
+                                $.post('xulydangky.php', {
+                                    tenTL: tenTL,
+                                    page: "capNhatTL"
+                                }, function(data) {
+                                    $('body').html(data);
+                                })
+                            }
+                        }}
+                    </script>
                 </div>
                 <!-- Danh sách thể loại -->
                 <div id="list-category" class="tabcontent">
@@ -1382,6 +1228,7 @@ include_once('database_connection.php'); ?>
                             }, function(data) {
                                 $('.danhsachtimkiemTL').html(data);
                             })
+
                             function timkiemTL() {
                                 var search = $('#timkiem_tl').val()
                                 $.post('timkiemTL.php', {
@@ -1398,7 +1245,7 @@ include_once('database_connection.php'); ?>
                         <table border="1" id="inforgame" style="display: table" class="table
                                             table-inforgame">
                             <tr class="table-primary">
-                            <th scope="col">STT</th>
+                                <th scope="col">STT</th>
                                 <th scope="col">ID</th>
                                 <th scope="col">Tên thể loại</th>
                                 <th scope="col">Cập nhật</th>
@@ -1412,6 +1259,9 @@ include_once('database_connection.php'); ?>
                 <!-- tabs -->
             </div>
         </div>
+
+
+
         <!-- Thêm giảm giá -->
         <div class="client menu-tab" id="sale-product">
             <div class="sale-main">
@@ -1610,9 +1460,9 @@ include_once('database_connection.php'); ?>
                                 <select name="ngay" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $date; ?>">Ngày <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1620,9 +1470,9 @@ include_once('database_connection.php'); ?>
                                 <select name="thang" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1630,9 +1480,9 @@ include_once('database_connection.php'); ?>
                                 <select name="nam" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1679,9 +1529,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1689,9 +1539,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1764,9 +1614,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1774,9 +1624,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1784,9 +1634,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1822,9 +1672,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1832,9 +1682,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1842,9 +1692,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1880,9 +1730,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($date = 1; $date <= 31; $date++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $date; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1890,9 +1740,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1900,9 +1750,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1960,9 +1810,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -1970,9 +1820,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -2008,9 +1858,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -2018,9 +1868,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -2056,9 +1906,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($month = 1; $month <= 12; $month++) {
-                                    ?>
-                                        <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $month; ?>">Tháng <?php echo $month; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -2066,9 +1916,9 @@ include_once('database_connection.php'); ?>
                                 <select name="" id="">
                                     <?php
                                     for ($year = 2022; $year <= 2030; $year++) {
-                                    ?>
-                                        <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
-                                    <?php
+                                        ?>
+                                            <option value="<?php echo $year; ?>">Năm <?php echo $year; ?></option>
+                                            <?php
                                     }
                                     ?>
                                 </select>
@@ -2239,9 +2089,9 @@ include_once('database_connection.php'); ?>
     </div>
 </body>
 <script>
-    window.onload = function() {
-        document.getElementById("index").style.display = "block";
-    }
+window.onload = function() {
+    document.getElementById("index").style.display = "block";
+}
 </script>
 
 <?php if (isset($_SESSION['xoaTLthanhcong']) && $_SESSION['xoaTLthanhcong'] == true) {
@@ -2314,8 +2164,8 @@ if (isset($_SESSION['updateKH']) && $_SESSION['updateKH'] != 0) {
         $_SESSION['KHUpdate'] = $row['kh_id'];
         $mk = $row['tk_matkhau'];
     }
-?>
-    <script>
+    ?>
+        <script>
         window.onload = function() {
             document.getElementById('Themkhachhang').click();
             document.getElementById('tabThemKH').click();
@@ -2328,7 +2178,7 @@ if (isset($_SESSION['updateKH']) && $_SESSION['updateKH'] != 0) {
             document.getElementById("bntThemKH").setAttribute("hidden", "hidden");
 
         }
-    </script>
+        </script>
 <?php }
 $_SESSION['updateKH'] = 0;
 
@@ -2345,8 +2195,8 @@ if (isset($_SESSION['updateNSX']) && $_SESSION['updateNSX'] != 0) {
         $_SESSION['nsxUpdate'] = $row['nsx_id'];
         $mk = $row['tk_matkhau'];
     }
-?>
-    <script>
+    ?>
+        <script>
         window.onload = function() {
             document.getElementById('Themnsx').click();
             document.getElementById('tabThemNSX').click();
@@ -2358,7 +2208,7 @@ if (isset($_SESSION['updateNSX']) && $_SESSION['updateNSX'] != 0) {
             document.getElementById("bntUpdateNSX").removeAttribute("hidden");
             document.getElementById("bntThemNSX").setAttribute("hidden", "hidden");
         }
-    </script>
+        </script>
 <?php }
 $_SESSION['updateNSX'] = 0;
 
@@ -2375,8 +2225,8 @@ if (isset($_SESSION['updateTK']) && $_SESSION['updateTK'] != 0) {
         $_SESSION['taikhoanUpdate'] = $row['tk_id'];
         $mk = $row['tk_matkhau'];
     }
-?>
-    <script>
+    ?>
+        <script>
         window.onload = function() {
             document.getElementById('Themtaikhoan').click();
             document.getElementById('tabThemTK').click();
@@ -2386,7 +2236,7 @@ if (isset($_SESSION['updateTK']) && $_SESSION['updateTK'] != 0) {
             document.getElementById("bntCapnhatTK").removeAttribute("hidden");
             document.getElementById("bntThemTK").setAttribute("hidden", "hidden");
         }
-    </script>
+        </script>
 <?php }
 $_SESSION['updateTK'] = 0;
 
@@ -2399,11 +2249,11 @@ if (isset($_SESSION['updateTL']) && $_SESSION['updateTL'] != 0) {
     $sql = "SELECT * FROM theloai WHERE tl_id = $idtl";
     $query = mysqli_query($cn, $sql);
     while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-        $_SESSION['theloaiUpdate'] = $row['tk_id'];
+        $_SESSION['theloaiUpdate'] = $row['tl_id'];
         $tentl = $row['tl_ten'];
     }
-?>
-    <script>
+    ?>
+        <script>
         window.onload = function() {
             document.getElementById('Themtheloai').click();
             document.getElementById('tabThemTL').click();
@@ -2411,7 +2261,7 @@ if (isset($_SESSION['updateTL']) && $_SESSION['updateTL'] != 0) {
             document.getElementById("bntCapnhatTL").removeAttribute("hidden");
             document.getElementById("bntThemTL").setAttribute("hidden", "hidden");
         }
-    </script>
+        </script>
 <?php }
 $_SESSION['updateTL'] = 0;
 
@@ -2420,225 +2270,225 @@ $_SESSION['updateTL'] = 0;
 
 <!-- select chọn table sản phẩm -->
 <script>
-    var infors = document.getElementById("inforgamess");
-    var categorys = document.getElementById("inforgame-and-categoryss");
-    var imgtrailers = document.getElementById("inforgame-and-imgss");
+var infors = document.getElementById("inforgamess");
+var categorys = document.getElementById("inforgame-and-categoryss");
+var imgtrailers = document.getElementById("inforgame-and-imgss");
 
-    function change(obj) {
-        var values = obj.value;
-        if (values === "infor") {
-            infors.style.display = "table";
-            categorys.style.display = "none";
-            imgtrailers.style.display = "none";
-        }
-        if (values === "category") {
-            infors.style.display = "none";
-            categorys.style.display = "table";
-            imgtrailers.style.display = "none";
-        }
-
-        if (values === "img-trailer") {
-            infors.style.display = "none";
-            categorys.style.display = "none";
-            imgtrailers.style.display = "table";
-        }
-
-
+function change(obj) {
+    var values = obj.value;
+    if (values === "infor") {
+        infors.style.display = "table";
+        categorys.style.display = "none";
+        imgtrailers.style.display = "none";
     }
+    if (values === "category") {
+        infors.style.display = "none";
+        categorys.style.display = "table";
+        imgtrailers.style.display = "none";
+    }
+
+    if (values === "img-trailer") {
+        infors.style.display = "none";
+        categorys.style.display = "none";
+        imgtrailers.style.display = "table";
+    }
+
+
+}
 </script>
 <!-- select chọn table giảm giá -->
 <script>
-    var all_game = document.getElementById("all-games");
-    var all_category = document.getElementById("all-category");
-    var all_nsx = document.getElementById("all-nsx");
+var all_game = document.getElementById("all-games");
+var all_category = document.getElementById("all-category");
+var all_nsx = document.getElementById("all-nsx");
 
-    function changetable(obj) {
-        var value = obj.value;
+function changetable(obj) {
+    var value = obj.value;
 
-        if (value === "categorys") {
-            all_game.style.display = "none";
-            all_category.style.display = "table";
-            all_nsx.style.display = "none";
-        }
-        if (value === "nsxs") {
-            all_game.style.display = "none";
-            all_category.style.display = "none";
-            all_nsx.style.display = "table";
-        }
-        if (value === "games") {
-            all_game.style.display = "table";
-            all_category.style.display = "none";
-            all_nsx.style.display = "none";
-        }
-
+    if (value === "categorys") {
+        all_game.style.display = "none";
+        all_category.style.display = "table";
+        all_nsx.style.display = "none";
     }
+    if (value === "nsxs") {
+        all_game.style.display = "none";
+        all_category.style.display = "none";
+        all_nsx.style.display = "table";
+    }
+    if (value === "games") {
+        all_game.style.display = "table";
+        all_category.style.display = "none";
+        all_nsx.style.display = "none";
+    }
+
+}
 </script>
 <!-- select chọn table tài khoản -->
 <script>
-    var info_account = document.getElementById("infor-acc");
-    var type_account = document.getElementById("type-acc");
+var info_account = document.getElementById("infor-acc");
+var type_account = document.getElementById("type-acc");
 
-    function changetableaccount(obj) {
-        var value = obj.value;
+function changetableaccount(obj) {
+    var value = obj.value;
 
-        if (value === "type-account") {
-            info_account.style.display = "none";
-            type_account.style.display = "table";
-        }
-        if (value === "infor-account") {
-            info_account.style.display = "table";
-            type_account.style.display = "none";
-        }
-
+    if (value === "type-account") {
+        info_account.style.display = "none";
+        type_account.style.display = "table";
     }
+    if (value === "infor-account") {
+        info_account.style.display = "table";
+        type_account.style.display = "none";
+    }
+
+}
 </script>
 <!-- select chọn table thống kê lượt tải theo ngày-->
 <script>
-    var downloads_games_date = document.getElementById("downloadsgametheongay");
-    var downloads_category_date = document.getElementById("downloadscategorytheongay");
-    var downloads_nsx_date = document.getElementById("downloadsnsxtheongay");
+var downloads_games_date = document.getElementById("downloadsgametheongay");
+var downloads_category_date = document.getElementById("downloadscategorytheongay");
+var downloads_nsx_date = document.getElementById("downloadsnsxtheongay");
 
-    function downloads_date(obj) {
-        var value = obj.value;
+function downloads_date(obj) {
+    var value = obj.value;
 
-        if (value === "downloads-games-date") {
-            downloads_games_date.style.display = "table";
-            downloads_category_date.style.display = "none";
-            downloads_nsx_date.style.display = "none";
+    if (value === "downloads-games-date") {
+        downloads_games_date.style.display = "table";
+        downloads_category_date.style.display = "none";
+        downloads_nsx_date.style.display = "none";
 
-        }
-        if (value === "downloads-category-date") {
-            downloads_games_date.style.display = "none";
-            downloads_category_date.style.display = "table";
-            downloads_nsx_date.style.display = "none";
-
-        }
-        if (value === "downloads-nsx-date") {
-            downloads_games_date.style.display = "none";
-            downloads_category_date.style.display = "none";
-            downloads_nsx_date.style.display = "table";
-
-        }
     }
+    if (value === "downloads-category-date") {
+        downloads_games_date.style.display = "none";
+        downloads_category_date.style.display = "table";
+        downloads_nsx_date.style.display = "none";
+
+    }
+    if (value === "downloads-nsx-date") {
+        downloads_games_date.style.display = "none";
+        downloads_category_date.style.display = "none";
+        downloads_nsx_date.style.display = "table";
+
+    }
+}
 </script>
 <!-- select chọn table thống kê lượt tải theo tháng-->
 <script>
-    var downloads_games_month = document.getElementById("downloadsgametheothang");
-    var downloads_category_month = document.getElementById("downloadscategorytheothang");
-    var downloads_nsx_month = document.getElementById("downloadsnsxtheothang");
+var downloads_games_month = document.getElementById("downloadsgametheothang");
+var downloads_category_month = document.getElementById("downloadscategorytheothang");
+var downloads_nsx_month = document.getElementById("downloadsnsxtheothang");
 
-    function downloads_month(obj) {
-        var value = obj.value;
+function downloads_month(obj) {
+    var value = obj.value;
 
-        if (value === "downloads-games-month") {
-            downloads_games_month.style.display = "table";
-            downloads_category_month.style.display = "none";
-            downloads_nsx_month.style.display = "none";
+    if (value === "downloads-games-month") {
+        downloads_games_month.style.display = "table";
+        downloads_category_month.style.display = "none";
+        downloads_nsx_month.style.display = "none";
 
-        }
-        if (value === "downloads-category-month") {
-            downloads_games_month.style.display = "none";
-            downloads_category_month.style.display = "table";
-            downloads_nsx_month.style.display = "none";
-
-        }
-        if (value === "downloads-nsx-month") {
-            downloads_games_month.style.display = "none";
-            downloads_category_month.style.display = "none";
-            downloads_nsx_month.style.display = "table";
-
-        }
     }
+    if (value === "downloads-category-month") {
+        downloads_games_month.style.display = "none";
+        downloads_category_month.style.display = "table";
+        downloads_nsx_month.style.display = "none";
+
+    }
+    if (value === "downloads-nsx-month") {
+        downloads_games_month.style.display = "none";
+        downloads_category_month.style.display = "none";
+        downloads_nsx_month.style.display = "table";
+
+    }
+}
 </script>
 <!-- select chọn table thống kê giảm giá -->
 <script>
-    var all_games = document.getElementById("sale-all-games");
-    var all_categorys = document.getElementById("sale-all-category");
-    var all_nsxs = document.getElementById("sale-all-nsx");
+var all_games = document.getElementById("sale-all-games");
+var all_categorys = document.getElementById("sale-all-category");
+var all_nsxs = document.getElementById("sale-all-nsx");
 
-    function saletable(obj) {
-        var value = obj.value;
+function saletable(obj) {
+    var value = obj.value;
 
-        if (value === "sale-categorys") {
-            all_games.style.display = "none";
-            all_categorys.style.display = "table";
-            all_nsxs.style.display = "none";
-        }
-        if (value === "sale-nsxs") {
-            all_games.style.display = "none";
-            all_categorys.style.display = "none";
-            all_nsxs.style.display = "table";
-        }
-        if (value === "sale-games") {
-            all_games.style.display = "table";
-            all_categorys.style.display = "none";
-            all_nsxs.style.display = "none";
-        }
-
+    if (value === "sale-categorys") {
+        all_games.style.display = "none";
+        all_categorys.style.display = "table";
+        all_nsxs.style.display = "none";
     }
+    if (value === "sale-nsxs") {
+        all_games.style.display = "none";
+        all_categorys.style.display = "none";
+        all_nsxs.style.display = "table";
+    }
+    if (value === "sale-games") {
+        all_games.style.display = "table";
+        all_categorys.style.display = "none";
+        all_nsxs.style.display = "none";
+    }
+
+}
 </script>
 <!-- select chọn table thống kê-->
 <script>
-    var revenue_date = document.getElementById("revenue-date");
-    var revenue_month = document.getElementById("revenue-month");
+var revenue_date = document.getElementById("revenue-date");
+var revenue_month = document.getElementById("revenue-month");
 
-    function statistical(obj) {
-        var value = obj.value;
+function statistical(obj) {
+    var value = obj.value;
 
-        if (value === "revenue_date") {
-            revenue_date.style.display = "table";
-            revenue_month.style.display = "none";
+    if (value === "revenue_date") {
+        revenue_date.style.display = "table";
+        revenue_month.style.display = "none";
 
-        }
-        if (value === "revenue_month") {
-            revenue_date.style.display = "none";
-            revenue_month.style.display = "table";
-
-        }
     }
+    if (value === "revenue_month") {
+        revenue_date.style.display = "none";
+        revenue_month.style.display = "table";
+
+    }
+}
 </script>
 <!-- tabss -->
 <script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none ";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active ";
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none ";
     }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active ";
+}
 </script>
 <!-- tabss -->
 <script>
-    function menu(evt, NameMenu) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("menu-tab");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none ";
-        }
-        tablinks = document.getElementsByClassName("btn-menu");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active ", " ");
-        }
-        document.getElementById(NameMenu).style.display = "block ";
-        evt.currentTarget.className += " active ";
+function menu(evt, NameMenu) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("menu-tab");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none ";
     }
+    tablinks = document.getElementsByClassName("btn-menu");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active ", " ");
+    }
+    document.getElementById(NameMenu).style.display = "block ";
+    evt.currentTarget.className += " active ";
+}
 </script>
 <!-- range slider -->
 <script>
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("demo");
-    // Hiển thị giá trị thanh trượt mặc định
-    output.innerHTML = slider.value;
-    //Cập nhật giá trị thanh trượt hiện tại (mỗi khi bạn kéo tay cầm thanh trượt)
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-    }
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+// Hiển thị giá trị thanh trượt mặc định
+output.innerHTML = slider.value;
+//Cập nhật giá trị thanh trượt hiện tại (mỗi khi bạn kéo tay cầm thanh trượt)
+slider.oninput = function() {
+    output.innerHTML = this.value;
+}
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js">
@@ -2647,28 +2497,28 @@ $_SESSION['updateTL'] = 0;
 
 
 <script>
-    $(function() {
-        function count($this) {
-            var current = parseInt($this.html(), 10);
-            current = current + 5; /* Where 50 is increment */
+$(function() {
+    function count($this) {
+        var current = parseInt($this.html(), 10);
+        current = current + 5; /* Where 50 is increment */
 
-            $this.html(++current);
-            if (current > $this.data('count')) {
-                $this.html($this.data('count'));
-            } else {
-                setTimeout(function() {
-                    count($this)
-                }, 5);
-            }
+        $this.html(++current);
+        if (current > $this.data('count')) {
+            $this.html($this.data('count'));
+        } else {
+            setTimeout(function() {
+                count($this)
+            }, 5);
         }
+    }
 
-        $(".count_number").each(function() {
-            $(this).data('count', parseInt($(this).html(), 10));
-            $(this).html('0');
-            count($(this));
-        });
-
+    $(".count_number").each(function() {
+        $(this).data('count', parseInt($(this).html(), 10));
+        $(this).html('0');
+        count($(this));
     });
+
+});
 </script>
 
 </html>
