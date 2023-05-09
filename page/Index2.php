@@ -69,14 +69,14 @@ if (isset($_GET['partnerCode'])) {
     $today = date('Y-m-d');
     mysqli_query($cn, "INSERT INTO `donhang`(`dh_id`, `dh_ngaylap`, `kh_id`) VALUES ('','$today','$idkh')");
     $id_dh = mysqli_insert_id($cn);
+
     foreach ($_SESSION['xulygiohang'] as $key => $value) {
         $soluong = $value['soluong'];
         $tongtien = $value['dongia'] * $value['soluong'];
         mysqli_query($cn, "INSERT INTO `chitietdonhang`(`dh_id`, `sp_id`, `ctdh_soluong`, `ctdh_tongtien`) VALUES ('$id_dh','$key','$soluong','$tongtien')");
     }
 
-    unset($_SESSION['xulygiohang']);
-    unset($_SESSION['thanhtoan']);
+    header("location: xulydownload.php");
 }
 ?>
 
