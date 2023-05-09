@@ -278,7 +278,7 @@ if (!function_exists('currency_format')) {
                                             </div>
                                             <!-- button thêm vào giỏ hàng -->
                                             <div class="card-button">
-                                                <button 
+                                                <button style="display: block;"
                                                     onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
                                                     <ion-icon name="cart-outline"></ion-icon>
                                                 </button>
