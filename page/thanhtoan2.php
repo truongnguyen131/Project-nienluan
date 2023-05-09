@@ -289,7 +289,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                             }
                             return 0;
                         }
-
+                        
                         if (isset($_POST["dathang"])) {
                             if ($sanpham == 0) {
                                 echo "<b>Hãy thêm sản phâm bạn muốn mua vào giỏ hàng</b>";
