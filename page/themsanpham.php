@@ -24,6 +24,26 @@ if (isset($_FILES["source"]["tmp_name"])) {
     }
 }
 
+if ($page == "themSPNSX") {
+    $sql = "INSERT INTO `sanpham`(`sp_tengame`, `sp_imgavt`, `sp_file`, `sp_mota`, `sp_trailer`, `sp_gia`, `sp_ngayphathanh`, `nsx_id`, `sp_trangthai`, `nguoi_duyet`) VALUES 
+('$tensp','$imgavt','$source','$mota','$trailer','$gia', '$ngayphathanh','$idnsx', 'chua duyet', '$idtaikhoan')";
+
+
+    mysqli_query($cn, $sql);
+    $id_sp = mysqli_insert_id($cn);
+    for ($i = 0; $i < count($igl_name); $i++) {
+        $valueimgs = $igl_name[$i];
+        mysqli_query($cn, "INSERT INTO `anhgameplay`(`sp_id`, `agl_ten`) VALUES ('$id_sp','$valueimgs')");
+    }
+    for ($i = 0; $i < count($theloai); $i++) {
+        mysqli_query($cn, "INSERT INTO `sanphamtheloai`(`sptl_id`, `sp_id`, `tl_id`) VALUES ('',$id_sp,'$theloai[$i]')");
+    }
+    echo "<script>
+    HuySP()
+    alert('Thêm thành công')
+    </script>";
+}
+
 if ($page == "themSP") {
     $sql = "INSERT INTO `sanpham`(`sp_tengame`, `sp_imgavt`, `sp_file`, `sp_mota`, `sp_trailer`, `sp_gia`, `sp_ngayphathanh`, `nsx_id`, `sp_trangthai`, `nguoi_duyet`) VALUES 
 ('$tensp','$imgavt','$source','$mota','$trailer','$gia', '$ngayphathanh','$idnsx', 'duyet', '$idtaikhoan')";
@@ -39,6 +59,9 @@ if ($page == "themSP") {
         mysqli_query($cn, "INSERT INTO `sanphamtheloai`(`sptl_id`, `sp_id`, `tl_id`) VALUES ('',$id_sp,'$theloai[$i]')");
     }
     $_SESSION['dangkythanhcong'] = "themSP";
+    echo "<script>
+    window.location.reload();
+    </script>";
 }
 
 if ($page == "capNhatSP") {
@@ -57,8 +80,8 @@ if ($page == "capNhatSP") {
         mysqli_query($cn, "INSERT INTO `sanphamtheloai`(`sptl_id`, `sp_id`, `tl_id`) VALUES ('',$id_sp,'$theloai[$i]')");
     }
     $_SESSION['dangkythanhcong'] = "capNhatSP";
+    echo "<script>
+    window.location.reload();
+    </script>";
 }
 ?>
-<script>
-window.location.reload();
-</script>

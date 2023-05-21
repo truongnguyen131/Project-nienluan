@@ -13,7 +13,7 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/card2.css">
     <link rel="stylesheet" href="../css/pagination.css">
     <link rel="stylesheet" href="../css/logout.css">
-
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -184,7 +184,7 @@ if (!function_exists('currency_format')) {
                 } else {
                     $begin = ($page * 12) - 12;
                 }
-                $query = mysqli_query($cn, "SELECT * from sanpham ORDER BY sanpham.sp_id DESC LIMIT $begin,12");
+                $query = mysqli_query($cn, "SELECT * from sanpham WHERE sp_trangthai = 'duyet' ORDER BY sanpham.sp_id DESC LIMIT $begin,12");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                     $idsp = $row['sp_id'];
                     ?>
@@ -240,9 +240,11 @@ if (!function_exists('currency_format')) {
                                                 </strong>
                                             </p>
                                         </div>
+                                        
                                         <div class="card-footer">
                                             <?php
-                                            if (mysqli_num_rows($query1) > 0) { ?>
+                                            if (mysqli_num_rows($query1) > 0) { 
+                                                ?>
                                                 <!-- giá trước khi sale -->
                                                 <div class="footer-label">
                                                     <label for="" class="price-old">
@@ -259,8 +261,6 @@ if (!function_exists('currency_format')) {
                                                 </div>
                                                 <?php
                                             } else { ?>
-                                                <!-- giá trước khi sale -->
-                                                <div></div>
                                                 <!-- giá sau khi sale -->
                                                 <div class="footer-label">
                                                     <label for="">
@@ -292,6 +292,7 @@ if (!function_exists('currency_format')) {
                                                 </button>
                                             </div>
                                         </div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -518,6 +519,55 @@ if (!function_exists('currency_format')) {
     <script src="../js/search_nofication.js"></script>
     <div id="note"></div>
 </body>
+
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="">About us</a></li>
+                    <li><a href="">Our service</a></li>
+                    <li><a href="">Privacy policy</a></li>
+                    <li><a href="">Afflicate progame</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get help</h4>
+                <ul>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Shopping</a></li>
+                    <li><a href="">Return</a></li>
+                    <li><a href="">Payment option</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Online shop</h4>
+                <ul>
+                    <li><a href="">Moba</a></li>
+                    <li><a href="">Education</a></li>
+                    <li><a href="">Racing</a></li>
+                    <li><a href="">PvP</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow us</h4>
+                <div class="social-links">
+                    <a href=""><i class="bx bxl-facebook-circle"></i></a>
+                    <a href=""><i class="bx bxl-instagram-alt"></i></a>
+                    <a href=""><i class="bx bxl-twitter"></i></a>
+                    <a href=""><i class="bx bxs-phone-call"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
 <?php
 if (isset($_GET['tenTL'])) {
     $tentl = $_GET['tenTL'];

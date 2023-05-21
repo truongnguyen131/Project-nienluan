@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/thanhtoan2.css">
     <link rel="stylesheet" href="../css/stars.css">
-
+<link rel="stylesheet" href="../css/footer.css">
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -258,15 +258,15 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                 <h1 class="title">Thông tin khách hàng</h1>
                 <div class="infor-form">
                     <div class="infor-item">
-                        <input type="text" class="infor-input" placeholder=" " name="hoten" value="<?php echo $hoten; ?>" id="name">
+                        <input type="text" class="infor-input" placeholder=" " readonly name="hoten" value="<?php echo $hoten; ?>" id="name">
                         <span class="infor-lable">Họ tên</span>
                     </div>
                     <div class="infor-item">
-                        <input type="text" class="infor-input" placeholder=" " name="sdt" value="<?php echo $sdt; ?>" id="phone">
+                        <input type="text" class="infor-input" placeholder=" " readonly name="sdt" value="<?php echo $sdt; ?>" id="phone">
                         <span class="infor-lable">Số điện thoại</span>
                     </div>
                     <div class="infor-item">
-                        <input type="text" class="infor-input" placeholder=" " name="email" value="<?php echo $email; ?>" id="mail">
+                        <input type="text" class="infor-input" placeholder=" " readonly name="email" value="<?php echo $email; ?>" id="mail">
                         <span class="infor-lable">Email</span>
                     </div>
                     <div class="infor-item">
@@ -365,31 +365,52 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
         }
     </script>
 </body>
-<!-- coppyright -->
-<footer class="coppyright ">
-    <div class="footer__content container">
-        <div class="logo-page">
-            <a href="Index2.html" class="logo">Game<span>Store</span></a>
+    
+<footer class="footer">
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Our service</a></li>
+                        <li><a href="">Privacy policy</a></li>
+                        <li><a href="">Afflicate progame</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get help</h4>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Shopping</a></li>
+                        <li><a href="">Return</a></li>
+                        <li><a href="">Payment option</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Online shop</h4>
+                    <ul>
+                        <li><a href="">Moba</a></li>
+                        <li><a href="">Education</a></li>
+                        <li><a href="">Racing</a></li>
+                        <li><a href="">PvP</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-links">
+                        <a href=""><i class="bx bxl-facebook-circle"></i></a>
+                        <a href=""><i class="bx bxl-instagram-alt"></i></a>
+                        <a href=""><i class="bx bxl-twitter"></i></a>
+                        <a href=""><i class="bx bxs-phone-call"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="page">
-            <h1 class="footer__title">Trang</h1>
-            <a href="">Trang chủ</a>
-            <a href="">Phổ biến</a>
-            <a href="">Game giảm giá</a>
-            <a href="">Thể loại</a>
-            <a href="">Liên hệ</a>
-        </div>
-        <div class="conection">
-            <h1 class="footer__title">Liên hệ</h1>
-            <a href=""><i class='bx bxl-facebook-circle'></i></a>
-            <a href=""><i class='bx bxl-instagram-alt'></i></a>
-            <a href=""><i class='bx bxl-twitter'></i></a>
-            <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-        </div>
-    </div>
-    <div class="vd">
-        <p>&#169; Carpool Venom All Right Reserved</p>
-    </div>
-</footer>
+    </footer>
+
 
 </html>

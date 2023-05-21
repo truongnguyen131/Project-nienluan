@@ -12,7 +12,7 @@ ob_start();
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/giohang2.css">
     <link rel="stylesheet" href="../css/stars.css">
-
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -285,34 +285,54 @@ if (isset($_GET['action'])) {
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
 
+    
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Our service</a></li>
+                        <li><a href="">Privacy policy</a></li>
+                        <li><a href="">Afflicate progame</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get help</h4>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Shopping</a></li>
+                        <li><a href="">Return</a></li>
+                        <li><a href="">Payment option</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Online shop</h4>
+                    <ul>
+                        <li><a href="">Moba</a></li>
+                        <li><a href="">Education</a></li>
+                        <li><a href="">Racing</a></li>
+                        <li><a href="">PvP</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-links">
+                        <a href=""><i class="bx bxl-facebook-circle"></i></a>
+                        <a href=""><i class="bx bxl-instagram-alt"></i></a>
+                        <a href=""><i class="bx bxl-twitter"></i></a>
+                        <a href=""><i class="bx bxs-phone-call"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
-<!-- coppyright -->
-<footer class="coppyright">
-    <div class="footer__content container">
-        <div class="logo-page">
-            <a href="Index2.html" class="logo">S-<span>Game</span></a>
-        </div>
-        <div class="page">
-            <h1 class="footer__title">Trang</h1>
-            <a href="">Trang chủ</a>
-            <a href="">Phổ biến</a>
-            <a href="">Game giảm giá</a>
-            <a href="">Thể loại</a>
-            <a href="">Liên hệ</a>
-        </div>
-        <div class="conection">
-            <h1 class="footer__title">Liên hệ</h1>
-            <a href=""><i class='bx bxl-facebook-circle'></i></a>
-            <a href=""><i class='bx bxl-instagram-alt'></i></a>
-            <a href=""><i class='bx bxl-twitter'></i></a>
-            <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-        </div>
-    </div>
-    <div class="vd">
-        <p>&#169; Carpool Venom All Right Reserved</p>
-    </div>
-</footer>
 
 </html>
 <?php ob_end_flush(); ?>

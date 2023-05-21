@@ -9,6 +9,7 @@ include_once('database_connection.php'); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Index2.css">
     <link rel="stylesheet" href="../css/khachhang.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/logout.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -235,6 +236,53 @@ include_once('database_connection.php'); ?>
     </div>
     <div id="thongbao"></div>
 </body>
+    
+<footer class="footer">
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Our service</a></li>
+                        <li><a href="">Privacy policy</a></li>
+                        <li><a href="">Afflicate progame</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get help</h4>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Shopping</a></li>
+                        <li><a href="">Return</a></li>
+                        <li><a href="">Payment option</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Online shop</h4>
+                    <ul>
+                        <li><a href="">Moba</a></li>
+                        <li><a href="">Education</a></li>
+                        <li><a href="">Racing</a></li>
+                        <li><a href="">PvP</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-links">
+                        <a href=""><i class="bx bxl-facebook-circle"></i></a>
+                        <a href=""><i class="bx bxl-instagram-alt"></i></a>
+                        <a href=""><i class="bx bxl-twitter"></i></a>
+                        <a href=""><i class="bx bxs-phone-call"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>

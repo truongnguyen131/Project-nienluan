@@ -17,10 +17,10 @@ $giaMin = isset($_POST['giaMin']) ? $_POST['giaMin'] : "";
 $giaMax = isset($_POST['giaMax']) ? $_POST['giaMax'] : "";
 $arr_TL = isset($_POST['arr_TL']) ? $_POST['arr_TL'] : "";
 $arr_NSX = isset($_POST['arr_NSX']) ? $_POST['arr_NSX'] : "";
-$sql = "SELECT * FROM sanpham sp, sanphamtheloai sptl,theloai tl, nsx n WHERE
+$sql = "SELECT * FROM sanpham sp, sanphamtheloai sptl,theloai tl, nsx n WHERE  sp_trangthai = 'duyet' and
  n.nsx_id = sp.nsx_id and sp.sp_id = sptl.sp_id and tl.tl_id = sptl.tl_id and
 sp.sp_gia >= $giaMin and sp.sp_gia <= $giaMax";
-$sql1 = "SELECT * FROM `sanpham` WHERE sp_id in (";
+$sql1 = "SELECT * FROM `sanpham` WHERE  sp_trangthai = 'duyet' and sp_id in (";
 $arr_IDSP = array();
 if ($arr_NSX != "") {
     $txtNSX = "(";
@@ -75,10 +75,10 @@ if ($page == "" || $page == 1) {
 } else {
     $begin = ($page * 12) - 12;
 }
-$query = mysqli_query($cn, "SELECT * from sanpham  ORDER BY sp_id DESC LIMIT $begin,12");
+$query = mysqli_query($cn, "SELECT * from sanpham where sp_trangthai = 'duyet'  ORDER BY sp_id DESC LIMIT $begin,12");
 $sl_sp = mysqli_num_rows(mysqli_query($cn, "SELECT * from sanpham "));
 if ($tk != "") {
-    $query = mysqli_query($cn, "SELECT * from sanpham WHERE sp_tengame like '%$tk%'  ORDER BY sp_id DESC LIMIT $begin,12");
+    $query = mysqli_query($cn, "SELECT * from sanpham WHERE  sp_trangthai = 'duyet' and sp_tengame like '%$tk%'  ORDER BY sp_id DESC LIMIT $begin,12");
     $sl_sp = mysqli_num_rows(mysqli_query($cn, "SELECT * from sanpham WHERE sp_tengame like '%$tk%'"));
 }
 
@@ -194,9 +194,9 @@ if ($giaMax != "") {
                                     </div>
                                     <!-- button thêm vào giỏ hàng -->
                                     <div class="card-button">
-                                        <button style="display: block;"
+                                        <button class="add-product"
                                             onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
-                                            <ion-icon name="cart-outline"></ion-icon>
+                                            <i class='bx bxs-cart'></i>
                                         </button>
                                     </div>
                                 </div>

@@ -30,6 +30,13 @@ include_once('database_connection.php'); ?>
         unset($_SESSION['dangkythanhcong']);
         echo ' <script>window.location="http://localhost/Project-nienluan/page/index2.php"</script>';
     }
+    if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "danhgia") {
+        unset($_SESSION['dangkythanhcong']);
+        $idsp = $_SESSION["danhgia"];
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/chitietsp.php?idsp='.$idsp.'"</script>';       
+    }
+
+    
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhtoan") {
         unset($_SESSION['dangkythanhcong']);
         if(isset($_SESSION["idsp"])){
@@ -93,5 +100,5 @@ include_once('database_connection.php'); ?>
 <script src="../js/dangnhap.js"></script>
 <script src="../js/jquery.min.js"></script>
 
-<
+
 </html>

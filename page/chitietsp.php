@@ -11,7 +11,11 @@ include_once('database_connection.php'); ?>
     <link rel="stylesheet" href="../css/chitietsp.css">
     <link rel="stylesheet" href="../css/logout.css">
     <link rel="stylesheet" href="../css/stars.css">
-
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/card2.css">
+    <link rel="stylesheet" href="../css/click_slider.css">
+    <link rel="stylesheet" href="../css/product-like.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -33,10 +37,6 @@ if (!function_exists('currency_format')) {
 ?>
 <?php
 
-if (isset($_SESSION["idtaikhoan"])) {
-    $idtk = $_SESSION["idtaikhoan"];
-}
-
 if (isset($_GET['idsp'])) {
     $sp_id = $_GET['idsp'];
     $sp = mysqli_query($cn, "SELECT * FROM sanpham,nsx WHERE sanpham.nsx_id = nsx.nsx_id AND sp_id = $sp_id");
@@ -56,7 +56,6 @@ if (isset($_GET['idsp'])) {
     <div class="progress">
         <div class="progress-bar" id="scroll-bar"></div>
     </div>
-
     <!-- Header -->
     <header>
         <!-- nav -->
@@ -66,10 +65,9 @@ if (isset($_GET['idsp'])) {
             <!-- nav icon -->
             <div class="nav-icons">
                 <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
-                <i class='bx bx-search-alt' id="search-icon"></i>
                 <?php
                 if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
-                ?>
+                    ?>
                     <a href="giohang2.php">
                         <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
                     </a>
@@ -120,7 +118,7 @@ if (isset($_GET['idsp'])) {
                         <li>
                             <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                         </li>
-                    <?php }  ?>
+                    <?php } ?>
                 </div>
             </div>
             <!-- Thông báo -->
@@ -158,18 +156,24 @@ if (isset($_GET['idsp'])) {
     <div class="content-product container">
         <div class="content-info">
             <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
-            <h1><?php echo $row['sp_tengame'] ?></h1>
+            <h1>
+                <?php echo $row['sp_tengame'] ?>
+            </h1>
             <?php
             $theloai = mysqli_query($cn, "SELECT * from sanphamtheloai,theloai WHERE sanphamtheloai.tl_id = theloai.tl_id AND $sp_id = sp_id"); ?>
             <p>Thể loại:
                 <?php
-                while ($value1 = mysqli_fetch_array($theloai, MYSQLI_ASSOC)) { ?>
+                $arr_idtl = array();
+                while ($value1 = mysqli_fetch_array($theloai, MYSQLI_ASSOC)) {
+                    array_push($arr_idtl, $value1['tl_id']); ?>
                     <a href="">
                         <?php echo $value1['tl_ten'] ?>
                     </a>
                 <?php } ?>
             </p>
-            <span>Nhà sản xuất: <?php echo $row['nsx_ten'] ?></span>
+            <span>Nhà sản xuất:
+                <?php echo $row['nsx_ten'] ?>
+            </span>
             <div class="sale-and-star">
                 <!-- số sao trung bình được đánh giá -->
                 <?php
@@ -178,8 +182,10 @@ if (isset($_GET['idsp'])) {
                     $avg = $avg_sao['AVG(dg_sao)'];
                 }
                 if ($avg > 0) {
-                ?>
-                    <span class="medium-star"><?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star bx-tada'></i></span>
+                    ?>
+                    <span class="medium-star">
+                        <?php echo number_format($avg, "1", ".", "") ?> <i class='bx bxs-star bx-tada'></i>
+                    </span>
                 <?php } else { ?>
                     <span></span>
                 <?php } ?>
@@ -191,29 +197,39 @@ if (isset($_GET['idsp'])) {
                     $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
                     if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
                         $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
-                ?>
-                        <span class="sale"><?php echo $row1['gg_phantram'] ?>%</span>
+                        ?>
+                        <span class="sale">
+                            <?php echo $row1['gg_phantram'] ?>%
+                        </span>
                         <div class="info-price">
                             <!-- giá mới -->
-                            <h2><?php echo currency_format($giamoi) ?></h2>
+                            <h2>
+                                <?php echo currency_format($giamoi) ?>
+                            </h2>
                             <!-- giá cũ trước khi sale (nếu có)-->
-                            <span><?php echo currency_format($row['sp_gia']) ?></span>
+                            <span>
+                                <?php echo currency_format($row['sp_gia']) ?>
+                            </span>
                         </div>
                     <?php } else { ?>
                         <span></span>
                         <div class="info-price">
                             <!-- giá mới -->
-                            <h2><?php echo currency_format($row['sp_gia']) ?></h2>
+                            <h2>
+                                <?php echo currency_format($row['sp_gia']) ?>
+                            </h2>
                             <!-- giá cũ trước khi sale (nếu có)-->
                             <span></span>
                         </div>
                     <?php } ?>
-                <?php
+                    <?php
                 } else { ?>
                     <span></span>
                     <div class="info-price">
                         <!-- giá mới -->
-                        <h2><?php echo currency_format($row['sp_gia']) ?></h2>
+                        <h2>
+                            <?php echo currency_format($row['sp_gia']) ?>
+                        </h2>
                         <!-- giá cũ trước khi sale (nếu có)-->
                         <span></span>
                     </div>
@@ -235,7 +251,7 @@ if (isset($_GET['idsp'])) {
                 <?php
                 $query = mysqli_query($cn, "SELECT * from anhgameplay WHERE $sp_id = sp_id");
                 while ($value = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                ?>
+                    ?>
                     <div class="column">
                         <img src="../uploads/<?php echo $value['agl_ten'] ?>" alt="" onclick="myFunction(this);">
                     </div>
@@ -252,63 +268,64 @@ if (isset($_GET['idsp'])) {
     <!-- mô tả -->
     <div class="about container">
         <h2>Mô tả Game</h2>
-        <p><?php echo $row['sp_mota'] ?></p>
+        <p>Saints & Sinners is a game unlike any other in The Walking Dead universe. Every challenge you face and
+            decision you make is driven by YOU. Fight the undead, scavenge through the flooded ruins of New Orleans, and
+            face gut-wrenching choices for you and the other survivors. Live The Walking Dead.
+            Connectez-vous pour connaitre les raisons pour lesquelles vous pourriez aimer ou non ce produit. Ces
+            recommandations varient en fonction des jeux que vous possédez, de vos contacts et des groupes de curation
+            que vous suivez.
+            Tourist Edition
+            Get the Tourist Edition of The Walking Dead: Saints & Sinners and you'll receive three unique weapon
+            recipes, collectible voodoo dolls, the game's soundtrack, and The Supernatural Skeptic's Guide to New
+            Orleans companion piece.
+            Saints & Sinners is a game unlike any other in The Walking Dead universe. Every challenge you face and
+            decision you make is driven by YOU. Fight the undead, scavenge through the flooded ruins of New Orleans, and
+            face gut-wrenching choices for you and the other survivors. Live The Walking Dead.
+            Connectez-vous pour connaitre les raisons pour lesquelles vous pourriez aimer ou non ce produit. Ces
+            recommandations varient en fonction des jeux que vous possédez, de vos contacts et des groupes de curation
+            que vous suivez.
+            Tourist Edition
+            Get the Tourist Edition of The Walking Dead: Saints & Sinners and you'll receive three unique weapon
+            recipes, collectible voodoo dolls, the game's soundtrack, and The Supernatural Skeptic's Guide to New
+        </p>
     </div>
-    <!-- bản mở rộng (nếu có) -->
-    <div class="extend container">
-        <h2>Bản mở rộng</h2>
-        <div class="extend-content">
-            <label>Townsmen VR</label>
-            <p>Bản mở rộng này có thêm được 5 màn chơi mới</p>
-            <div class="extend-price">
-                <div class="ext-sale">
-                    <span class="sale">20%</span>
-                </div>
-                <div class="ext-price-new">
-                    <h3>120.000.000đ</h3>
-                </div>
-                <div class="ext-price-old">
-                    <span>120.000.000đ</span>
-                </div>
-            </div>
-            <div class="infor-btn">
-                <a href="#">Mua</a>
-                <a href="#">Thêm vào giỏ hàng</a>
-            </div>
-        </div>
-    </div>
-
     <!-- đánh giá và bình luận -->
     <form action="" method="post">
         <div class="rate-and-cmt container">
             <h2>Đánh giá và bình luận</h2>
             <div class="tab-comment-content">
-                <div class="tab-cmt-display">
+                <div class="tab-cmt-display" style="display: block;">
                     <!-- cmt và đánh giá của 1 người dùng -->
                     <?php
-                    $danhgia2 = mysqli_query($cn, "SELECT * FROM danhgia,taikhoan WHERE danhgia.tk_id = taikhoan.tk_id AND sp_id = $sp_id ORDER BY dg_id DESC");
+                    $danhgia2 = mysqli_query($cn, "SELECT * FROM danhgia,taikhoan WHERE danhgia.tk_id = taikhoan.tk_id AND sp_id = $sp_id ORDER BY danhgia.dg_id DESC");
                     while ($var = mysqli_fetch_array($danhgia2, MYSQLI_ASSOC)) {
-                    ?>
+                        ?>
                         <div class="tab-user-cmt">
                             <!-- tên khách hàng -->
                             <div class="cmt-user-name">
-                                <span><?php echo $var['tk_taikhoan'] ?></span>
+                                <span>
+                                    <?php echo $var['tk_taikhoan'] ?>
+                                </span>
                             </div>
                             <!-- ngày hiện tại -->
                             <div class="cmt-date">
-                                <span><?php echo $var['dg_ngaydanhgia'] ?></span>
+                                <span>
+                                    <?php echo $var['dg_ngaydanhgia'] ?>
+                                </span>
                             </div>
                             <!-- đánh giá sao -->
                             <div class="cmt-sao">
                                 <?php
                                 for ($i = 1; $i <= $var['dg_sao']; $i++) {
-                                ?>
+                                    ?>
                                     <i class='bx bxs-star'></i>
                                 <?php } ?>
                             </div>
                             <!-- nội dung cmt -->
                             <div class="cmt-content">
-                                <span><?php echo $var['dg_binhluan'] ?></span>
+                                <span>
+                                    <?php echo $var['dg_binhluan'] ?>
+                                </span>
                             </div>
                         </div>
                     <?php } ?>
@@ -338,10 +355,10 @@ if (isset($_GET['idsp'])) {
                             <textarea name="cmt" id="cmt" placeholder=" Bình luận "></textarea>
                             <div class="loi" id="loicmt"></div>
                             <input type="text" style="display:none" id="sp__id" value="<?php echo $sp_id ?>">
-                            <input type="text" style="display:none" id="id_tk" value="<?php echo $idtk ?>">
                         </div>
                         <div class="tab-cmt-btn">
-                            <button name="cmt_btn" onclick="kiemtraloi()" type="button">Bình luận</button>
+                            <button style="display: block;" name="cmt_btn" onclick="kiemtraloi()" type="button">Bình
+                                luận</button>
                         </div>
                     </div>
                 </div>
@@ -349,9 +366,81 @@ if (isset($_GET['idsp'])) {
         </div>
     </form>
 
-    <!-- tabs -->
+    <!-- Game tuong tu -->
+    <div class="container">
+        <h2
+            style="margin-bottom: 20px;display: inline-flex;font-size: 1.5rem;font-weight: bold;border-bottom: 4px solid var(--main-color);">
+            Bạn có thể thích</h2>
+        <div class="image-slider">
+            <?php
+            $sqlGameTT = "SELECT * FROM sanpham sp,danhgia dg, sanphamtheloai sptl WHERE sp.sp_id = dg.sp_id and sp.sp_id = sptl.sp_id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 and sptl.tl_id in (";
+            foreach ($arr_idtl as $key => $value) {
+                if ($key === array_key_last($arr_idtl)) {
+                    $sqlGameTT = $sqlGameTT . "" . $value . ") GROUP BY sp.sp_id ORDER BY AVG(dg_sao) DESC LIMIT 0,8";
+                } else {
+                    $sqlGameTT = $sqlGameTT . "" . $value . ",";
+                }
+            }
+
+            $count_star = mysqli_query($cn, $sqlGameTT);
+            while ($sosao = mysqli_fetch_array($count_star)) {
+                $id = $sosao['sp_id'];
+                ?>
+                <div class="image-item">
+                    <div class="card">
+                        <a class="sp_img" href="chitietsp.php?idsp=<?php echo $sosao['sp_id'] ?>">
+                            <img src="../uploads/<?php echo $sosao['sp_imgavt'] ?>" alt="" class="card-image" />
+                        </a>
+                        <div class="card-content">
+                            <div class="card-top">
+                                <h3 class="card-title">
+                                    <?php echo $sosao['sp_tengame'] ?>
+                                </h3>
+                                <div class="card-user">
+                                    <h3>
+                                        <?php echo currency_format($sosao['sp_gia']) ?>
+                                    </h3>
+                                    <span>
+                                        <?php echo currency_format($sosao['sp_gia']) ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class='bx bxs-star'></i>
+                                    <?php
+                                    $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND sanpham.sp_id = $id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id;");
+                                    while ($avg_sao = mysqli_fetch_array($count)) {
+                                        $avg = $avg_sao['AVG(dg_sao)'];
+                                    }
+                                    ?>
+                                    <span>
+                                        <?php echo number_format($avg, "1", ".", "") ?>
+                                    </span>
+                                </div>
+                                <div class="card-button">
+                                    <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>" title="Chi tiết sản phẩm">
+                                        <i class='bx bx-dots-horizontal-rounded'></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+
+    <div id="thongbao"></div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="../js/index.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/comment.js"></script>
+    <script src="../js/slider.js"></script>
     <script>
-        window.onload = function() {
+        window.onload = function () {
             document.getElementById("expandedImg").src = "../uploads/<?php echo $row['sp_imgavt'] ?>";
             document.getElementById("expandedImg").parentElement.style.display = "block";
         }
@@ -364,40 +453,88 @@ if (isset($_GET['idsp'])) {
             expandImg.parentElement.style.display = "block";
         }
     </script>
-    <!-- tabs -->
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script src="../js/logout.js"></script>
-    <script src="../js/chitietsp.js"></script>
-    <script src="../js/comment.js"></script>
 
+    <script>
+        function kiemtraloi() {
+            var cmt = $('#cmt').val()
+            var id_sp = $('#sp__id').val()
+            var checkbox = document.getElementsByName('star');
+            var result = 0;
+            var loi = ""
+            
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+                    result = checkbox[i].value;
+                }
+            }
+
+            if (cmt == "") {
+                loi = "Vui lòng nhập bình luận <br>"
+            }
+
+            if(result == 0){
+                loi +="Vui lòng chọn sao đánh giá"
+            }
+
+            if(loi !=""){
+                $('#loicmt').html(loi)
+            }else{
+                $.post('xulydanhgia.php', {
+                    cmt1: cmt,
+                    id1: id_sp,
+                    star1: result
+                }, function (data) {
+                    $('#thongbao').html(data);
+                })
+            }
+            
+        }
+    </script>
 
 </body>
-<!-- coppyright -->
-<footer class="coppyright ">
-    <div class="footer__content container">
-        <div class="logo-page">
-            <a href="Index2.html" class="logo">Game<span>Store</span></a>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="">About us</a></li>
+                    <li><a href="">Our service</a></li>
+                    <li><a href="">Privacy policy</a></li>
+                    <li><a href="">Afflicate progame</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get help</h4>
+                <ul>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Shopping</a></li>
+                    <li><a href="">Return</a></li>
+                    <li><a href="">Payment option</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Online shop</h4>
+                <ul>
+                    <li><a href="">Moba</a></li>
+                    <li><a href="">Education</a></li>
+                    <li><a href="">Racing</a></li>
+                    <li><a href="">PvP</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Follow us</h4>
+                <div class="social-links">
+                    <a href=""><i class="bx bxl-facebook-circle"></i></a>
+                    <a href=""><i class="bx bxl-instagram-alt"></i></a>
+                    <a href=""><i class="bx bxl-twitter"></i></a>
+                    <a href=""><i class="bx bxs-phone-call"></i></a>
+                </div>
+            </div>
         </div>
-        <div class="page">
-            <h1 class="footer__title">Trang</h1>
-            <a href="">Trang chủ</a>
-            <a href="">Phổ biến</a>
-            <a href="">Game giảm giá</a>
-            <a href="">Thể loại</a>
-            <a href="">Liên hệ</a>
-        </div>
-        <div class="conection">
-            <h1 class="footer__title">Liên hệ</h1>
-            <a href=""><i class='bx bxl-facebook-circle'></i></a>
-            <a href=""><i class='bx bxl-instagram-alt'></i></a>
-            <a href=""><i class='bx bxl-twitter'></i></a>
-            <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-        </div>
-    </div>
-    <div class="vd">
-        <p>&#169; Carpool Venom All Right Reserved</p>
     </div>
 </footer>
 

@@ -17,6 +17,7 @@ include_once('database_connection.php'); ?>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/footer.css">
     <title>Trang chủ</title>
 </head>
 
@@ -154,7 +155,7 @@ if (isset($_GET['partnerCode'])) {
             <!-- Thông báo -->
             <div class="nofication" id="nofication">
                 <div class="nofication-box" id="noteTxT">
-                    
+
                 </div>
 
             </div>
@@ -199,23 +200,19 @@ if (isset($_GET['partnerCode'])) {
     <!-- home section -->
     <section class="home container" id="home">
         <img src="https://dotesports.com/wp-content/uploads/2020/10/27031436/VALORANT_YR1_KeyArt_4k_3_.0-2.jpg" alt="">
-        <div class="home-text">
-            <h1>CITY OF THE <br> FUTURE</h1>
-            <a href="#sale" class="btn">Mua ngay</a>
-        </div>
     </section>
 
     <!-- Game được đề xuất-->
     <section class="container product-content" id="dexuat">
         <div class="heading">
             <i class='bx bxs-flame'></i>
-            <h2>Game đề xuất </h2>
+            <h2>GAME ĐỀ XUẤT</h2>
         </div>
         <!-- Game được đề xuất -->
         <div class="image-slider1">
-            <?php $query6 = mysqli_query($cn, "SELECT * from sanpham");
+            <?php $query6 = mysqli_query($cn, "SELECT * FROM `sanpham` WHERE sp_trangthai = 'duyet' ORDER BY sp_id DESC LIMIT 0,6");
             while ($row6 = mysqli_fetch_array($query6, MYSQLI_ASSOC)) { ?>
-                <a href="chitietsp.php?idsp=<?php echo $row6['sp_id'] ?>">
+                <a href="chitietsp.php?idsp=<?php echo $row6['sp_id']?>">
                     <div class="image-item1">
                         <div class="image1">
                             <img src="../uploads/<?php echo $row6['sp_imgavt'] ?>" alt="" />
@@ -231,45 +228,59 @@ if (isset($_GET['partnerCode'])) {
     <section class="container product-content" id="like">
         <div class="heading">
             <i class='bx bxs-flame'></i>
-            <h2>Game được yêu thích </h2>
+            <h2>GAME ĐƯỢC YÊU THÍCH</h2>
         </div>
         <!-- Game được yêu thích -->
         <div class="image-slider">
             <?php
-            $count_star = mysqli_query($cn, "SELECT * FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id");
+            $count_star = mysqli_query($cn, "SELECT *,AVG(dg_sao) avgS FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id GROUP BY sanpham.sp_id HAVING avgS > 4 ORDER BY avgS DESC");
             while ($sosao = mysqli_fetch_array($count_star)) {
-                $id = $sosao['sp_id'];
-                ?>
+                $id = $sosao['sp_id']; ?>
                 <div class="image-item">
                     <div class="card">
                         <a class="sp_img" href="chitietsp.php?idsp=<?php echo $sosao['sp_id'] ?>">
                             <img src="../uploads/<?php echo $sosao['sp_imgavt'] ?>" alt="" class="card-image" />
                         </a>
-                        <div class="card-content">
+                        <div class="card-content1" style="background: var(--light-color); border-radius: 5px;">
                             <div class="card-top">
                                 <h3 class="card-title">
                                     <?php echo $sosao['sp_tengame'] ?>
                                 </h3>
                                 <div class="card-user">
-                                    <h3>
-                                        <?php echo currency_format($sosao['sp_gia']) ?>
-                                    </h3>
-                                    <span>
-                                        <?php echo currency_format($sosao['sp_gia']) ?>
-                                    </span>
+                                    <?php
+                                    $today = date('Y-m-d');
+                                    $check = 0;
+                                    $sanphamGG = mysqli_query($cn, "SELECT * FROM `giamgia`");
+                                    while ($row_spGG = mysqli_fetch_array($sanphamGG)) {
+                                        if (
+                                            $row_spGG['sp_id'] == $id && strtotime($row_spGG['gg_ngaybatdau']) <= strtotime($today) &&
+                                            strtotime($row_spGG['gg_ngayketthuc']) >= strtotime($today)
+                                        ) {
+                                            $check = 1;
+                                            $giamoi = $sosao['sp_gia'] - ($sosao['sp_gia'] * ($row_spGG['gg_phantram'] / 100));
+                                            ?>
+                                            <h3 style="margin-left: 10px;">
+                                                <?php echo currency_format($giamoi) ?>
+                                            </h3>
+                                            <span style="margin-right: 10px;">
+                                                <?php echo currency_format($sosao['sp_gia']) ?>
+                                            </span>
+                                        <?php }
+                                    } ?>
+                                    <?php
+                                    if ($check == 0) { ?>
+                                        <h3>
+                                            <?php echo currency_format($sosao['sp_gia']) ?>
+                                        </h3>
+                                    <?php }
+                                    ?>
                                 </div>
                             </div>
                             <div class="rating-download">
                                 <div class="rating">
                                     <i class='bx bxs-star'></i>
-                                    <?php
-                                    $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND sanpham.sp_id = $id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id;");
-                                    while ($avg_sao = mysqli_fetch_array($count)) {
-                                        $avg = $avg_sao['AVG(dg_sao)'];
-                                    }
-                                    ?>
                                     <span>
-                                        <?php echo number_format($avg, "1", ".", "") ?>
+                                        <?php echo number_format($sosao['avgS'], "1", ".", "") ?>
                                     </span>
                                 </div>
                                 <a href="themvaothanhtoan.php?idsp=<?php echo $sosao['sp_id'] ?>" class="box-btn"><i
@@ -283,103 +294,104 @@ if (isset($_GET['partnerCode'])) {
         <!-- Game được yêu thích -->
     </section>
     <!-- Game đang được giảm giá -->
-    <section class="saling container" id="sale">
+    <section class="saling container" style="margin-top: -80px;" id="sale">
         <div class="heading">
             <i class='bx bxs-flame'></i>
-            <h2>Game đang giảm giá</h2>
+            <h2>GAME ĐANG GIẢM GIÁ</h2>
         </div>
         <div class="saling-content">
             <div class="cards">
                 <?php
                 $today = date('Y-m-d');
-                $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id ");
-                $gioihan = 0;
+                $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id and
+                giamgia.gg_ngaybatdau <= CURDATE() and giamgia.gg_ngayketthuc >= CURDATE()
+                ORDER BY giamgia.gg_phantram DESC LIMIT 0,8");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-                    if (strtotime($row['gg_ngaybatdau']) <= strtotime($today) && strtotime($row['gg_ngayketthuc']) >= strtotime($today) && $gioihan < 9) {
-                        $gioihan++; ?>
-                        <div class="card" id="<?php echo $row['sp_id'] ?>">
-                            <div class="content">
-                                <div class="back">
-                                    <div class="back-content">
-                                        <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
-                                        <div class="rating">
-                                            <i class='bx bxs-star'></i>
-                                            <?php
-                                            $id = $row['sp_id'];
-                                            $count = mysqli_query($cn, "SELECT AVG(dg_sao) FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id AND sanpham.sp_id = $id AND (SELECT AVG(dg_sao) FROM danhgia) > 3 GROUP BY sanpham.sp_id;");
-                                            while ($avg_sao = mysqli_fetch_array($count)) {
-                                                $avg = $avg_sao['AVG(dg_sao)'];
-                                            }
-                                            ?>
-                                            <span>
-                                                <?php echo number_format($avg, "1", ".", "") ?>
-                                            </span>
-                                        </div>
-                                    </div>
+                    $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row['gg_phantram'] / 100)); ?>
+                    <div class="card" id="<?php echo $row['sp_id'] ?>">
+                        <div class="content">
+                            <div class="back">
+                                <div class="back-content">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                    <?php
+                                    $id = $row['sp_id'];
+                                    $count = mysqli_query($cn, "SELECT *,AVG(dg_sao) avgS FROM sanpham,danhgia WHERE sanpham.sp_id = danhgia.sp_id GROUP BY sanpham.sp_id");
+                                    while ($avg_sao = mysqli_fetch_array($count)) {
+                                        if ($avg_sao['sp_id'] == $id) { ?>
+                                            <div class="rating">
+                                                <i class='bx bxs-star'></i>
+                                                <span>
+                                                    <?php echo number_format($avg_sao['avgS'], "1", ".", "") ?>
+                                                </span>
+                                            </div>
+                                        <?php }
+                                    }
+                                    ?>
                                 </div>
-                                <div class="front">
-                                    <div class="img">
-                                        <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
-                                    </div>
-                                    <div class="front-content">
-                                        <!-- phần trăm sale -->
-                                        <small class="badge">
-                                            <?php echo $row['gg_phantram'] ?>%
-                                        </small>
-                                        <div class="description">
-                                            <div class="title">
-                                                <p class="title">
-                                                    <!-- tên sản phẩm -->
-                                                    <strong>
-                                                        <?php echo $row['sp_tengame']; ?>
-                                                    </strong>
-                                                </p>
+                            </div>
+                            <div class="front">
+                                <div class="img">
+                                    <img src="../uploads/<?php echo $row['sp_imgavt'] ?>" alt="">
+                                </div>
+                                <div class="front-content">
+                                    <!-- phần trăm sale -->
+                                    <small class="badge">
+                                        <?php echo $row['gg_phantram'] ?>%
+                                    </small>
+                                    <div class="description">
+                                        <div class="title">
+                                            <p class="title">
+                                                <!-- tên sản phẩm -->
+                                                <strong>
+                                                    <?php echo $row['sp_tengame']; ?>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <!-- giá trước khi sale -->
+                                            <div class="footer-label">
+                                                <label for="" class="price-old">
+                                                    <?php echo currency_format($row['sp_gia']) ?>đ
+                                                </label>
                                             </div>
-                                            <div class="card-footer">
-                                                <!-- giá trước khi sale -->
-                                                <div class="footer-label">
-                                                    <label for="" class="price-old">
-                                                        <?php echo currency_format($row['sp_gia']) ?>đ
-                                                    </label>
-                                                </div>
-                                                <!-- giá sau khi sale -->
-                                                <div class="footer-label">
-                                                    <label for="">
-                                                        <?php echo currency_format($row['sp_gia']) ?>
-                                                    </label>
-                                                </div>
+                                            <!-- giá sau khi sale -->
+                                            <div class="footer-label">
+                                                <label for="">
+                                                    <?php echo currency_format($giamoi) ?>
+                                                </label>
                                             </div>
+                                        </div>
 
-                                            <div class="card-btn">
-                                                <!-- chi tiết sản phẩm -->
-                                                <div class="card-button">
-                                                    <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>"
-                                                        title="Chi tiết sản phẩm">
-                                                        <i class='bx bx-dots-horizontal-rounded'></i>
-                                                    </a>
-                                                </div>
-                                                <!-- button download -->
-                                                <div class="card-button">
-                                                    <a href="themvaothanhtoan.php?idsp=<?php echo $row['sp_id']; ?>"
-                                                        title="Mua sản phẩm">
-                                                        <i class='bx bx-download'></i>
-                                                    </a>
-                                                </div>
-                                                <!-- button thêm vào giỏ hàng -->
-                                                <div class="card-button">
-                                                    <button class="add-product"
-                                                        onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
-                                                        <i class='bx bxs-cart'></i>
-                                                    </button>
-                                                </div>
+                                        <div class="card-btn">
+                                            <!-- chi tiết sản phẩm -->
+                                            <div class="card-button">
+                                                <a href="chitietsp.php?idsp=<?php echo $row['sp_id']; ?>"
+                                                    title="Chi tiết sản phẩm">
+                                                    <i class='bx bx-dots-horizontal-rounded'></i>
+                                                </a>
+                                            </div>
+                                            <!-- button download -->
+                                            <div class="card-button">
+                                                <a href="themvaothanhtoan.php?idsp=<?php echo $row['sp_id']; ?>"
+                                                    title="Mua sản phẩm">
+                                                    <i class='bx bx-download'></i>
+                                                </a>
+                                            </div>
+                                            <!-- button thêm vào giỏ hàng -->
+                                            <div class="card-button">
+                                                <button class="add-product"
+                                                    onclick="themsanphamindex(<?php echo $row['sp_id']; ?>)">
+                                                    <i class='bx bxs-cart'></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <?php }
-                } ?>
+                    </div>
+
+                <?php } ?>
             </div>
         </div>
         <div class="products">
@@ -392,7 +404,7 @@ if (isset($_GET['partnerCode'])) {
     <section class="container product-content" id="category">
         <div class="heading">
             <i class='bx bxs-flame'></i>
-            <h2>Thể loại</h2>
+            <h2>THỂ LOẠI</h2>
         </div>
         <div class="image-slider">
             <?php $query5 = mysqli_query($cn, "SELECT * from theloai");
@@ -414,33 +426,55 @@ if (isset($_GET['partnerCode'])) {
         </div>
     </section>
     <div id="note"></div>
-    <!-- coppyright -->
-    <footer class="coppyright ">
-        <div class="footer__content container">
-            <div class="logo-page">
-                <a href="Index2.html" class="logo">Game<span>Store</span></a>
-            </div>
-            <div class="page">
-                <h1 class="footer__title">Trang</h1>
-                <a href="">Trang chủ</a>
-                <a href="">Phổ biến</a>
-                <a href="">Game giảm giá</a>
-                <a href="">Thể loại</a>
-                <a href="">Liên hệ</a>
-            </div>
-            <div class="conection">
-                <h1 class="footer__title">Liên hệ</h1>
-                <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                <a href=""><i class='bx bxl-instagram-alt'></i></a>
-                <a href=""><i class='bx bxl-twitter'></i></a>
-                <a href=""><i class='bx bxs-phone-call'></i> <span>0927383736</span></a>
-            </div>
-        </div>
-        <div class="vd">
-            <p>&#169; Carpool Venom All Right Reserved</p>
-        </div>
 
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Our service</a></li>
+                        <li><a href="">Privacy policy</a></li>
+                        <li><a href="">Afflicate progame</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Get help</h4>
+                    <ul>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Shopping</a></li>
+                        <li><a href="">Return</a></li>
+                        <li><a href="">Payment option</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Online shop</h4>
+                    <ul>
+                        <li><a href="">Moba</a></li>
+                        <li><a href="">Education</a></li>
+                        <li><a href="">Racing</a></li>
+                        <li><a href="">PvP</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Follow us</h4>
+                    <div class="social-links">
+                        <a href=""><i class="bx bxl-facebook-circle"></i></a>
+                        <a href=""><i class="bx bxl-instagram-alt"></i></a>
+                        <a href=""><i class="bx bxl-twitter"></i></a>
+                        <a href=""><i class="bx bxs-phone-call"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
+
+
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

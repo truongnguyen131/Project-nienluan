@@ -1143,14 +1143,32 @@ include_once('database_connection.php'); ?>
                 <div class="tabcontent" id="accept-product">
                     <div class="table-control">
                         <div class="search">
-                            <input class="search" type="text" placeholder="Tìm kiếm nhà sản xuất" />
-                            <button class="search">Tìm kiếm</button>
+                        <input class="search" type="text" id="timkiemXNSP"
+                                placeholder="Tìm kiếm bằng tên sản phẩm" />
+                            <button class="search" onclick="timkiemYC()">Tìm kiếm</button>
+                            <script>
+                            var search = $('#timkiemXNSP').val()
+                            $.post('timkiemYC.php', {
+                                data: search
+                            }, function(data) {
+                                $('.danhsachtimkiemYCSP').html(data);
+                            })
+
+                            function timkiemYC() {
+                                var search = $('#timkiemXNSP').val()
+                                $.post('timkiemYC.php', {
+                                    data: search
+                                }, function(data) {
+                                    $('.danhsachtimkiemYCSP').html(data);
+                                })
+                            }
+                            </script>
                         </div>
                     </div>
-                    <div class="table-thongke table-responsive-sm">
+                    <div class="table-thongke table-responsive-sm scrollbar">
                         <!-- Thông tin về game -->
                         <table border="1" id="inforgame" style="display: table" class="table
-                                            table-inforgame">
+                                            table-inforgame ">
                             <tr class="table-primary">
                                 <th scope="col">STT</th>
                                 <th scope="col">ID</th>
@@ -1158,39 +1176,11 @@ include_once('database_connection.php'); ?>
                                 <th scope="col">Tên Game</th>
                                 <th scope="col">Ngày phát hành</th>
                                 <th scope="col">Giá</th>
-                                <th scope="col">Giảm giá</th>
-                                <th scope="col">Giảm mới</th>
                                 <th scope="col">Chấp nhận</th>
                                 <th scope="col">Xóa</th>
                             </tr>
-                            <tr class="table-light">
-                                <td>1</td>
-                                <td>27</td>
-                                <td>VNG</td>
-                                <td>Sonic</td>
-                                <td>
-                                    12/2/2022
-                                </td>
-                                <td>
-                                    120.000đ
-                                </td>
-                                <td>
-                                    10%
-                                </td>
-                                <td>
-                                    100.000đ
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="bag-check-outline"></ion-icon>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="">
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    </a>
-                                </td>
-                            </tr>
+                            <tbody class="danhsachtimkiemYCSP"></tbody>
+                           
                         </table>
                     </div>
                 </div>
@@ -1419,9 +1409,8 @@ include_once('database_connection.php'); ?>
 
                     </div>
                     <div class="sale-update" style="margin-top: 30px;">
-                        <button onclick="ThemGG()">Thêm</button>
                         <button onclick="XoaGG()">Xóa</button>
-                        <button>Cập nhật</button>
+                        <button onclick="UpdateGG()">Cập nhật</button>
                         <button onclick="HuyGG()" id="bntHuyGG">Hủy bỏ</button>
                     </div>
                     <script>
@@ -1456,7 +1445,7 @@ include_once('database_connection.php'); ?>
                     </script>
 
                     <script>
-                    function ThemGG() {
+                    function UpdateGG() {
                         var check = 4
                         let arr_idsp = []
                         var nbd = document.getElementById('ngaybd').value
@@ -1479,11 +1468,11 @@ include_once('database_connection.php'); ?>
                             alert("Ngày bắt đầu không được lớn hơn ngày kết thúc")
                             check--
                         }
-                        if(arr_idsp.length==0){
+                        if (arr_idsp.length == 0) {
                             alert("Hãy chọn sản phẩm cần thêm")
                             check--
-                        } 
-                        if(check==4) {
+                        }
+                        if (check == 4) {
                             $.post('themgiamgia.php', {
                                 arr_idsp: arr_idsp,
                                 nbd: nbd,
@@ -1494,13 +1483,15 @@ include_once('database_connection.php'); ?>
                             })
                         }
 
-
                     }
                     </script>
 
 
                 </div>
             </div>
+        
+        
+        
         </div>
         <div id="thongbao"></div>
         <!-- ========================================THỐNG KÊ=============================================== -->
@@ -2166,7 +2157,18 @@ window.onload = function() {
 }
 </script>
 
-<?php if (isset($_SESSION['xoaTLthanhcong']) && $_SESSION['xoaTLthanhcong'] == true) {
+<?php if (isset($_SESSION['Duyetyeucau']) && $_SESSION['Duyetyeucau'] == true) {
+    echo "<script>
+        window.onload = function() {
+            document.getElementById('Themsanpham').click();
+            document.getElementById('tabYCSP').click();
+        }
+        </script>";
+}
+$_SESSION['Duyetyeucau'] = false;
+
+
+if (isset($_SESSION['xoaTLthanhcong']) && $_SESSION['xoaTLthanhcong'] == true) {
     echo "<script>
         window.onload = function() {
             alert('Xóa thành công!!')
@@ -2216,7 +2218,7 @@ if (isset($_SESSION['xoaSPthanhcong']) && $_SESSION['xoaSPthanhcong'] == true) {
         window.onload = function() {
             alert('Xóa thành công!!')
             document.getElementById('Themsanpham').click();
-            document.getElementById('tabDSSP').click();
+            document.getElementById('tabXNSP').click();
         }
         </script>";
 }
