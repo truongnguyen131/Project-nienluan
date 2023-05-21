@@ -212,7 +212,7 @@ if (isset($_GET['partnerCode'])) {
         <div class="image-slider1">
             <?php $query6 = mysqli_query($cn, "SELECT * FROM `sanpham` WHERE sp_trangthai = 'duyet' ORDER BY sp_id DESC LIMIT 0,6");
             while ($row6 = mysqli_fetch_array($query6, MYSQLI_ASSOC)) { ?>
-                <a href="chitietsp.php?idsp=<?php echo $row6['sp_id']?>">
+                <a href="chitietsp.php?idsp=<?php echo $row6['sp_id'] ?>">
                     <div class="image-item1">
                         <div class="image1">
                             <img src="../uploads/<?php echo $row6['sp_imgavt'] ?>" alt="" />
@@ -224,7 +224,7 @@ if (isset($_GET['partnerCode'])) {
         </div>
         <!-- Game được đề xuất -->
     </section>
-    <!-- Game được yêu thích nhất-->
+
     <section class="container product-content" id="like">
         <div class="heading">
             <i class='bx bxs-flame'></i>
@@ -291,9 +291,9 @@ if (isset($_GET['partnerCode'])) {
                 </div>
             <?php } ?>
         </div>
-        <!-- Game được yêu thích -->
+
     </section>
-    <!-- Game đang được giảm giá -->
+
     <section class="saling container" style="margin-top: -80px;" id="sale">
         <div class="heading">
             <i class='bx bxs-flame'></i>
@@ -302,8 +302,7 @@ if (isset($_GET['partnerCode'])) {
         <div class="saling-content">
             <div class="cards">
                 <?php
-                $today = date('Y-m-d');
-                $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id and
+                $query = mysqli_query($cn,"SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id and
                 giamgia.gg_ngaybatdau <= CURDATE() and giamgia.gg_ngayketthuc >= CURDATE()
                 ORDER BY giamgia.gg_phantram DESC LIMIT 0,8");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -398,7 +397,6 @@ if (isset($_GET['partnerCode'])) {
             <a href="sanpham.php">Xem thêm sản phẩm</a>
         </div>
     </section>
-    <!-- Game đang được giảm giá -->
 
     <!-- Thể loại -->
     <section class="container product-content" id="category">

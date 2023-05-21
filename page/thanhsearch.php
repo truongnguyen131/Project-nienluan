@@ -65,8 +65,8 @@ if ($giaMin != "") {
 }
 
 
-if (isset($_GET['page'])) {
-    $page = $_GET['page'];
+if (isset($_POST['page'])) {
+    $page = $_POST['page'];
 } else {
     $page = "";
 }
@@ -79,7 +79,7 @@ $query = mysqli_query($cn, "SELECT * from sanpham where sp_trangthai = 'duyet'  
 $sl_sp = mysqli_num_rows(mysqli_query($cn, "SELECT * from sanpham "));
 if ($tk != "") {
     $query = mysqli_query($cn, "SELECT * from sanpham WHERE  sp_trangthai = 'duyet' and sp_tengame like '%$tk%'  ORDER BY sp_id DESC LIMIT $begin,12");
-    $sl_sp = mysqli_num_rows(mysqli_query($cn, "SELECT * from sanpham WHERE sp_tengame like '%$tk%'"));
+    $sl_sp = mysqli_num_rows(mysqli_query($cn, "SELECT * from sanpham WHERE sp_tengame like '%$tk%' "));
 }
 
 if ($giaMax != "") {
@@ -218,7 +218,7 @@ if ($giaMax != "") {
     ?>
     <ul class="ul_phantrang">
         <?php
-        for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>#saling">
+        for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="javascript:timkiemPage('<?php echo $tk; ?>',<?php echo $i; ?>)">
                 <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
                        echo 'active';
                    } ?>" value="<?php echo $i; ?>">

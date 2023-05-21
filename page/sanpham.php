@@ -129,6 +129,7 @@ if (!function_exists('currency_format')) {
                         name="thanhsearch">
                     <span class="search-lable">Tìm kiếm</span>
                     <script>
+
                         function thanhsearch() {
                             let tk = document.getElementById("thanhsearch").value;
                             $.post('thanhsearch.php', {
@@ -240,10 +241,10 @@ if (!function_exists('currency_format')) {
                                                 </strong>
                                             </p>
                                         </div>
-                                        
+
                                         <div class="card-footer">
                                             <?php
-                                            if (mysqli_num_rows($query1) > 0) { 
+                                            if (mysqli_num_rows($query1) > 0) {
                                                 ?>
                                                 <!-- giá trước khi sale -->
                                                 <div class="footer-label">
@@ -292,7 +293,7 @@ if (!function_exists('currency_format')) {
                                                 </button>
                                             </div>
                                         </div>
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -311,7 +312,7 @@ if (!function_exists('currency_format')) {
             ?>
             <ul class="ul_phantrang">
                 <?php
-                for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>#saling">
+                for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="sanpham.php?page=<?php echo $i; ?>">
                         <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
                                echo 'active';
                            } ?>" value="<?php echo $i; ?>">
@@ -512,7 +513,7 @@ if (!function_exists('currency_format')) {
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="../js/jquery-3.0.0.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <script src="../js/index.js "></script>
     <script src="../js/sanpham.js "></script>
     <script src="../js/logout.js"></script>
@@ -586,7 +587,16 @@ if (isset($_GET['tenTL'])) {
 </script>";
 }
 ?>
-
+<script>
+    function timkiemPage(tk, page) {
+        $.post('thanhsearch.php', {
+            data: tk,
+            page: page
+        }, function (data) {
+            $('#saling').html(data);
+        })
+    }
+</script>
 <script>
     function themsanphamindex(idsp) {
         var audio = new Audio('click.mp3')
