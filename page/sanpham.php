@@ -220,16 +220,15 @@ if (!function_exists('currency_format')) {
                                     <?php
                                     $today = date('Y-m-d');
                                     $giamoi = 0;
-                                    $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp");
+                                    $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp and
+                                    gg_ngaybatdau <= CURDATE() and gg_ngayketthuc >= CURDATE()");
                                     if (mysqli_num_rows($query1) > 0) {
                                         $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
-                                        if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                            $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100)); ?>
-                                            <small class="badge">
-                                                <?php echo $row1['gg_phantram'] ?>%
-                                            </small>
-                                        <?php }
-                                    } else { ?>
+                                        $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));?>
+                                        <small class="badge">
+                                            <?php echo $row1['gg_phantram'] ?>%
+                                        </small>
+                                    <?php } else { ?>
                                         <small></small>
                                     <?php } ?>
                                     <div class="description">
@@ -255,9 +254,7 @@ if (!function_exists('currency_format')) {
                                                 <!-- giá sau khi sale -->
                                                 <div class="footer-label">
                                                     <label for="">
-                                                        <?php if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                                            echo currency_format($giamoi);
-                                                        } ?>
+                                                        <?php echo currency_format($giamoi);?>
                                                     </label>
                                                 </div>
                                                 <?php

@@ -130,17 +130,16 @@ if ($giaMax != "") {
                             <!-- phần trăm sale -->
                             <?php
                             $today = date('Y-m-d');
-                            $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp");
+                            $giamoi = 0;
+                            $query1 = mysqli_query($cn, "SELECT * FROM giamgia WHERE sp_id = $idsp and
+                                    gg_ngaybatdau <= CURDATE() and gg_ngayketthuc >= CURDATE()");
                             if (mysqli_num_rows($query1) > 0) {
                                 $row1 = mysqli_fetch_array($query1, MYSQLI_ASSOC);
-                                if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                    $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100));
-                                    ?>
-                                    <small class="badge">
-                                        <?php echo $row1['gg_phantram'] ?>%
-                                    </small>
-                                <?php }
-                            } else { ?>
+                                $giamoi = $row['sp_gia'] - ($row['sp_gia'] * ($row1['gg_phantram'] / 100)); ?>
+                                <small class="badge">
+                                    <?php echo $row1['gg_phantram'] ?>%
+                                </small>
+                            <?php } else { ?>
                                 <small></small>
                             <?php } ?>
                             <div class="description">
@@ -152,9 +151,11 @@ if ($giaMax != "") {
                                         </strong>
                                     </p>
                                 </div>
+
                                 <div class="card-footer">
                                     <?php
-                                    if (mysqli_num_rows($query1) > 0) { ?>
+                                    if (mysqli_num_rows($query1) > 0) {
+                                        ?>
                                         <!-- giá trước khi sale -->
                                         <div class="footer-label">
                                             <label for="" class="price-old">
@@ -163,13 +164,12 @@ if ($giaMax != "") {
                                         </div>
                                         <!-- giá sau khi sale -->
                                         <div class="footer-label">
-                                            <?php if (strtotime($row1['gg_ngaybatdau']) <= strtotime($today) && strtotime($row1['gg_ngayketthuc']) >= strtotime($today)) {
-                                                echo currency_format($giamoi);
-                                            } ?>
+                                            <label for="">
+                                                <?php echo currency_format($giamoi); ?>
+                                            </label>
                                         </div>
-                                    <?php } else { ?>
-                                        <!-- giá trước khi sale -->
-                                        <div></div>
+                                        <?php
+                                    } else { ?>
                                         <!-- giá sau khi sale -->
                                         <div class="footer-label">
                                             <label for="">
@@ -188,7 +188,7 @@ if ($giaMax != "") {
                                     </div>
                                     <!-- button download -->
                                     <div class="card-button">
-                                        <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">
+                                        <a href="themvaothanhtoan.php?idsp=<?php echo $row['sp_id']; ?>">
                                             <i class='bx bx-download'></i>
                                         </a>
                                     </div>
@@ -200,6 +200,7 @@ if ($giaMax != "") {
                                         </button>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -218,7 +219,8 @@ if ($giaMax != "") {
     ?>
     <ul class="ul_phantrang">
         <?php
-        for ($i = 1; $i <= $tong_page; $i++) { ?> <a href="javascript:timkiemPage('<?php echo $tk; ?>',<?php echo $i; ?>)">
+        for ($i = 1; $i <= $tong_page; $i++) { ?> <a
+                href="javascript:timkiemPage('<?php echo $tk; ?>',<?php echo $i; ?>)">
                 <li id="<?php echo $i; ?>" class="link <?php if ($i == $page) {
                        echo 'active';
                    } ?>" value="<?php echo $i; ?>">
