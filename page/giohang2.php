@@ -106,11 +106,9 @@ if (isset($_GET['action'])) {
                 <a href="index2.php" class="logo">Game<span>Store</span></a>
                 <!-- nav icon -->
                 <div class="nav-icons">
-                    <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
-                    <i class='bx bx-search-alt' id="search-icon"></i>
                     <?php
                     if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
-                    ?>
+                        ?>
                         <a href="giohang2.php">
                             <i class='bx bx-cart bx-tada' id="cart-icon"><span></span></i>
                         </a>
@@ -161,7 +159,7 @@ if (isset($_GET['action'])) {
                             <li>
                                 <a href="quanly-nsx.php">Quản lý của Nhà sản xuất</a>
                             </li>
-                        <?php }  ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <!-- Thông báo -->
@@ -185,13 +183,13 @@ if (isset($_GET['action'])) {
                 </div>
 
                 <!-- Đăng xuất -->
-                <div class="log-out">
-                <a href="khachhang.php">
-                    <div class="logout-box box-color">
-                        <p>Thông tin Khách hàng</p>
-                        <i class='bx bx-spreadsheet'></i>
-                    </div>
-                </a>
+                <div class="log-out ">
+                    <a href="khachhang.php">
+                        <div class="logout-box box-color">
+                            <p>Thông tin Khách hàng</p>
+                            <i class='bx bx-spreadsheet'></i>
+                        </div>
+                    </a>
                     <a href="dangxuat.php" class="out">
                         <div class="logout-box box-color">
                             <p>Đăng xuất</p>
@@ -199,6 +197,12 @@ if (isset($_GET['action'])) {
                         </div>
                     </a>
                 </div>
+                <script>
+                    let logout = document.querySelector(".log-out");
+                    document.getElementById('logout-icon').onclick = () => {
+                        logout.classList.toggle("active");
+                    }
+                </script>
             </div>
         </header>
 
@@ -220,20 +224,25 @@ if (isset($_GET['action'])) {
                 if (!empty($_SESSION['xulygiohang'])) {
                     foreach ($_SESSION['xulygiohang'] as $key => $value) {
                         $tt = $tt + ($value['dongia'] * $value['soluong']);
-                ?>
+                        ?>
                         <!-- sản phẩm -->
                         <div class="product-item">
                             <img src="../uploads/<?php echo $value['hinhsp'] ?>" alt=" ">
                             <div class="product-infor">
                                 <div class="name2">
-                                    <h1 class="product-name"> <?php echo $value['tensp'] ?></h1>
+                                    <h1 class="product-name">
+                                        <?php echo $value['tensp'] ?>
+                                    </h1>
                                 </div>
-                                <h2 class="product-price"><?php echo currency_format($value['dongia']) ?></h2>
+                                <h2 class="product-price">
+                                    <?php echo currency_format($value['dongia']) ?>
+                                </h2>
                             </div>
                             <div class="info-quantity">
                                 <form action="giohang2.php" method="post">
                                     <input class="product-btn-giam" type="submit" name="-<?php echo $key; ?>" value="-">
-                                    <input class="product-value" type="text" name="soluong" readonly value="<?php echo $value['soluong'] ?>">
+                                    <input class="product-value" type="text" name="soluong" readonly
+                                        value="<?php echo $value['soluong'] ?>">
                                     <input class="product-btn-tang" type="submit" name="+<?php echo $key; ?>" value="+">
                                 </form>
                                 <?php
@@ -251,12 +260,14 @@ if (isset($_GET['action'])) {
                                 }
                                 ?>
                             </div>
-                            <h2 class="product-price-total "><?php echo currency_format($value['dongia'] * $value['soluong']) ?></h2>
+                            <h2 class="product-price-total ">
+                                <?php echo currency_format($value['dongia'] * $value['soluong']) ?>
+                            </h2>
                             <a href="giohang2.php?action=delete&id=<?php echo $key ?>" class="close-item">
                                 <ion-icon name="close-outline"></ion-icon>
                             </a>
                         </div>
-                    <?php
+                        <?php
                     }
                 } else { ?>
                     <!-- sản phẩm -->
@@ -273,7 +284,9 @@ if (isset($_GET['action'])) {
             <div class="total ">
                 <div class="total-price ">
                     <span>Tổng cộng:</span>
-                    <label><?php echo currency_format($tt) ?></label>
+                    <label>
+                        <?php echo currency_format($tt) ?>
+                    </label>
                 </div>
             </div>
         </div>
@@ -285,7 +298,7 @@ if (isset($_GET['action'])) {
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
 
-    
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-row">

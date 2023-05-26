@@ -79,6 +79,9 @@ if (isset($_GET['partnerCode'])) {
 
     header("location: xulydownload.php");
 }
+
+
+
 ?>
 
 <body>
@@ -154,10 +157,16 @@ if (isset($_GET['partnerCode'])) {
             </div>
             <!-- Thông báo -->
             <div class="nofication" id="nofication">
-                <div class="nofication-box" id="noteTxT">
-
+                <div class="nofication-box" id="noteTxT" onclick="closeNote()">
                 </div>
-
+                <script>
+                    function closeNote() {
+                        document.getElementById("nofication").classList.remove("active")
+                        document.getElementById("bell-icon").classList.remove("bx-tada")
+                        document.getElementById("bell-icon").innerHTML = ""
+                        document.getElementById("noteTxT").innerHTML = ""
+                    }
+                </script>
             </div>
 
             <!-- tìm kiếm -->
@@ -180,7 +189,7 @@ if (isset($_GET['partnerCode'])) {
             </div>
 
             <!-- Đăng xuất -->
-            <div class="log-out">
+            <div class="log-out ">
                 <a href="khachhang.php">
                     <div class="logout-box box-color">
                         <p>Thông tin Khách hàng</p>
@@ -194,6 +203,12 @@ if (isset($_GET['partnerCode'])) {
                     </div>
                 </a>
             </div>
+            <script>
+                let logout = document.querySelector(".log-out");
+                document.getElementById('logout-icon').onclick = () => {
+                    logout.classList.toggle("active");
+                }
+            </script>
         </div>
     </header>
 
@@ -302,7 +317,7 @@ if (isset($_GET['partnerCode'])) {
         <div class="saling-content">
             <div class="cards">
                 <?php
-                $query = mysqli_query($cn,"SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id and
+                $query = mysqli_query($cn, "SELECT * FROM sanpham,giamgia WHERE sanpham.sp_id = giamgia.sp_id and
                 giamgia.gg_ngaybatdau <= CURDATE() and giamgia.gg_ngayketthuc >= CURDATE()
                 ORDER BY giamgia.gg_phantram DESC LIMIT 0,8");
                 while ($row = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
@@ -478,10 +493,20 @@ if (isset($_GET['partnerCode'])) {
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/logout.js"></script>
     <script src="../js/slider.js"></script>
     <script src="../js/slider1.js"></script>
 </body>
+<?php
+
+if (isset($_GET['dangnhap'])) {
+    echo '<script>
+    document.getElementById("nofication").classList.toggle("active")
+document.getElementById("bell-icon").classList.toggle("bx-tada")
+document.getElementById("bell-icon").innerHTML = "<span></span>"
+document.getElementById("noteTxT").innerHTML = "<p>Đăng nhập thành công ùi</p>"
+        </script>';
+}
+?>
 <script>
     function themsanphamindex(idsp) {
         var audio = new Audio('click.mp3')

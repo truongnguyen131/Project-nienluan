@@ -34,11 +34,20 @@ if (isset($_SESSION['xulygiohang'][$idsp])) {
 
 }
 echo '<script>
-document.getElementById("cart-icon").classList.toggle("bx-tada")
+if(!document.getElementById("nofication").classList.contains("active")){
+    document.getElementById("nofication").classList.toggle("active")
+    document.getElementById("bell-icon").classList.toggle("bx-tada")
+    document.getElementById("bell-icon").innerHTML = "<span></span>"
+}
 document.getElementById("cart-icon").innerHTML = "<span></span>"
-document.getElementById("bell-icon").classList.toggle("bx-tada")
-document.getElementById("bell-icon").innerHTML = "<span></span>"
+if(!document.getElementById("cart-icon").classList.contains("bx-tada")){
+    document.getElementById("cart-icon").classList.toggle("bx-tada")
+}
+
 document.getElementById("noteTxT").innerHTML = "<p>Thêm sản phẩm thành công ùi</p>"
 
 </script>';
 ?>
+<script>
+
+</script>

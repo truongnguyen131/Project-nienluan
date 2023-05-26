@@ -44,8 +44,7 @@ if (isset($_GET['idsp'])) {
     $_SESSION['chitietsp'][$sp_id] = array(
         'hinh_sp' => $row['sp_imgavt'],
         'ten_sp' => $row['sp_tengame'],
-        'gia_sp' => $row['sp_gia'],
-        'soluong_sp' => '<script> console.log(count); </script>'
+        'gia_sp' => $row['sp_gia']
     );
 }
 
@@ -64,7 +63,7 @@ if (isset($_GET['idsp'])) {
             <a href="index2.php" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
-                <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
+                <i class='bx bxs-bell' id="bell-icon"></i>
                 <?php
                 if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
                     ?>
@@ -122,15 +121,17 @@ if (isset($_GET['idsp'])) {
                 </div>
             </div>
             <!-- Thông báo -->
-            <div class="nofication">
-                <div class="nofication-box">
-                    <p>Bạn đã tải game thành công</p>
-                    <i class='bx bxs-check-circle bx-tada'></i>
+            <div class="nofication" id="nofication">
+                <div class="nofication-box" id="noteTxT" onclick="closeNote()">
                 </div>
-                <div class="nofication-box box-color">
-                    <p>Bạn đã tải game thành công</p>
-                    <i class='bx bxs-x-circle bx-tada'></i>
-                </div>
+                <script>
+                    function closeNote() {
+                        document.getElementById("nofication").classList.remove("active")
+                        document.getElementById("bell-icon").classList.remove("bx-tada")
+                        document.getElementById("bell-icon").innerHTML = ""
+                        document.getElementById("noteTxT").innerHTML = ""
+                    }
+                </script>
             </div>
 
             <!-- tìm kiếm -->
@@ -142,7 +143,13 @@ if (isset($_GET['idsp'])) {
             </div>
 
             <!-- Đăng xuất -->
-            <div class="log-out">
+            <div class="log-out ">
+                <a href="khachhang.php">
+                    <div class="logout-box box-color">
+                        <p>Thông tin Khách hàng</p>
+                        <i class='bx bx-spreadsheet'></i>
+                    </div>
+                </a>
                 <a href="dangxuat.php" class="out">
                     <div class="logout-box box-color">
                         <p>Đăng xuất</p>
@@ -150,6 +157,12 @@ if (isset($_GET['idsp'])) {
                     </div>
                 </a>
             </div>
+            <script>
+                let logout = document.querySelector(".log-out");
+                document.getElementById('logout-icon').onclick = () => {
+                    logout.classList.toggle("active");
+                }
+            </script>
         </div>
     </header>
     <!-- content -->
@@ -237,7 +250,7 @@ if (isset($_GET['idsp'])) {
             </div>
 
             <div class="infor-btn">
-                <a href="thanhtoan2.php?idsp=<?php echo $row['sp_id']; ?>">Mua</a>
+                <a href="themvaothanhtoan.php?idsp=<?php echo $row['sp_id']; ?>">Mua</a>
                 <a href="giohang2.php?idsp=<?php echo $row['sp_id']; ?>">Thêm vào giỏ hàng</a>
             </div>
         </div>
@@ -266,31 +279,24 @@ if (isset($_GET['idsp'])) {
         <video src="../uploads/<?php echo $row['sp_trailer'] ?>" muted autoplay></video>
     </div>
     <!-- mô tả -->
-    <div class="about container">
+    <div class="about container" id="mota">
         <h2>Mô tả Game</h2>
-        <p>Saints & Sinners is a game unlike any other in The Walking Dead universe. Every challenge you face and
-            decision you make is driven by YOU. Fight the undead, scavenge through the flooded ruins of New Orleans, and
-            face gut-wrenching choices for you and the other survivors. Live The Walking Dead.
-            Connectez-vous pour connaitre les raisons pour lesquelles vous pourriez aimer ou non ce produit. Ces
-            recommandations varient en fonction des jeux que vous possédez, de vos contacts et des groupes de curation
-            que vous suivez.
-            Tourist Edition
-            Get the Tourist Edition of The Walking Dead: Saints & Sinners and you'll receive three unique weapon
-            recipes, collectible voodoo dolls, the game's soundtrack, and The Supernatural Skeptic's Guide to New
-            Orleans companion piece.
-            Saints & Sinners is a game unlike any other in The Walking Dead universe. Every challenge you face and
-            decision you make is driven by YOU. Fight the undead, scavenge through the flooded ruins of New Orleans, and
-            face gut-wrenching choices for you and the other survivors. Live The Walking Dead.
-            Connectez-vous pour connaitre les raisons pour lesquelles vous pourriez aimer ou non ce produit. Ces
-            recommandations varient en fonction des jeux que vous possédez, de vos contacts et des groupes de curation
-            que vous suivez.
-            Tourist Edition
-            Get the Tourist Edition of The Walking Dead: Saints & Sinners and you'll receive three unique weapon
-            recipes, collectible voodoo dolls, the game's soundtrack, and The Supernatural Skeptic's Guide to New
+        <p>
+            <?php
+            $pre_mota = substr($row['sp_mota'], 0, 80);
+            ;
+            if (isset($_GET['mota'])) {
+                echo $row['sp_mota'];
+            }
+            if (!isset($_GET['mota'])) {
+                echo $pre_mota . " <a href='chitietsp.php?idsp=$sp_id&mota=xemthem#mota'>Xem thêm.....</a>";
+            }
+            ?>
         </p>
+
     </div>
     <!-- đánh giá và bình luận -->
-    <form action="" method="post">
+    <form action="" method="post" id="danhgia">
         <div class="rate-and-cmt container">
             <h2>Đánh giá và bình luận</h2>
             <div class="tab-comment-content">
@@ -335,18 +341,16 @@ if (isset($_GET['idsp'])) {
                     <span>Hãy đánh giá nhé:</span>
                     <div class="product-danhgiasao">
                         <div class="stars">
-                            <form action="">
-                                <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
-                                <label class="star star-5" for="star-5"></label>
-                                <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
-                                <label class="star star-4" for="star-4"></label>
-                                <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
-                                <label class="star star-3" for="star-3"></label>
-                                <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
-                                <label class="star star-2" for="star-2"></label>
-                                <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
-                                <label class="star star-1" for="star-1"></label>
-                            </form>
+                            <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
+                            <label class="star star-1" for="star-1"></label>
                         </div>
                     </div>
                     <span>Bình luận</span>
@@ -436,7 +440,6 @@ if (isset($_GET['idsp'])) {
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/logout.js"></script>
     <script src="../js/comment.js"></script>
     <script src="../js/slider.js"></script>
     <script>
@@ -461,7 +464,7 @@ if (isset($_GET['idsp'])) {
             var checkbox = document.getElementsByName('star');
             var result = 0;
             var loi = ""
-            
+
             for (var i = 0; i < checkbox.length; i++) {
                 if (checkbox[i].checked === true) {
                     result = checkbox[i].value;
@@ -472,13 +475,13 @@ if (isset($_GET['idsp'])) {
                 loi = "Vui lòng nhập bình luận <br>"
             }
 
-            if(result == 0){
-                loi +="Vui lòng chọn sao đánh giá"
+            if (result == 0) {
+                loi += "Vui lòng chọn sao đánh giá"
             }
 
-            if(loi !=""){
+            if (loi != "") {
                 $('#loicmt').html(loi)
-            }else{
+            } else {
                 $.post('xulydanhgia.php', {
                     cmt1: cmt,
                     id1: id_sp,
@@ -487,9 +490,20 @@ if (isset($_GET['idsp'])) {
                     $('#thongbao').html(data);
                 })
             }
-            
+
         }
     </script>
+
+    <?php
+    if (isset($_GET['danhgia'])) {
+        echo '<script>
+    document.getElementById("nofication").classList.toggle("active")
+    document.getElementById("bell-icon").classList.toggle("bx-tada")
+    document.getElementById("bell-icon").innerHTML = "<span></span>"
+    document.getElementById("noteTxT").innerHTML = "<p>Đánh giá thành công ùi</p>"
+    </script>';
+    }
+    ?>
 
 </body>
 <footer class="footer">

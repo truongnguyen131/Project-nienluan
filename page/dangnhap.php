@@ -28,7 +28,7 @@ include_once('database_connection.php'); ?>
     }
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "thanhcong") {
         unset($_SESSION['dangkythanhcong']);
-        echo ' <script>window.location="http://localhost/Project-nienluan/page/index2.php"</script>';
+        echo ' <script>window.location="http://localhost/Project-nienluan/page/index2.php?dangnhap=ok"</script>';
     }
     if (isset($_SESSION['dangnhapthanhcong']) && $_SESSION['dangnhapthanhcong'] == "danhgia") {
         unset($_SESSION['dangkythanhcong']);
