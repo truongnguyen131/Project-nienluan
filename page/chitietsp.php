@@ -179,7 +179,7 @@ if (isset($_GET['idsp'])) {
                 $arr_idtl = array();
                 while ($value1 = mysqli_fetch_array($theloai, MYSQLI_ASSOC)) {
                     array_push($arr_idtl, $value1['tl_id']); ?>
-                    <a href="">
+                    <a href="sanpham.php?tenTL=<?php echo $value1['tl_ten']; ?>">
                         <?php echo $value1['tl_ten'] ?>
                     </a>
                 <?php } ?>

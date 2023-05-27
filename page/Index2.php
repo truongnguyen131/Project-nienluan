@@ -23,16 +23,8 @@ include_once('database_connection.php'); ?>
 
 <!-- hàm format giá -->
 <?php
-if (!function_exists('currency_format')) {
-    function currency_format($number, $suffix = 'đ')
-    {
-        if (!empty($number)) {
-            return number_format($number, 0, ',', '.') . "{$suffix}";
-        }
-    }
-}
-?>
-<?php
+require('./xacnhanthanhtoan.php');
+
 function diemtichluy($x)
 {
     if ($x >= 2000000) {
@@ -45,7 +37,14 @@ function diemtichluy($x)
     }
     return 0;
 }
-
+if (!function_exists('currency_format')) {
+    function currency_format($number, $suffix = 'đ')
+    {
+        if (!empty($number)) {
+            return number_format($number, 0, ',', '.') . "{$suffix}";
+        }
+    }
+}
 if (isset($_SESSION['idtaikhoan'])) {
     $idtk = $_SESSION["idtaikhoan"];
     $dtl = 0;
@@ -57,7 +56,6 @@ if (isset($_SESSION['loaitaikhoan']) && $_SESSION["loaitaikhoan"] == "khach hang
         $dtl = $row['kh_diemtichluy'];
     }
 }
-
 if (isset($_GET['partnerCode'])) {
     if (isset($_SESSION['diemtichluy'])) {
         $dtl = $_SESSION['diemtichluy'] + diemtichluy($_SESSION['thanhtoan']);
@@ -77,11 +75,17 @@ if (isset($_GET['partnerCode'])) {
         mysqli_query($cn, "INSERT INTO `chitietdonhang`(`dh_id`, `sp_id`, `ctdh_soluong`, `ctdh_tongtien`) VALUES ('$id_dh','$key','$soluong','$tongtien')");
     }
 
+    $rs = mysqli_query($cn, "SELECT `kh_email` FROM `khachhang` WHERE kh_id = $idkh");
+    foreach($rs as $value){
+        $emailKH = $value['kh_email'];
+    }
+
+    $contentMail= "";
+    $sendMail = new SendMail();
+    $sendMail->SendMailInfo($emailKH,$contentMail);
+
     header("location: xulydownload.php");
 }
-
-
-
 ?>
 
 <body>

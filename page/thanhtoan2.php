@@ -84,7 +84,7 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
             <a href="index2.php" class="logo">Game<span>Store</span></a>
             <!-- nav icon -->
             <div class="nav-icons">
-                <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i>
+                <!-- <i class='bx bxs-bell bx-tada' id="bell-icon"><span></span></i> -->
                 <i class='bx bx-search-alt' id="search-icon"></i>
                 <?php
                 if (isset($_SESSION['xulygiohang']) && !empty($_SESSION['xulygiohang'])) {
@@ -163,8 +163,8 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
             </div>
 
             <!-- Đăng xuất -->
-            <div class="log-out">
-            <a href="khachhang.php">
+            <div class="log-out ">
+                <a href="khachhang.php">
                     <div class="logout-box box-color">
                         <p>Thông tin Khách hàng</p>
                         <i class='bx bx-spreadsheet'></i>
@@ -177,6 +177,12 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     </div>
                 </a>
             </div>
+            <script>
+                let logout = document.querySelector(".log-out");
+                document.getElementById('logout-icon').onclick = () => {
+                    logout.classList.toggle("active");
+                }
+            </script>
         </div>
     </header>
     <!-- menu 2 -->
@@ -283,26 +289,12 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                     </div>
                     <div class="infor-bottom">
                         <?php
-                        function diemtichluy($x)
-                        {
-                            if ($x >= 2000000) {
-                                $x = $x * 0.03 / 1000;
-                                return CEIL($x);
-                            }
-                            if ($x >= 500000) {
-                                $x = $x * 0.01 / 1000;
-                                return CEIL($x);
-                            }
-                            return 0;
-                        }
-                        
                         if (isset($_POST["dathang"])) {
                             if ($sanpham == 0) {
                                 echo "<b>Hãy thêm sản phâm bạn muốn mua vào giỏ hàng</b>";
                             } else {
                                 if ($idkh != "") {
                                     if (isset($_POST['check']) && !empty($_POST['check'])) {
-
                                         if (isset($_POST['dtl']) && !empty($_POST['dtl'])) {
                                             $tt = $tt - $dtl * 1000;
                                             $_SESSION['diemtichluy'] = 0;
@@ -323,8 +315,10 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
                             }
                         }
                         ?>
-                        <button class="infor-btn" type="submit" name="dathang">Đặt hàng</button>
+                        
+                        <button class="infor-btn" type="submit" id="dathang" name="dathang">Đặt hàng</button>
                         <a class="infor-btn" href="thanhtoan2.php?huy=huy">Hủy</a>
+                       
                     </div>
                 </div>
             </div>
@@ -333,7 +327,6 @@ if ($_SESSION["loaitaikhoan"] == "nha san xuat") {
 
 
     <script src="../js/index.js "></script>
-    <script src="../js/logout.js"></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-1.11.0.min.js "></script>
     <script type="text/javascript " src="//code.jquery.com/jquery-migrate-1.2.1.min.js "></script>
 
